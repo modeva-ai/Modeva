@@ -1,0 +1,902 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>modeva.models.MoGAMINetRegressor &#8212; Modeva  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=578d8e15" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/hide_links.css?v=60d22a59" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=23db8a6b" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_source/modules/generated/modeva.models.MoGAMINetRegressor';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="modeva.models.MoGLMTreeRegressor" href="modeva.models.MoGLMTreeRegressor.html" />
+    <link rel="prev" title="modeva.models.MoReLUDNNRegressor" href="modeva.models.MoReLUDNNRegressor.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.5" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.jpg" class="logo__image only-light" alt=""/>
+    <img src="../../../_static/logo.jpg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Modeva-AI</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../data.html">DataSet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modelzoo.html">Model Zoo</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../models.html">Interpretable Models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="modeva.models.MoElasticNet.html">modeva.models.MoElasticNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.models.MoDecisionTreeRegressor.html">modeva.models.MoDecisionTreeRegressor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.models.MoGradientBoostingRegressor.html">modeva.models.MoGradientBoostingRegressor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.models.MoRandomForestRegressor.html">modeva.models.MoRandomForestRegressor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.models.MoLGBMRegressor.html">modeva.models.MoLGBMRegressor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.models.MoCatBoostRegressor.html">modeva.models.MoCatBoostRegressor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.models.MoXGBRegressor.html">modeva.models.MoXGBRegressor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.models.MoReLUDNNRegressor.html">modeva.models.MoReLUDNNRegressor</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">modeva.models.MoGAMINetRegressor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.models.MoGLMTreeRegressor.html">modeva.models.MoGLMTreeRegressor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.models.MoGLMTreeBoostRegressor.html">modeva.models.MoGLMTreeBoostRegressor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.models.MoNeuralTreeRegressor.html">modeva.models.MoNeuralTreeRegressor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.models.MoMoERegressor.html">modeva.models.MoMoERegressor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.models.MoLogisticRegression.html">modeva.models.MoLogisticRegression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.models.MoDecisionTreeClassifier.html">modeva.models.MoDecisionTreeClassifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.models.MoGradientBoostingClassifier.html">modeva.models.MoGradientBoostingClassifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.models.MoRandomForestClassifier.html">modeva.models.MoRandomForestClassifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.models.MoLGBMClassifier.html">modeva.models.MoLGBMClassifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.models.MoCatBoostClassifier.html">modeva.models.MoCatBoostClassifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.models.MoXGBClassifier.html">modeva.models.MoXGBClassifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.models.MoReLUDNNClassifier.html">modeva.models.MoReLUDNNClassifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.models.MoGAMINetClassifier.html">modeva.models.MoGAMINetClassifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.models.MoGLMTreeClassifier.html">modeva.models.MoGLMTreeClassifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.models.MoGLMTreeBoostClassifier.html">modeva.models.MoGLMTreeBoostClassifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.models.MoNeuralTreeClassifier.html">modeva.models.MoNeuralTreeClassifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.models.MoMoEClassifier.html">modeva.models.MoMoEClassifier</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../hpo.html">Hyperparameter Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wrappers.html">Model Wrappers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testsuite.html">Test Suite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../results.html">Validation Result</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pipeline.html">Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utilities.html">Utilities</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../api_ref.html" class="nav-link">API Reference</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../models.html" class="nav-link">Interpretable Models</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">modeva.models.MoGAMINetRegressor</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="modeva-models-mogaminetregressor">
+<h1>modeva.models.MoGAMINetRegressor<a class="headerlink" href="#modeva-models-mogaminetregressor" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="modeva.models.MoGAMINetRegressor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modeva.models.</span></span><span class="sig-name descname"><span class="pre">MoGAMINetRegressor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interact_num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subnet_size_main_effect</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(20,)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subnet_size_interaction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(20,</span> <span class="pre">20)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation_func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ReLU'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_epochs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1000,</span> <span class="pre">1000,</span> <span class="pre">1000)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.001,</span> <span class="pre">0.001,</span> <span class="pre">0.0001)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">early_stop_thres</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('auto',</span> <span class="pre">'auto',</span> <span class="pre">'auto')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size_inference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iter_per_epoch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_ratio</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warm_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gam_sample_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mlp_sample_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heredity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reg_clarity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reg_mono</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mono_increasing_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mono_decreasing_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mono_sample_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_interaction_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary_clip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.models.MoGAMINetRegressor" title="Link to this definition">#</a></dt>
+<dd><p>Generalized additive model with pairwise interaction regressor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em><em>, </em><em>default=None</em>) – The name of the model.</p></li>
+<li><p><strong>feature_names</strong> (<em>list</em><em> or </em><em>None</em><em>, </em><em>default=None</em>) – The list of feature names.</p></li>
+<li><p><strong>feature_types</strong> (<em>list</em><em> or </em><em>None</em><em>, </em><em>default=None</em>) – The list of feature types. Available types include “numerical” and “categorical”.</p></li>
+<li><p><strong>interact_num</strong> (<em>int</em><em>, </em><em>default=10</em>) – The max number of interactions to be included in the second stage training.</p></li>
+<li><p><strong>subnet_size_main_effect</strong> (<em>tuple</em><em> of </em><em>int</em><em>, </em><em>default=</em><em>(</em><em>20</em><em>, </em><em>)</em>) – The hidden layer architecture of each subnetwork in the
+main effect block.</p></li>
+<li><p><strong>subnet_size_interaction</strong> (<em>tuple</em><em> of </em><em>int</em><em>, </em><em>default=</em><em>(</em><em>20</em><em>, </em><em>20</em><em>)</em>) – The hidden layer architecture of each subnetwork in the
+interaction block.</p></li>
+<li><p><strong>activation_func</strong> (<em>{&quot;ReLU&quot;</em><em>, </em><em>&quot;Sigmoid&quot;</em><em>, </em><em>&quot;Tanh&quot;}</em><em>, </em><em>default=&quot;ReLU&quot;</em>) – The name of the activation function.</p></li>
+<li><p><strong>max_epochs</strong> (<em>tuple</em><em> of </em><em>THREE int</em><em>, </em><em>default=</em><em>(</em><em>1000</em><em>, </em><em>1000</em><em>, </em><em>1000</em><em>)</em>) – The max number of epochs in the first (main effect training),
+second (interaction training), and third (fine-tuning) stages,
+respectively.</p></li>
+<li><p><strong>learning_rates</strong> (<em>tuple</em><em> of </em><em>THREE float</em><em>, </em><em>default=</em><em>(</em><em>1e-3</em><em>, </em><em>1e-3</em><em>, </em><em>1e-4</em><em>)</em>) – The initial learning rates of Adam optimizer in the first
+(main effect training), second (interaction training), and
+third (fine-tuning) stages, respectively.</p></li>
+<li><p><strong>early_stop_thres</strong> (<em>tuple</em><em> of </em><em>THREE int</em><em> or </em><em>&quot;auto&quot;</em><em>, </em><em>default=</em><em>[</em><em>&quot;auto&quot;</em><em>, </em><em>&quot;auto&quot;</em><em>, </em><em>&quot;auto&quot;</em><em>]</em>) – The early stopping threshold in the first (main effect training),
+second (interaction training), and third (fine-tuning) stages,
+respectively.
+In auto mode, the value is set to max(5, min(5000 * n_features
+/ (max_iter_per_epoch * batch_size), 100)).</p></li>
+<li><p><strong>batch_size</strong> (<em>int</em><em>, </em><em>default=1000</em>) – The batch size.
+Note that it should not be larger than the training size * (1 - validation ratio).</p></li>
+<li><p><strong>batch_size_inference</strong> (<em>int</em><em>, </em><em>default=10000</em>) – The batch size used in the inference stage.
+It is imposed to avoid out-of-memory issue when dealing very large dataset.</p></li>
+<li><p><strong>max_iter_per_epoch</strong> (<em>int</em><em>, </em><em>default=100</em>) – The max number of iterations per epoch.
+In the init stage of model fit, its value will be clipped
+by min(max_iter_per_epoch, int(sample_size / batch_size)).
+For each epoch, the data would be reshuffled and only the
+first “max_iter_per_epoch” batches would be used for training.
+It is imposed to make the training scalable for very large dataset.</p></li>
+<li><p><strong>val_ratio</strong> (<em>float</em><em>, </em><em>default=0.2</em>) – The validation ratio, should be greater than 0 and smaller
+than 1.</p></li>
+<li><p><strong>warm_start</strong> (<em>bool</em><em>, </em><em>default=True</em>) – Initialize the network by fitting a rough LGBM model.
+The initialization is performed by,
+1) fit a LGBM model as teacher model,
+2) generate random samples from the teacher model,
+3) fit each subnetwork using the generated samples.
+And it is used for both main effect and interaction subnetwork initialization.</p></li>
+<li><p><strong>gam_sample_size</strong> (<em>int</em><em>, </em><em>default=5000</em>) – The sub-sample size for GAM fitting as warm_start=True.</p></li>
+<li><p><strong>mlp_sample_size</strong> (<em>int</em><em>, </em><em>default=1000</em>) – The generated sample size for individual subnetwork fitting
+as warm_start=True.</p></li>
+<li><p><strong>heredity</strong> (<em>bool</em><em>, </em><em>default=True</em>) – Whether to perform interaction screening subject to heredity
+constraint.</p></li>
+<li><p><strong>loss_threshold</strong> (<em>float</em><em>, </em><em>default=0.01</em>) – The loss tolerance threshold for selecting fewer main effects or
+interactions, according to the validation performance.
+For instance, assume the best validation performance is achieved
+when using 10 main effects; if only use the top 5 main effects
+also gives similar validation performance, we could prune the
+last 5 by setting this parameter to be positive.</p></li>
+<li><p><strong>reg_clarity</strong> (<em>float</em><em>, </em><em>default=0.1</em>) – The regularization strength of marginal clarity constraint.</p></li>
+<li><p><strong>reg_mono</strong> (<em>float</em><em>, </em><em>default=0.1</em>) – The regularization strength of monotonicity constraint.</p></li>
+<li><p><strong>mono_sample_size</strong> (<em>int</em><em>, </em><em>default=1000</em>) – As monotonicity constraint is used, we would generate some data points
+uniformly within the feature space per epoch, to impose the monotonicity
+regularization in addition to original training samples.</p></li>
+<li><p><strong>mono_increasing_list</strong> (<em>tuple</em><em> of </em><em>str</em><em>, </em><em>default=</em><em>(</em><em>)</em>) – The feature name tuple subject to monotonic increasing constraint.</p></li>
+<li><p><strong>mono_decreasing_list</strong> (<em>tuple</em><em> of </em><em>str</em><em>, </em><em>default=</em><em>(</em><em>)</em>) – The feature name tuple subject to monotonic decreasing constraint.</p></li>
+<li><p><strong>include_interaction_list</strong> (<em>tuple</em><em> of </em><em>(</em><em>str</em><em>, </em><em>str</em><em>)</em><em>, </em><em>default=</em><em>(</em><em>)</em>) – The tuple of interaction to be included for fitting,
+each interaction is expressed by (feature_name1, feature_name2).</p></li>
+<li><p><strong>boundary_clip</strong> (<em>bool</em><em>, </em><em>default=True</em>) – In the inference stage, whether to clip the feature values by their
+min and max values in the training data.</p></li>
+<li><p><strong>normalize</strong> (<em>bool</em><em>, </em><em>default=True</em>) – Whether to normalize the data before inputting to the network.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em><em>, </em><em>default=False</em>) – Whether to output the training logs.</p></li>
+<li><p><strong>n_jobs</strong> (<em>int</em><em>, </em><em>default=10</em>) – The number of cpu cores for parallel computing. -1 means all the
+available cpus will be used.</p></li>
+<li><p><strong>device</strong> (<em>string</em><em>, </em><em>default=None</em>) – The hardware device name used for training.</p></li>
+<li><p><strong>random_state</strong> (<em>int</em><em>, </em><em>default=0</em>) – The random seed.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modeva.models.MoGAMINetRegressor.net_">
+<span class="sig-name descname"><span class="pre">net_</span></span><a class="headerlink" href="#modeva.models.MoGAMINetRegressor.net_" title="Link to this definition">#</a></dt>
+<dd><p>The fitted GAMI-Net module.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch network object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modeva.models.MoGAMINetRegressor.interaction_list_">
+<span class="sig-name descname"><span class="pre">interaction_list_</span></span><a class="headerlink" href="#modeva.models.MoGAMINetRegressor.interaction_list_" title="Link to this definition">#</a></dt>
+<dd><p>The list of feature index pairs (tuple) for each fitted interaction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of tuples</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modeva.models.MoGAMINetRegressor.active_main_effect_index_">
+<span class="sig-name descname"><span class="pre">active_main_effect_index_</span></span><a class="headerlink" href="#modeva.models.MoGAMINetRegressor.active_main_effect_index_" title="Link to this definition">#</a></dt>
+<dd><p>The selected main effect index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modeva.models.MoGAMINetRegressor.active_interaction_index_">
+<span class="sig-name descname"><span class="pre">active_interaction_index_</span></span><a class="headerlink" href="#modeva.models.MoGAMINetRegressor.active_interaction_index_" title="Link to this definition">#</a></dt>
+<dd><p>The selected interaction index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modeva.models.MoGAMINetRegressor.main_effect_val_loss_">
+<span class="sig-name descname"><span class="pre">main_effect_val_loss_</span></span><a class="headerlink" href="#modeva.models.MoGAMINetRegressor.main_effect_val_loss_" title="Link to this definition">#</a></dt>
+<dd><p>The validation loss as the most important main effects are sequentially added.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modeva.models.MoGAMINetRegressor.interaction_val_loss_">
+<span class="sig-name descname"><span class="pre">interaction_val_loss_</span></span><a class="headerlink" href="#modeva.models.MoGAMINetRegressor.interaction_val_loss_" title="Link to this definition">#</a></dt>
+<dd><p>The validation loss as the most important interactions are sequentially added.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modeva.models.MoGAMINetRegressor.time_cost_">
+<span class="sig-name descname"><span class="pre">time_cost_</span></span><a class="headerlink" href="#modeva.models.MoGAMINetRegressor.time_cost_" title="Link to this definition">#</a></dt>
+<dd><p>The time cost of each stage.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modeva.models.MoGAMINetRegressor.n_interactions_">
+<span class="sig-name descname"><span class="pre">n_interactions_</span></span><a class="headerlink" href="#modeva.models.MoGAMINetRegressor.n_interactions_" title="Link to this definition">#</a></dt>
+<dd><p>The actual number of interactions used in the fitting stage.
+It is greater or equal to the number of active interactions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modeva.models.MoGAMINetRegressor.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.models.MoGAMINetRegressor.fit" title="Link to this definition">#</a></dt>
+<dd><p>Fits a GAMINet regression model to the training data.</p>
+<p>This method trains the model in three stages: main effects training, interaction training,
+and fine-tuning. It handles data preprocessing, model initialization, and the complete
+training pipeline.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Training data features.</p></li>
+<li><p><strong>y</strong> (<em>np.ndarray</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>,</em><em>)</em>) – Target values for regression.</p></li>
+<li><p><strong>sample_weight</strong> (<em>np.ndarray</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>,</em><em>)</em><em>, </em><em>default=None</em>) – Individual weights for each sample. If None, all samples are weighted equally.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>self</strong> – Returns the fitted estimator.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modeva.models.MoGAMINetRegressor.get_params">
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.models.MoGAMINetRegressor.get_params" title="Link to this definition">#</a></dt>
+<dd><p>Get parameters for this estimator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>deep</strong> (<em>bool</em><em>, </em><em>default=True</em>) – If True, will return the parameters for this estimator and
+contained subobjects that are estimators.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>params</strong> – Parameter names mapped to their values.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modeva.models.MoGAMINetRegressor.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.models.MoGAMINetRegressor.load" title="Link to this definition">#</a></dt>
+<dd><p>Load the model into memory from file system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_name</strong> (<em>str</em>) – The path and name of the file.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>estimator object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modeva.models.MoGAMINetRegressor.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.models.MoGAMINetRegressor.predict" title="Link to this definition">#</a></dt>
+<dd><p>Returns numpy array of predicted values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>np.ndarray</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Data features.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>pred</strong> – numpy array of predicted values.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray of shape (n_samples, )</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modeva.models.MoGAMINetRegressor.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.models.MoGAMINetRegressor.save" title="Link to this definition">#</a></dt>
+<dd><p>Save the model into file system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_name</strong> (<em>str</em>) – The path and name of the file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modeva.models.MoGAMINetRegressor.set_params">
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.models.MoGAMINetRegressor.set_params" title="Link to this definition">#</a></dt>
+<dd><p>Set the parameters of this estimator.</p>
+<p>The method works on simple estimators as well as on nested objects
+(such as <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html#sklearn.pipeline.Pipeline" title="(in scikit-learn v1.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code></a>). The latter have
+parameters of the form <code class="docutils literal notranslate"><span class="pre">&lt;component&gt;__&lt;parameter&gt;</span></code> so that it’s
+possible to update each component of a nested object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>**params</strong> (<em>dict</em>) – Estimator parameters.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>self</strong> – Estimator instance.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>estimator instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="modeva.models.MoReLUDNNRegressor.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">modeva.models.MoReLUDNNRegressor</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="modeva.models.MoGLMTreeRegressor.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">modeva.models.MoGLMTreeRegressor</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoGAMINetRegressor"><code class="docutils literal notranslate"><span class="pre">MoGAMINetRegressor</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoGAMINetRegressor.net_"><code class="docutils literal notranslate"><span class="pre">MoGAMINetRegressor.net_</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoGAMINetRegressor.interaction_list_"><code class="docutils literal notranslate"><span class="pre">MoGAMINetRegressor.interaction_list_</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoGAMINetRegressor.active_main_effect_index_"><code class="docutils literal notranslate"><span class="pre">MoGAMINetRegressor.active_main_effect_index_</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoGAMINetRegressor.active_interaction_index_"><code class="docutils literal notranslate"><span class="pre">MoGAMINetRegressor.active_interaction_index_</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoGAMINetRegressor.main_effect_val_loss_"><code class="docutils literal notranslate"><span class="pre">MoGAMINetRegressor.main_effect_val_loss_</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoGAMINetRegressor.interaction_val_loss_"><code class="docutils literal notranslate"><span class="pre">MoGAMINetRegressor.interaction_val_loss_</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoGAMINetRegressor.time_cost_"><code class="docutils literal notranslate"><span class="pre">MoGAMINetRegressor.time_cost_</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoGAMINetRegressor.n_interactions_"><code class="docutils literal notranslate"><span class="pre">MoGAMINetRegressor.n_interactions_</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoGAMINetRegressor.fit"><code class="docutils literal notranslate"><span class="pre">MoGAMINetRegressor.fit()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoGAMINetRegressor.get_params"><code class="docutils literal notranslate"><span class="pre">MoGAMINetRegressor.get_params()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoGAMINetRegressor.load"><code class="docutils literal notranslate"><span class="pre">MoGAMINetRegressor.load()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoGAMINetRegressor.predict"><code class="docutils literal notranslate"><span class="pre">MoGAMINetRegressor.predict()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoGAMINetRegressor.save"><code class="docutils literal notranslate"><span class="pre">MoGAMINetRegressor.save()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoGAMINetRegressor.set_params"><code class="docutils literal notranslate"><span class="pre">MoGAMINetRegressor.set_params()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2025, Modeva Team.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

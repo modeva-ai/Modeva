@@ -1,0 +1,633 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>ALE (Accumulated Local Effects) &#8212; Modeva  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=578d8e15" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/hide_links.css?v=60d22a59" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=23db8a6b" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_source/user_guide/explain/ale';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.5" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.jpg" class="logo__image only-light" alt=""/>
+    <img src="../../../_static/logo.jpg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Modeva-AI</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">ALE (Accumulated Local Effects)</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="ale-accumulated-local-effects">
+<h1>ALE (Accumulated Local Effects)<a class="headerlink" href="#ale-accumulated-local-effects" title="Link to this heading">#</a></h1>
+<p>Accumulated Local Effects (ALE; <a class="reference internal" href="Global.html#apley2016" id="id1"><span>[Apley2016]</span></a>) is a model-agnostic method for explaining how features impact a model’s prediction. Its aim is similar to that of PDP, but PDP results may be biased when features are correlated. ALE overcomes this limitation and offers a quicker and unbiased alternative to PDP.</p>
+<section id="algorithm-details">
+<h2>Algorithm Details<a class="headerlink" href="#algorithm-details" title="Link to this heading">#</a></h2>
+<p>ALE plots, by definition, accumulate the local effects over the range of features. Here we just describe the one-way ALE for a single numerical feature, i.e., one-way ALE. It first divides the feature of interest into <span class="math notranslate nohighlight">\(K\)</span> intervals (bins). The local effect of each bin is computed as the difference in prediction between the first and last values. Let <span class="math notranslate nohighlight">\(N_{j}(k) = (z_{k-1,j} , z_{k,j}]\)</span> be the <span class="math notranslate nohighlight">\(k\)</span>-th interval for the <span class="math notranslate nohighlight">\(j\)</span>-th feature. The split point <span class="math notranslate nohighlight">\(z_{k,j}\)</span> is usually set as the <span class="math notranslate nohighlight">\(\frac{k}{K}\)</span> quantile of the <span class="math notranslate nohighlight">\(j\)</span>-th feature. Based on the binning results, we can compute the uncentered effect of the feature <span class="math notranslate nohighlight">\(j\)</span> as follows:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{align}
+   \hat{h}_{j,ALE}(x) = \sum_{k=1}^{k_{j}(x)}\frac{1}{n_{j}(k)}\sum_{i:x_{j}^{(i)}\in N_{j}(k)}[\hat{f}(z_{k,j},\textbf{x}_{-j}^{(i)})- \hat{f}(z_{k-1,j},\textbf{x}_{-j}^{(i)}))], \tag{1}
+\end{align}\]</div>
+</div></blockquote>
+<p>where <span class="math notranslate nohighlight">\(k_{j}(x)\)</span> is the index of the interval, <span class="math notranslate nohighlight">\(n_{j}(k)\)</span> is the number of samples in <span class="math notranslate nohighlight">\(N_{j}(k)\)</span>, and <span class="math notranslate nohighlight">\(\hat{f}\)</span> is the model being explained. Finally, the ALE is centered using the following formula:</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+   \hat{f}_{j,ALE}(x) = \hat{h}_{j,ALE}(x)-\frac{1}{n} \sum_{i=1}^{n} \hat{h}_{j, ALE}(x_{j}^{(i)}). \tag{2}
+\end{align}\]</div>
+<p>Note that the computation of ALE is faster than that of PDP, as it requires less number of function calls to <span class="math notranslate nohighlight">\(\hat{f}\)</span>. Moreover, there is no standard for selecting the number of intervals. If the number of intervals is too small, the ALE plots might not be very accurate. On the other hand, If the number is too high, the curve will have many small ups and downs. For additional details on the two-way ALE, please refer to the original paper <a class="reference internal" href="Global.html#apley2016" id="id2"><span>[Apley2016]</span></a>. In PiML, the ALE plot is generated based on the Python package <a class="reference external" href="https://github.com/DanaJomar/PyALE">PyALE</a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When features are strongly correlated, it is not suggested to do the interpretation of the effect across intervals. That is because the effects are computed per interval (locally), and require no extrapolation beyond the data envelope. If fix one feature and move another feature (highly correlated with the fixed one) from one interval to another one, the model being explained <span class="math notranslate nohighlight">\(\hat{f}\)</span> may output unreliable predictions, which will lead to unreliable ALE values. In other words, the ALE values are not reliable when the model is extrapolating outside
+of the data envelope. Therefore, as features are strongly correlated, we should interpret ALE plots locally for each bin.</p>
+</div>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
+<p>This section illustrates how to use PiML to get the ALE plots. Similar to the visualization of PDPs, the visualization of ALE plots in PiML can be done using the <cite>model_explain</cite> function. The keyword for ALE plot is “ale”, i.e., we should set <cite>show</cite> = “ale”. Additionally, the following arguments are relevant to this analysis:</p>
+<ul class="simple">
+<li><p><cite>uni_feature</cite>: The name of the feature of interest for one-way ALE.</p></li>
+<li><p><cite>bi_features</cite>: The names of the features of interest for two-way ALE.</p></li>
+<li><p><cite>use_test</cite>: If True, the test data will be used to generate the explanations. Otherwise, the training data will be used. The default value is False.</p></li>
+<li><p><cite>sample_size</cite>: To speed up the computation, we subsample a subset of the data to calculate ALE. The default value is 2000. To use the full data, you can set <cite>sample_size</cite> to be larger than the number of samples in the data.</p></li>
+<li><p><cite>grid_size</cite>: The number of grid points in ALE. The default value is 100 for 1D PDP and 10 for 2D ALE.</p></li>
+<li><p><cite>response_method</cite>: For binary classification tasks, the ALE is computed by default using the predicted probability instead of log odds; If the model does not have “predict_proba” or we set <cite>response_method</cite> to “decision_function”, then the log odds would be used as the response.</p></li>
+<li><p><cite>sliced_line</cite>: A parameter for two-way ALE. If True, the two-way ALE will be visualized using sliced 1D line plot. Otherwise, the two-way ALE will be visualized using 2D heatmap. The default value is False.</p></li>
+</ul>
+<p>For illustration purposes, we fitted the ReLUDNN model on the Bike Sharing dataset.</p>
+<section id="one-way-ale">
+<h3>One-way ALE<a class="headerlink" href="#one-way-ale" title="Link to this heading">#</a></h3>
+<p>The one-way ALE tells us about the relationship between the target response and an input feature of interest. To generate an ALE plot of a single feature, we should specify the feature’s name in <cite>uni_feature</cite>. The <cite>grid_size</cite> parameter can be used to adjust the number of grid points in the plot.</p>
+<figure class="align-left">
+<a class="reference external image-reference" href="../../auto_examples/2_explain/plot_3_ale.html"><img alt="_source/auto_examples/2_explain/images/sphx_glr_plot_3_ale_001.png" src="_source/auto_examples/2_explain/images/sphx_glr_plot_3_ale_001.png" />
+</a>
+</figure>
+<p>The hourly bike counts have two peaks in the rush hours of the day, which is consistent with that of PDP. From the plot, we can see that the range of ALE values is centered around zero, this is because the ALE plot is centered using the mean of the local effects.</p>
+<p>In addition to the feature <cite>hr</cite>, we also draw the ALE plot for the feature <cite>atemp</cite>, as shown below.</p>
+<figure class="align-left">
+<a class="reference external image-reference" href="../../auto_examples/2_explain/plot_3_ale.html"><img alt="_source/auto_examples/2_explain/images/sphx_glr_plot_3_ale_002.png" src="_source/auto_examples/2_explain/images/sphx_glr_plot_3_ale_002.png" />
+</a>
+</figure>
+<p>The plot above shows that the bike sharing counts reach the highest as <cite>atemp</cite> is around 0.6. The ALE plot is also centered around zero, which is consistent with the previous plot. ALE plot also supports categorical features. As the categorical feature has no ordering, we need to create an ordering for each category. In specific, we order the categories by their similarity (or distance) based on the rest features. Once we have the distances between all categories, we can reduce the pairwise distance matrix to a distance-vector, in which each element represents the distance score of a category. After that, we can order the categories using the distance score, and then calculate the ALE just like the numerical features.</p>
+<figure class="align-left">
+<a class="reference external image-reference" href="../../auto_examples/2_explain/plot_3_ale.html"><img alt="_source/auto_examples/2_explain/images/sphx_glr_plot_3_ale_003.png" src="_source/auto_examples/2_explain/images/sphx_glr_plot_3_ale_003.png" />
+</a>
+</figure>
+<p>This is the ALE plot for the categorical feature <cite>weathersit</cite>. From this plot, we can see that <cite>weathersit</cite> with values 3 (Light Rain, etc) and 4 (Heavy Rain, etc) have a significantly negative effect on the final prediction, as compared to 1.0 (Clear, etc). Although the simple average of these four bars is negative, the average ALE over the full sample is still zero. That is because the density of category 1.0 is much larger than that of 3.0 and 4.0.</p>
+</section>
+<section id="two-way-ale">
+<h3>Two-way ALE<a class="headerlink" href="#two-way-ale" title="Link to this heading">#</a></h3>
+<p>The two-way ALE (two inputs features of interest) shows the interaction between the two features. It estimates the interaction effect of two features, excluding the individual main effects. Technically, this is done by first estimating the uncentered two-way ALE, and then estimating and subtracting the main effects for the uncentered two-way ALE (instead of the model being explained). To generate ALE for two features, we will need to specify the <cite>bi_features</cite> parameter with two feature names. Similar to two-way PDP, you may view the two-way ALE using sliced 1D line plot by setting <cite>sliced_line=True</cite>.</p>
+<figure class="align-left">
+<a class="reference external image-reference" href="../../auto_examples/2_explain/plot_3_ale.html"><img alt="_source/auto_examples/2_explain/images/sphx_glr_plot_3_ale_004.png" src="_source/auto_examples/2_explain/images/sphx_glr_plot_3_ale_004.png" />
+</a>
+</figure>
+<p>In the plot above, lighter shade indicates an above average, while darker shade indicates a below average. In addition to adjusting for the overall mean effect, two-way ALE also adjusts for the main effects of both features. Therefore, the two-way ALE plot can be quite different from the two-way PDP, and one must keep the main effects in mind during the interpretation.</p>
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<aside class="topic">
+<p class="topic-title">Example 1: Bike Sharing</p>
+<blockquote>
+<div><p>The first example below demonstrates how to use PiML with its high-code APIs for developing machine learning models for the BikeSharing data from the UCI repository, which consists of 17,389 samples of hourly counts of rental bikes in Capital bikeshare system; see details. The response <cite>cnt</cite> (hourly bike rental counts) is continuous and it is a regression problem.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><span class="xref std std-ref">sphx_glr_auto_examples_2_explain_plot_3_ale.py</span></p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">Example 2: SimuCredit</p>
+<p>The second example shows the option to use test set to generate the explanations.</p>
+<ul class="simple">
+<li><p><span class="xref std std-ref">sphx_glr_auto_examples_2_explain_plot_6_data_dependent_explain.py</span></p></li>
+</ul>
+</aside>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-details">Algorithm Details</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-way-ale">One-way ALE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-way-ale">Two-way ALE</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2025, Modeva Team.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

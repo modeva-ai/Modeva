@@ -1,0 +1,786 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Subsampling &#8212; Modeva  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=578d8e15" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/hide_links.css?v=60d22a59" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=23db8a6b" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_source/auto_galleries/data/plot_4_subsampling';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Data Drift Test" href="plot_5_drift_test.html" />
+    <link rel="prev" title="Outlier Detection" href="plot_3_outlier_detection.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.5" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.jpg" class="logo__image only-light" alt=""/>
+    <img src="../../../_static/logo.jpg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Modeva-AI</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Dataset</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="plot_0_data_operations.html">Basic Dataset Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_1_eda.html">Exploratory Data Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_2_feature_selection.html">Feature Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_3_feature_engineering.html">Data Processing and Feature Engineering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_3_outlier_detection.html">Outlier Detection</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Subsampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_5_drift_test.html">Data Drift Test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_5_outlier_detection.html">Outlier Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_6_advanced_extra_data.html">Dealing with Extra Data Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_6_advanced_prediction.html">Data with Model Predictions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_6_drift_test.html">Data Drift Test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_7_extra_data.html">Dealing with Extra Data Sets</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Model Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../val/index.html">Model Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util/index.html">Utilities</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../galleries.html" class="nav-link">Example Galleries</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Dataset</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Subsampling</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-source-auto-galleries-data-plot-4-subsampling-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="subsampling">
+<span id="sphx-glr-source-auto-galleries-data-plot-4-subsampling-py"></span><h1>Subsampling<a class="headerlink" href="#subsampling" title="Link to this heading">#</a></h1>
+<div style="margin: 0 0;">
+    <a href="https://colab.research.google.com/github/modeva-ai/Modeva/blob/docs/galleries/data/plot_4_subsampling.ipynb" target="_blank" style="text-decoration: none;">
+        <button style="background-color: white; border: none; color: black; padding: 0px 0px;
+                       text-align: center; text-decoration: none; display: inline-block; font-size: 20px;
+                       margin: 0px 0px 10px 0px; cursor: pointer; border-radius: 0px;">
+            <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Colab Logo" style="height: 30px; vertical-align: middle;">
+        </button>
+    </a>
+</div><p>Installation</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># To install the required package, use the following command:</span>
+<span class="c1"># pip install modeva</span>
+</pre></div>
+</div>
+<p>Authentication</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># To get authentication, use the following command: (To get full access please replace the token to your own token)</span>
+<span class="c1"># from modeva.utils.authenticate import authenticate</span>
+<span class="c1"># authenticate(token=&#39;eaaa4301-b140-484c-8e93-f9f633c8bacb&#39;)</span>
+</pre></div>
+</div>
+<p>Import modeva modules</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">DataSet</span>
+</pre></div>
+</div>
+<p>Load data</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">()</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;BikeSharing&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="random-subsampling">
+<h2>Random subsampling<a class="headerlink" href="#random-subsampling" title="Link to this heading">#</a></h2>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">set_active_samples</span><span class="p">()</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">subsample_random</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="s2">&quot;main&quot;</span><span class="p">,</span> <span class="n">sample_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">active_samples_index</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="s2">&quot;sample_idx&quot;</span><span class="p">]</span>
+<span class="n">active_samples_index</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>array([ 3439,  6542, 15470,  9851, 12640,  1427, 15888, 14772, 15725,
+        1057, 14430,  8327, 10989,  2972,  6752, 10331,  7274, 15198,
+        4019, 13759,   974, 14464, 14901, 15767, 10549,   275, 12805,
+       12392, 12056, 11765,   763,  6488, 16902,  9544,  8297, 11690,
+        4834,  7238,  3586, 13538,  2108,  9882,  9470, 16733, 13269,
+       12047, 12693, 13771, 10759,   791,  7115,  8251, 15908,  5141,
+        6954,  7826,   760, 12087,  8383, 13080,  7624,  6923,  3181,
+       15966, 14107,  8479,  7667, 16196,  3411,  6472,  4063, 10849,
+       12759, 10074,  4236, 16160,  3600, 13324,  3126,  2585,  3257,
+         295,  6439,   577, 16532,    74, 15297, 10954, 11510, 14520,
+       12105, 10639,  7584,  7705, 13965, 12846,  4106,  7919,   489,
+        2569,  5428, 16842,  6319, 13782,  6249,  7398,  2084,  8589,
+       13281,  3488, 15501,  4523,  5644, 12071, 11398,   142,  8321,
+        8724, 13436,  8210, 10561,  9524,  6321,   812, 13032,  7340,
+        3492,  3055,  7840, 15673,  3432, 11885, 15532, 14427, 12914,
+       15781,  7711,  4389,  7681, 12983,   183, 14695,  7175,  5490,
+       13221, 14333, 11356,  1647,  9861,  2476,  1195, 11339, 12754,
+        6556,  5283,  4330,    51,   829,  9049, 11862,  8499, 15231,
+       12325, 13810,  2984, 10444,  1303, 11944, 15366,  4704,  5822,
+         772, 10448,   980,  1310,   768,  2619, 15282,  9852,  3899,
+       15894, 14260, 14071,  6048,  9858,    48,  9219,   335,  5554,
+        3601, 10659,  5891,  5619,  9777, 13496,  3980, 16556, 13976,
+        6977,  5948, 10769, 16085, 11689, 10202,  2948, 13670,   159,
+        7974, 10875,  3919,  2071,  6926,  5063, 13464,  2400, 12004,
+        1624, 12567, 12252,  3959,    60,  4602,  7453, 16665, 11570,
+       16367, 17247, 13658, 15220,  2618,  5218, 10295, 13132,  8875,
+       17033,  4313, 16275, 14162,  5889, 16819,  3075, 10160, 16158,
+       17320,  1290, 11415, 12467,  1847, 10080,  7532,  8040,  3341,
+       11725, 16452, 13451,  6075,  5609,   488, 13497, 17035, 13021,
+       10623,  8441,  6891,  6692,  5702, 12989,  7312, 12559, 12119,
+        7476,  2158,   127,  1889, 11493,  2007, 12490,  8869,  8051,
+        3921, 15615,   737,   499,   610,  7870, 10666, 14829, 10279,
+       14972,  7538,  8719,   548, 15050, 13863, 16890, 10452, 16042,
+        6753,  6499, 16960, 10034, 12470,  3148,  5036, 14429,  7136,
+        5003,  9010, 11769, 16600,  3158,  6409, 17305,  6755,  9648,
+        2474, 14055, 10572,  1645,  6381,  3908,  2201,  9164,   787,
+        1018, 14716, 10818,  3030,  3719, 12141,  9432,  8542, 14183,
+       14726,  3025, 12735, 13531,  7701, 13587, 11008,  6837,   881,
+         292, 15472,  1583, 11704,  5148,  9122,  5439,  6343, 10369,
+        6713, 15015,  9311,  2183, 12870,  6279,  9257, 15538,  4431,
+       10134,  8006,  6856, 13071,  6886,  8330,  7945, 12929, 15738,
+        8001,  2869, 14045,    12, 10004,  6351,   624,  5583,   841,
+        5232, 13663,  7419, 11192,  8728,  5825, 14566, 12674,  6193,
+       15729, 14892, 13283,  2919,  7279, 14919,  1172,  1103,  2839,
+       14858,  4627,  9333,   663,   212,  3572, 10722, 12051,  6873,
+        8157,  9910,  1328,  8202, 11454,  8275,  8430, 11588,  5557,
+       15038,  3019,  9063, 13471,  4255,  7800,   261,  9001,  4202,
+       16621,  5759,  1915,  3375,   622,  5501, 13709,  9135, 10027,
+       10829,  2200, 12971,  1916, 16199,  9808, 15812,  4943, 10388,
+       14973,  9971,  7943,  3359, 11644,  4585,  9277,  3171,  7577,
+        1194,  8038,  3265, 12338,  5449,  5476, 12592, 15668,   989,
+         156,  7109,  3480,  6377, 10667, 14357,  1845,  9426, 12587,
+        8991, 16904, 11754,  8992,  7765,  6078,  8981,  7350, 14833,
+        3965, 10020,  5639,  9689,  7222,   221, 13745,  6910, 16474,
+       13934, 14747, 11229, 15524, 17167,  1469,   201,  4467,  9341,
+       11573,  6315, 12658,  1392, 15827,  6673,  9430, 17204,  1086,
+         154, 10487, 16892, 12925, 16294, 15192, 17125,  4558,  3505,
+         654,   379,    16, 10820,  3120, 12237, 14499,  5727, 14454,
+       12806,  1182,     8, 17105,  7645,  3131,  5500,  9836, 15417,
+       10594, 12815,  9091, 11589,  7005,  5833, 13973, 17162, 11126,
+        3335, 11113,  5271, 13619, 10876,  9741,  9431,  4392,  7973,
+        3336,  3125,  6975,  4696,  6023,  3479,  1861,  1854, 15945,
+       10564,  8888,  6747,  1972,  7281,   461, 15257, 14280,   380,
+       17044,  4769,  8425,  1933, 15100,  6774, 16313,  2241, 12043,
+       11304, 11003,  1187, 10571, 12390,  8196,  2641,  5023, 11559,
+         223, 10287,   124, 15772,   578, 10063, 12330,  5770,  4808,
+        2491, 12863,  6619,  7664,  3161,  3807, 13739,  4659, 14237,
+       12060, 15587, 15930,  2805,  6088, 10054, 10869, 11469, 14617,
+       11058,  3822, 13504,  9977, 12052, 14664, 15873, 16767,  5528,
+        6492,  4747,  2841, 11997,  4012, 15579, 10941,   952,  8187,
+        2429,  5107, 13850,  8394, 13940,  9453, 13638, 16285, 14257,
+       15333, 14794,  8496,  7994, 16478, 14562,  3494, 16524,  4434,
+         632,  4636, 12493,  5607,  9324, 11541,  5587, 10880, 13877,
+        8169,   536,    44,  7006,  4635, 14855,  7017, 13664, 17211,
+        7471, 15510,  3701, 10947, 17285,  5601, 13559,  6398, 15462,
+       10294,  9447, 13073, 10471, 14787, 10039,  5924,  8307, 10544,
+       13805, 13827,  5276,  1759, 13425, 14303, 15280,  6167,  8996,
+       14069,  2980,  1362,  1145,  7314,  1334, 14125, 12302, 14149,
+       15953, 11153,  6912, 13792,  3277,  1495,  7675, 11952, 13954,
+       15793, 13273,  9772, 17347, 14481,  7474, 14599, 12023,  2759,
+        1078, 15228, 15203, 13036,  9902,  6718,  8936, 12135,  5101,
+        8938, 15028,  5466, 10310,  5093,  4721,  3035,  4309,  8469,
+       11399, 10977,  4741, 13673, 12434,  9479,  2361,  2371,  9131,
+       12122,  7911, 16518, 13780,  4036,  1985, 13586, 16325,  4123,
+       13682,   503,  9590, 14615,  5925, 12982,  6060, 13068, 11185,
+        9923, 17367,  4226, 13214,  6700,   103,  6895,  5118,   252,
+       13050,  9442, 12788,  5966,  1358,  1586,  8317, 16948, 15565,
+        1013,  5831,  8883,  2223, 16906,  2783,  9171,  9830,  6017,
+        3629, 16144, 15796, 13013,  1543,  1480,  3914, 11972, 16770,
+       11413, 12200, 11109,  1124,  1298, 15585,  2450, 14877,  7456,
+        6473, 15091,  5852,  6258,  7302, 10481, 16901,  2029, 15388,
+          18,  3590,  7926,  8488,  3970, 11879,  1781,  4402, 14077,
+        5243,  8763, 14519, 17085, 11473, 13465,  7580,   556,  4683,
+        9660,  1835,  7502, 17353,  2457,  5297, 10685,  9319,  7829,
+       17127,  2639, 12622, 16508,  7757,  7435,  6224, 11243, 10711,
+        1460, 16425, 15517, 12080,  5265, 15322, 13931,  8164, 10870,
+        5082, 14514,  4125, 13481, 10743,  1603, 10344,  9679,  3153,
+       16491,  1143,  6201, 14232, 12881,  3078,  2956, 14756, 15670,
+        7683, 12409, 15910, 11835, 10674, 13055,  7198,  7503,  7317,
+       11018,   775, 11962, 14724, 11673, 15094, 12817,  9134, 16642,
+       12692,  2709,  2040,    45, 15479,  8179,  7118,  4631, 10459,
+       15745, 17287,  6878,  6298,  2813,  7980, 15121,  2330,  5260,
+        4436,  2525,  7569,  2535,  5440, 15998, 10855,  7052,  3028,
+        2976,  9080, 10087, 17339,  5056,  9725,  9133,  2742, 14243,
+       10218,  8366, 13407,  2702, 15545, 12716,   723,  1727,  9228,
+        1785,  5002, 11476,   845, 13199,  3725, 16272,  6639, 13818,
+        4800,  7902,  9472, 11086, 15904,  5804,  5933,  9662,  2517,
+       13296,  9340, 11499, 13796,  7145,  8713, 13606, 14088,  5344,
+        3585, 16220,  7690,  3240, 15244,  5523,  6481, 14873,  5651,
+       11257, 13323, 10323,  2600, 16584, 12899,  6919, 15210, 10723,
+        4637, 13774, 11159,   308, 13875, 12920, 17226,  4965,  8022,
+       15984])
+</pre></div>
+</div>
+</section>
+<section id="apply-subsampling-by-setting-active-samples">
+<h2>Apply subsampling by setting active samples<a class="headerlink" href="#apply-subsampling-by-setting-active-samples" title="Link to this heading">#</a></h2>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">set_active_samples</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="s2">&quot;main&quot;</span><span class="p">,</span> <span class="n">sample_idx</span><span class="o">=</span><span class="n">active_samples_index</span><span class="p">)</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>(1000, 12)
+</pre></div>
+</div>
+</section>
+<section id="reset-subsampling-by-ds-set-active-samples">
+<h2>Reset subsampling by <cite>ds.set_active_samples()</cite><a class="headerlink" href="#reset-subsampling-by-ds-set-active-samples" title="Link to this heading">#</a></h2>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">set_active_samples</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="s2">&quot;main&quot;</span><span class="p">,</span> <span class="n">sample_idx</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>(17379, 12)
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.112 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-source-auto-galleries-data-plot-4-subsampling-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/b5cb426384321783704b2d5e2acca7a0/plot_4_subsampling.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_4_subsampling.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/8a36359018c11066b720f462b99a007b/plot_4_subsampling.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_4_subsampling.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/618aef63ce2c3f195062c19eba9e3905/plot_4_subsampling.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">plot_4_subsampling.zip</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="plot_3_outlier_detection.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Outlier Detection</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="plot_5_drift_test.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Data Drift Test</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-subsampling">Random subsampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-subsampling-by-setting-active-samples">Apply subsampling by setting active samples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reset-subsampling-by-ds-set-active-samples">Reset subsampling by <cite>ds.set_active_samples()</cite></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2025, Modeva Team.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

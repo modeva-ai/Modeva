@@ -1,0 +1,945 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Neural Tree &#8212; Modeva  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=578d8e15" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/hide_links.css?v=60d22a59" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=23db8a6b" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_source/user_guide/models/neuraltree';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="GAMI-Net" href="gaminet.html" />
+    <link rel="prev" title="Linear Tree and Gradient Boosted Linear Trees" href="gblt.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.5" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.jpg" class="logo__image only-light" alt=""/>
+    <img src="../../../_static/logo.jpg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Modeva-AI</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data.html">Data Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modelwrapping.html">Model Wrapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explain.html">Model Explainability</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../models.html">Interpretable Models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="glm.html">Generalized Linear Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tree.html">Decision Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gbdt.html">Gradient Boosted Decision Trees</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gblt.html">Linear Tree and Gradient Boosted Linear Trees</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Neural Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gaminet.html">GAMI-Net</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reludnn.html">ReLU Neural Network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="moe.html">Mixture of Experts (MoE)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html">Diagnostic Suite</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../usage.html" class="nav-link">Using Modeva</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../models.html" class="nav-link">Interpretable Models</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Neural Tree</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="neural-tree">
+<h1>Neural Tree<a class="headerlink" href="#neural-tree" title="Link to this heading">#</a></h1>
+<p>Neural Tree is a novel architecture that transforms Gradient Boosted Linear Trees (GBLT) into a differentiable form while preserving their interpretable structure. It represents a unique approach to bridge traditional tree-based methods with neural networks by:</p>
+<ol class="arabic simple">
+<li><p>Starting with trained GBLT depth 1 as initialization</p></li>
+<li><p>Converting hard thresholds to differentiable sigmoid functions</p></li>
+<li><p>Maintaining linear models at terminal nodes</p></li>
+<li><p>Enabling end-to-end training through backpropagation</p></li>
+</ol>
+<p>The architecture provides an inherently interpretable model through functional ANOVA decomposition while maintaining the predictive power of tree ensembles.</p>
+<section id="model-architecture">
+<h2>Model architecture<a class="headerlink" href="#model-architecture" title="Link to this heading">#</a></h2>
+<section id="base-model-gblt-depth-1">
+<h3>Base Model: GBLT Depth-1<a class="headerlink" href="#base-model-gblt-depth-1" title="Link to this heading">#</a></h3>
+<p>The base GBLT model consists of:</p>
+<ul class="simple">
+<li><p>Input: <span class="math notranslate nohighlight">\(x ∈ ℝ^d\)</span></p></li>
+<li><p>Split node checking: <span class="math notranslate nohighlight">\(x[j] \gt \theta\)</span></p></li>
+<li><p>Terminal nodes with linear models:</p>
+<ul>
+<li><p>Left: <span class="math notranslate nohighlight">\(w^{L \mathrm{T}} x + b^L\)</span></p></li>
+<li><p>Right: <span class="math notranslate nohighlight">\(w^{R \mathrm{T}} x + b^R\)</span></p></li>
+</ul>
+</li>
+<li><p>Learning rate <span class="math notranslate nohighlight">\(\eta\)</span> for ensemble</p></li>
+<li><p>Link function <span class="math notranslate nohighlight">\(g(·)\)</span></p></li>
+</ul>
+</section>
+<section id="neural-tree-transformation">
+<h3>Neural Tree Transformation<a class="headerlink" href="#neural-tree-transformation" title="Link to this heading">#</a></h3>
+<p>Converts GBLT to differentiable form:</p>
+<div class="math notranslate nohighlight">
+\[g(F(x)) = g(\eta \sum_i f_i(x))\]</div>
+<p>where each tree function <span class="math notranslate nohighlight">\(f_i(x)\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[f_i(x) = \sigma(\alpha_i(x[j_i] - \theta_i))((w_i^R)^Tx + b+i^R) + (1 - \sigma(\alpha_i(x[j_i] - \theta_i)))((w_i^L)^Tx + b_i^L)\]</div>
+<p>with:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\sigma(·)\)</span>: Sigmoid function</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha_i\)</span>: Steepness parameter</p></li>
+<li><p><span class="math notranslate nohighlight">\(j_i\)</span>: Split feature index</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta_i\)</span>: Split threshold</p></li>
+<li><p><span class="math notranslate nohighlight">\(w_i^L, w_i^R ∈ ℝ^d\)</span>: Linear model weights</p></li>
+<li><p><span class="math notranslate nohighlight">\(b_i^L, b_i^R\)</span>: Linear model biases</p></li>
+</ul>
+<p><strong>Link Functions</strong></p>
+<ol class="arabic simple">
+<li><p>Regression:
+<span class="math notranslate nohighlight">\(g(z) = z\)</span></p></li>
+<li><p>Classification:
+<span class="math notranslate nohighlight">\(g(z) =\sigma(z)\)</span></p></li>
+</ol>
+</section>
+</section>
+<section id="neural-tree-in-modeva">
+<h2>Neural Tree in MoDeVa<a class="headerlink" href="#neural-tree-in-modeva" title="Link to this heading">#</a></h2>
+<p><strong>Data Setup</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">DataSet</span>
+<span class="c1">## Create dataset object holder</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">()</span>
+<span class="c1">## Loading MoDeVa pre-loaded dataset &quot;Bikesharing&quot;</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;BikeSharing&quot;</span><span class="p">)</span>
+<span class="c1">## Preprocess the data</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">scale_numerical</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;cnt&quot;</span><span class="p">,),</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;log1p&quot;</span><span class="p">)</span> <span class="c1"># Log transfomed target</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_feature_type</span><span class="p">(</span><span class="n">feature</span><span class="o">=</span><span class="s2">&quot;hr&quot;</span><span class="p">,</span> <span class="n">feature_type</span><span class="o">=</span><span class="s2">&quot;categorical&quot;</span><span class="p">)</span> <span class="c1"># set to categorical feature</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_feature_type</span><span class="p">(</span><span class="n">feature</span><span class="o">=</span><span class="s2">&quot;mnth&quot;</span><span class="p">,</span> <span class="n">feature_type</span><span class="o">=</span><span class="s2">&quot;categorical&quot;</span><span class="p">)</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">scale_numerical</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">feature_names_numerical</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;standardize&quot;</span><span class="p">)</span> <span class="c1"># standardized numerical features</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_inactive_features</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;yr&quot;</span><span class="p">,</span> <span class="s2">&quot;season&quot;</span><span class="p">,</span> <span class="s2">&quot;temp&quot;</span><span class="p">))</span> <span class="c1"># deactivate some features</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">preprocess</span><span class="p">()</span>
+<span class="c1">## Split data into training and testing sets randomly</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_random_split</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Model Setup</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># For regression tasks</span>
+<span class="kn">from</span> <span class="nn">modeva.models</span> <span class="kn">import</span> <span class="n">MoNeuralTreeRegressor</span>
+<span class="n">model_neut</span> <span class="o">=</span> <span class="n">MoNeuralTreeRegressor</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;NeuralTree&quot;</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># For classification tasks</span>
+<span class="kn">from</span> <span class="nn">modeva.models</span> <span class="kn">import</span> <span class="n">MoNeuralTreeClassifier</span>
+<span class="n">model_neut</span> <span class="o">=</span> <span class="n">MoNeuralTreeClassifier</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;NeuralTree&quot;</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For the full list of hyperparameters, please see the API of <a class="reference external" href="../../modules/generated/modeva.models.MoNeuralTreeRegressor.html">MoNeuralTreeRegressor</a> and <a class="reference external" href="../../modules/generated/modeva.models.MoNeuralTreeClassifier.html">MoNeuralTreeClassifier</a>.</p>
+<p><strong>Model Training</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># train model with input: ds.train_x and target: ds.train_y</span>
+<span class="n">model_neut</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">train_x</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">train_y</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Reporting and Diagnostics Setup</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a testsuite that bundles dataset and model</span>
+<span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">TestSuite</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">TestSuite</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">model_neut</span><span class="p">)</span> <span class="c1"># store bundle of dataset and model in fs</span>
+</pre></div>
+</div>
+<p><strong>Performance Assessment</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># View model performance metrics</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_accuracy_table</span><span class="p">()</span>
+<span class="c1"># display the output</span>
+<span class="n">result</span><span class="o">.</span><span class="n">table</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_source/images/neuralTree_perf.png"><img alt="_source/images/neuralTree_perf.png" class="align-center" src="_source/images/neuralTree_perf.png" style="width: 300px;" />
+</a>
+<p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_accuracy_table.html">TestSuite.diagnose_accuracy_table</a>.</p>
+</section>
+<section id="functional-anova-representation">
+<h2>Functional ANOVA Representation<a class="headerlink" href="#functional-anova-representation" title="Link to this heading">#</a></h2>
+<section id="basic-decomposition">
+<h3>Basic Decomposition<a class="headerlink" href="#basic-decomposition" title="Link to this heading">#</a></h3>
+<p>The model decomposes into additive components:</p>
+<div class="math notranslate nohighlight">
+\[f(x) = \mu + \sum _j f_j(x_j) + \sum_{j&lt;k} f_{jk}(x_j, x_k)\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mu\)</span> is the global intercept</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_j(x_j)\)</span> represents main effects</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_{jk}(x_j, x_k)\)</span> represents pairwise interaction effects</p></li>
+</ul>
+</section>
+<section id="effect-computation">
+<h3>Effect Computation<a class="headerlink" href="#effect-computation" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p>Main Effects:
+<span class="math notranslate nohighlight">\(f_j(x_j) = \sum_{S_m=\{j\}} v_m · I(s^l_{mj} \leq x_j \lt s^u_{mj})\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(S_m=\{j\}\)</span> indicates leaf nodes with single split on feature <span class="math notranslate nohighlight">\(j\)</span></p>
+</li>
+<li><p>Pairwise Interactions (2 split variables):
+<span class="math notranslate nohighlight">\(f_{jk}(x_j,x_k) = \sum_{S_m=\{j,k\}} v_m · I(s^l_{mj} \leq x_j \lt s^u_{mj}) · I(s^l_{mk} \leq x_k \lt s^u_{mk})\)</span></p></li>
+</ol>
+<p>where <span class="math notranslate nohighlight">\(S_m=\{j,k\}\)</span> indicates leaf nodes with splits on features <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(k\)</span></p>
+</section>
+<section id="purification-constraints">
+<h3>Purification Constraints<a class="headerlink" href="#purification-constraints" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p>Zero Mean:</p>
+<div class="math notranslate nohighlight">
+\[\int f_{i_1...i_t} x_{i_1},...,x_{i_t} \, dx_k = 0, k = i_1,...,i_t\]</div>
+</li>
+<li><p>Orthogonality:</p>
+<div class="math notranslate nohighlight">
+\[\int f_{i_1...i_u} (x_{i_1},...,x_{i_u}) \, \cdot \, f_{j_1...j_v} (x_{j_1},...,x_{j_v}) \, d\mathbf{x} = 0, (i_1...i_u) \ne (j_1...j_v)\]</div>
+</li>
+</ol>
+</section>
+<section id="effect-attribution">
+<h3>Effect Attribution<a class="headerlink" href="#effect-attribution" title="Link to this heading">#</a></h3>
+<p><strong>1. Local Effect Attribution:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Main effect contribution: <span class="math notranslate nohighlight">\(f_j(x_j)\)</span></p></li>
+<li><p>Interaction contribution: <span class="math notranslate nohighlight">\(f_{jk}(x_j, x_k)\)</span></p></li>
+</ul>
+</div></blockquote>
+<p><strong>2. Feature Attribution:</strong></p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[z_j(x_j) = f_j(x_j) + \frac{1}{2} \sum_k f_{jk}(x_j, x_k)\]</div>
+</div></blockquote>
+</section>
+</section>
+<section id="global-interpretation">
+<h2>Global Interpretation<a class="headerlink" href="#global-interpretation" title="Link to this heading">#</a></h2>
+<p>The inherent interpretation of NeuralTree includes the main effect plot, pairwise interaction plot, effect importance plot, and feature importance plot.</p>
+<section id="feature-importance">
+<h3>Feature Importance<a class="headerlink" href="#feature-importance" title="Link to this heading">#</a></h3>
+<p>Assess overall feature impact:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Global feature importance</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_fi</span><span class="p">()</span>
+<span class="c1"># Plot the result</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/neuralTree_fi.png"><img alt="../../../_images/neuralTree_fi.png" class="align-center" src="../../../_images/neuralTree_fi.png" style="width: 500px;" />
+</a>
+<p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_fi.html">TestSuite.interpret_fi</a>.</p>
+<p><strong>Importance Metrics:</strong></p>
+<ul class="simple">
+<li><p>Based on variance of marginal effects</p></li>
+<li><p>Normalized to sum to 1</p></li>
+<li><p>Higher values indicate stronger influence</p></li>
+<li><p>Accounts for feature scale differences</p></li>
+</ul>
+</section>
+<section id="effect-importance">
+<h3>Effect Importance<a class="headerlink" href="#effect-importance" title="Link to this heading">#</a></h3>
+<p>Assess overall impact according to functional ANOVA components: main and interaction effect</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Global effect importance</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_ei</span><span class="p">()</span>
+<span class="c1"># Plot the result</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/neuralTree_ei.png"><img alt="../../../_images/neuralTree_ei.png" class="align-center" src="../../../_images/neuralTree_ei.png" style="width: 500px;" />
+</a>
+<p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_ei.html">TestSuite.interpret_ei</a>.</p>
+<p><strong>Importance Metrics:</strong></p>
+<ul class="simple">
+<li><p>Based on variance of individual functional ANOVA term effects (main or interaction effect)</p></li>
+<li><p>Higher values indicate stronger influence</p></li>
+</ul>
+<p><strong>Categorical Variables</strong></p>
+<ul class="simple">
+<li><p>One-hot encoded automatically</p></li>
+<li><p>Can view importance per category</p></li>
+<li><p>Interpretable through reference levels</p></li>
+</ul>
+</section>
+<section id="global-effect-plot">
+<h3>Global Effect Plot<a class="headerlink" href="#global-effect-plot" title="Link to this heading">#</a></h3>
+<p>Plot the main and interaction effect plot of features</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Main effect plot of feature: &quot;hr&quot;</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_effects</span><span class="p">(</span><span class="n">features</span> <span class="o">=</span> <span class="s2">&quot;hr&quot;</span><span class="p">)</span>
+<span class="c1"># Plot the result</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/neuralTree_hr_workingday.png"><img alt="../../../_images/neuralTree_hr_workingday.png" class="align-center" src="../../../_images/neuralTree_hr_workingday.png" style="width: 500px;" />
+</a>
+<p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_effects.html">TestSuite.interpret_effects</a>.</p>
+</section>
+</section>
+<section id="local-interpretation">
+<h2>Local Interpretation<a class="headerlink" href="#local-interpretation" title="Link to this heading">#</a></h2>
+<section id="individual-prediction-analysis">
+<h3>Individual Prediction Analysis<a class="headerlink" href="#individual-prediction-analysis" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Local interpretation for specific sample: sample_index = 10</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_local_fi</span><span class="p">(</span><span class="n">sample_index</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">centered</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>   <span class="c1"># local feature importance</span>
+<span class="c1"># Plot the result</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/neuralTree_local_ei.png"><img alt="../../../_images/neuralTree_local_ei.png" class="align-center" src="../../../_images/neuralTree_local_ei.png" style="width: 500px;" />
+</a>
+<p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_local_fi.html">TestSuite.interpret_local_fi</a> and <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_local_ei.html">TestSuite.interpret_local_ei</a> .</p>
+<p><strong>Components:</strong></p>
+<ul class="simple">
+<li><p>Feature or Effect contributions to prediction</p></li>
+<li><p>Feature or Effect values for the sample</p></li>
+<li><p>Comparison to average behavior</p></li>
+<li><p>Direction and magnitude of effects</p></li>
+</ul>
+<p><strong>Centering Options</strong></p>
+<ol class="arabic simple">
+<li><p>Uncentered Analysis (centered=False):</p>
+<ul class="simple">
+<li><p>Raw feature contributions</p></li>
+<li><p>Direct interpretation</p></li>
+<li><p>May have identifiability issues</p></li>
+</ul>
+</li>
+<li><p>Centered Analysis (centered=True):</p>
+<ul class="simple">
+<li><p>Compares to population mean</p></li>
+<li><p>More stable interpretation</p></li>
+<li><p>Better for relative importance</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="monotonicity-constraints-in-neural-tree">
+<h2>Monotonicity Constraints in Neural Tree<a class="headerlink" href="#monotonicity-constraints-in-neural-tree" title="Link to this heading">#</a></h2>
+<p>Enforcing monotonicity constraints to align with domain knowledge is often nneded to ensure model conceptual soundness. In many applications where GAMI-Net is deployed, certain input features should have a consistently positive or negative effect on predictions:</p>
+<ul class="simple">
+<li><p>In credit scoring, higher income should lead to better credit ratings</p></li>
+<li><p>In medical risk assessment, increased risk factors should result in higher risk scores</p></li>
+<li><p>In pricing models, larger product quantities should correspond to higher total costs</p></li>
+</ul>
+<p>While NeuralTree structure provides natural interpretability, explicitly enforcing monotonicity makes the model more reliable and trustworthy. Without monotonicity constraints, even interpretable models may learn relationships that violate logical domain constraints, particularly in regions with sparse training data.</p>
+<section id="loss-function-with-monotonicity-constraint">
+<h3>Loss Function with Monotonicity Constraint<a class="headerlink" href="#loss-function-with-monotonicity-constraint" title="Link to this heading">#</a></h3>
+<p>Neural Tree augments its standard loss function with a monotonicity constraint penalty that operates on both main effects and interaction terms:</p>
+<div class="math notranslate nohighlight">
+\[L_{total} = l(\theta) + \gamma \sum_{i \in M} \mathbb{E}_x[\max(0, -\frac{\partial \hat{y}}{\partial x_i})^2]\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(l(\theta)\)</span> is the base prediction loss</p></li>
+<li><p><span class="math notranslate nohighlight">\(\gamma\)</span> is the monotonicity penalty coefficient</p></li>
+<li><p><span class="math notranslate nohighlight">\(M\)</span> is the set of features that should be monotonic</p></li>
+<li><p><span class="math notranslate nohighlight">\(\frac{\partial \hat{y}}{\partial x_i}\)</span> is the gradient of prediction with respect to feature i</p></li>
+</ul>
+<p><strong>Explanation</strong></p>
+<p>The loss function has three components working together to create an interpretable and conceptually sound model:</p>
+<ol class="arabic simple">
+<li><p>The prediction loss <span class="math notranslate nohighlight">\(l(\theta)\)</span> ensures accurate predictions.</p></li>
+<li><p>The monotonicity penalty <span class="math notranslate nohighlight">\(\max(0, -\frac{\partial \hat{y}}{\partial x_i})^2\)</span> enforces monotonic relationships for specified features by penalizing negative gradients.</p></li>
+</ol>
+<p>This formulation is particularly powerful in NeuralTree because it enforces monotonicity while preserving the model’s structure. The monotonicity constraints apply to both individual feature effects and their interactions, ensuring that the entire model respects domain knowledge about feature relationships.</p>
+<p>The strength of monotonicity enforcement can be tuned through <span class="math notranslate nohighlight">\(\gamma\)</span>, allowing practitioners to balance between strict monotonicity and prediction accuracy. When <span class="math notranslate nohighlight">\(\gamma\)</span> is large, the model will strongly enforce monotonicity even if it means slightly reduced accuracy. When <span class="math notranslate nohighlight">\(\gamma\)</span> is smaller, the model has more flexibility to fit the data while still maintaining some monotonic tendency.</p>
+</section>
+<section id="implementation-considerations">
+<h3>Implementation Considerations<a class="headerlink" href="#implementation-considerations" title="Link to this heading">#</a></h3>
+<p>When implementing monotonicity constraints in GAMI-Net:</p>
+<ul class="simple">
+<li><p>Provide the lists of input variables that have monotonically increasing and decreasing in the API: <cite>mono_increasing_list=(), mono_decreasing_list=()</cite></p></li>
+<li><p>Start with a small monotonic regularization <cite>reg_mono</cite> and gradually increase it until desired monotonicity is achieved</p></li>
+<li><p>NeuralTree is using sampling with sample size controlled by <a href="#id1"><span class="problematic" id="id2">`</span></a>mono_sample_size`to check monotonicity</p></li>
+<li><p>Evaluate both prediction performance and monotonicity violations</p></li>
+<li><p>Verify monotonicity holds for both main effects and interaction terms</p></li>
+<li><p>Consider using validation data to tune the <cite>reg_mono</cite> parameter</p></li>
+</ul>
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<aside class="topic">
+<p class="topic-title">Example 1: Bike Sharing</p>
+<blockquote>
+<div><p>The example below demonstrates how to use MoDeVa with its high-code APis for the Bike Sharing dataset from the UCI repository, which consists of 20,640 samples and 9 features, fetched by sklearn.datasets. The response variable MedHouseVal (Median Home Value) is continuous and is a regression problem.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../auto_galleries/dev/0_models/plot_5_lineartree_reg.html#sphx-glr-source-auto-galleries-dev-0-models-plot-5-lineartree-reg-py"><span class="std std-ref">Linear Tree Regression</span></a></p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">Examples 2: Taiwan Credit</p>
+<blockquote>
+<div><p>The second example below demonstrates how to use MoDeVa’s high-code APIs for the TaiwanCredit dataset from the UCI repository. This dataset comprises the credit card details of 30,000 clients in Taiwan from April 2005 to September 2005, and more information can be found on the TaiwanCreditData website. The <cite>FlagDefault</cite> variable serves as the response for this classification problem.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../auto_galleries/dev/0_models/plot_5_lineartree_cls.html#sphx-glr-source-auto-galleries-dev-0-models-plot-5-lineartree-cls-py"><span class="std std-ref">Linear Tree Classification</span></a></p></li>
+</ul>
+</aside>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="gblt.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Linear Tree and Gradient Boosted Linear Trees</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="gaminet.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">GAMI-Net</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-architecture">Model architecture</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#base-model-gblt-depth-1">Base Model: GBLT Depth-1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-tree-transformation">Neural Tree Transformation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-tree-in-modeva">Neural Tree in MoDeVa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functional-anova-representation">Functional ANOVA Representation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-decomposition">Basic Decomposition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#effect-computation">Effect Computation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#purification-constraints">Purification Constraints</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#effect-attribution">Effect Attribution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-interpretation">Global Interpretation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-importance">Feature Importance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#effect-importance">Effect Importance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#global-effect-plot">Global Effect Plot</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-interpretation">Local Interpretation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#individual-prediction-analysis">Individual Prediction Analysis</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monotonicity-constraints-in-neural-tree">Monotonicity Constraints in Neural Tree</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loss-function-with-monotonicity-constraint">Loss Function with Monotonicity Constraint</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-considerations">Implementation Considerations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2025, Modeva Team.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

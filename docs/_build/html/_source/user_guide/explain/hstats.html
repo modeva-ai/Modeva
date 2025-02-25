@@ -1,0 +1,898 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Hstats (Friedman’s H-statistic) &#8212; Modeva  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=578d8e15" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/hide_links.css?v=60d22a59" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=23db8a6b" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_source/user_guide/explain/hstats';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.5" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.jpg" class="logo__image only-light" alt=""/>
+    <img src="../../../_static/logo.jpg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Modeva-AI</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Hstats (Friedman’s H-statistic)</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="hstats-friedman-s-h-statistic">
+<h1>Hstats (Friedman’s H-statistic)<a class="headerlink" href="#hstats-friedman-s-h-statistic" title="Link to this heading">#</a></h1>
+<p>H-statistic measures the interaction strength of two features <a class="reference internal" href="#friedman2008" id="id1"><span>[Friedman2008]</span></a>.</p>
+<section id="algorithm-details">
+<h2>Algorithm Details<a class="headerlink" href="#algorithm-details" title="Link to this heading">#</a></h2>
+<p>Consider a set of features, represented by <span class="math notranslate nohighlight">\(X\)</span>, and a fitted model, represented by <span class="math notranslate nohighlight">\(\hat{f}\)</span>. The H-statistic is defined based on partial dependence, as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+  H_{j k}^2=\frac{\sum_{i=1}^n\left[P D_{j k}\left(x_j^{(i)}, x_k^{(i)}\right)-P D_j\left(x_j^{(i)}\right)-P D_k\left(x_k^{(i)}\right)\right]^2}{\sum_{i=1}^n P D_{j k}^2\left(x_j^{(i)}, x_k^{(i)}\right)},  \tag{1}
+\end{align}\]</div>
+<p>where feature <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(k\)</span> are two features in <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(x_j^{(i)}\)</span> and <span class="math notranslate nohighlight">\(x_k^{(i)}\)</span> are the values of features <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(k\)</span> for the <span class="math notranslate nohighlight">\(i\)</span>-th sample, respectively, and <span class="math notranslate nohighlight">\(PD_{jk}(x_j^{(i)}, x_k^{(i)})\)</span> is the partial dependence of <span class="math notranslate nohighlight">\(\hat{f}\)</span> on features <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(k\)</span> at <span class="math notranslate nohighlight">\((x_j^{(i)}, x_k^{(i)})\)</span>. The H-statistic is a measure of the interaction strength between features <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(k\)</span>. The larger the H-statistic, the stronger the interaction between features <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(k\)</span>. The H-statistic is symmetric, i.e., <span class="math notranslate nohighlight">\(H_{jk}=H_{kj}\)</span>.</p>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
+<p>H-statistic can be calculated using PiML’s <cite>model_explain</cite> function. The keyword for PDP is “hstats”, i.e., we should set <cite>show</cite> = “hstats”. Additionally, the following arguments are relevant to this analysis:</p>
+<ul class="simple">
+<li><p><cite>use_test</cite>: If True, the test data will be used to generate the explanations. Otherwise, the training data will be used. The default value is False.</p></li>
+<li><p><cite>sample_size</cite>: To speed up the computation, we subsample a subset of the data to calculate PDP. The default value is 2000. To use the full data, you can set <cite>sample_size</cite> to be larger than the number of samples in the data.</p></li>
+<li><p><cite>grid_size</cite>: The number of grid points in PDP. The default value is 10.</p></li>
+<li><p><cite>response_method</cite>: For binary classification tasks, the PDP is computed by default using the predicted probability instead of log odds; If the model does not have “predict_proba” or we set <cite>response_method</cite> to “decision_function”, then the log odds would be used as the response.</p></li>
+</ul>
+<p>The following code shows how to calculate the H-statistic of a fitted XGB2 model.</p>
+<figure class="align-left">
+<a class="reference external image-reference" href="../../auto_examples/2_explain/plot_1_pdp_hstats.html"><img alt="_source/auto_examples/2_explain/images/sphx_glr_plot_1_pdp_hstats_001.png" src="_source/auto_examples/2_explain/images/sphx_glr_plot_1_pdp_hstats_001.png" />
+</a>
+</figure>
+<p>The plot above lists the top-10 important interactions. To get the H-statistic of the full list of interactions, we can set <cite>return_data=True</cite>, and the H-statistic of all interactions will be returned as a dataframe, as shown below.</p>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+  <table border="1" class="dataframe">
+  <thead>
+     <tr style="text-align: right;">
+        <th></th>
+        <th>Feature 1</th>
+        <th>Feature 2</th>
+        <th>Importance</th>
+     </tr>
+  </thead>
+  <tbody>
+     <tr>
+        <th>0</th>
+        <td>X0</td>
+        <td>X1</td>
+        <td>8.354665e-02</td>
+     </tr>
+     <tr>
+        <th>1</th>
+        <td>X0</td>
+        <td>X3</td>
+        <td>5.772886e-03</td>
+     </tr>
+     <tr>
+        <th>2</th>
+        <td>X3</td>
+        <td>X4</td>
+        <td>4.769194e-03</td>
+     </tr>
+     <tr>
+        <th>3</th>
+        <td>X1</td>
+        <td>X4</td>
+        <td>4.488876e-03</td>
+     </tr>
+     <tr>
+        <th>4</th>
+        <td>X1</td>
+        <td>X3</td>
+        <td>3.939141e-03</td>
+     </tr>
+     <tr>
+        <th>5</th>
+        <td>X2</td>
+        <td>X4</td>
+        <td>2.891201e-03</td>
+     </tr>
+     <tr>
+        <th>6</th>
+        <td>X0</td>
+        <td>X4</td>
+        <td>2.615382e-03</td>
+     </tr>
+     <tr>
+        <th>7</th>
+        <td>X2</td>
+        <td>X3</td>
+        <td>1.110027e-03</td>
+     </tr>
+     <tr>
+        <th>8</th>
+        <td>X1</td>
+        <td>X2</td>
+        <td>9.062784e-04</td>
+     </tr>
+     <tr>
+        <th>9</th>
+        <td>X0</td>
+        <td>X2</td>
+        <td>4.224594e-04</td>
+     </tr>
+     <tr>
+        <th>10</th>
+        <td>X4</td>
+        <td>X7</td>
+        <td>4.187721e-04</td>
+     </tr>
+     <tr>
+        <th>11</th>
+        <td>X6</td>
+        <td>X9</td>
+        <td>2.826716e-04</td>
+     </tr>
+     <tr>
+        <th>12</th>
+        <td>X1</td>
+        <td>X6</td>
+        <td>2.798646e-04</td>
+     </tr>
+     <tr>
+        <th>13</th>
+        <td>X1</td>
+        <td>X9</td>
+        <td>2.139691e-04</td>
+     </tr>
+     <tr>
+        <th>14</th>
+        <td>X0</td>
+        <td>X9</td>
+        <td>1.499676e-04</td>
+     </tr>
+     <tr>
+        <th>15</th>
+        <td>X2</td>
+        <td>X9</td>
+        <td>1.367038e-04</td>
+     </tr>
+     <tr>
+        <th>16</th>
+        <td>X3</td>
+        <td>X9</td>
+        <td>1.256837e-04</td>
+     </tr>
+     <tr>
+        <th>17</th>
+        <td>X0</td>
+        <td>X6</td>
+        <td>1.022405e-04</td>
+     </tr>
+     <tr>
+        <th>18</th>
+        <td>X3</td>
+        <td>X6</td>
+        <td>1.017541e-04</td>
+     </tr>
+     <tr>
+        <th>19</th>
+        <td>X2</td>
+        <td>X5</td>
+        <td>3.553405e-06</td>
+     </tr>
+     <tr>
+        <th>20</th>
+        <td>X4</td>
+        <td>X6</td>
+        <td>2.510080e-06</td>
+     </tr>
+     <tr>
+        <th>21</th>
+        <td>X1</td>
+        <td>X5</td>
+        <td>2.003126e-06</td>
+     </tr>
+     <tr>
+        <th>22</th>
+        <td>X2</td>
+        <td>X6</td>
+        <td>2.001398e-06</td>
+     </tr>
+     <tr>
+        <th>23</th>
+        <td>X0</td>
+        <td>X8</td>
+        <td>9.355216e-07</td>
+     </tr>
+     <tr>
+        <th>24</th>
+        <td>X1</td>
+        <td>X8</td>
+        <td>8.842721e-07</td>
+     </tr>
+     <tr>
+        <th>25</th>
+        <td>X7</td>
+        <td>X9</td>
+        <td>3.703580e-07</td>
+     </tr>
+     <tr>
+        <th>26</th>
+        <td>X2</td>
+        <td>X8</td>
+        <td>3.405027e-07</td>
+     </tr>
+     <tr>
+        <th>27</th>
+        <td>X4</td>
+        <td>X8</td>
+        <td>2.302398e-07</td>
+     </tr>
+     <tr>
+        <th>28</th>
+        <td>X0</td>
+        <td>X7</td>
+        <td>2.020537e-07</td>
+     </tr>
+     <tr>
+        <th>29</th>
+        <td>X5</td>
+        <td>X8</td>
+        <td>6.266068e-08</td>
+     </tr>
+     <tr>
+        <th>30</th>
+        <td>X5</td>
+        <td>X7</td>
+        <td>4.271688e-08</td>
+     </tr>
+     <tr>
+        <th>31</th>
+        <td>X0</td>
+        <td>X5</td>
+        <td>3.382035e-09</td>
+     </tr>
+     <tr>
+        <th>32</th>
+        <td>X7</td>
+        <td>X8</td>
+        <td>2.910548e-09</td>
+     </tr>
+     <tr>
+        <th>33</th>
+        <td>X5</td>
+        <td>X6</td>
+        <td>1.166214e-09</td>
+     </tr>
+     <tr>
+        <th>34</th>
+        <td>X6</td>
+        <td>X7</td>
+        <td>5.757503e-10</td>
+     </tr>
+     <tr>
+        <th>35</th>
+        <td>X6</td>
+        <td>X8</td>
+        <td>4.158681e-10</td>
+     </tr>
+     <tr>
+        <th>36</th>
+        <td>X5</td>
+        <td>X9</td>
+        <td>2.689033e-10</td>
+     </tr>
+     <tr>
+        <th>37</th>
+        <td>X8</td>
+        <td>X9</td>
+        <td>2.289872e-10</td>
+     </tr>
+     <tr>
+        <th>38</th>
+        <td>X4</td>
+        <td>X5</td>
+        <td>1.034555e-12</td>
+     </tr>
+     <tr>
+        <th>39</th>
+        <td>X4</td>
+        <td>X9</td>
+        <td>5.418748e-13</td>
+     </tr>
+     <tr>
+        <th>40</th>
+        <td>X2</td>
+        <td>X7</td>
+        <td>1.989873e-13</td>
+     </tr>
+     <tr>
+        <th>41</th>
+        <td>X3</td>
+        <td>X8</td>
+        <td>1.310739e-13</td>
+     </tr>
+     <tr>
+        <th>42</th>
+        <td>X3</td>
+        <td>X5</td>
+        <td>1.203739e-13</td>
+     </tr>
+     <tr>
+        <th>43</th>
+        <td>X1</td>
+        <td>X7</td>
+        <td>7.804507e-14</td>
+     </tr>
+     <tr>
+        <th>44</th>
+        <td>X3</td>
+        <td>X7</td>
+        <td>5.885018e-14</td>
+     </tr>
+  </tbody>
+  </table>
+</div>
+</div></section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<aside class="topic">
+<p class="topic-title">Example 1: Bike Sharing</p>
+<blockquote>
+<div><p>The first example below demonstrates how to use PiML with its high-code APIs for developing machine learning models for the BikeSharing data from the UCI repository, which consists of 17,389 samples of hourly counts of rental bikes in Capital bikeshare system; see details. The response <cite>cnt</cite> (hourly bike rental counts) is continuous and it is a regression problem.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><span class="xref std std-ref">sphx_glr_auto_examples_2_explain_plot_1_pdp_hstats.py</span></p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">Example 2: SimuCredit</p>
+<p>The second example shows the option to use test set to generate the explanations.</p>
+<ul class="simple">
+<li><p><span class="xref std std-ref">sphx_glr_auto_examples_2_explain_plot_6_data_dependent_explain.py</span></p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="friedman2008" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">Friedman2008</a><span class="fn-bracket">]</span></span>
+<p>Friedman, Jerome H., and Bogdan E. Popescu (2008). <a class="reference external" href="https://projecteuclid.org/journals/annals-of-applied-statistics/volume-2/issue-3/Predictive-learning-via-rule-ensembles/10.1214/07-AOAS148.full">Predictive learning via rule ensembles.</a>, Annals of Applied Statistics, 916-954.</p>
+</div>
+</div>
+</aside>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-details">Algorithm Details</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2025, Modeva Team.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

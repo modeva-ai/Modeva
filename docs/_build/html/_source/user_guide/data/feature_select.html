@@ -1,0 +1,709 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Feature Selection &#8212; Modeva  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=578d8e15" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/hide_links.css?v=60d22a59" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=23db8a6b" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_source/user_guide/data/feature_select';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Outlier Detection" href="outlier_detect.html" />
+    <link rel="prev" title="Exploratory Data Analysis" href="eda.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.5" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.jpg" class="logo__image only-light" alt=""/>
+    <img src="../../../_static/logo.jpg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Modeva-AI</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../data.html">Data Processing</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="data_basic_operations.html">Basic Data Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eda.html">Exploratory Data Analysis</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Feature Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outlier_detect.html">Outlier Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subsample.html">Subsampling and Data Drift</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../modelwrapping.html">Model Wrapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explain.html">Model Explainability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models.html">Interpretable Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html">Diagnostic Suite</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../usage.html" class="nav-link">Using Modeva</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../data.html" class="nav-link">Data Processing</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Feature Selection</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="feature-selection">
+<h1>Feature Selection<a class="headerlink" href="#feature-selection" title="Link to this heading">#</a></h1>
+<p>Feature selection aims at selecting a subset of features that are most relevant to the target. When the number of features is large, feature selection can help mitigate computational burden and avoid overfitting. Moreover, reducing the number of modeling features is also beneficial for enhancing model interpretability.</p>
+<p>Modeva has implemented three feature selection strategies:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../../modules/generated/modeva.DataSet.feature_select_corr.html">DataSet.feature_select_corr</a>: Selects features based on their correlation with the target variable.</p></li>
+<li><p><a class="reference external" href="../../modules/generated/modeva.DataSet.feature_select_xgbpfi.html">DataSet.feature_select_xgbpfi</a>: Select important features using XGBoost model and permutation importance analysis.</p></li>
+<li><p><a class="reference external" href="../../modules/generated/modeva.DataSet.feature_select_rcit.html">DataSet.feature_select_rcit</a>:  Select causal features using conditional independence testing.</p></li>
+</ul>
+<section id="correlation-coefficient">
+<h2>Correlation Coefficient<a class="headerlink" href="#correlation-coefficient" title="Link to this heading">#</a></h2>
+<p>The correlation coefficient is measured between features and the target variable depending on the feature type.</p>
+<ul class="simple">
+<li><p><strong>Pearson’s correlation</strong> for a numerical-numerical pair,</p></li>
+<li><p><strong>Theil’s U</strong> for a categorical-categorical pair <a class="reference internal" href="#theilsu" id="id1"><span>[TheilsU]</span></a>, and</p></li>
+<li><p><strong>Correlation ratio</strong> for a mixed numerical-categorical pair <a class="reference internal" href="#corrratio" id="id2"><span>[CorrRatio]</span></a>.</p></li>
+</ul>
+<p>Features with correlation strength above the specified threshold will be selected.</p>
+</section>
+<section id="feature-importance">
+<h2>Feature Importance<a class="headerlink" href="#feature-importance" title="Link to this heading">#</a></h2>
+<p>This strategy is based on first fitting a predictable model, then using a post-hoc feature attribution method for selecting the important variables. Modeva <a class="reference external" href="../../modules/generated/modeva.DataSet.feature_select_xgbpfi.html">DataSet.feature_select_xgbpfi</a> fits an XGB model using all the covariates and the response, then run permutation feature importance test for the fitted XGB model. After obtaining the importance of each feature, sort them in the descending order (normalized such that all values sum to 1), finally
+select the top features with accumulated importance greater than a pre-defined threshold.</p>
+<p>Note that the fitted XGB model can overfit or underfit, so the feature selection results need be treated with caution.</p>
+</section>
+<section id="conditional-independence">
+<h2>Conditional Independence<a class="headerlink" href="#conditional-independence" title="Link to this heading">#</a></h2>
+<p>This method implements a two-stage feature selection process that combines Randomized Conditional Independence Test (RCIT) with Forward-Backward-Elimination with Early Dropping (FBEDk). It first performs forward selection to identify potentially important features, followed by backward elimination to remove redundant ones, using random Fourier features for non-parametric conditional independence testing.</p>
+<p>The RCIT-based feature selection method is capable of handling non-linear relationships, and the selected features are all causally related to the response, subject to the pre-defined significance level. The disadvantages of this method include: a) the computational burden is relatively high; b) as it is a sequential selection approach, the results may be slightly different as we use different initial Markov boundary sets.</p>
+<section id="rcit-test">
+<h3>RCIT Test<a class="headerlink" href="#rcit-test" title="Link to this heading">#</a></h3>
+<p>RCIT can measure non-linear relationships.  Given a Markov boundary set <span class="math notranslate nohighlight">\(Z\)</span>, the goal is to test whether a feature <span class="math notranslate nohighlight">\(X\)</span> is independent of the response variable <span class="math notranslate nohighlight">\(Y\)</span>, namely <span class="math notranslate nohighlight">\(X \perp Y \mid Z\)</span>. Here are the details:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(X, Y, Z\)</span> are first transformed using random Fourier features;</p></li>
+<li><p>Then the null hypothesis <span class="math notranslate nohighlight">\(X \perp Y \mid Z\)</span> is equivalent to zero partial cross-covariance <span class="math notranslate nohighlight">\(\Sigma_{X Y \mid Z}=\Sigma_{X Y}-\Sigma_{Y Z} \Sigma_{Z Z}^{-1} \Sigma_{X Z}=0\)</span>;</p></li>
+<li><p>The test statistics is then approximated by <span class="math notranslate nohighlight">\(\left\|\hat{\Sigma}_{X Y \mid Z}\right\|_F^2=\mathrm{n} \hat{\Sigma}_{X Y}-\hat{\Sigma}_{Y Z}\left(\hat{\Sigma}_{Z Z}+\gamma I\right)^{-1} \hat{\Sigma}_{X Z}\)</span>;</p></li>
+<li><p>The asymptotic distribution of the test statistics is <span class="math notranslate nohighlight">\(\sum_{i=1} \lambda_i z_i^2\)</span>, where <span class="math notranslate nohighlight">\(z_i\)</span> are i.i.d. standard Gaussian variables.</p></li>
+<li><p>Lindsay-Pilla-Basak (LPB; <a class="reference internal" href="#lindsayl2000" id="id3"><span>[Lindsayl2000]</span></a>) approximates the CDF under the null using a finite mixture of Gamma distribution.</p></li>
+</ul>
+</div></blockquote>
+<p>See also <a class="reference internal" href="#zhang2012" id="id4"><span>[Zhang2012]</span></a> and <a class="reference internal" href="#strobl2019" id="id5"><span>[Strobl2019]</span></a>. In Modeva, the number of random Fourier features is set to 100 (<span class="math notranslate nohighlight">\(Z\)</span>) and 5 (<span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>), respectively.</p>
+</section>
+<section id="fbedk-algorithm">
+<h3>FBEDk Algorithm<a class="headerlink" href="#fbedk-algorithm" title="Link to this heading">#</a></h3>
+<p>The FBEDk (Forward-Backward selection with Early Dropping) algorithm <a class="reference internal" href="#borboudakis2019" id="id6"><span>[Borboudakis2019]</span></a> is a combination of forward selection and backward elimination. Here we first run forward selection with a user-defined Markov boundary set as initial and then conduct backward elimination to further delete insignificant features.</p>
+<p><strong>Forward Selection</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Given a predefined Markov boundary set, we initialize all the remaining covariate features as candidate features.</p></li>
+<li><p>Run the RCIT test between each candidate feature and the response variable, conditional on the Markov boundary set.</p></li>
+<li><p>Features with <cite>p_value &lt;= threshold</cite> will be selected as the candidate features.</p></li>
+<li><p>Among the candidate features, the most significant one will be added to the Markov boundary set.</p></li>
+<li><p>Repeat the last three steps, and the algorithm stops as the candidate set is empty.</p></li>
+</ul>
+</div></blockquote>
+<p>The above steps describe one run of the forward phase. To increase accuracy, the overall forward phase is repeated for <cite>k</cite> times, i.e., the character “k” in “FBEDk”. As recommended by <a class="reference internal" href="#yu2020" id="id7"><span>[Yu2020]</span></a>, the forward phase is repeated twice, i.e., the value of <cite>k</cite> is 2, and you may change this parameter by specifying the argument <cite>n_forward_phase</cite>.</p>
+<p><strong>Backward Elimination</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Temporarily remove feature <span class="math notranslate nohighlight">\(j\)</span> from the Markov boundary set.</p></li>
+<li><p>Run RCIT test for feature <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>, conditional on the temporary Markov boundary set.</p></li>
+<li><p>Permanently remove feature <span class="math notranslate nohighlight">\(j\)</span> from the Markov boundary set, if <cite>p_value &gt; threshold</cite>.</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<aside class="topic">
+<p class="topic-title">Example: Feature Selection</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../auto_galleries/data/plot_2_feature_selection.html#sphx-glr-source-auto-galleries-data-plot-2-feature-selection-py"><span class="std std-ref">Feature Selection</span></a></p></li>
+</ul>
+</aside>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<aside class="topic">
+<p class="topic-title">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="theilsu" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">TheilsU</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Uncertainty_coefficient">Uncertainty coefficient.</a>, Wikipedia.</p>
+</div>
+<div class="citation" id="corrratio" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">CorrRatio</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Correlation_ratio">Correlation ratio.</a>, Wikipedia.</p>
+</div>
+<div class="citation" id="zhang2012" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">Zhang2012</a><span class="fn-bracket">]</span></span>
+<p>Kun Zhang, Jonas Peters, Dominik Janzing, Bernhard Schoelkopf (2012). <a class="reference external" href="https://arxiv.org/ftp/arxiv/papers/1202/1202.3775.pdf">Kernel-based conditional independence test and application in causal discovery</a>, arXiv preprint arXiv:1202.3775.</p>
+</div>
+<div class="citation" id="strobl2019" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">Strobl2019</a><span class="fn-bracket">]</span></span>
+<p>Eric V. Strobl, Kun Zhang, Shyam Visweswaran (2019). <a class="reference external" href="https://arxiv.org/pdf/1702.03877.pdf">Approximate kernel-based conditional independence tests for fast non-parametric causal discovery</a>, Journal of Causal Inference, 7(1).</p>
+</div>
+<div class="citation" id="lindsayl2000" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">Lindsayl2000</a><span class="fn-bracket">]</span></span>
+<p>Bruce G. Lindsay, Ramani S. Pilla &amp; Prasanta Basak (2000). <a class="reference external" href="https://link.springer.com/article/10.1023/A:1004105603806">Moment-based approximations of distributions using mixtures: Theory and applications</a>, Annals of the Institute of Statistical Mathematics, 52(2), pp.215-230.</p>
+</div>
+<div class="citation" id="borboudakis2019" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">Borboudakis2019</a><span class="fn-bracket">]</span></span>
+<p>Giorgos Borboudakis, Ioannis Tsamardinos (2019). <a class="reference external" href="https://www.jmlr.org/papers/volume20/17-334/17-334.pdf">Forward-backward selection with early dropping</a>, The Journal of Machine Learning Research 20(1), pp.276-314.</p>
+</div>
+<div class="citation" id="yu2020" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">Yu2020</a><span class="fn-bracket">]</span></span>
+<p>Kui Yu, Xianjie Guo, Lin Liu, Jiuyong Li, Hao Wang, Zhaolong Ling, Xindong Wu (2020). <a class="reference external" href="https://arxiv.org/pdf/1911.07147.pdf">Causality-based feature selection: Methods and evaluations</a>. ACM Computing Surveys (CSUR), 53(5), pp.1-36.</p>
+</div>
+</div>
+</aside>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="eda.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Exploratory Data Analysis</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="outlier_detect.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Outlier Detection</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-coefficient">Correlation Coefficient</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-importance">Feature Importance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-independence">Conditional Independence</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rcit-test">RCIT Test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fbedk-algorithm">FBEDk Algorithm</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2025, Modeva Team.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

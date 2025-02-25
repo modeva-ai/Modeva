@@ -1,0 +1,1052 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Fairness &#8212; Modeva  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=578d8e15" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/hide_links.css?v=60d22a59" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=23db8a6b" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_source/user_guide/testing/fairness';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="API Reference" href="../../api_ref.html" />
+    <link rel="prev" title="Resilience" href="resilience.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.5" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.jpg" class="logo__image only-light" alt=""/>
+    <img src="../../../_static/logo.jpg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Modeva-AI</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data.html">Data Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modelwrapping.html">Model Wrapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explain.html">Model Explainability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models.html">Interpretable Models</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../testing.html">Diagnostic Suite</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="performance.html">Performance and Residual Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="weakspot.html">Weakness Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overfit.html">Underfitting and Overfitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reliability.html">Reliability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="robustness.html">Robustness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resilience.html">Resilience</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Fairness</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../usage.html" class="nav-link">Using Modeva</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../testing.html" class="nav-link">Diagnostic Suite</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Fairness</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="fairness">
+<h1>Fairness<a class="headerlink" href="#fairness" title="Link to this heading">#</a></h1>
+<p><strong>Group fairness</strong> refers to ensuring that models make predictions equitably across different demographic or protected groups defined by sensitive attributes such as gender, race, or age. Group fairness is critical for preventing systematic discrimination and building models that are ethical, trustworthy, and compliant with legal standards.</p>
+<section id="definitions-of-group-fairness">
+<h2>Definitions of Group Fairness<a class="headerlink" href="#definitions-of-group-fairness" title="Link to this heading">#</a></h2>
+<p>There are several formalized definitions of group fairness, each designed for specific contexts. Selecting the appropriate definition depends on the application and fairness goals.</p>
+<ol class="arabic">
+<li><p><strong>Demographic Parity (Statistical Parity):</strong></p>
+<ul>
+<li><p>Ensures that the rate of positive outcomes is the same across all groups.</p></li>
+<li><p>Formula:</p>
+<div class="math notranslate nohighlight">
+\[P(\hat{y} = 1 | A = a) = P(\hat{y} = 1 | A = b) \quad \forall a, b\]</div>
+</li>
+<li><p>Example: In hiring models, ensure the selection rate is equal for different genders.</p></li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul class="simple">
+<li><p>Does not account for differences in the actual distribution or base rates of outcomes across groups.</p></li>
+</ul>
+</li>
+<li><p><strong>Equal Opportunity:</strong></p>
+<ul>
+<li><p>Ensures that the true positive rate is the same for all groups.</p></li>
+<li><p>Formula:</p>
+<div class="math notranslate nohighlight">
+\[P(\hat{y} = 1 | y = 1, A = a) = P(\hat{y} = 1 | y = 1, A = b) \quad \forall a, b\]</div>
+</li>
+<li><p>Example: In credit scoring, ensure that those who repay loans are approved equally across groups.</p></li>
+</ul>
+<p><strong>Strength:</strong></p>
+<ul class="simple">
+<li><p>Focuses on fairness for the positive class, especially important in high-stakes decisions.</p></li>
+</ul>
+</li>
+<li><p><strong>Equalized Odds:</strong></p>
+<ul>
+<li><p>Requires both the true positive rate (TPR) and the false positive rate (FPR) to be equal across groups.</p></li>
+<li><p>Formula:</p>
+<div class="math notranslate nohighlight">
+\[P(\hat{y} = 1 | y = c, A = a) = P(\hat{y} = 1 | y = c, A = b) \quad \forall a, b, c \in \{0, 1\}\]</div>
+</li>
+<li><p>Example: In healthcare diagnostics, ensure both detection rates and misdiagnoses are balanced across groups.</p></li>
+</ul>
+<p><strong>Strength:</strong></p>
+<ul class="simple">
+<li><p>Provides a more comprehensive fairness guarantee by addressing both types of errors.</p></li>
+</ul>
+</li>
+<li><p><strong>Conditional Parity:</strong></p>
+<ul class="simple">
+<li><p>Ensures fairness under specific conditions, such as controlling for legitimate risk factors.</p></li>
+<li><p>Example: Insurance pricing models may enforce parity within risk-adjusted subgroups.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="metrics-for-group-fairness">
+<h2>Metrics for Group Fairness<a class="headerlink" href="#metrics-for-group-fairness" title="Link to this heading">#</a></h2>
+<p>To measure group fairness, several metrics evaluate the extent to which fairness criteria are satisfied.</p>
+<ol class="arabic">
+<li><p><strong>Disparate Impact (DI):</strong></p>
+<ul>
+<li><p>Measures the ratio of positive outcome rates between unprivileged and privileged groups.</p></li>
+<li><p>Formula:</p>
+<div class="math notranslate nohighlight">
+\[\text{Disparate Impact} = \frac{P(\hat{y} = 1 | A = \text{unprivileged})}{P(\hat{y} = 1 | A = \text{privileged})}\]</div>
+</li>
+<li><p>A DI ratio close to 1 indicates fairness.</p></li>
+</ul>
+<p><strong>Threshold:</strong> A ratio between 0.8 and 1.25 is often used as a fairness benchmark (80% rule).</p>
+</li>
+<li><p><strong>Statistical Parity Difference:</strong></p>
+<ul>
+<li><p>Measures the difference in positive outcome rates between groups.</p></li>
+<li><p>Formula:</p>
+<div class="math notranslate nohighlight">
+\[\text{Statistical Parity Difference} = P(\hat{y} = 1 | A = a) - P(\hat{y} = 1 | A = b)\]</div>
+</li>
+</ul>
+</li>
+<li><p><strong>Equality of Opportunity Difference:</strong></p>
+<ul>
+<li><p>Measures the difference in true positive rates between groups.</p></li>
+<li><p>Formula:</p>
+<div class="math notranslate nohighlight">
+\[\text{Equality of Opportunity Difference} = P(\hat{y} = 1 | y = 1, A = a) - P(\hat{y} = 1 | y = 1, A = b)\]</div>
+</li>
+</ul>
+</li>
+<li><p><strong>Equalized Odds Difference:</strong></p>
+<ul>
+<li><p>Measures the largest difference in true positive and false positive rates between groups.</p></li>
+<li><p>Formula:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\text{Equalized Odds Difference} = \max \left( |P(\hat{y} = 1 | y = 1, A = a) - P(\hat{y} = 1 | y = 1, A = b)|, \\
+|P(\hat{y} = 1 | y = 0, A = a) - P(\hat{y} = 1 | y = 0, A = b)| \right)\end{split}\]</div>
+</li>
+</ul>
+</li>
+<li><p><strong>Calibration Across Groups:</strong></p>
+<ul>
+<li><p>Ensures predicted probabilities are well-calibrated for each group.</p></li>
+<li><p>Formula:</p>
+<div class="math notranslate nohighlight">
+\[P(y = 1 | \hat{p}, A = a) = P(y = 1 | \hat{p}, A = b) \quad \forall \hat{p}\]</div>
+</li>
+</ul>
+</li>
+</ol>
+<section id="adverse-impact-ratio-air-for-disparate-impact">
+<h3>Adverse Impact Ratio (AIR) for Disparate Impact<a class="headerlink" href="#adverse-impact-ratio-air-for-disparate-impact" title="Link to this heading">#</a></h3>
+<p><strong>Adverse Impact Ratio (AIR)</strong> is a key metric used to measure <strong>disparate impact</strong> in machine learning models. It quantifies the disparity in favorable outcomes (e.g., loan approval, hiring) between unprivileged and privileged groups, helping to identify potential unfairness in decision-making systems.</p>
+<p>The formula for AIR is:</p>
+<div class="math notranslate nohighlight">
+\[\text{AIR} = \frac{P(\hat{y} = 1 | A = \text{unprivileged})}{P(\hat{y} = 1 | A = \text{privileged})}\]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(P(\hat{y} = 1 | A = \text{unprivileged})\)</span>: Probability of a favorable outcome for the unprivileged group.</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(\hat{y} = 1 | A = \text{privileged})\)</span>: Probability of a favorable outcome for the privileged group.</p></li>
+<li><p><span class="math notranslate nohighlight">\(A\)</span>: Sensitive attribute (e.g., gender, race).</p></li>
+</ul>
+<p><strong>Interpretation of AIR</strong></p>
+<ul class="simple">
+<li><p><strong>AIR = 1:</strong> Indicates perfect parity between the unprivileged and privileged groups (no disparate impact).</p></li>
+<li><p><strong>AIR &lt; 1:</strong> Suggests potential disparate impact against the unprivileged group (e.g., lower approval rates).</p></li>
+<li><p><strong>AIR &gt; 1:</strong> Indicates potential favorable bias toward the unprivileged group.</p></li>
+</ul>
+<p><strong>80% Rule (Fairness Threshold)</strong></p>
+<p>The <strong>80% rule</strong>, commonly used in fairness evaluations, establishes a threshold for AIR:</p>
+<ul class="simple">
+<li><p><strong>AIR ≥ 0.8 (80%):</strong> Generally considered fair under the rule.</p></li>
+<li><p><strong>AIR &lt; 0.8:</strong> May indicate significant disparity, requiring further investigation and potential remediation.</p></li>
+</ul>
+<p><strong>Strengths and Limitations of AIR</strong></p>
+<p><strong>Strengths:</strong></p>
+<ul class="simple">
+<li><p>Easy to compute and interpret.</p></li>
+<li><p>Provides a simple measure of disparity.</p></li>
+<li><p>Aligns with legal and regulatory standards (e.g., U.S. Equal Employment Opportunity Commission (EEOC) guidelines).</p></li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul class="simple">
+<li><p>Does not account for differences in base rates across groups, which can lead to misleading conclusions.</p></li>
+<li><p>Focuses only on positive outcomes and does not assess fairness for negative outcomes (e.g., false positives).</p></li>
+<li><p>May conflict with other fairness metrics such as Equalized Odds or Equal Opportunity.</p></li>
+</ul>
+<p>AIR is an essential metric for assessing group fairness and detecting disparate impact in machine learning models. By comparing favorable outcome rates between unprivileged and privileged groups, AIR helps practitioners evaluate fairness and align with ethical and legal standards. However, AIR should be interpreted alongside other fairness metrics for a comprehensive understanding of model behavior.</p>
+<p><strong>3. Examples and Applications</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Hiring Models:</strong></p>
+<ul class="simple">
+<li><p>Ensure selection rates for different genders or ethnicities are similar (statistical parity).</p></li>
+</ul>
+</li>
+<li><p><strong>Credit Scoring:</strong></p>
+<ul class="simple">
+<li><p>Evaluate true positive rates (loan approvals for repaid loans) and false positive rates (loan approvals for defaults) for different demographic groups.</p></li>
+</ul>
+</li>
+<li><p><strong>Healthcare Diagnostics:</strong></p>
+<ul class="simple">
+<li><p>Assess the balance of true and false positive rates across groups, such as ensuring fair detection rates for diseases across genders.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>4. Challenges in Group Fairness</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Conflicting Fairness Metrics:</strong></p>
+<ul class="simple">
+<li><p>Achieving one fairness criterion may violate another. For example, satisfying equalized odds may conflict with demographic parity when base rates differ.</p></li>
+</ul>
+</li>
+<li><p><strong>Tradeoffs with Accuracy:</strong></p>
+<ul class="simple">
+<li><p>Enforcing fairness constraints may lead to reduced overall accuracy, especially when group distributions differ.</p></li>
+</ul>
+</li>
+<li><p><strong>Data Limitations:</strong></p>
+<ul class="simple">
+<li><p>Insufficient representation of minority groups can lead to unreliable fairness assessments.</p></li>
+</ul>
+</li>
+<li><p><strong>Cultural and Contextual Factors:</strong></p>
+<ul class="simple">
+<li><p>Fairness definitions may vary by application and societal norms.</p></li>
+</ul>
+</li>
+</ol>
+<p>Group fairness measurement is a critical component of building equitable machine learning models. By leveraging fairness metrics such as disparate impact, statistical parity difference, and equalized odds, practitioners can identify and address biases to ensure that models operate fairly across diverse demographic groups. While challenges like metric conflicts and accuracy tradeoffs exist, adopting fairness-aware practices helps create models that are both effective and socially responsible.</p>
+</section>
+</section>
+<section id="fairness-metrics-in-modeva">
+<h2>Fairness Metrics in MoDeVa<a class="headerlink" href="#fairness-metrics-in-modeva" title="Link to this heading">#</a></h2>
+<p>MoDeVa supports various fairness metrics, as shown below. In specific, we use the subscripts <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(r\)</span> to denote the protected and reference groups, respectively.</p>
+<ul class="simple">
+<li><p><strong>AIR</strong>: Adverse impact ratio.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+AIR = \frac{(TP_{p}+FP_{p}) / n_{p}}{(TP_{r}+FP_{r}) / n_{r}}.
+\end{align}\]</div>
+<ul class="simple">
+<li><p><strong>Precision</strong>: Positive predictive value disparity ratio.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+Precision Ratio = \frac{(TP_{p}) / (TP_{p}+FP_{p})}{(TP_{r}) / (TP_{r}+FP_{r})}.
+\end{align}\]</div>
+<ul class="simple">
+<li><p><strong>Recall</strong>: True positive rate disparity ratio.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{align}
+Recall Ratio = \frac{(TP_{p}) / (TP_{p}+FN_{p})}{(TP_{r}) / (TP_{r}+FN_{r})}.
+\end{align}\]</div>
+<ul class="simple">
+<li><p><strong>SMD</strong>: Standardized mean difference between protected and reference groups. (Only used for regression tasks)</p></li>
+</ul>
+</section>
+<section id="fairness-evaluation-in-modeva">
+<h2>Fairness Evaluation in MoDeVa<a class="headerlink" href="#fairness-evaluation-in-modeva" title="Link to this heading">#</a></h2>
+<p><strong>Data Setup</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">DataSet</span>
+<span class="c1"># Create dataset object holder</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">()</span>
+<span class="c1"># Loading MoDeVa pre-loaded dataset &quot;Bikesharing&quot;</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;TaiwanCredit&quot;</span><span class="p">)</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;TaiwanCredit&quot;</span><span class="p">)</span>
+<span class="c1"># Encode categorical data into ordinal</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">encode_categorical</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;ordinal&quot;</span><span class="p">)</span>
+<span class="c1"># Execute data pre-processing</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">preprocess</span><span class="p">()</span>
+<span class="c1"># Set target variable</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_target</span><span class="p">(</span><span class="s2">&quot;FlagDefault&quot;</span><span class="p">)</span>
+<span class="c1"># Set the following variables as inactive (not used for modeling)</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_inactive_features</span><span class="p">([</span><span class="s2">&quot;SEX&quot;</span><span class="p">,</span> <span class="s2">&quot;MARRIAGE&quot;</span><span class="p">,</span> <span class="s2">&quot;AGE&quot;</span><span class="p">])</span>
+<span class="c1"># Randomly split training and testing set</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_random_split</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Model Setup</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Classification tasks using lightGBM and xgboost</span>
+<span class="kn">from</span> <span class="nn">modeva.models</span> <span class="kn">import</span> <span class="n">MoLGBMClassifier</span><span class="p">,</span> <span class="n">MoXGBClassifier</span>
+
+<span class="c1"># for lightGBM</span>
+<span class="n">model_lgbm</span> <span class="o">=</span> <span class="n">MoLGBMClassifier</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;LGBM_model&quot;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="c1"># for xgboost</span>
+<span class="n">model_xgb</span> <span class="o">=</span> <span class="n">MoXGBClassifier</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;XGB_model&quot;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Model Training</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># train model with input: ds.train_x and target: ds.train_y</span>
+<span class="n">model_lgbm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">train_x</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">train_y</span><span class="p">)</span>
+<span class="n">model_xgb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">train_x</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">train_y</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Reporting and Diagnostic Setup</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a testsuite that bundles dataset and model</span>
+<span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">TestSuite</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">TestSuite</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">model_lgbm</span><span class="p">)</span> <span class="c1"># store bundle of dataset and model in fs</span>
+<span class="c1"># Evaluate performance and summarize into table</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_accuracy_table</span><span class="p">(</span><span class="n">train_dataset</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="n">test_dataset</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">table</span>
+</pre></div>
+</div>
+<p><strong>Setting “protected data” status for fairness evaluation</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#set protected data</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_protected_data</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">raw_data</span><span class="p">[[</span><span class="s2">&quot;SEX&quot;</span><span class="p">,</span> <span class="s2">&quot;MARRIAGE&quot;</span><span class="p">,</span> <span class="s2">&quot;AGE&quot;</span><span class="p">]])</span>
+<span class="c1"># Create configuration to define protected and reference groups</span>
+<span class="n">group_config</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="s2">&quot;Gender&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;feature&quot;</span><span class="p">:</span> <span class="s2">&quot;SEX&quot;</span><span class="p">,</span> <span class="s2">&quot;protected&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">&quot;reference&quot;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">},</span>
+   <span class="s2">&quot;MARRIAGE&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;feature&quot;</span><span class="p">:</span> <span class="s2">&quot;MARRIAGE&quot;</span><span class="p">,</span> <span class="s2">&quot;protected&quot;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="s2">&quot;reference&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+   <span class="s2">&quot;AGE&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;feature&quot;</span><span class="p">:</span> <span class="s2">&quot;AGE&quot;</span><span class="p">,</span> <span class="s2">&quot;protected&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;lower&quot;</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span> <span class="s2">&quot;lower_inclusive&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+      <span class="s2">&quot;reference&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;upper&quot;</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span> <span class="s2">&quot;upper_inclusive&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}}</span>
+<span class="p">}</span>
+
+<span class="c1"># Evaluate model fairness</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_fairness</span><span class="p">(</span><span class="n">group_config</span><span class="o">=</span><span class="n">group_config</span><span class="p">,</span>
+                            <span class="n">favorable_label</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                            <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;AIR&quot;</span><span class="p">,</span>
+                            <span class="n">threshold</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_fairness.html">TestSuite.diagnose_fairness</a>.</p>
+<section id="slicing-for-fairness-diagnostics">
+<h3>Slicing for Fairness Diagnostics<a class="headerlink" href="#slicing-for-fairness-diagnostics" title="Link to this heading">#</a></h3>
+<p><strong>1. Univariate Slicing</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_fairness</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="s2">&quot;PAY_1&quot;</span><span class="p">,</span>
+                                    <span class="n">group_config</span><span class="o">=</span><span class="n">group_config</span><span class="p">,</span>
+                                    <span class="n">dataset</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span>
+                                    <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;AIR&quot;</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_slicing_fairness.html">TestSuite.diagnose_slicing_fairness</a>.</p>
+<p><strong>2. Bivariate Slicing</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_fairness</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;PAY_1&quot;</span><span class="p">,</span> <span class="s2">&quot;BILL_AMT1&quot;</span><span class="p">),</span>
+                                    <span class="n">group_config</span><span class="o">=</span><span class="n">group_config</span><span class="p">,</span>
+                                    <span class="n">dataset</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span>
+                                    <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;AIR&quot;</span><span class="p">,</span>
+                                    <span class="n">threshold</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;MARRIAGE&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>3. Evaluation for All Features</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create tuple for feature list in ds.features_names</span>
+<span class="n">feature_names</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">((</span><span class="n">x</span><span class="p">,)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_fairness</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">feature_names</span><span class="p">),</span>
+                                    <span class="n">group_config</span><span class="o">=</span><span class="n">group_config</span><span class="p">,</span>
+                                    <span class="n">dataset</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span>
+                                    <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;AIR&quot;</span><span class="p">,</span>
+                                    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;auto-xgb1&quot;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">table</span><span class="p">[</span><span class="s2">&quot;MARRIAGE&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="fairness-comparison">
+<h2>Fairness Comparison<a class="headerlink" href="#fairness-comparison" title="Link to this heading">#</a></h2>
+<p>Fairness of several models can be compared as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tsc</span> <span class="o">=</span> <span class="n">TestSuite</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">models</span><span class="o">=</span><span class="p">[</span><span class="n">model_lgbm</span><span class="p">,</span> <span class="n">model_xgb</span><span class="p">])</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">tsc</span><span class="o">.</span><span class="n">compare_fairness</span><span class="p">(</span><span class="n">group_config</span><span class="o">=</span><span class="n">group_config</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;AIR&quot;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.compare_fairness.html">TestSuite.compare_fairness</a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">tsc</span><span class="o">.</span><span class="n">compare_slicing_fairness</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="s2">&quot;BILL_AMT1&quot;</span><span class="p">,</span>
+                                   <span class="n">group_config</span><span class="o">=</span><span class="n">group_config</span><span class="p">,</span>
+                                   <span class="n">favorable_label</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                   <span class="n">dataset</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span>
+                                   <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;AIR&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">table</span><span class="p">[</span><span class="s2">&quot;XGB_model&quot;</span><span class="p">][</span><span class="s2">&quot;MARRIAGE&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">table</span><span class="p">[</span><span class="s2">&quot;LGBM_model&quot;</span><span class="p">][</span><span class="s2">&quot;MARRIAGE&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.compare_slicing_fairness.html">TestSuite.compare_slicing_fairness</a>.</p>
+</section>
+<section id="fairness-mitigation">
+<h2>Fairness Mitigation<a class="headerlink" href="#fairness-mitigation" title="Link to this heading">#</a></h2>
+<p>Fairness mitigation in machine learning aims to reduce bias in model predictions to ensure equitable outcomes across demographic groups. Two effective debiasing methods include <strong>threshold adjustment</strong> and <strong>feature binning</strong>. Both methods involve tradeoffs between performance and fairness metrics, such as the Adverse Impact Ratio (AIR).</p>
+<section id="threshold-adjustment">
+<h3>Threshold Adjustment<a class="headerlink" href="#threshold-adjustment" title="Link to this heading">#</a></h3>
+<p>Threshold adjustment changes the decision threshold of a model to balance performance and fairness across groups. This method directly modifies the conditions under which a favorable outcome (e.g., loan approval) is granted.</p>
+<p><strong>Impact on AIR:</strong></p>
+<ul class="simple">
+<li><p>Lowering the threshold for the unprivileged group increases the probability of favorable outcomes for that group, improving AIR.</p></li>
+<li><p>Raising the threshold for the privileged group can reduce disparities but may decrease overall model performance.</p></li>
+</ul>
+<p><strong>Tradeoffs:</strong></p>
+<ul class="simple">
+<li><p><strong>Fairness:</strong> Threshold adjustment can significantly improve fairness metrics like AIR and statistical parity.</p></li>
+<li><p><strong>Performance:</strong> Introducing group-specific thresholds may lead to reduced overall accuracy or increased false positives/negatives.</p></li>
+</ul>
+<p><strong>Example in MoDeVa:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_mitigate_unfair_thresholding</span><span class="p">(</span><span class="n">group_config</span><span class="o">=</span><span class="n">group_config</span><span class="p">,</span>
+                                               <span class="n">favorable_label</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                               <span class="n">dataset</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span>
+                                               <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;AIR&quot;</span><span class="p">,</span>
+                                               <span class="n">performance_metric</span><span class="o">=</span><span class="s2">&quot;ACC&quot;</span><span class="p">,</span>
+                                               <span class="n">proba_cutoff</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>result.table</p>
+</section>
+<section id="feature-binning">
+<h3>Feature Binning<a class="headerlink" href="#feature-binning" title="Link to this heading">#</a></h3>
+<p>Feature binning reduces the granularity of input features by grouping them into fewer bins. This simplification can reduce disparities caused by overly precise or biased feature representations.</p>
+<p><strong>How It Works:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Granular Features:</strong></p>
+<ul class="simple">
+<li><p>Features like income or credit score may have many fine-grained levels, leading to group disparities.</p></li>
+</ul>
+</li>
+<li><p><strong>Reduced Binning:</strong></p>
+<ul class="simple">
+<li><p>Aggregate feature values into broader bins (e.g., low, medium, high) to smooth differences across groups.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Impact on AIR:</strong></p>
+<ul class="simple">
+<li><p>Coarser bins can reduce disparities by limiting the model’s ability to overfit group-specific nuances.</p></li>
+<li><p>Broader bins may increase statistical parity but may lose some predictive performance.</p></li>
+</ul>
+<p><strong>Tradeoffs:</strong></p>
+<ul class="simple">
+<li><p><strong>Fairness:</strong> Reducing bins can improve fairness metrics such as AIR by creating more uniform feature distributions across groups.</p></li>
+<li><p><strong>Performance:</strong> Coarser binning may lead to a loss of model precision, reducing accuracy or predictive power.</p></li>
+</ul>
+<p><strong>Example in MoDeVa:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_mitigate_unfair_binning</span><span class="p">(</span><span class="n">group_config</span><span class="o">=</span><span class="n">group_config</span><span class="p">,</span>
+                                               <span class="n">favorable_label</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                               <span class="n">dataset</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span>
+                                               <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;AIR&quot;</span><span class="p">,</span>
+                                               <span class="n">performance_metric</span> <span class="o">=</span> <span class="s2">&quot;AUC&quot;</span><span class="p">,</span>
+                                               <span class="n">binning_method</span> <span class="o">=</span> <span class="s2">&quot;quantile&quot;</span><span class="p">,</span>
+                                               <span class="n">bins</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="tradeoffs-between-performance-and-fairness">
+<h3>Tradeoffs Between Performance and Fairness<a class="headerlink" href="#tradeoffs-between-performance-and-fairness" title="Link to this heading">#</a></h3>
+<p>When applying debiasing techniques like threshold adjustment or feature binning, there are inherent tradeoffs between performance and fairness:</p>
+<ol class="arabic simple">
+<li><p><strong>Performance:</strong></p>
+<ul class="simple">
+<li><p>Adjusting thresholds or reducing feature granularity can lead to decreased accuracy, precision, or recall.</p></li>
+<li><p>Loss of fine-grained information may result in reduced model efficiency for certain subgroups.</p></li>
+</ul>
+</li>
+<li><p><strong>Fairness:</strong></p>
+<ul class="simple">
+<li><p>Debiasing methods can improve metrics like AIR, statistical parity, or equalized odds, ensuring more equitable outcomes.</p></li>
+<li><p>Fairness improvements may come at the cost of overall predictive performance.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="combined-application-of-threshold-adjustment-and-feature-binning">
+<h3>Combined Application of Threshold Adjustment and Feature Binning<a class="headerlink" href="#combined-application-of-threshold-adjustment-and-feature-binning" title="Link to this heading">#</a></h3>
+<p>Threshold adjustment and feature binning can be used together to address fairness concerns while minimizing performance loss:</p>
+<ul class="simple">
+<li><p><strong>Threshold Adjustment:</strong> Modify decision thresholds to balance group outcomes.</p></li>
+<li><p><strong>Feature Binning:</strong> Simplify input features to reduce disparities in feature-driven predictions.</p></li>
+</ul>
+<p>By carefully monitoring fairness metrics (e.g., AIR) and performance metrics (e.g., accuracy, AUC), we can balance these competing objectives.</p>
+<p>Debiasing methods like threshold adjustment and feature binning are effective techniques for fairness mitigation. While they involve tradeoffs between performance and fairness, these techniques help ensure more equitable outcomes across groups, aligning machine learning models with ethical and regulatory standards.</p>
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<p>An example codes of this section can be found in the following link.</p>
+<aside class="topic">
+<p class="topic-title">Example</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../auto_galleries/val/6_fairness/plot_0_fairness_cls.html#sphx-glr-source-auto-galleries-val-6-fairness-plot-0-fairness-cls-py"><span class="std std-ref">Model Fairness Analysis (Classification)</span></a></p></li>
+</ul>
+</aside>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="resilience.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Resilience</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../api_ref.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">API Reference</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions-of-group-fairness">Definitions of Group Fairness</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metrics-for-group-fairness">Metrics for Group Fairness</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adverse-impact-ratio-air-for-disparate-impact">Adverse Impact Ratio (AIR) for Disparate Impact</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fairness-metrics-in-modeva">Fairness Metrics in MoDeVa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fairness-evaluation-in-modeva">Fairness Evaluation in MoDeVa</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing-for-fairness-diagnostics">Slicing for Fairness Diagnostics</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fairness-comparison">Fairness Comparison</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fairness-mitigation">Fairness Mitigation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#threshold-adjustment">Threshold Adjustment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-binning">Feature Binning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tradeoffs-between-performance-and-fairness">Tradeoffs Between Performance and Fairness</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combined-application-of-threshold-adjustment-and-feature-binning">Combined Application of Threshold Adjustment and Feature Binning</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2025, Modeva Team.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

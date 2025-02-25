@@ -1,0 +1,996 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Reliability &#8212; Modeva  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=578d8e15" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/hide_links.css?v=60d22a59" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=23db8a6b" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_source/user_guide/testing/reliability';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Robustness" href="robustness.html" />
+    <link rel="prev" title="Underfitting and Overfitting" href="overfit.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.5" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.jpg" class="logo__image only-light" alt=""/>
+    <img src="../../../_static/logo.jpg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Modeva-AI</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data.html">Data Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modelwrapping.html">Model Wrapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explain.html">Model Explainability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models.html">Interpretable Models</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../testing.html">Diagnostic Suite</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="performance.html">Performance and Residual Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="weakspot.html">Weakness Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overfit.html">Underfitting and Overfitting</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Reliability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="robustness.html">Robustness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resilience.html">Resilience</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fairness.html">Fairness</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../usage.html" class="nav-link">Using Modeva</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../testing.html" class="nav-link">Diagnostic Suite</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Reliability</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="reliability">
+<h1>Reliability<a class="headerlink" href="#reliability" title="Link to this heading">#</a></h1>
+<p>Reliability in predictive models refers to their ability to produce consistent and trustworthy outputs. Model reliability measures the confidence in a model’s predictions by identifying areas of high uncertainty and ensuring consistency over time. This is particularly important in high-stakes domains like banking, where unreliable predictions can lead to significant risks or losses.</p>
+<p>Output uncertainty, or lack of confidence in predictions, arises from factors such as noisy data, sparse samples, or inherent model limitations.</p>
+<p><strong>Investigating and Improving Model Reliability</strong></p>
+<p>In MoDeVa, investigating and improving model reliability involves the following steps:</p>
+<ol class="arabic simple">
+<li><p>Uncertainty Quantification: Conformal Prediction (CP) is used to generate prediction intervals, providing a range within which the true value is likely to fall with a specified confidence level.</p></li>
+<li><p>Identification of Less Reliable Regions: Model weakness identification involves pinpointing areas in the data where the model performs poorly or lacks confidence. In MoDeVa, this is achieved by examining two key factors: (1) High uncertainty regions and (2) Outside Conformal Prediction coverage.</p></li>
+<li><p>Determine Impactful Variables: Identify key variables whose contribute to output uncertainty.</p></li>
+<li><p>Enhance the Model: Address the identified issues by refining the model, such as through further analysis, introducing segment-specific models, or other tailored adjustments.</p></li>
+</ol>
+<section id="conformal-prediction">
+<h2>Conformal Prediction<a class="headerlink" href="#conformal-prediction" title="Link to this heading">#</a></h2>
+<p>Conformal prediction provides a model-agnostic framework for constructing prediction intervals with guaranteed coverage under minimal assumptions. The key idea is to quantify how different a new test point is from the training data using a nonconformity score.</p>
+<p>The framework offers finite-sample, distribution-free coverage guarantees requiring only that the data are exchangeable. For a desired miscoverage rate α, conformal prediction produces prediction intervals that contain the true value with probability 1-α.</p>
+<section id="full-conformal-prediction">
+<h3>Full Conformal Prediction<a class="headerlink" href="#full-conformal-prediction" title="Link to this heading">#</a></h3>
+<p>Full conformal prediction requires refitting the model for each test point, making it computationally expensive.</p>
+<p><strong>Mathematical Formulation:</strong></p>
+<p>For a dataset <span class="math notranslate nohighlight">\({(X_,Y_),...,(X_n,Y_n)}\)</span> and test point <span class="math notranslate nohighlight">\(X_{n+1}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[C_{n,\alpha}(X_{n+1}) = \{y: \pi_y \geq \alpha\}\]</div>
+<p>where:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\pi_y\)</span> is the p-value for candidate y</p></li>
+<li><p>For each <span class="math notranslate nohighlight">\(y\)</span>, refit model on <span class="math notranslate nohighlight">\({(X_,Y_),...,(X_n,Y_n),(X_{n+1},y)}\)</span></p></li>
+<li><p>Compute nonconformity scores and compare to calibration set</p></li>
+</ul>
+</div></blockquote>
+<p>To reduce the computational burden, an approximate approach is used at the expense of reduction of coverage guarantee.</p>
+</section>
+<section id="split-conformal-prediction">
+<h3>Split Conformal Prediction<a class="headerlink" href="#split-conformal-prediction" title="Link to this heading">#</a></h3>
+<p>Split conformal reduces computational cost by splitting data into proper training and calibration sets.</p>
+<p><strong>Algorithm:</strong></p>
+<ol class="arabic simple">
+<li><p>Split data into training <span class="math notranslate nohighlight">\(D_{\text{train}}\)</span> and calibration <span class="math notranslate nohighlight">\(D_{\text{cal}}\)</span> sets</p></li>
+<li><p>Train model on <span class="math notranslate nohighlight">\(D_{\text{train}}\)</span></p></li>
+<li><p>Compute nonconformity scores on <span class="math notranslate nohighlight">\(D_{\text{cal}}\)</span></p></li>
+<li><p>Use empirical quantiles of scores to construct prediction intervals</p></li>
+</ol>
+<p><strong>Binary Classification</strong></p>
+<p>For binary classification, nonconformity scores typically use predicted probabilities.</p>
+<section id="nonconformity-score">
+<h4>Nonconformity Score:<a class="headerlink" href="#nonconformity-score" title="Link to this heading">#</a></h4>
+<div class="math notranslate nohighlight">
+\[\begin{split}s_i = \begin{cases}
+1 - \hat{p}_i &amp; \text{if } y_i = 1 \\
+\hat{p}_i &amp; \text{if } y_i = 0
+\end{cases}\end{split}\]</div>
+<dl class="simple">
+<dt>where:</dt><dd><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{p}_i\)</span> is predicted probability for class 1</p></li>
+<li><p>Lower scores indicate better conformity with training data</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Conformalized Residual Quantile Regression (CRQR)</strong></p>
+<p>CRQR applies quantile regression to the residuals to estimate prediction intervals.</p>
+<p><strong>Algorithm</strong></p>
+<p><strong>1. Base Model Fitting:</strong></p>
+<p>First, fit a base model <span class="math notranslate nohighlight">\(f(X)\)</span> to estimate conditional mean:</p>
+<div class="math notranslate nohighlight">
+\[\hat{f}(X) = \mathbb{E}[Y|X]\]</div>
+<p>Calculate residuals:</p>
+<div class="math notranslate nohighlight">
+\[r_i = y_i - \hat{f}(x_i)\]</div>
+<p><strong>2. Residual Quantile Regression:</strong></p>
+<p>Train quantile regression on residuals for desired quantiles <span class="math notranslate nohighlight">\(\tau_1\)</span>, <span class="math notranslate nohighlight">\(\tau_2\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\hat{q}_{\tau}(X) = \text{QR}_{\tau}(r|X)\]</div>
+<p><strong>3. Conformalization:</strong></p>
+<p>Compute nonconformity scores on calibration set:</p>
+<div class="math notranslate nohighlight">
+\[s_i = \max\{\hat{q}_{\tau_1}(X_i) - r_i, r_i - \hat{q}_{\tau_2}(X_i)\}\]</div>
+<p><strong>4. Prediction Intervals:</strong></p>
+<p>For new point <span class="math notranslate nohighlight">\(X\)</span>, construct interval:</p>
+<div class="math notranslate nohighlight">
+\[C_{n,\alpha}(X) = \hat{f}(X) + [\hat{q}_{\tau_1}(X) - Q_{1-\alpha}(s), \hat{q}_{\tau_2}(X) + Q_{1-\alpha}(s)]\]</div>
+<p>where:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{f}(X)\)</span> is base model prediction</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{q}_{τ}(X)\)</span> are predicted residual quantiles</p></li>
+<li><p><span class="math notranslate nohighlight">\(Q_{1-α}(s)\)</span> is (1-α) quantile of calibration scores</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Advantages and Considerations</strong></p>
+<ol class="arabic simple">
+<li><p>Distribution-free coverage guarantees</p></li>
+<li><p>Works with any base predictor</p></li>
+<li><p>Split conformal trades statistical efficiency for computational efficiency</p></li>
+<li><p>Residual approach can capture heteroscedasticity</p></li>
+<li><p>Can be extended to handle covariate shift</p></li>
+</ol>
+</section>
+</section>
+</section>
+<section id="reliability-analysis-in-modeva">
+<h2>Reliability Analysis in MoDeVa<a class="headerlink" href="#reliability-analysis-in-modeva" title="Link to this heading">#</a></h2>
+<p><strong>Data Setup</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">DataSet</span>
+<span class="c1"># Create dataset object holder</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">()</span>
+<span class="c1"># Loading MoDeVa pre-loaded dataset &quot;Bikesharing&quot;</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;BikeSharing&quot;</span><span class="p">)</span>  <span class="c1"># Changed dataset name</span>
+<span class="c1"># Split data into training and testing sets randomly</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_random_split</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Model Setup</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Regression tasks using lightGBM and xgboost</span>
+<span class="kn">from</span> <span class="nn">modeva.models</span> <span class="kn">import</span> <span class="n">MoLGBMRegressor</span><span class="p">,</span> <span class="n">MoXGBRegressor</span>
+
+<span class="c1"># for lightGBM</span>
+<span class="n">model_lgbm</span> <span class="o">=</span> <span class="n">MoLGBMRegressor</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;LGBM_model&quot;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="c1"># for xgboost</span>
+<span class="n">model_xgb</span> <span class="o">=</span> <span class="n">MoXGBRegressor</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;XGB_model&quot;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Model Training</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># train model with input: ds.train_x and target: ds.train_y</span>
+<span class="n">model_lgbm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">train_x</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">train_y</span><span class="p">)</span>
+<span class="n">model_xgb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">train_x</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">train_y</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Reporting and Diagnostic Setup</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a testsuite that bundles dataset and model</span>
+<span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">TestSuite</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">TestSuite</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">model_lgbm</span><span class="p">)</span> <span class="c1"># store bundle of dataset and model in fs</span>
+</pre></div>
+</div>
+<section id="reliability-assessment">
+<h3>Reliability Assessment:<a class="headerlink" href="#reliability-assessment" title="Link to this heading">#</a></h3>
+<p>In the example of regression task below, split conformal prediction is used.</p>
+<blockquote>
+<div><ul>
+<li><p>Expected coverage of prediction intervals, <span class="math notranslate nohighlight">\(\alpha\)</span> = 0.1</p></li>
+<li><p>Test dataset is split into:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>50% of data is used to train Quantile regression using LightGBM with tree depth 5 for the residuals and calibration</p></li>
+<li><p>50% of data and testing</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># reliability assessment using Split Conformal Prediction</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_reliability</span><span class="p">(</span>
+    <span class="n">train_dataset</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
+    <span class="n">test_dataset</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
+    <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">table</span>
+</pre></div>
+</div>
+<p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_reliability.html">TestSuite.diagnose_reliability</a>.</p>
+</section>
+</section>
+<section id="identification-of-reliability-issue-and-impactful-variables">
+<h2>Identification of Reliability Issue and Impactful Variables<a class="headerlink" href="#identification-of-reliability-issue-and-impactful-variables" title="Link to this heading">#</a></h2>
+<p>There are several ways to identify reliability issues (finding region in the input space with high uncertainty):
+* Apply slicing technique to identify variables and their intervals with less reliable outputs
+* Fit inherently interpretable model (e.g., xgboost depth-2) with prediction reliability (or in our out coverage) as target and plot the effects (main or interaction) as well as variable importance with respected to reliability measure.
+* Select sub-samples with less reliable outputs and visualize and compare the distributions between unreliable vs. the rest. Distribution difference can be quantified using measure such as PSI.</p>
+<p>Less reliable outputs can be identified by analyzing two key aspects of conformal prediction outputs:</p>
+<ol class="arabic simple">
+<li><p>High Uncertainty</p></li>
+<li><p>Out-of-Coverage Instances</p></li>
+</ol>
+<p><strong>For Regression:</strong></p>
+<p>Measure prediction interval width:</p>
+<div class="math notranslate nohighlight">
+\[W(X) = q_{\tau_2}(X) + Q_{1-\alpha}(s) - (q_{\tau_1}(X) - Q_{1-\alpha}(s))\]</div>
+<p>Flag points where:</p>
+<div class="math notranslate nohighlight">
+\[W(X) \gt Q_{1-\beta}(W)\]</div>
+<p>where:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\beta\)</span> is threshold (e.g., 0.9 for top 10% widest intervals)</p></li>
+<li><p><span class="math notranslate nohighlight">\(Q_1₋\beta(W)\)</span> is the <span class="math notranslate nohighlight">\((1-\beta)\)</span> quantile of interval widths</p></li>
+</ul>
+</div></blockquote>
+<p><strong>For Binary Classification:</strong></p>
+<p>Flag instances where:</p>
+<div class="math notranslate nohighlight">
+\[|C_{n,\alpha}(X)| \in \{0, 2\}\]</div>
+<p>where:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(|C_{n,\alpha}(X)|\)</span> = 0: Empty prediction set (high uncertainty)</p></li>
+<li><p><span class="math notranslate nohighlight">\(|C_{n,\alpha}(X)|\)</span> = 2: Both classes predicted (high uncertainty)</p></li>
+</ul>
+</div></blockquote>
+<p><strong>1. Coverage Violation Detection:</strong></p>
+<p>For true value <span class="math notranslate nohighlight">\(y\)</span> and prediction set <span class="math notranslate nohighlight">\(C_{n,\alpha}(X)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[V(X,y) = \mathbb{1}\{y \notin C_{n,\alpha}(X)\}\]</div>
+<p><strong>2. Region Characterization:</strong></p>
+<p>Analyze feature distributions where:</p>
+<div class="math notranslate nohighlight">
+\[P(V(X,y) = 1 | X \in R) \gt \alpha\]</div>
+<dl class="simple">
+<dt>where:</dt><dd><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(R\)</span> is a region in feature space</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha\)</span> is nominal miscoverage rate</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Common patterns indicating model weakness:</strong></p>
+<ul class="simple">
+<li><p>High uncertainty + good coverage: Model is honest about uncertainty</p></li>
+<li><p>High uncertainty + poor coverage: Model may be misspecified</p></li>
+<li><p>Low uncertainty + poor coverage: Model is overconfident</p></li>
+</ul>
+</section>
+<section id="reliability-diagnostics-in-modeva">
+<h2>Reliability Diagnostics in MoDeVa<a class="headerlink" href="#reliability-diagnostics-in-modeva" title="Link to this heading">#</a></h2>
+<p>To understand the region with higher uncertainty can be analyzed as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data_results</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">data_drift_test</span><span class="p">(</span>
+    <span class="o">**</span><span class="n">results</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="s2">&quot;data_info&quot;</span><span class="p">],</span>
+    <span class="n">distance_metric</span><span class="o">=</span><span class="s2">&quot;PSI&quot;</span><span class="p">,</span>
+    <span class="n">psi_method</span><span class="o">=</span><span class="s2">&quot;uniform&quot;</span><span class="p">,</span>
+    <span class="n">psi_bins</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The results of distribution between less reliable region vs. overal data from <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_reliability.html">TestSuite.diagnose_reliability</a> is evaluated using <a class="reference external" href="../../modules/generated/modeva.DataSet.data_drift_test.html">DataSet.data_drift_test</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Percent of worst sample = 0.1 (10%) is selected for least reliable</p></li>
+<li><p>Metrics: PSI with 10 uniform binning is used for calculation.</p></li>
+</ul>
+</div></blockquote>
+<p><cite>data_results.plot()</cite> displays the following results:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Summary of distribution differences for all the features ranked by PSI</p></li>
+<li><p>Marginal density comparison of distribution shift</p></li>
+<li><p>Marginal histogram comparison of distribution shift</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Summary of variable ranked according to their PSI (distribution difference)</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data_results</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;summary&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Plot the density of variables:</strong></p>
+<p><strong>Slicing Reliability</strong>
+The reliability for a given feature can be analyzed through feature slicing. Below is an example for features=”hr” and metric=”coverage”:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_reliability</span><span class="p">(</span>
+    <span class="n">features</span><span class="o">=</span><span class="s2">&quot;hr&quot;</span><span class="p">,</span>
+    <span class="n">train_dataset</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span>
+    <span class="n">test_dataset</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
+    <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;coverage&quot;</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_slicing_reliability.html">TestSuite.diagnose_slicing_reliability</a>.</p>
+<p><strong>Univariate slicing for multiple features</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_reliability</span><span class="p">(</span>
+    <span class="n">features</span><span class="o">=</span><span class="p">((</span><span class="s2">&quot;hr&quot;</span><span class="p">,),</span> <span class="p">(</span><span class="s2">&quot;temp&quot;</span><span class="p">,),</span> <span class="p">(</span><span class="s2">&quot;season&quot;</span><span class="p">,)),</span>
+    <span class="n">train_dataset</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span>
+    <span class="n">test_dataset</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
+    <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;coverage&quot;</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;hr&quot;</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;temp&quot;</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;season&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Bivariate slicing: interactions on reliability</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_reliability</span><span class="p">(</span>
+    <span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;hr&quot;</span><span class="p">,</span> <span class="s2">&quot;temp&quot;</span><span class="p">),</span>
+    <span class="n">train_dataset</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span>
+    <span class="n">test_dataset</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
+    <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="reliability-comparison">
+<h2>Reliability Comparison<a class="headerlink" href="#reliability-comparison" title="Link to this heading">#</a></h2>
+<p>Reliability of several models can be compared as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fsc</span> <span class="o">=</span> <span class="n">TestSuite</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">models</span><span class="o">=</span><span class="p">[</span><span class="n">model_lgbm</span><span class="p">,</span> <span class="n">model_xgb</span><span class="p">])</span>
+<span class="c1"># resilreliability comparison of 2 models specified in fsc</span>
+ <span class="n">results</span> <span class="o">=</span> <span class="n">fsc</span><span class="o">.</span><span class="n">compare_reliability</span><span class="p">(</span>
+     <span class="n">train_dataset</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span>
+     <span class="n">test_dataset</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
+     <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+     <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+     <span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+     <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span>
+ <span class="p">)</span>
+ <span class="n">results</span><span class="o">.</span><span class="n">table</span>
+</pre></div>
+</div>
+<p>Check the API reference for detail arguments of <a class="reference external" href="../../modules/generated/modeva.TestSuite.compare_reliability.html">TestSuite.compare_reliability</a>.</p>
+<p>The uncertainty of multiple models can be compared for each feature using variable slicing:</p>
+<p>Check the API reference for detail arguments of <a class="reference external" href="../../modules/generated/modeva.TestSuite.compare_slicing_reliability.html">TestSuite.compare_slicing_reliability</a>.</p>
+</section>
+<section id="strategies-for-addressing-model-weaknesses">
+<h2>Strategies for Addressing Model Weaknesses<a class="headerlink" href="#strategies-for-addressing-model-weaknesses" title="Link to this heading">#</a></h2>
+<section id="data-centric-approaches">
+<h3>Data-Centric Approaches<a class="headerlink" href="#data-centric-approaches" title="Link to this heading">#</a></h3>
+<p><strong>1. Targeted Data Augmentation:</strong></p>
+<p>For regions with high uncertainty or poor coverage:</p>
+<div class="math notranslate nohighlight">
+\[R_{weak} = \{X: W(X) &gt; Q_{1-β}(W) \text{ or } V(X,y) = 1\}\]</div>
+<p>Solutions:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Collect additional samples in <span class="math notranslate nohighlight">\(R_{\text{weak}}\)</span></p></li>
+<li><p>Active learning in high-uncertainty regions</p></li>
+</ul>
+</div></blockquote>
+<p><strong>2. Feature Engineering:</strong></p>
+<p>Based on weakness patterns:</p>
+<ul class="simple">
+<li><p>Create interaction terms for regions with nonlinear patterns</p></li>
+<li><p>Develop domain-specific features where coverage is poor</p></li>
+<li><p>Transform features where uncertainty is heterogeneous</p></li>
+</ul>
+<p><strong>1. Local Model Enhancement:</strong></p>
+<p>For identified weak regions <span class="math notranslate nohighlight">\(R_{\text{weak}}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}f_{enhanced}(X) = \begin{cases}
+f_{local}(X) &amp; \text{if } X \in R_{weak} \\
+f_{global}(X) &amp; \text{otherwise}
+\end{cases}\end{split}\]</div>
+<p>Strategies:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Train specialized models for <span class="math notranslate nohighlight">\(R_{\text{weak}}\)</span></p></li>
+<li><p>Ensemble models with region-specific weights</p></li>
+<li><p>Hierarchical modeling approaches</p></li>
+</ul>
+</div></blockquote>
+<p><strong>2. Architecture Modifications:</strong></p>
+<p>Based on uncertainty patterns:</p>
+<ul class="simple">
+<li><p>Add capacity in high-uncertainty regions or use alternative modeling framework</p></li>
+<li><p>Incorporate domain knowledge via constraints</p></li>
+<li><p>Use mixture of experts for heterogeneous regions</p></li>
+</ul>
+<p><strong>3. Loss Function Adjustments:</strong></p>
+<div class="math notranslate nohighlight">
+\[L_{new}(X,y) = L_{original}(X,y) + \lambda W(X)R(X)\]</div>
+<dl class="simple">
+<dt>where:</dt><dd><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(R(X)\)</span> is an indicator for weak regions</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda\)</span> balances overall performance vs local improvement</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<aside class="topic">
+<p class="topic-title">Example 1: Bike Sharing</p>
+<blockquote>
+<div><p>The example below demonstrates how to use MoDeVa with its high-code APis for the Bike Sharing dataset from the UCI repository, which consists of 20,640 samples and 9 features, fetched by sklearn.datasets. The response variable MedHouseVal (Median Home Value) is continuous and is a regression problem.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../auto_galleries/val/3_reliability/plot_1_reliability_reg.html#sphx-glr-source-auto-galleries-val-3-reliability-plot-1-reliability-reg-py"><span class="std std-ref">Reliability Analysis (Regression)</span></a></p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">Examples 2: Taiwan Credit</p>
+<blockquote>
+<div><p>The second example below demonstrates how to use MoDeVa’s high-code APIs for the TaiwanCredit dataset from the UCI repository. This dataset comprises the credit card details of 30,000 clients in Taiwan from April 2005 to September 2005, and more information can be found on the TaiwanCreditData website. The <cite>FlagDefault</cite> variable serves as the response for this classification problem.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../auto_galleries/val/3_reliability/plot_0_reliability_cls.html#sphx-glr-source-auto-galleries-val-3-reliability-plot-0-reliability-cls-py"><span class="std std-ref">Reliability Analysis (Classification)</span></a></p></li>
+</ul>
+</aside>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="overfit.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Underfitting and Overfitting</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="robustness.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Robustness</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conformal-prediction">Conformal Prediction</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-conformal-prediction">Full Conformal Prediction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#split-conformal-prediction">Split Conformal Prediction</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nonconformity-score">Nonconformity Score:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reliability-analysis-in-modeva">Reliability Analysis in MoDeVa</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reliability-assessment">Reliability Assessment:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identification-of-reliability-issue-and-impactful-variables">Identification of Reliability Issue and Impactful Variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reliability-diagnostics-in-modeva">Reliability Diagnostics in MoDeVa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reliability-comparison">Reliability Comparison</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strategies-for-addressing-model-weaknesses">Strategies for Addressing Model Weaknesses</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-centric-approaches">Data-Centric Approaches</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2025, Modeva Team.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

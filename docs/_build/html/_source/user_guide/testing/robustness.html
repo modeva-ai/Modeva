@@ -1,0 +1,905 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Robustness &#8212; Modeva  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=578d8e15" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/hide_links.css?v=60d22a59" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=23db8a6b" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_source/user_guide/testing/robustness';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Resilience" href="resilience.html" />
+    <link rel="prev" title="Reliability" href="reliability.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.5" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.jpg" class="logo__image only-light" alt=""/>
+    <img src="../../../_static/logo.jpg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Modeva-AI</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data.html">Data Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modelwrapping.html">Model Wrapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explain.html">Model Explainability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models.html">Interpretable Models</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../testing.html">Diagnostic Suite</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="performance.html">Performance and Residual Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="weakspot.html">Weakness Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overfit.html">Underfitting and Overfitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reliability.html">Reliability</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Robustness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resilience.html">Resilience</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fairness.html">Fairness</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../usage.html" class="nav-link">Using Modeva</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../testing.html" class="nav-link">Diagnostic Suite</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Robustness</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="robustness">
+<h1>Robustness<a class="headerlink" href="#robustness" title="Link to this heading">#</a></h1>
+<p>Robustness evaluates a model’s ability to perform reliably when exposed to input noise or changes, ensuring it remains accurate and stable under various conditions. In banking, robustness is essential to avoid issues like benign overfitting, which occurs when models fit noise in the training data but fail to generalize to new data. This section outlines key practices to test and enhance model robustness.</p>
+<p>Noise sensitivity testing can be done by introducing small perturbations to input data and evaluate the impact on predictions. For instance, a slight change in a customer’s credit score or income level should not lead to a disproportionate shift in loan approval outcomes.</p>
+<ul class="simple">
+<li><p>Example: Add random noise to numeric features (e.g., credit score ±1%) and measure prediction stability.</p></li>
+<li><p>Goal: Ensure that predictions are not overly sensitive to minor data variations.</p></li>
+</ul>
+<p><strong>Investigating and Improving Model Robustness</strong></p>
+<p>MoDeVa provides a structured approach to investigate and enhance model robustness. The steps include:</p>
+<ol class="arabic">
+<li><p>Perturb Input Variables in Testing Data: Introduce controlled perturbations or noise to the input variables in the testing dataset. This simulates real-world scenarios where data may include slight variations, helping to evaluate the model’s sensitivity to changes.</p></li>
+<li><p>Assess Performance Degradation: Evaluate how the introduced perturbations impact the model’s performance. Compare metrics such as accuracy, precision, recall, or mean squared error before and after perturbation to quantify the degradation.</p></li>
+<li><p>Identify and Rank Sensitive Variables: Analyze the impact of perturbations on individual input variables. Rank the variables based on their sensitivity to noise, identifying those that contribute most to performance degradation.</p></li>
+<li><p>Enhance Model Robustness: Implement improvements to address identified weaknesses, including:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Regularization Techniques: Apply L1/L2 penalties to reduce sensitivity to noise.</p></li>
+<li><p>Feature Engineering: Refine or remove noisy variables to improve data quality.</p></li>
+<li><p>Ensemble Methods: Use techniques like bagging or averaging to stabilize predictions.</p></li>
+<li><p>Adversarial Training: Train the model with perturbed data to make it more robust to noise.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<p>By systematically applying these steps, MoDeVa ensures models remain robust in the face of data variability and noise.</p>
+<section id="input-perturbation-for-robustness-test">
+<h2>Input Perturbation for Robustness Test<a class="headerlink" href="#input-perturbation-for-robustness-test" title="Link to this heading">#</a></h2>
+<p>To evaluate model robustness, MoDeVa supports two methods for perturbing input data:</p>
+<section id="simple-perturbation-with-normally-distributed-random-noise">
+<h3>Simple Perturbation with Normally Distributed Random Noise<a class="headerlink" href="#simple-perturbation-with-normally-distributed-random-noise" title="Link to this heading">#</a></h3>
+<p>This method adds random noise to input variables, drawn from a normal distribution, to simulate minor deviations in the data.</p>
+<ul>
+<li><p>Define fraction multipliers, <span class="math notranslate nohighlight">\(k\)</span> (e.g., 0.01, 0.02), to standard deviation (<span class="math notranslate nohighlight">\(\sigma\)</span>) for the noise.</p></li>
+<li><p>Generate random noise for each input feature:</p>
+<div class="math notranslate nohighlight">
+\[\text{perturbed value} = \text{original value} + k * \mathcal{N}(0, \sigma^2)\]</div>
+</li>
+</ul>
+<p>Use Case: Test sensitivity to small-scale, realistic random fluctuations in the data.</p>
+</section>
+<section id="quantile-perturbation-with-uniform-noise">
+<h3>Quantile Perturbation with Uniform Noise<a class="headerlink" href="#quantile-perturbation-with-uniform-noise" title="Link to this heading">#</a></h3>
+<p>This method perturbs variables by adding uniform noise to their quantile space, preserving the data’s distribution.</p>
+<ul>
+<li><p>Convert input values into quantiles using the cumulative distribution function (CDF) of the variable:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[q = F(x)\]</div>
+<p>Where <span class="math notranslate nohighlight">\(F(x)\)</span> is the empirical CDF.</p>
+</div></blockquote>
+</li>
+<li><p>Add uniform noise (<span class="math notranslate nohighlight">\(\mathcal{U}(-\Delta, \Delta)\)</span>) to the quantiles:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[q_{\text{perturbed}} = q + \mathcal{U}(-\Delta, \Delta)\]</div>
+<p>Choose <span class="math notranslate nohighlight">\(\Delta\)</span> based on the desired perturbation range in the quantile space.</p>
+</div></blockquote>
+</li>
+<li><p>Map the perturbed quantiles back to the original data scale using the inverse CDF:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[x_{\text{perturbed}} = F^{-1}(q_{\text{perturbed}})\]</div>
+</div></blockquote>
+</li>
+</ul>
+<p>Use Case: Evaluate model robustness while preserving the original variable’s distributional characteristics.</p>
+</section>
+<section id="perturbation-for-categorical-variable">
+<h3>Perturbation for Categorical Variable<a class="headerlink" href="#perturbation-for-categorical-variable" title="Link to this heading">#</a></h3>
+<p>For illustration, let’s assume we have three categories (A, B, and C). First of all, we summarize the frequency of each category in the data, e.g., 30%, 30%, and 40%, respectively. Then, each sample is perturbed with probability <span class="math notranslate nohighlight">\(p\)</span> (<cite>perturb_size</cite>) and kept unchanged with probability <span class="math notranslate nohighlight">\(1-p\)</span>. For example, if <span class="math notranslate nohighlight">\(p=0.3\)</span>, then 30% of the samples will be perturbed. If a sample is perturbed, it will be perturbed to A, B, and C with probability 30%, 30%, and 40%, respectively.</p>
+</section>
+<section id="practical-considerations">
+<h3>Practical Considerations<a class="headerlink" href="#practical-considerations" title="Link to this heading">#</a></h3>
+<p><strong>Choosing the Approach</strong></p>
+<ul class="simple">
+<li><p><strong>Simple Perturbation</strong> is straightforward and suitable for general robustness testing across all features.</p></li>
+<li><p><strong>Quantile Perturbation</strong> is ideal for preserving the statistical properties of variables, especially for non-normal distributions or when dealing with features with specific value constraints (e.g., probabilities bounded between 0 and 1).</p></li>
+<li><p><strong>Feature-specific design</strong>: choose perturbation techniques based on feature types (continuous vs. categorical)</p></li>
+<li><p><strong>Perturbation magnitude:</strong> ensure perturbations reflect realistic scenarios.</p></li>
+</ul>
+<p><strong>Deciding the Maximum Perturbation Size</strong>
+To determine the maximum size of input perturbations for robustness testing, a linear model can be used as a benchmark. The maximum perturbation size is defined as the point where the model’s performance drops to a level below that of the linear model.</p>
+<ol class="arabic simple">
+<li><p>Train a Linear Model Benchmark: train a simple linear model using the same dataset to serve as a baseline for comparison.</p></li>
+<li><p>Incrementally Apply Perturbations: apply increasing levels of perturbations to the input data using the chosen perturbation method (e.g., normal noise or quantile noise).</p></li>
+<li><p>Monitor Model Performance: evaluate the performance of the model at each perturbation level, tracking metrics such as accuracy, precision, recall, or mean squared error.</p></li>
+<li><p>Identify the Maximum Perturbation Bound: determine the largest perturbation size where the model’s performance remains above that of the linear benchmark. This size is used as the maximum allowable perturbation.</p></li>
+</ol>
+<p>By applying these perturbation techniques, MoDeVa allows a thorough assessment of model robustness against both realistic and structured input variability.</p>
+</section>
+</section>
+<section id="robustness-analysis-in-modeva">
+<h2>Robustness Analysis in MoDeVa<a class="headerlink" href="#robustness-analysis-in-modeva" title="Link to this heading">#</a></h2>
+<p><strong>Data Setup</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">DataSet</span>
+<span class="c1"># Create dataset object holder</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">()</span>
+<span class="c1"># Loading MoDeVa pre-loaded dataset &quot;Bikesharing&quot;</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;BikeSharing&quot;</span><span class="p">)</span>  <span class="c1"># Changed dataset name</span>
+<span class="c1"># Split data into training and testing sets randomly</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_random_split</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Model Setup</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Regression tasks using lightGBM and xgboost</span>
+<span class="kn">from</span> <span class="nn">modeva.models</span> <span class="kn">import</span> <span class="n">MoLGBMRegressor</span><span class="p">,</span> <span class="n">MoXGBRegressor</span>
+
+<span class="c1"># for lightGBM</span>
+<span class="n">model_lgbm</span> <span class="o">=</span> <span class="n">MoLGBMRegressor</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;LGBM_model&quot;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="c1"># for xgboost</span>
+<span class="n">model_xgb</span> <span class="o">=</span> <span class="n">MoXGBRegressor</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;XGB_model&quot;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="c1"># for catboost</span>
+</pre></div>
+</div>
+<p><strong>Model Training</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># train model with input: ds.train_x and target: ds.train_y</span>
+<span class="n">model_lgbm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">train_x</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">train_y</span><span class="p">)</span>
+<span class="n">model_xgb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">train_x</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">train_y</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Reporting and Diagnostic Setup</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a testsuite that bundles dataset and model</span>
+<span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">TestSuite</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">TestSuite</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">model_lgbm</span><span class="p">)</span> <span class="c1"># store bundle of dataset and model in fs</span>
+</pre></div>
+</div>
+<p><strong>Robustness Assessment</strong></p>
+<p>Performance degradation is evaluated by comparing the selected performance metrics under a set noise perturbation sizes.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># robustness analysis</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">TestSuite</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">model_lgbm</span><span class="p">)</span>
+   <span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_robustness</span><span class="p">(</span>
+   <span class="n">perturb_features</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+   <span class="n">noise_levels</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">),</span>
+   <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;MSE&quot;</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_robustness.html">TestSuite.diagnose_robustness</a>.</p>
+</section>
+<section id="identification-of-robustness-issue-and-impactful-variables">
+<h2>Identification of Robustness Issue and Impactful Variables<a class="headerlink" href="#identification-of-robustness-issue-and-impactful-variables" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Apply slicing technique to identify variables and their intervals with the most performance degradation</p></li>
+<li><p>Select sub-samples with the most performance degradation and identify variables with the highest PSI</p></li>
+</ul>
+<p><strong>Univariate robustness slicing</strong></p>
+<p>Below is an example of slicing on</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>features=”hr”</p></li>
+<li><p>perturbaion on perturb_features=(“hum”, “atemp”)</p></li>
+<li><p>perturbation size noise_levels=0.1</p></li>
+<li><p>binning method is automatically determined by xgboost depth-1, method=”auto-xgb1”</p></li>
+</ul>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_robustness</span><span class="p">(</span>
+   <span class="n">features</span><span class="o">=</span><span class="s2">&quot;hr&quot;</span><span class="p">,</span>
+   <span class="n">perturb_features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;hum&quot;</span><span class="p">,</span> <span class="s2">&quot;atemp&quot;</span><span class="p">),</span>
+   <span class="n">noise_levels</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+   <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;MAE&quot;</span><span class="p">,</span>
+   <span class="n">method</span><span class="o">=</span><span class="s2">&quot;auto-xgb1&quot;</span><span class="p">,</span>
+   <span class="n">threshold</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span> <span class="c1"># what&#39;s the threshold here?</span>
+<span class="n">results</span><span class="o">.</span><span class="n">table</span>
+</pre></div>
+</div>
+<p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_slicing_robustness.html">TestSuite.diagnose_slicing_robustness</a>.</p>
+<p><strong>Distribution difference for a specific feature</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># retrieve result for &quot;hr&quot; feature</span>
+<span class="n">data_info</span> <span class="o">=</span> <span class="n">get_data_info</span><span class="p">(</span><span class="n">res_value</span><span class="o">=</span><span class="n">results</span><span class="o">.</span><span class="n">value</span><span class="p">)[</span><span class="s2">&quot;hr&quot;</span><span class="p">]</span>
+<span class="c1"># apply drift test to rank distributional difference</span>
+<span class="n">data_results</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">data_drift_test</span><span class="p">(</span>
+   <span class="o">**</span><span class="n">data_info</span><span class="p">,</span>
+   <span class="n">distance_metric</span><span class="o">=</span><span class="s2">&quot;PSI&quot;</span><span class="p">,</span>
+   <span class="n">psi_method</span><span class="o">=</span><span class="s2">&quot;uniform&quot;</span><span class="p">,</span>
+   <span class="n">psi_bins</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">data_results</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;summary&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The results of distribution difference from <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_slicing_robustness.html">TestSuite.diagnose_slicing_robustness</a> is evaluated using <a class="reference external" href="../../modules/generated/modeva.DataSet.data_drift_test.html">DataSet.data_drift_test</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Percent of worst sample = 0.1 (10%) is selected for distribution shift</p></li>
+<li><p>Metrics: PSI with 10 uniform binning is used for calculation.</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Bivariate Slicing</strong></p>
+<p>Example of bivariate slicing on features=(“hr”, “atemp”)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_robustness</span><span class="p">(</span>
+   <span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;hr&quot;</span><span class="p">,</span> <span class="s2">&quot;atemp&quot;</span><span class="p">),</span>
+   <span class="n">perturb_features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;hum&quot;</span><span class="p">,</span> <span class="s2">&quot;temp&quot;</span><span class="p">),</span>
+   <span class="n">noise_levels</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+   <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;MSE&quot;</span><span class="p">,</span>
+   <span class="n">threshold</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">table</span>
+</pre></div>
+</div>
+<p><strong>Multiple Univariate Slicing</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_robustness</span><span class="p">(</span>
+   <span class="n">features</span><span class="o">=</span><span class="p">((</span><span class="s2">&quot;hr&quot;</span><span class="p">,),</span> <span class="p">(</span><span class="s2">&quot;atemp&quot;</span><span class="p">,),</span> <span class="p">(</span><span class="s2">&quot;season&quot;</span><span class="p">,)),</span>
+   <span class="n">perturb_features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;temp&quot;</span><span class="p">,</span> <span class="s2">&quot;hum&quot;</span><span class="p">),</span>
+   <span class="n">noise_levels</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+   <span class="n">perturb_method</span><span class="o">=</span><span class="s2">&quot;quantile&quot;</span><span class="p">,</span>
+   <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;MSE&quot;</span><span class="p">,</span>
+   <span class="n">threshold</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">table</span>
+</pre></div>
+</div>
+</section>
+<section id="robustness-comparison">
+<h2>Robustness Comparison<a class="headerlink" href="#robustness-comparison" title="Link to this heading">#</a></h2>
+<p>Robustness of several models can be compared as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tsc</span> <span class="o">=</span> <span class="n">TestSuite</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">models</span><span class="o">=</span><span class="p">[</span><span class="n">model_lgbm</span><span class="p">,</span> <span class="n">model_xgb</span><span class="p">])</span>
+<span class="c1"># robustness comparison of 2 models specified in tsc</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">tsc</span><span class="o">.</span><span class="n">compare_robustness</span><span class="p">(</span>
+   <span class="n">perturb_features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;hr&quot;</span><span class="p">,</span> <span class="s2">&quot;atemp&quot;</span><span class="p">),</span>
+   <span class="n">noise_levels</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">),</span>
+   <span class="n">perturb_method</span><span class="o">=</span><span class="s2">&quot;quantile&quot;</span><span class="p">,</span>
+   <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;MSE&quot;</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Check the API reference for detail arguments of <a class="reference external" href="../../modules/generated/modeva.TestSuite.compare_robustness.html">TestSuite.compare_robustness</a>.</p>
+<p>The robustness of multiple models can be compared for each feature using variable slicing:</p>
+<p>Check the API reference for detail arguments of <a class="reference external" href="../../modules/generated/modeva.TestSuite.compare_slicing_robustness.html">TestSuite.compare_slicing_robustness</a>.</p>
+</section>
+<section id="strategies-for-addressing-model-weaknesses">
+<h2>Strategies for Addressing Model Weaknesses<a class="headerlink" href="#strategies-for-addressing-model-weaknesses" title="Link to this heading">#</a></h2>
+<section id="data-centric-approaches">
+<h3>Data-Centric Approaches<a class="headerlink" href="#data-centric-approaches" title="Link to this heading">#</a></h3>
+<p><strong>1. Feature Engineering:</strong></p>
+<p>Based on weakness patterns:
+* Perform feature transformation for those causing robustness issues</p>
+</section>
+<section id="model-centric-approaches">
+<h3>Model-Centric Approaches<a class="headerlink" href="#model-centric-approaches" title="Link to this heading">#</a></h3>
+<p><strong>1. Architecture Modifications:</strong></p>
+<p>Based on uncertainty patterns:</p>
+<ul class="simple">
+<li><p>Choose modeling alternative that is more robust</p></li>
+<li><p>Incorporate domain knowledge via constraints (e.g., monotonicity)</p></li>
+</ul>
+<p><strong>2. Loss Function Adjustments:</strong></p>
+<ul class="simple">
+<li><p>Apply regularization to reduce overfitting</p></li>
+</ul>
+<p><strong>L1 Regularization (Lasso):</strong></p>
+<div class="math notranslate nohighlight">
+\[L_{\text{total}} = L_{\text{pred}} + \lambda_1 \sum_{i} |w_i|\]</div>
+<dl class="simple">
+<dt>Properties:</dt><dd><ul class="simple">
+<li><p>Promotes sparsity</p></li>
+<li><p>Helps feature selection</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>L2 Regularization (Ridge):</strong></p>
+<div class="math notranslate nohighlight">
+\[L_{\text{total}} = L_{\text{pred}} + \lambda_2 \sum_{i} w_i^2\]</div>
+<dl class="simple">
+<dt>Properties:</dt><dd><ul class="simple">
+<li><p>Smooths decision boundaries</p></li>
+<li><p>More stable than L1</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Local Regularization</strong></p>
+<div class="math notranslate nohighlight">
+\[L_{new}(X,y) = L_{original}(X,y) + \lambda W(X)R(X)\]</div>
+<p>where:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(R(X)\)</span> is an indicator for weak regions</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda\)</span> balances overall performance vs local improvement by applying stronger regularization or adversarial (perturbed) training samples</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<aside class="topic">
+<p class="topic-title">Example 1: Bike Sharing</p>
+<blockquote>
+<div><p>The example below demonstrates how to use MoDeVa with its high-code APis for the Bike Sharing dataset from the UCI repository, which consists of 20,640 samples and 9 features, fetched by sklearn.datasets. The response variable MedHouseVal (Median Home Value) is continuous and is a regression problem.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../auto_galleries/val/5_robustness/plot_1_robustness_reg.html#sphx-glr-source-auto-galleries-val-5-robustness-plot-1-robustness-reg-py"><span class="std std-ref">Robustness Analysis (Regression)</span></a></p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">Examples 2: Taiwan Credit</p>
+<blockquote>
+<div><p>The second example below demonstrates how to use MoDeVa’s high-code APIs for the TaiwanCredit dataset from the UCI repository. This dataset comprises the credit card details of 30,000 clients in Taiwan from April 2005 to September 2005, and more information can be found on the TaiwanCreditData website. The <cite>FlagDefault</cite> variable serves as the response for this classification problem.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../auto_galleries/val/5_robustness/plot_0_robustness_cls.html#sphx-glr-source-auto-galleries-val-5-robustness-plot-0-robustness-cls-py"><span class="std std-ref">Robustness Analysis (Classification)</span></a></p></li>
+</ul>
+</aside>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="reliability.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Reliability</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="resilience.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Resilience</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-perturbation-for-robustness-test">Input Perturbation for Robustness Test</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-perturbation-with-normally-distributed-random-noise">Simple Perturbation with Normally Distributed Random Noise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quantile-perturbation-with-uniform-noise">Quantile Perturbation with Uniform Noise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perturbation-for-categorical-variable">Perturbation for Categorical Variable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-considerations">Practical Considerations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#robustness-analysis-in-modeva">Robustness Analysis in MoDeVa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identification-of-robustness-issue-and-impactful-variables">Identification of Robustness Issue and Impactful Variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#robustness-comparison">Robustness Comparison</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strategies-for-addressing-model-weaknesses">Strategies for Addressing Model Weaknesses</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-centric-approaches">Data-Centric Approaches</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-centric-approaches">Model-Centric Approaches</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2025, Modeva Team.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

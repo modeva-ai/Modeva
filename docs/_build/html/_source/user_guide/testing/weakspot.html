@@ -1,0 +1,883 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Weakness Detection &#8212; Modeva  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=578d8e15" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/hide_links.css?v=60d22a59" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=23db8a6b" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_source/user_guide/testing/weakspot';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Underfitting and Overfitting" href="overfit.html" />
+    <link rel="prev" title="Performance and Residual Analysis" href="performance.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.5" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.jpg" class="logo__image only-light" alt=""/>
+    <img src="../../../_static/logo.jpg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Modeva-AI</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data.html">Data Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modelwrapping.html">Model Wrapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explain.html">Model Explainability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models.html">Interpretable Models</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../testing.html">Diagnostic Suite</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="performance.html">Performance and Residual Analysis</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Weakness Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overfit.html">Underfitting and Overfitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reliability.html">Reliability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="robustness.html">Robustness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resilience.html">Resilience</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fairness.html">Fairness</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../usage.html" class="nav-link">Using Modeva</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../testing.html" class="nav-link">Diagnostic Suite</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Weakness Detection</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="weakness-detection">
+<h1>Weakness Detection<a class="headerlink" href="#weakness-detection" title="Link to this heading">#</a></h1>
+<p>Weakness detection in predictive machine learning models is the process of identifying areas in the input space where the model underperforms or makes incorrect predictions. These regions are often characterized by high residual errors, poor predictions, or patterns of bias. Effective weakness detection improves model reliability, robustness, and fairness, ensuring it performs well across all data segments.</p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<section id="why-weakness-detection-is-important">
+<h3>Why Weakness Detection is Important<a class="headerlink" href="#why-weakness-detection-is-important" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Improve Model Performance:</strong>
+- Identify areas where the model struggles and refine it through targeted improvements.</p></li>
+<li><p><strong>Enhance Trustworthiness:</strong>
+- Address systematic biases or recurring errors to build confidence in the model.</p></li>
+<li><p><strong>Guide Data Collection:</strong>
+- Pinpoint areas where additional data can enhance model performance.</p></li>
+<li><p><strong>Mitigate Risks:</strong>
+- Detect and address weaknesses before deploying the model in production.</p></li>
+</ol>
+</section>
+<section id="key-approaches-to-weakness-detection">
+<h3>Key Approaches to Weakness Detection<a class="headerlink" href="#key-approaches-to-weakness-detection" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Residual Analysis:</strong>
+- Examine prediction errors to uncover regions with systematic weaknesses.</p></li>
+<li><p><strong>Data Slicing:</strong>
+- Divide the dataset into smaller subsets to evaluate localized performance.</p></li>
+<li><p><strong>Feature Sensitivity:</strong>
+- Identify features or feature interactions linked to poor predictions.</p></li>
+<li><p><strong>Visualization:</strong>
+- Use plots and metrics to locate weak regions in the feature space.</p></li>
+</ol>
+</section>
+</section>
+<section id="weakness-detection-in-modeva">
+<h2>Weakness Detection in MoDeVa<a class="headerlink" href="#weakness-detection-in-modeva" title="Link to this heading">#</a></h2>
+<p><strong>Data Setup</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">DataSet</span>
+<span class="c1"># Create dataset object holder</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">()</span>
+<span class="c1"># Loading MoDeVa pre-loaded dataset &quot;TaiwanCredit&quot;</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;TaiwanCredit&quot;</span><span class="p">)</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;TaiwanCredit&quot;</span><span class="p">)</span>
+<span class="c1"># Encode categorical data into ordinal</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">encode_categorical</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;ordinal&quot;</span><span class="p">)</span>
+<span class="c1"># Execute data pre-processing</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">preprocess</span><span class="p">()</span>
+<span class="c1"># Set target variable</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_target</span><span class="p">(</span><span class="s2">&quot;FlagDefault&quot;</span><span class="p">)</span>
+<span class="c1"># Set the following variables as inactive (not used for modeling)</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_inactive_features</span><span class="p">([</span><span class="s2">&quot;SEX&quot;</span><span class="p">,</span> <span class="s2">&quot;MARRIAGE&quot;</span><span class="p">,</span> <span class="s2">&quot;AGE&quot;</span><span class="p">])</span>
+<span class="c1"># Randomly split training and testing set</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_random_split</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Model Setup</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Classification tasks using lightGBM and xgboost</span>
+<span class="kn">from</span> <span class="nn">modeva.models</span> <span class="kn">import</span> <span class="n">MoLGBMClassifier</span><span class="p">,</span> <span class="n">MoXGBClassifier</span>
+
+<span class="c1"># for lightGBM</span>
+<span class="n">model_lgbm</span> <span class="o">=</span> <span class="n">MoLGBMClassifier</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;LGBM_model&quot;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="c1"># for xgboost</span>
+<span class="n">model_xgb</span> <span class="o">=</span> <span class="n">MoXGBClassifier</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;XGB_model&quot;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Model Training</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># train model with input: ds.train_x and target: ds.train_y</span>
+<span class="n">model_lgbm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">train_x</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">train_y</span><span class="p">)</span>
+<span class="n">model_xgb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">train_x</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">train_y</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Reporting and Diagnostic Setup</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a testsuite that bundles dataset and model</span>
+<span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">TestSuite</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">TestSuite</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">model_lgbm</span><span class="p">)</span> <span class="c1"># store bundle of dataset and model in fs</span>
+<span class="c1"># Evaluate performance and summarize into table</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_accuracy_table</span><span class="p">(</span><span class="n">train_dataset</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="n">test_dataset</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">table</span>
+<span class="c1"># Slicing categorical feature</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_accuracy</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="s2">&quot;EDUCATION&quot;</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;AUC&quot;</span><span class="p">,</span>
+                                   <span class="n">threshold</span><span class="o">=</span><span class="mf">0.65</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">table</span>
+</pre></div>
+</div>
+<p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_accuracy_table.html">TestSuite.diagnose_accuracy_table</a> and <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_slicing_accuracy.html">TestSuite.diagnose_slicing_accuracy</a>.</p>
+</section>
+<section id="error-slicing-for-weakness-detection">
+<h2>Error Slicing for Weakness Detection<a class="headerlink" href="#error-slicing-for-weakness-detection" title="Link to this heading">#</a></h2>
+<p>Slicing data into bins is a common technique for identifying model weaknesses. Binning divides a feature into segments to assess model performance in specific regions. Below are three popular binning methods: <strong>uniform binning</strong>, <strong>quantile binning</strong>, and <strong>automatic binning using a depth-1 XGBoost tree</strong>.</p>
+<section id="uniform-binning">
+<h3>1. Uniform Binning<a class="headerlink" href="#uniform-binning" title="Link to this heading">#</a></h3>
+<p>Uniform binning divides a feature’s range into equal-sized intervals, regardless of the data distribution.</p>
+<p><strong>How It Works:</strong></p>
+<ol class="arabic simple">
+<li><p>Identify the minimum and maximum values of the feature.</p></li>
+<li><p>Divide the range into equally spaced bins.</p></li>
+<li><p>Assign each data point to its corresponding bin.</p></li>
+</ol>
+<p><strong>Advantages:</strong></p>
+<ul class="simple">
+<li><p>Simple and easy to interpret.</p></li>
+<li><p>Works well with uniformly distributed features.</p></li>
+</ul>
+<p><strong>Disadvantages:</strong></p>
+<ul class="simple">
+<li><p>Can result in empty or sparse bins for skewed distributions.</p></li>
+</ul>
+<p><strong>Example in MoDeVa:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Analyze residual feature importance</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_residual_fi</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;uniform&quot;</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>For the full list of arguments of the API see <a href="#id1"><span class="problematic" id="id2">`TestSuite.diagnose_accuracy_residual_fi`_</span></a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uniform binning numerical feature</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_accuracy</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">((</span><span class="s2">&quot;LIMIT_BAL&quot;</span><span class="p">,</span> <span class="p">),</span> <span class="p">(</span><span class="s2">&quot;PAY_1&quot;</span><span class="p">,</span> <span class="p">)),</span>
+                                   <span class="n">method</span><span class="o">=</span><span class="s2">&quot;uniform&quot;</span><span class="p">,</span>
+                                   <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;AUC&quot;</span><span class="p">,</span>
+                                   <span class="n">threshold</span><span class="o">=</span><span class="mf">0.65</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_slicing_accuracy.html">TestSuite.diagnose_slicing_accuracy</a>.</p>
+</section>
+<section id="quantile-binning">
+<h3>2. Quantile Binning<a class="headerlink" href="#quantile-binning" title="Link to this heading">#</a></h3>
+<p>Quantile binning divides the feature range such that each bin contains approximately the same number of samples.</p>
+<p><strong>How It Works:</strong></p>
+<ol class="arabic simple">
+<li><p>Compute quantiles based on the desired number of bins.</p></li>
+<li><p>Assign each data point to a bin based on its quantile.</p></li>
+</ol>
+<p><strong>Advantages:</strong></p>
+<ul class="simple">
+<li><p>Handles skewed distributions effectively.</p></li>
+<li><p>Ensures equal representation in bins.</p></li>
+</ul>
+<p><strong>Disadvantages:</strong></p>
+<ul class="simple">
+<li><p>Bin widths may vary, complicating interpretation.</p></li>
+<li><p>Sensitive to outliers.</p></li>
+</ul>
+<p><strong>Example in MoDeVa:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Quantile binning</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_accuracy</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="s2">&quot;LIMIT_BAL&quot;</span><span class="p">,</span>
+                                   <span class="n">method</span><span class="o">=</span><span class="s2">&quot;quantile&quot;</span><span class="p">,</span>
+                                   <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;AUC&quot;</span><span class="p">,</span>
+                                   <span class="n">threshold</span><span class="o">=</span><span class="mf">0.65</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="automatic-binning-using-a-depth-1-or-2-xgboost-tree">
+<h3>3. Automatic Binning Using a Depth-1 or 2 XGBoost Tree<a class="headerlink" href="#automatic-binning-using-a-depth-1-or-2-xgboost-tree" title="Link to this heading">#</a></h3>
+<p>This method uses a depth-1 or 2 XGBoost tree to automatically determine the optimal split point for a feature based on its relationship with the target. Use variable importance statistics and visualization to understand variables driving errors.</p>
+<p><strong>How It Works:</strong></p>
+<ol class="arabic simple">
+<li><p>Train a depth-1 or 2 XGBoost tree using the feature and target variable.</p></li>
+<li><p>Extract the tree’s split point.</p></li>
+<li><p>Divide the feature values into bins based on the split.</p></li>
+</ol>
+<p><strong>Advantages:</strong></p>
+<ul class="simple">
+<li><p>Automatically identifies bins optimized for target performance.</p></li>
+<li><p>Captures meaningful splits based on the feature-target relationship.</p></li>
+</ul>
+<p><strong>Disadvantages:</strong></p>
+<ul class="simple">
+<li><p>May result in uneven bin distribution.</p></li>
+<li><p>Relies on the model’s ability to identify meaningful splits.</p></li>
+</ul>
+<p><strong>Example in MoDeVa:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Automatic binning</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_accuracy</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="s2">&quot;LIMIT_BAL&quot;</span><span class="p">,</span>
+                                   <span class="n">method</span><span class="o">=</span><span class="s2">&quot;auto-xgb1&quot;</span><span class="p">,</span>
+                                   <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                                   <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;AUC&quot;</span><span class="p">,</span>
+                                   <span class="n">threshold</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>  <span class="c1"># Display results in plot</span>
+<span class="n">results</span><span class="o">.</span><span class="n">table</span>   <span class="c1"># Display results in table</span>
+</pre></div>
+</div>
+<p><strong>User-defined Binning</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Customm binning</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_accuracy</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="s2">&quot;LIMIT_BAL&quot;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;precompute&quot;</span><span class="p">,</span>
+                                   <span class="n">bins</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;LIMIT_BAL&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mi">50000</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">)},</span>
+                                   <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;AUC&quot;</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">table</span>   <span class="c1"># Display results in table</span>
+</pre></div>
+</div>
+<p><strong>Slicing for a Set of Features</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_accuracy</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">((</span><span class="s2">&quot;PAY_1&quot;</span><span class="p">,</span> <span class="p">),</span> <span class="p">(</span><span class="s2">&quot;BILL_AMT1&quot;</span><span class="p">,),</span> <span class="p">(</span><span class="s2">&quot;PAY_AMT1&quot;</span><span class="p">,</span> <span class="p">)),</span>
+                                   <span class="n">method</span><span class="o">=</span><span class="s2">&quot;quantile&quot;</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;AUC&quot;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">table</span>
+</pre></div>
+</div>
+<p><strong>2-Feature Interaction Slicing</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_accuracy</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;PAY_1&quot;</span><span class="p">,</span> <span class="s2">&quot;PAY_AMT1&quot;</span><span class="p">),</span>
+                                   <span class="n">method</span><span class="o">=</span><span class="s2">&quot;uniform&quot;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                                   <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;AUC&quot;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">table</span>
+</pre></div>
+</div>
+<p>Slicing data through binning allows for detailed weakness detection by isolating feature ranges or regions where the model performs poorly. Uniform and quantile binning are simple yet effective for exploratory analysis, while automatic binning using a depth-1 XGBoost tree provides optimized, target-driven insights. These methods, when combined, offer a robust framework for identifying and addressing model weaknesses.</p>
+</section>
+<section id="additional-utilities-for-slicing">
+<h3>Additional Utilities for Slicing<a class="headerlink" href="#additional-utilities-for-slicing" title="Link to this heading">#</a></h3>
+<p><strong>Retrieving samples below threshold value</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">modeva.testsuite.utils.slicing_utils</span> <span class="kn">import</span> <span class="n">get_data_info</span>
+<span class="n">data_info</span> <span class="o">=</span> <span class="n">get_data_info</span><span class="p">(</span><span class="n">res_value</span><span class="o">=</span><span class="n">results</span><span class="o">.</span><span class="n">value</span><span class="p">)[(</span><span class="s2">&quot;PAY_1&quot;</span><span class="p">,</span> <span class="s2">&quot;PAY_AMT1&quot;</span><span class="p">)]</span>
+<span class="n">data_info</span>
+</pre></div>
+</div>
+<p><strong>Testing distribution difference between weak samples and the rest</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data_results</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">data_drift_test</span><span class="p">(</span><span class="o">**</span><span class="n">data_info</span><span class="p">,</span> <span class="n">distance_metric</span><span class="o">=</span><span class="s2">&quot;PSI&quot;</span><span class="p">,</span>
+                              <span class="n">psi_method</span><span class="o">=</span><span class="s2">&quot;uniform&quot;</span><span class="p">,</span> <span class="n">psi_bins</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">data_results</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;summary&quot;</span><span class="p">)</span>
+
+<span class="c1"># To get the list of figure names in the &quot;data_results&quot; object for further plotting</span>
+<span class="n">data_results</span><span class="o">.</span><span class="n">get_figure_names</span><span class="p">()</span>
+
+<span class="c1"># Example of plotting from the list of figures</span>
+<span class="n">data_results</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="s1">&#39;density&#39;</span><span class="p">,</span> <span class="s1">&#39;PAY_1&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="weakness-comparison">
+<h2>Weakness Comparison<a class="headerlink" href="#weakness-comparison" title="Link to this heading">#</a></h2>
+<p>Slices of several models can be compared as follows:</p>
+<p><strong>1. Numerical Features</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tsc</span> <span class="o">=</span> <span class="n">TestSuite</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">models</span><span class="o">=</span><span class="p">[</span><span class="n">model_lgbm</span><span class="p">,</span> <span class="n">model_xgb</span><span class="p">])</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">tsc</span><span class="o">.</span><span class="n">compare_slicing_accuracy</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="s2">&quot;PAY_AMT1&quot;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;quantile&quot;</span><span class="p">,</span>
+                                   <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;AUC&quot;</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Check the API reference for detail arguments of <a class="reference external" href="../../modules/generated/modeva.TestSuite.compare_slicing_accuracy.html">TestSuite.compare_slicing_accuracy</a>.</p>
+<p><strong>2. Categorical Features</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tsc</span> <span class="o">=</span> <span class="n">TestSuite</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">models</span><span class="o">=</span><span class="p">[</span><span class="n">model1</span><span class="p">,</span> <span class="n">model2</span><span class="p">])</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">tsc</span><span class="o">.</span><span class="n">compare_slicing_accuracy</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="s2">&quot;EDUCATION&quot;</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;AUC&quot;</span><span class="p">,</span>
+                                   <span class="n">threshold</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="advanced-slicing">
+<h2>Advanced Slicing<a class="headerlink" href="#advanced-slicing" title="Link to this heading">#</a></h2>
+<p>Advanced slicing techniques can be used to detect and analyze model weaknesses in terms of <strong>robustness</strong>, <strong>reliability</strong>, and <strong>resilience</strong>. By dividing the data into meaningful subsets, practitioners can systematically evaluate the model’s behavior under varying conditions and identify specific areas where performance degrades.</p>
+<p><strong>1. Robustness: Sensitivity to Noisy Inputs</strong></p>
+<p>Robustness measures a model’s ability to maintain performance when subjected to input perturbations or noise. Advanced slicing can help detect regions where the model is overly sensitive.
+The detail description of the robustness test can be found in the <a class="reference external" href="../testing/robustness.html">robustness</a> testing section.</p>
+<p><strong>2. Reliability: Uncertainty of Predictions</strong></p>
+<p>Reliability focuses on understanding where the model’s predictions are uncertain. Slicing can highlight regions with high uncertainty, revealing where predictions lack confidence.
+The detail description of the reliability test can be found in the <a class="reference external" href="../testing/reliability.html">reliability</a> testing section.</p>
+<p><strong>3. Resilience: Performance Heterogeneity and Distribution Drift</strong></p>
+<p>Resilience measures how well a model performs under distribution shifts and across heterogeneous data subsets. Slicing helps detect regions of poor performance or changes in data distribution.
+The detail description of the resilience test can be found in the <a class="reference external" href="../testing/resilience.html">resilience</a> testing section.</p>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<aside class="topic">
+<p class="topic-title">Example 1: Bike Sharing</p>
+<blockquote>
+<div><p>The example below demonstrates how to use MoDeVa with its high-code APis for the Bike Sharing dataset from the UCI repository, which consists of 20,640 samples and 9 features, fetched by sklearn.datasets. The response variable MedHouseVal (Median Home Value) is continuous and is a regression problem.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../auto_galleries/val/1_performance/plot_2_slice_accuracy_reg.html#sphx-glr-source-auto-galleries-val-1-performance-plot-2-slice-accuracy-reg-py"><span class="std std-ref">Sliced Performance (Regression)</span></a></p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">Examples 2: Taiwan Credit</p>
+<blockquote>
+<div><p>The second example below demonstrates how to use MoDeVa’s high-code APIs for the TaiwanCredit dataset from the UCI repository. This dataset comprises the credit card details of 30,000 clients in Taiwan from April 2005 to September 2005, and more information can be found on the TaiwanCreditData website. The <cite>FlagDefault</cite> variable serves as the response for this classification problem.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../auto_galleries/val/1_performance/plot_2_slice_accuracy_cls.html#sphx-glr-source-auto-galleries-val-1-performance-plot-2-slice-accuracy-cls-py"><span class="std std-ref">Sliced Performance (Classification)</span></a></p></li>
+</ul>
+</aside>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="performance.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Performance and Residual Analysis</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="overfit.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Underfitting and Overfitting</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-weakness-detection-is-important">Why Weakness Detection is Important</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-approaches-to-weakness-detection">Key Approaches to Weakness Detection</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakness-detection-in-modeva">Weakness Detection in MoDeVa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-slicing-for-weakness-detection">Error Slicing for Weakness Detection</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uniform-binning">1. Uniform Binning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quantile-binning">2. Quantile Binning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#automatic-binning-using-a-depth-1-or-2-xgboost-tree">3. Automatic Binning Using a Depth-1 or 2 XGBoost Tree</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-utilities-for-slicing">Additional Utilities for Slicing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakness-comparison">Weakness Comparison</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-slicing">Advanced Slicing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2025, Modeva Team.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

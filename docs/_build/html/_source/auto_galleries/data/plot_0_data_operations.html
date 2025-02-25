@@ -1,0 +1,1493 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Basic Dataset Operations &#8212; Modeva  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=578d8e15" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/hide_links.css?v=60d22a59" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=23db8a6b" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_source/auto_galleries/data/plot_0_data_operations';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Exploratory Data Analysis" href="plot_1_eda.html" />
+    <link rel="prev" title="Dataset" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.5" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.jpg" class="logo__image only-light" alt=""/>
+    <img src="../../../_static/logo.jpg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Modeva-AI</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Dataset</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Basic Dataset Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_1_eda.html">Exploratory Data Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_2_feature_selection.html">Feature Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_3_feature_engineering.html">Data Processing and Feature Engineering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_3_outlier_detection.html">Outlier Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_4_subsampling.html">Subsampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_5_drift_test.html">Data Drift Test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_5_outlier_detection.html">Outlier Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_6_advanced_extra_data.html">Dealing with Extra Data Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_6_advanced_prediction.html">Data with Model Predictions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_6_drift_test.html">Data Drift Test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_7_extra_data.html">Dealing with Extra Data Sets</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Model Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../val/index.html">Model Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util/index.html">Utilities</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../galleries.html" class="nav-link">Example Galleries</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Dataset</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Basic Dataset Operations</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-source-auto-galleries-data-plot-0-data-operations-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="basic-dataset-operations">
+<span id="sphx-glr-source-auto-galleries-data-plot-0-data-operations-py"></span><h1>Basic Dataset Operations<a class="headerlink" href="#basic-dataset-operations" title="Link to this heading">#</a></h1>
+<div style="margin: 0 0;">
+    <a href="https://colab.research.google.com/github/modeva-ai/Modeva/blob/docs/galleries/data/plot_0_data_operations.ipynb" target="_blank" style="text-decoration: none;">
+        <button style="background-color: white; border: none; color: black; padding: 0px 0px;
+                       text-align: center; text-decoration: none; display: inline-block; font-size: 20px;
+                       margin: 0px 0px 10px 0px; cursor: pointer; border-radius: 0px;">
+            <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Colab Logo" style="height: 30px; vertical-align: middle;">
+        </button>
+    </a>
+</div><p>Installation</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># To install the required package, use the following command:</span>
+<span class="c1"># pip install modeva</span>
+</pre></div>
+</div>
+<p>Authentication</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># To get authentication, use the following command: (To get full access please replace the token to your own token)</span>
+<span class="c1"># from modeva.utils.authenticate import authenticate</span>
+<span class="c1"># authenticate(token=&#39;eaaa4301-b140-484c-8e93-f9f633c8bacb&#39;)</span>
+</pre></div>
+</div>
+<p>Import modeva modules</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">DataSet</span>
+</pre></div>
+</div>
+<section id="load-the-built-in-data">
+<h2>Load the built-in data<a class="headerlink" href="#load-the-built-in-data" title="Link to this heading">#</a></h2>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">()</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;TaiwanCredit&quot;</span><span class="p">)</span>
+<span class="n">ds</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>LIMIT_BAL</th>
+      <th>SEX</th>
+      <th>EDUCATION</th>
+      <th>MARRIAGE</th>
+      <th>AGE</th>
+      <th>PAY_1</th>
+      <th>PAY_2</th>
+      <th>PAY_3</th>
+      <th>PAY_4</th>
+      <th>PAY_5</th>
+      <th>PAY_6</th>
+      <th>BILL_AMT1</th>
+      <th>BILL_AMT2</th>
+      <th>BILL_AMT3</th>
+      <th>BILL_AMT4</th>
+      <th>BILL_AMT5</th>
+      <th>BILL_AMT6</th>
+      <th>PAY_AMT1</th>
+      <th>PAY_AMT2</th>
+      <th>PAY_AMT3</th>
+      <th>PAY_AMT4</th>
+      <th>PAY_AMT5</th>
+      <th>PAY_AMT6</th>
+      <th>FlagDefault</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>20000.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>24.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>-1.0</td>
+      <td>-1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3.592621</td>
+      <td>3.491782</td>
+      <td>2.838849</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>2.838849</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>120000.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>26.0</td>
+      <td>-1.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>3.428621</td>
+      <td>3.237041</td>
+      <td>3.428621</td>
+      <td>3.514946</td>
+      <td>3.538574</td>
+      <td>3.513484</td>
+      <td>0.000000</td>
+      <td>3.000434</td>
+      <td>3.000434</td>
+      <td>3.000434</td>
+      <td>0.000000</td>
+      <td>3.301247</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>90000.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>34.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>4.465977</td>
+      <td>4.146996</td>
+      <td>4.132260</td>
+      <td>4.156307</td>
+      <td>4.174612</td>
+      <td>4.191731</td>
+      <td>3.181558</td>
+      <td>3.176381</td>
+      <td>3.000434</td>
+      <td>3.000434</td>
+      <td>3.000434</td>
+      <td>3.699057</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>50000.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>37.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>4.672015</td>
+      <td>4.683353</td>
+      <td>4.692776</td>
+      <td>4.452016</td>
+      <td>4.461799</td>
+      <td>4.470528</td>
+      <td>3.301247</td>
+      <td>3.305351</td>
+      <td>3.079543</td>
+      <td>3.041787</td>
+      <td>3.029384</td>
+      <td>3.000434</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>50000.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>57.0</td>
+      <td>-1.0</td>
+      <td>0.0</td>
+      <td>-1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3.935406</td>
+      <td>3.753660</td>
+      <td>4.554319</td>
+      <td>4.320997</td>
+      <td>4.282101</td>
+      <td>4.281760</td>
+      <td>3.301247</td>
+      <td>4.564453</td>
+      <td>4.000043</td>
+      <td>3.954291</td>
+      <td>2.838849</td>
+      <td>2.832509</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>29995</th>
+      <td>220000.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>39.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>5.276345</td>
+      <td>5.285143</td>
+      <td>5.318827</td>
+      <td>4.944507</td>
+      <td>4.494683</td>
+      <td>4.203604</td>
+      <td>3.929470</td>
+      <td>4.301052</td>
+      <td>3.699317</td>
+      <td>3.484015</td>
+      <td>3.699057</td>
+      <td>3.000434</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>29996</th>
+      <td>150000.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>43.0</td>
+      <td>-1.0</td>
+      <td>-1.0</td>
+      <td>-1.0</td>
+      <td>-1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3.226342</td>
+      <td>3.262214</td>
+      <td>3.544440</td>
+      <td>3.953276</td>
+      <td>3.715251</td>
+      <td>0.000000</td>
+      <td>3.264345</td>
+      <td>3.547405</td>
+      <td>3.954194</td>
+      <td>2.113943</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>29997</th>
+      <td>30000.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>37.0</td>
+      <td>4.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>-1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3.552181</td>
+      <td>3.525951</td>
+      <td>3.440752</td>
+      <td>4.319710</td>
+      <td>4.313509</td>
+      <td>4.286861</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>4.342442</td>
+      <td>3.623353</td>
+      <td>3.301247</td>
+      <td>3.491502</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>29998</th>
+      <td>80000.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>41.0</td>
+      <td>1.0</td>
+      <td>-1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-1.0</td>
+      <td>-3.216430</td>
+      <td>4.894205</td>
+      <td>4.882553</td>
+      <td>4.722428</td>
+      <td>4.073938</td>
+      <td>4.689708</td>
+      <td>4.933998</td>
+      <td>3.532754</td>
+      <td>3.071514</td>
+      <td>3.284882</td>
+      <td>4.723989</td>
+      <td>3.256477</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>29999</th>
+      <td>50000.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>46.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>4.680607</td>
+      <td>4.689362</td>
+      <td>4.696924</td>
+      <td>4.562721</td>
+      <td>4.510933</td>
+      <td>4.185089</td>
+      <td>3.317854</td>
+      <td>3.255514</td>
+      <td>3.155640</td>
+      <td>3.000434</td>
+      <td>3.000434</td>
+      <td>3.000434</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>30000 rows × 24 columns</p>
+</div>
+</div>
+<br />
+<br /></section>
+<section id="basic-data-operations">
+<h2>Basic data operations<a class="headerlink" href="#basic-data-operations" title="Link to this heading">#</a></h2>
+<p>Split data</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">set_random_split</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Set target</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">set_target</span><span class="p">(</span><span class="s2">&quot;FlagDefault&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Set sample weight</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">set_sample_weight</span><span class="p">(</span><span class="s2">&quot;LIMIT_BAL&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Disable features that will not be used for modeling</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">set_inactive_features</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;SEX_2.0&#39;</span><span class="p">,</span>
+                                   <span class="s1">&#39;MARRIAGE_1.0&#39;</span><span class="p">,</span>
+                                   <span class="s1">&#39;MARRIAGE_2.0&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>View feature names</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">feature_names</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;SEX&#39;, &#39;EDUCATION&#39;, &#39;MARRIAGE&#39;, &#39;AGE&#39;, &#39;PAY_1&#39;, &#39;PAY_2&#39;, &#39;PAY_3&#39;, &#39;PAY_4&#39;, &#39;PAY_5&#39;, &#39;PAY_6&#39;, &#39;BILL_AMT1&#39;, &#39;BILL_AMT2&#39;, &#39;BILL_AMT3&#39;, &#39;BILL_AMT4&#39;, &#39;BILL_AMT5&#39;, &#39;BILL_AMT6&#39;, &#39;PAY_AMT1&#39;, &#39;PAY_AMT2&#39;, &#39;PAY_AMT3&#39;, &#39;PAY_AMT4&#39;, &#39;PAY_AMT5&#39;, &#39;PAY_AMT6&#39;]
+</pre></div>
+</div>
+<p>View feature types</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">feature_types</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;categorical&#39;, &#39;categorical&#39;, &#39;categorical&#39;, &#39;numerical&#39;, &#39;numerical&#39;, &#39;numerical&#39;, &#39;numerical&#39;, &#39;numerical&#39;, &#39;numerical&#39;, &#39;numerical&#39;, &#39;numerical&#39;, &#39;numerical&#39;, &#39;numerical&#39;, &#39;numerical&#39;, &#39;numerical&#39;, &#39;numerical&#39;, &#39;numerical&#39;, &#39;numerical&#39;, &#39;numerical&#39;, &#39;numerical&#39;, &#39;numerical&#39;, &#39;numerical&#39;]
+</pre></div>
+</div>
+<p>View training data</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">train_x</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">train_y</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">train_sample_weight</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>(array([[2.       , 2.       , 1.       , ..., 0.       , 0.       ,
+        0.       ],
+       [2.       , 2.       , 2.       , ..., 3.0004342, 0.       ,
+        3.3012471],
+       [2.       , 2.       , 2.       , ..., 3.0004342, 3.0004342,
+        3.6990569],
+       ...,
+       [1.       , 2.       , 2.       , ..., 3.84516  , 0.       ,
+        3.6021686],
+       [1.       , 3.       , 2.       , ..., 2.1139433, 0.       ,
+        0.       ],
+       [1.       , 3.       , 1.       , ..., 3.2848818, 4.723989 ,
+        3.256477 ]]), array([[1.],
+       [1.],
+       [0.],
+       ...,
+       [1.],
+       [0.],
+       [1.]]), array([ 20000., 120000.,  90000., ...,  80000., 150000.,  80000.]))
+</pre></div>
+</div>
+<p>View testing data</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">test_x</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">test_y</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">test_sample_weight</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>(array([[1.       , 2.       , 1.       , ..., 3.9542909, 2.838849 ,
+        2.8325088],
+       [1.       , 1.       , 2.       , ..., 4.3062105, 4.1383343,
+        4.1389656],
+       [2.       , 2.       , 2.       , ..., 2.764923 , 3.2273724,
+        3.188366 ],
+       ...,
+       [1.       , 3.       , 1.       , ..., 3.484015 , 3.6990569,
+        3.0004342],
+       [1.       , 2.       , 2.       , ..., 3.6233528, 3.3012471,
+        3.4915018],
+       [1.       , 2.       , 1.       , ..., 3.0004342, 3.0004342,
+        3.0004342]]), array([[0.],
+       [0.],
+       [0.],
+       ...,
+       [0.],
+       [1.],
+       [1.]]), array([ 50000., 500000., 100000., ..., 220000.,  30000.,  50000.]))
+</pre></div>
+</div>
+</section>
+<section id="register-data-into-mlflow">
+<h2>Register data into MLFlow<a class="headerlink" href="#register-data-into-mlflow" title="Link to this heading">#</a></h2>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">override</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">list_registered_data</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Latest Version</th>
+      <th>Updated Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>TaiwanCredit</td>
+      <td>19</td>
+      <td>2025-02-25 15:17:18</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>pipeline1</td>
+      <td>16</td>
+      <td>2025-02-25 14:31:31</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>scored-test-demo</td>
+      <td>21</td>
+      <td>2025-02-25 14:26:47</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /></section>
+<section id="load-data-from-mlflow">
+<h2>Load data from MLFlow<a class="headerlink" href="#load-data-from-mlflow" title="Link to this heading">#</a></h2>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">dsload</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">()</span>
+<span class="n">dsload</span><span class="o">.</span><span class="n">load_registered_data</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;TaiwanCredit&quot;</span><span class="p">)</span>
+<span class="n">dsload</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>LIMIT_BAL</th>
+      <th>SEX</th>
+      <th>EDUCATION</th>
+      <th>MARRIAGE</th>
+      <th>AGE</th>
+      <th>PAY_1</th>
+      <th>PAY_2</th>
+      <th>PAY_3</th>
+      <th>PAY_4</th>
+      <th>PAY_5</th>
+      <th>PAY_6</th>
+      <th>BILL_AMT1</th>
+      <th>BILL_AMT2</th>
+      <th>BILL_AMT3</th>
+      <th>BILL_AMT4</th>
+      <th>BILL_AMT5</th>
+      <th>BILL_AMT6</th>
+      <th>PAY_AMT1</th>
+      <th>PAY_AMT2</th>
+      <th>PAY_AMT3</th>
+      <th>PAY_AMT4</th>
+      <th>PAY_AMT5</th>
+      <th>PAY_AMT6</th>
+      <th>FlagDefault</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>20000.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>24.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>-1.0</td>
+      <td>-1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3.592621</td>
+      <td>3.491782</td>
+      <td>2.838849</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>2.838849</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>120000.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>26.0</td>
+      <td>-1.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>3.428621</td>
+      <td>3.237041</td>
+      <td>3.428621</td>
+      <td>3.514946</td>
+      <td>3.538574</td>
+      <td>3.513484</td>
+      <td>0.000000</td>
+      <td>3.000434</td>
+      <td>3.000434</td>
+      <td>3.000434</td>
+      <td>0.000000</td>
+      <td>3.301247</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>90000.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>34.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>4.465977</td>
+      <td>4.146996</td>
+      <td>4.132260</td>
+      <td>4.156307</td>
+      <td>4.174612</td>
+      <td>4.191731</td>
+      <td>3.181558</td>
+      <td>3.176381</td>
+      <td>3.000434</td>
+      <td>3.000434</td>
+      <td>3.000434</td>
+      <td>3.699057</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>50000.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>37.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>4.672015</td>
+      <td>4.683353</td>
+      <td>4.692776</td>
+      <td>4.452016</td>
+      <td>4.461799</td>
+      <td>4.470528</td>
+      <td>3.301247</td>
+      <td>3.305351</td>
+      <td>3.079543</td>
+      <td>3.041787</td>
+      <td>3.029384</td>
+      <td>3.000434</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>50000.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>57.0</td>
+      <td>-1.0</td>
+      <td>0.0</td>
+      <td>-1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3.935406</td>
+      <td>3.753660</td>
+      <td>4.554319</td>
+      <td>4.320997</td>
+      <td>4.282101</td>
+      <td>4.281760</td>
+      <td>3.301247</td>
+      <td>4.564453</td>
+      <td>4.000043</td>
+      <td>3.954291</td>
+      <td>2.838849</td>
+      <td>2.832509</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>29995</th>
+      <td>220000.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>39.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>5.276345</td>
+      <td>5.285143</td>
+      <td>5.318827</td>
+      <td>4.944507</td>
+      <td>4.494683</td>
+      <td>4.203604</td>
+      <td>3.929470</td>
+      <td>4.301052</td>
+      <td>3.699317</td>
+      <td>3.484015</td>
+      <td>3.699057</td>
+      <td>3.000434</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>29996</th>
+      <td>150000.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>43.0</td>
+      <td>-1.0</td>
+      <td>-1.0</td>
+      <td>-1.0</td>
+      <td>-1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3.226342</td>
+      <td>3.262214</td>
+      <td>3.544440</td>
+      <td>3.953276</td>
+      <td>3.715251</td>
+      <td>0.000000</td>
+      <td>3.264345</td>
+      <td>3.547405</td>
+      <td>3.954194</td>
+      <td>2.113943</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>29997</th>
+      <td>30000.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>37.0</td>
+      <td>4.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>-1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3.552181</td>
+      <td>3.525951</td>
+      <td>3.440752</td>
+      <td>4.319710</td>
+      <td>4.313509</td>
+      <td>4.286861</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>4.342442</td>
+      <td>3.623353</td>
+      <td>3.301247</td>
+      <td>3.491502</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>29998</th>
+      <td>80000.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>41.0</td>
+      <td>1.0</td>
+      <td>-1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-1.0</td>
+      <td>-3.216430</td>
+      <td>4.894205</td>
+      <td>4.882553</td>
+      <td>4.722428</td>
+      <td>4.073938</td>
+      <td>4.689708</td>
+      <td>4.933998</td>
+      <td>3.532754</td>
+      <td>3.071514</td>
+      <td>3.284882</td>
+      <td>4.723989</td>
+      <td>3.256477</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>29999</th>
+      <td>50000.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>46.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>4.680607</td>
+      <td>4.689362</td>
+      <td>4.696924</td>
+      <td>4.562721</td>
+      <td>4.510933</td>
+      <td>4.185089</td>
+      <td>3.317854</td>
+      <td>3.255514</td>
+      <td>3.155640</td>
+      <td>3.000434</td>
+      <td>3.000434</td>
+      <td>3.000434</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>30000 rows × 24 columns</p>
+</div>
+</div>
+<br />
+<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 4.057 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-source-auto-galleries-data-plot-0-data-operations-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/e43e611a05b4deab45ed28c6640a10cf/plot_0_data_operations.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_0_data_operations.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/bba1343d3f6b22dec02080cd0130b04d/plot_0_data_operations.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_0_data_operations.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/55e493979240012c6e805753d5d291d9/plot_0_data_operations.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">plot_0_data_operations.zip</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Dataset</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="plot_1_eda.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Exploratory Data Analysis</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-built-in-data">Load the built-in data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-data-operations">Basic data operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#register-data-into-mlflow">Register data into MLFlow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data-from-mlflow">Load data from MLFlow</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2025, Modeva Team.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
