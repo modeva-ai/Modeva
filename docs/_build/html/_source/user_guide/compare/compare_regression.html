@@ -1,0 +1,697 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Comparison for Regression &#8212; Modeva  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=578d8e15" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/hide_links.css?v=60d22a59" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=23db8a6b" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_source/user_guide/compare/compare_regression';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.5" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.jpg" class="logo__image only-light" alt=""/>
+    <img src="../../../_static/logo.jpg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Modeva-AI</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Comparison for Regression</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="comparison-for-regression">
+<h1>Comparison for Regression<a class="headerlink" href="#comparison-for-regression" title="Link to this heading">#</a></h1>
+<p>In this section, we will explore the comparison of various regression models using different metrics. PiML offers a convenient way to perform this comparison through the <cite>model_compare</cite> function. To illustrate this process, we will utilize the results obtained from the BikeSharing dataset.</p>
+<section id="accuracy-comparison">
+<h2>Accuracy Comparison<a class="headerlink" href="#accuracy-comparison" title="Link to this heading">#</a></h2>
+<p>The accuracy comparison can be generated using the keyword “accuracy_plot”. The supported performance metrics include “MSE”, “MAE”, and “R2”.</p>
+<section id="mean-squared-error">
+<h3>Mean Squared Error<a class="headerlink" href="#mean-squared-error" title="Link to this heading">#</a></h3>
+<p>First of all, we need to specify the models to be compared, by the parameter <cite>models</cite>, which is a list of model names. We suggest limiting the number of models to 3 so that the plot is not too crowded. In this example, we compare the performance of GLM, XGB2, and XGB7. The metric for comparison is set to “MSE” by the parameter <cite>metric</cite>. The following code generates the accuracy comparison plot for These three models.</p>
+<figure class="align-left">
+<a class="reference external image-reference" href="../../auto_examples/5_compare/plot_0_compare_regression.html"><img alt="_source/auto_examples/5_compare/images/sphx_glr_plot_0_compare_regression_001.png" src="_source/auto_examples/5_compare/images/sphx_glr_plot_0_compare_regression_001.png" />
+</a>
+</figure>
+<p>The boxplots summarize the squared errors for each model on training and testing data. The mean squared error (MSE) is marked using the circle. The lower the MSE, the better the model. In this example, XGB7 has the lowest MSE on the test set, followed by XGB2 and GLM. The relative performance of the three models is the same in the training set.</p>
+</section>
+<section id="mean-absolute-error">
+<h3>Mean Absolute Error<a class="headerlink" href="#mean-absolute-error" title="Link to this heading">#</a></h3>
+<p>By changing the <cite>metric</cite> parameter to “MAE”, the mean absolute error will be displayed.</p>
+<figure class="align-left">
+<a class="reference external image-reference" href="../../auto_examples/5_compare/plot_0_compare_regression.html"><img alt="_source/auto_examples/5_compare/images/sphx_glr_plot_0_compare_regression_002.png" src="_source/auto_examples/5_compare/images/sphx_glr_plot_0_compare_regression_002.png" />
+</a>
+</figure>
+<p>The MSE metric is more sensitive to outliers compared to MAE. However, in this example, both metrics lead to the same conclusions. The absolute errors are significantly larger than the squared errors, as all absolute errors are less than 1.</p>
+</section>
+<section id="r-squared-score">
+<h3>R-squared Score<a class="headerlink" href="#r-squared-score" title="Link to this heading">#</a></h3>
+<p>Similarly, the R-squared (R2) score can be used by setting <cite>metric</cite> to “R2”. The R2 score is a normalized metric, which is between 0 and 1 for the training set. The higher the R2 score, the better the model.</p>
+<figure class="align-left">
+<a class="reference external image-reference" href="../../auto_examples/5_compare/plot_0_compare_regression.html"><img alt="_source/auto_examples/5_compare/images/sphx_glr_plot_0_compare_regression_003.png" src="_source/auto_examples/5_compare/images/sphx_glr_plot_0_compare_regression_003.png" />
+</a>
+</figure>
+<p>The bar chart presented above illustrates the comparison of models using the R2 metric. It is important to note that since there is only one R2 score for the entire dataset, the box plots are not used. Furthermore, the conclusions derived from R2 are consistent with those obtained from MSE and MAE metrics.</p>
+</section>
+</section>
+<section id="weakspot-comparison">
+<h2>Weakspot Comparison<a class="headerlink" href="#weakspot-comparison" title="Link to this heading">#</a></h2>
+<p>The weakspot comparison presents the weak regions of various models in relation to a specific feature of interest. The algorithm for detecting weak regions can be found in the “<a class="reference external" href="../testing/weakspot.html">weakspot</a>” section. The argument used for selecting slicing features is <cite>slice_features</cite>, which is a list of strings representing the names of the features. Here is an example that demonstrates how to compare the weak regions of different models using the keyword “weakspot”.</p>
+<figure class="align-left">
+<a class="reference external image-reference" href="../../auto_examples/5_compare/plot_0_compare_regression.html"><img alt="_source/auto_examples/5_compare/images/sphx_glr_plot_0_compare_regression_004.png" src="_source/auto_examples/5_compare/images/sphx_glr_plot_0_compare_regression_004.png" />
+</a>
+</figure>
+</section>
+<section id="overfit-comparison">
+<h2>Overfit Comparison<a class="headerlink" href="#overfit-comparison" title="Link to this heading">#</a></h2>
+<p>The overfit comparison presents the overfit regions of various models in relation to a specific feature of interest. The algorithm for detecting overfit regions can be found in the “<a class="reference external" href="../testing/overfit.html">overfit</a>” section. It is important to note that unlike the overfit for a single model, the argument used for selecting slicing features is <cite>slice_feature</cite> (instead of <cite>slice_features</cite>). This argument is a string that represents the name of the feature. Here is an example that demonstrates how to compare the overfit regions of different models using the keyword “overfit”.</p>
+<figure class="align-left">
+<a class="reference external image-reference" href="../../auto_examples/5_compare/plot_0_compare_regression.html"><img alt="_source/auto_examples/5_compare/images/sphx_glr_plot_0_compare_regression_005.png" src="_source/auto_examples/5_compare/images/sphx_glr_plot_0_compare_regression_005.png" />
+</a>
+</figure>
+<p>This test uses the “uniform” slicing method and the slicing feature is <cite>hr</cite>. The results reveal that the XGB7 model suffers more from the overfitting issue (Test - Train MSE Gap &gt; 0) compared to GLM and XGB2, especially for <cite>hr</cite> larger than 4.6.</p>
+</section>
+<section id="reliability-comparison">
+<h2>Reliability Comparison<a class="headerlink" href="#reliability-comparison" title="Link to this heading">#</a></h2>
+<p>The reliability comparison aims to assess the uncertainty of model predictions. The algorithmic details can be found in the <a class="reference external" href="../testing/reliability.html">reliability</a> section.</p>
+<section id="coverage-comparison">
+<h3>Coverage Comparison<a class="headerlink" href="#coverage-comparison" title="Link to this heading">#</a></h3>
+<p>The example below illustrates how to check the coverage ratio of the prediction intervals.</p>
+<figure class="align-left">
+<a class="reference external image-reference" href="../../auto_examples/5_compare/plot_0_compare_regression.html"><img alt="_source/auto_examples/5_compare/images/sphx_glr_plot_0_compare_regression_006.png" src="_source/auto_examples/5_compare/images/sphx_glr_plot_0_compare_regression_006.png" />
+</a>
+</figure>
+<p>The argument <cite>alpha</cite> is set to 0.1, which means the expected coverage is 90%, marked by the dotted line. All these three models have a coverage ratio close to 90%, which means that the prediction intervals are reliable.</p>
+</section>
+<section id="bandwidth-comparison">
+<h3>Bandwidth Comparison<a class="headerlink" href="#bandwidth-comparison" title="Link to this heading">#</a></h3>
+<p>By setting the parameter <cite>show</cite> to “reliability_coverage”, we can generate an average coverage comparison plot for the prediction intervals on the randomly selected 40% test set. The argument <cite>alpha</cite> represents the expected proportion of samples that are expected to fall outside the estimated prediction intervals.</p>
+<figure class="align-left">
+<a class="reference external image-reference" href="../../auto_examples/5_compare/plot_0_compare_regression.html"><img alt="_source/auto_examples/5_compare/images/sphx_glr_plot_0_compare_regression_007.png" src="_source/auto_examples/5_compare/images/sphx_glr_plot_0_compare_regression_007.png" />
+</a>
+</figure>
+<p>This plot shows that XGB7 has the smallest bandwidth of prediction intervals, which means that the prediction of XGB7 is more certain than that of XGB2 and GLM.</p>
+</section>
+</section>
+<section id="robustness-comparison">
+<h2>Robustness Comparison<a class="headerlink" href="#robustness-comparison" title="Link to this heading">#</a></h2>
+<p>Robustness comparison is to compare models under input perturbation. This section illustrates how to compare models under input perturbation. The algorithm details of the robustness test can be found in the <a class="reference external" href="../testing/robustness.html">robustness</a> testing section.</p>
+<section id="robustness-performance">
+<h3>Robustness Performance<a class="headerlink" href="#robustness-performance" title="Link to this heading">#</a></h3>
+<p>The example below demonstrates the comparison of models’ robustness performance using the “robustness_perf” keyword. In this scenario, the perturbation method defaults to “raw”, which involves adding normal noise to the numerical features. The perturbation for categorical features can be found in the <a class="reference external" href="../testing/robustness.html">robustness</a> section. By default, all features undergo perturbation unless otherwise specified. The performance metric used for this comparison is “MSE”.</p>
+<figure class="align-left">
+<a class="reference external image-reference" href="../../auto_examples/5_compare/plot_0_compare_regression.html"><img alt="_source/auto_examples/5_compare/images/sphx_glr_plot_0_compare_regression_008.png" src="_source/auto_examples/5_compare/images/sphx_glr_plot_0_compare_regression_008.png" />
+</a>
+</figure>
+<p>In the plot above, the perturbation is applied to all variables. On the x-axis, we have the perturbation size, and on the y-axis, the model performance. Model XGB7 recorded the worst robustness performance, which shows significant performance degradation under perturbation. The GLM model only shows a slight MSE increase from the perturbation.</p>
+</section>
+<section id="robustness-performance-on-worst-samples">
+<h3>Robustness Performance on Worst Samples<a class="headerlink" href="#robustness-performance-on-worst-samples" title="Link to this heading">#</a></h3>
+<p>The keyword “robustness_perf_worst” is employed to assess the worst sample performance of models against perturbation size. In addition to the arguments <cite>metric</cite>, <cite>perturb_method</cite>, <cite>perturb_size</cite>, and <cite>perturb_features</cite>, there is an extra argument called <cite>alpha</cite>, which represents the proportion of worst samples to be taken into consideration. Here is an example that demonstrates how to compare the robustness performance of models on worst samples:</p>
+<figure class="align-left">
+<a class="reference external image-reference" href="../../auto_examples/5_compare/plot_0_compare_regression.html"><img alt="_source/auto_examples/5_compare/images/sphx_glr_plot_0_compare_regression_009.png" src="_source/auto_examples/5_compare/images/sphx_glr_plot_0_compare_regression_009.png" />
+</a>
+</figure>
+<p>The relative performance of the worst sample robustness results is consistent with the previous one, but the MSE scale is much larger.</p>
+</section>
+</section>
+<section id="resilience-comparison">
+<h2>Resilience Comparison<a class="headerlink" href="#resilience-comparison" title="Link to this heading">#</a></h2>
+<p>Resilience comparison is to compare models under distribution shift. The algorithm details of the resilience test can be found in the <a class="reference external" href="../testing/resilience.html">resilience</a> testing section.</p>
+<section id="resilience-performance">
+<h3>Resilience Performance<a class="headerlink" href="#resilience-performance" title="Link to this heading">#</a></h3>
+<p>The example below illustrates how to compare models’ resilience performance using the keyword “resilience_perf”. The perturbation method is set to “worst-sample”. The performance metric is set to “MAE”.</p>
+<figure class="align-left">
+<a class="reference external image-reference" href="../../auto_examples/5_compare/plot_0_compare_regression.html"><img alt="_source/auto_examples/5_compare/images/sphx_glr_plot_0_compare_regression_010.png" src="_source/auto_examples/5_compare/images/sphx_glr_plot_0_compare_regression_010.png" />
+</a>
+</figure>
+</section>
+<section id="resilience-distance">
+<h3>Resilience Distance<a class="headerlink" href="#resilience-distance" title="Link to this heading">#</a></h3>
+<p>By setting <cite>show</cite> to “resilience_distance”, the distributional distance between the worst test sample and the remaining test sample will be calculated for each feature. Then the features will be ranked by distance, and the top 10 features with the largest distances will be displayed.</p>
+<figure class="align-left">
+<a class="reference external image-reference" href="../../auto_examples/5_compare/plot_0_compare_regression.html"><img alt="_source/auto_examples/5_compare/images/sphx_glr_plot_0_compare_regression_011.png" src="_source/auto_examples/5_compare/images/sphx_glr_plot_0_compare_regression_011.png" />
+</a>
+</figure>
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<aside class="topic">
+<p class="topic-title">Example 1: BikeSharing</p>
+<blockquote>
+<div><p>The first example below demonstrates how to use PiML with its high-code APIs for developing machine learning models for the BikeSharing data from the UCI repository, which consists of 17,389 samples of hourly counts of rental bikes in Capital bikeshare system; see details. The response <cite>cnt</cite> (hourly bike rental counts) is continuous and it is a regression problem.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><span class="xref std std-ref">sphx_glr_auto_examples_5_compare_plot_0_compare_regression.py</span></p></li>
+</ul>
+</aside>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-comparison">Accuracy Comparison</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-squared-error">Mean Squared Error</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-absolute-error">Mean Absolute Error</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r-squared-score">R-squared Score</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakspot-comparison">Weakspot Comparison</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overfit-comparison">Overfit Comparison</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reliability-comparison">Reliability Comparison</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coverage-comparison">Coverage Comparison</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bandwidth-comparison">Bandwidth Comparison</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#robustness-comparison">Robustness Comparison</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#robustness-performance">Robustness Performance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#robustness-performance-on-worst-samples">Robustness Performance on Worst Samples</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resilience-comparison">Resilience Comparison</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resilience-performance">Resilience Performance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resilience-distance">Resilience Distance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2025, Modeva Team.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

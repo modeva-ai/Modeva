@@ -1,0 +1,922 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Linear Tree and Gradient Boosted Linear Trees &#8212; Modeva  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=578d8e15" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/hide_links.css?v=60d22a59" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=23db8a6b" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_source/user_guide/models/gblt';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Neural Tree" href="neuraltree.html" />
+    <link rel="prev" title="Gradient Boosted Decision Trees" href="gbdt.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.5" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.jpg" class="logo__image only-light" alt=""/>
+    <img src="../../../_static/logo.jpg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Modeva-AI</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data.html">Data Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modelwrapping.html">Model Wrapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explain.html">Model Explainability</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../models.html">Interpretable Models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="glm.html">Generalized Linear Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tree.html">Decision Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gbdt.html">Gradient Boosted Decision Trees</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Linear Tree and Gradient Boosted Linear Trees</a></li>
+<li class="toctree-l2"><a class="reference internal" href="neuraltree.html">Neural Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gaminet.html">GAMI-Net</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reludnn.html">ReLU Neural Network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="moe.html">Mixture of Experts (MoE)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html">Diagnostic Suite</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../usage.html" class="nav-link">Using Modeva</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../models.html" class="nav-link">Interpretable Models</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Linear Tree and Gradient Boosted Linear Trees</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="linear-tree-and-gradient-boosted-linear-trees">
+<h1>Linear Tree and Gradient Boosted Linear Trees<a class="headerlink" href="#linear-tree-and-gradient-boosted-linear-trees" title="Link to this heading">#</a></h1>
+<section id="linear-tree">
+<h2>Linear Tree<a class="headerlink" href="#linear-tree" title="Link to this heading">#</a></h2>
+<p>Linear Trees aim to combine the strengths of traditional decision trees with the power of linear models.</p>
+<p><strong>Basic Concept</strong></p>
+<blockquote>
+<div><ul>
+<li><p>Traditional Decision Trees: Use constant predictions at their leaves. For example, in regression tasks, each leaf might simply predict the mean value of the target variable for the data points falling into that leaf.</p></li>
+<li><p>Linear Trees:Enhance this by replacing the constant value at the leaves with a linear model. Each leaf contains a small regression model that predicts the target as a linear combination of the features specific to that leaf. This allows the model to:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Handle local linear trends in the data.</p></li>
+<li><p>Introduce flexibility to capture non-linear relationships through tree splits.</p></li>
+<li><p>For certain data type, it can provide better predictive performance than constant-leaf decision trees for problems with local linearity.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<p><strong>Model Structure</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}f(x) = \begin{cases}
+\beta_1^\mathrm{T}x + \alpha_1 &amp; \text{if } x \text{ follows path to leaf 1}\\
+\beta_2^\mathrm{T}x + \alpha_2 &amp; \text{if } x \text{ follows path to leaf 2}\\
+\vdots &amp; \vdots\\
+\beta_L^\mathrm{T}x + \alpha_1_L &amp; \text{if } x \text{ follows path to leaf L}
+\end{cases}\end{split}\]</div>
+</section>
+<section id="linear-tree-in-modeva">
+<h2>Linear Tree in MoDeVa<a class="headerlink" href="#linear-tree-in-modeva" title="Link to this heading">#</a></h2>
+<p><strong>Data Setup</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">DataSet</span>
+<span class="c1">## Create dataset object holder</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">()</span>
+<span class="c1">## Loading MoDeVa pre-loaded dataset &quot;Bikesharing&quot;</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;BikeSharing&quot;</span><span class="p">)</span>
+<span class="c1">## Preprocess the data</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">scale_numerical</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;cnt&quot;</span><span class="p">,),</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;log1p&quot;</span><span class="p">)</span> <span class="c1"># Log transfomed target</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_feature_type</span><span class="p">(</span><span class="n">feature</span><span class="o">=</span><span class="s2">&quot;hr&quot;</span><span class="p">,</span> <span class="n">feature_type</span><span class="o">=</span><span class="s2">&quot;categorical&quot;</span><span class="p">)</span> <span class="c1"># set to categorical feature</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_feature_type</span><span class="p">(</span><span class="n">feature</span><span class="o">=</span><span class="s2">&quot;mnth&quot;</span><span class="p">,</span> <span class="n">feature_type</span><span class="o">=</span><span class="s2">&quot;categorical&quot;</span><span class="p">)</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">scale_numerical</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">feature_names_numerical</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;standardize&quot;</span><span class="p">)</span> <span class="c1"># standardized numerical features</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_inactive_features</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;yr&quot;</span><span class="p">,</span> <span class="s2">&quot;season&quot;</span><span class="p">,</span> <span class="s2">&quot;temp&quot;</span><span class="p">))</span> <span class="c1"># deactivate some features</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">preprocess</span><span class="p">()</span>
+<span class="c1">## Split data into training and testing sets randomly</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_random_split</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Model Setup</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># For regression tasks</span>
+<span class="kn">from</span> <span class="nn">modeva.models</span> <span class="kn">import</span> <span class="n">MoGLMTreeRegressor</span>
+<span class="n">model_glmt</span> <span class="o">=</span> <span class="n">MoGLMTreeRegressor</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;GLMT&quot;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># For classification tasks</span>
+<span class="kn">from</span> <span class="nn">modeva.models</span> <span class="kn">import</span> <span class="n">MoGLMTreeClassifier</span>
+<span class="n">model_glmt</span> <span class="o">=</span> <span class="n">MoGLMTreeBoostClassifier</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;GLMT&quot;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For the full list of hyperparameters, please see the API of <a class="reference external" href="../../modules/generated/modeva.models.MoGLMTreeRegressor.html">MoGLMTreeRegressor</a> and <a class="reference external" href="../../modules/generated/modeva.models.MoGLMTreeClassifier.html">MoGLMTreeClassifier</a>.</p>
+<p><strong>Model Training</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># train model with input: ds.train_x and target: ds.train_y</span>
+<span class="n">model_glmt</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">train_x</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">train_y</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Reporting and Diagnostics</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a testsuite that bundles dataset and model</span>
+<span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">TestSuite</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">TestSuite</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">model_glmt</span><span class="p">)</span> <span class="c1"># store bundle of dataset and model in fs</span>
+</pre></div>
+</div>
+<p><strong>Performance Assessment</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># View model performance metrics</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_accuracy_table</span><span class="p">()</span>
+<span class="c1"># display the output</span>
+<span class="n">result</span><span class="o">.</span><span class="n">table</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/glm_tree_perf.png"><img alt="../../../_images/glm_tree_perf.png" class="align-center" src="../../../_images/glm_tree_perf.png" style="width: 300px;" />
+</a>
+<p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_accuracy_table.html">TestSuite.diagnose_accuracy_table</a>.</p>
+<section id="advantages">
+<h3>Advantages<a class="headerlink" href="#advantages" title="Link to this heading">#</a></h3>
+<p>Local Flexibility:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Captures more nuanced patterns in the data because the linear model in each leaf can adapt to local trends.</p></li>
+<li><p>Improved Predictive Power:</p></li>
+</ul>
+</div></blockquote>
+<dl class="simple">
+<dt>Compared to traditional decision trees, linear trees reduce bias in regions where the target variable has linear relationships with input features.</dt><dd><ul class="simple">
+<li><p>Interpretable:</p></li>
+</ul>
+</dd>
+</dl>
+<p>Each leaf’s linear model can provide insight into the feature contributions for predictions in that region.</p>
+</section>
+</section>
+<section id="gradient-boosted-linear-tree-gblt">
+<h2>Gradient Boosted Linear Tree (GBLT)<a class="headerlink" href="#gradient-boosted-linear-tree-gblt" title="Link to this heading">#</a></h2>
+<p><strong>Algorithm</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Extends gradient boosting framework</p></li>
+<li><p>Uses Linear Trees as base learners</p></li>
+<li><p>Sequential ensemble building</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Training Process</strong></p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Initialize model with a constant value</p></li>
+<li><p>For each iteration:</p>
+<ul class="simple">
+<li><p>Compute residuals/gradients</p></li>
+<li><p>Fit Linear Tree to them</p></li>
+<li><p>Update ensemble</p></li>
+</ul>
+</li>
+</ol>
+</div></blockquote>
+<p><strong>Model Formulation</strong></p>
+<div class="math notranslate nohighlight">
+\[F_m(x) = F_{m-1}(x) + \nu h_m(x)\]</div>
+<p>where:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(F_m\)</span> is the model at iteration <span class="math notranslate nohighlight">\(m\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(h_m\)</span> is a Linear Tree</p></li>
+<li><p><span class="math notranslate nohighlight">\(\nu\)</span> is the learning rate</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="gblt-in-modeva">
+<h2>GBLT in MoDeVa<a class="headerlink" href="#gblt-in-modeva" title="Link to this heading">#</a></h2>
+<p><strong>Model Setup</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="c1"># For regression tasks</span>
+<span class="kn">from</span> <span class="nn">modeva.models</span> <span class="kn">import</span> <span class="n">MoGLMTreeBoostRegressor</span>
+<span class="n">model_gblt</span> <span class="o">=</span> <span class="n">MoGLMTreeBoostRegressor</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;GBLT&quot;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># For classification tasks</span>
+<span class="kn">from</span> <span class="nn">modeva.models</span> <span class="kn">import</span> <span class="n">MoGLMTreeBoostClassifier</span>
+<span class="n">model_gblt</span> <span class="o">=</span> <span class="n">MoGLMTreeBoostClassifier</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;GBLT&quot;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For the full list of hyperparameters, please see the API of <a class="reference external" href="../../modules/generated/modeva.models.MoGLMTreeBoostRegressor.html">MoGLMTreeBoostRegressor</a> and <a class="reference external" href="../../modules/generated/modeva.models.MoGLMTreeBoostClassifier.html">MoGLMTreeBoostClassifier</a>.</p>
+<p><strong>Model Training</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># train model with input: ds.train_x and target: ds.train_y</span>
+<span class="n">model_gblt</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">train_x</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">train_y</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Reporting and Diagnostics Setup</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a testsuite that bundles dataset and model</span>
+<span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">TestSuite</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">TestSuite</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">model_gblt</span><span class="p">)</span> <span class="c1"># store bundle of dataset and model in fs</span>
+</pre></div>
+</div>
+<p><strong>Performance Assessment</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># View model performance metrics</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_accuracy_table</span><span class="p">()</span>
+<span class="c1"># display the output</span>
+<span class="n">result</span><span class="o">.</span><span class="n">table</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_source/images/gblt_perf.png"><img alt="_source/images/gblt_perf.png" class="align-center" src="_source/images/gblt_perf.png" style="width: 300px;" />
+</a>
+<p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_accuracy_table.html">TestSuite.diagnose_accuracy_table</a>.</p>
+<section id="interpretable-gblt-with-depth-1-trees">
+<h3>Interpretable GBLT with Depth-1 Trees<a class="headerlink" href="#interpretable-gblt-with-depth-1-trees" title="Link to this heading">#</a></h3>
+<p><strong>Model Structure</strong></p>
+<p>Depth-1 tree creates single split:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}h_m(x) = \begin{cases}
+\beta_1^\mathrm{T}x + \alpha_1 &amp; \text{if } x_s \leq \text{threshold} \\
+\beta_2^\mathrm{T}x + \alpha_2 &amp; \text{if } x_s \gt \text{threshold}
+\end{cases}\end{split}\]</div>
+<p><strong>Functional ANOVA Representation</strong></p>
+<p>The model can be decomposed as:
+.. math:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> \<span class="n">mu</span> <span class="o">+</span> \<span class="n">sum_j</span> <span class="n">f_j</span><span class="p">(</span><span class="n">x_j</span><span class="p">)</span> <span class="o">+</span> \<span class="n">sum_</span><span class="p">{</span><span class="n">j</span> \<span class="n">lt</span> <span class="n">k</span><span class="p">}</span> <span class="n">f_</span><span class="p">{</span><span class="n">jk</span><span class="p">}(</span><span class="n">x_j</span><span class="p">,</span> <span class="n">x_k</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Components:
+1. Main Effects (<span class="math notranslate nohighlight">\(f_j\)</span>):</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>From linear terms</p></li>
+<li><p>From split discontinuities</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>Two-way Interactions (<span class="math notranslate nohighlight">\(f_{jk}\)</span>):</p>
+<ul class="simple">
+<li><p>Between split feature and others</p></li>
+<li><p>From differing linear coefficients</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="global-interpretation">
+<h2>Global Interpretation<a class="headerlink" href="#global-interpretation" title="Link to this heading">#</a></h2>
+<p>The inherent interpretation of GAMI-Net includes the main effect plot, pairwise interaction plot, effect importance plot, and feature importance plot.</p>
+<p><strong>Feature Importance</strong></p>
+<p>Assess overall feature impact:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Global feature importance</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_fi</span><span class="p">()</span>
+<span class="c1"># Plot the result</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/gblt_fi.png"><img alt="../../../_images/gblt_fi.png" class="align-center" src="../../../_images/gblt_fi.png" style="width: 500px;" />
+</a>
+<p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_fi.html">TestSuite.interpret_fi</a>.</p>
+<p><strong>Importance Metrics:</strong></p>
+<ul class="simple">
+<li><p>Based on variance of marginal effects</p></li>
+<li><p>Normalized to sum to 1</p></li>
+<li><p>Higher values indicate stronger influence</p></li>
+<li><p>Accounts for feature scale differences</p></li>
+</ul>
+<p><strong>Effect Importance</strong></p>
+<p>Assess overall impact according to functional ANOVA components: main and interaction effect</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Global effect importance</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_ei</span><span class="p">()</span>
+<span class="c1"># Plot the result</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/gblt_ei.png"><img alt="../../../_images/gblt_ei.png" class="align-center" src="../../../_images/gblt_ei.png" style="width: 500px;" />
+</a>
+<p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_ei.html">TestSuite.interpret_ei</a>.</p>
+<p><strong>Importance Metrics:</strong></p>
+<ul class="simple">
+<li><p>Based on variance of individual functional ANOVA term effects (main or interaction effect)</p></li>
+<li><p>Higher values indicate stronger influence</p></li>
+</ul>
+<p><strong>Categorical Variables</strong></p>
+<ul class="simple">
+<li><p>One-hot encoded automatically</p></li>
+<li><p>Can view importance per category</p></li>
+<li><p>Interpretable through reference levels</p></li>
+</ul>
+<p><strong>Global Effect Plot</strong></p>
+<p>Plot the main and interaction effect plot of features</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Main effect plot of feature: &quot;hr&quot;</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_effects</span><span class="p">(</span><span class="n">features</span> <span class="o">=</span> <span class="s2">&quot;hr&quot;</span><span class="p">)</span>
+<span class="c1"># Plot the result</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_source/images/xgb_hr_workingday.png"><img alt="_source/images/xgb_hr_workingday.png" class="align-center" src="_source/images/xgb_hr_workingday.png" style="width: 500px;" />
+</a>
+<p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_effects.html">TestSuite.interpret_effects</a>.</p>
+</section>
+<section id="local-interpretation">
+<h2>Local Interpretation<a class="headerlink" href="#local-interpretation" title="Link to this heading">#</a></h2>
+<section id="individual-prediction-analysis">
+<h3>Individual Prediction Analysis<a class="headerlink" href="#individual-prediction-analysis" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Local interpretation for specific sample: sample_index = 10</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_local_fi</span><span class="p">(</span><span class="n">sample_index</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">centered</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>   <span class="c1"># local feature importance</span>
+<span class="c1"># Plot the result</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/gblt_local_ei.png"><img alt="../../../_images/gblt_local_ei.png" class="align-center" src="../../../_images/gblt_local_ei.png" style="width: 500px;" />
+</a>
+<p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_local_fi.html">TestSuite.interpret_local_fi</a> and <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_local_ei.html">TestSuite.interpret_local_ei</a> .</p>
+<p><strong>Components:</strong></p>
+<ul class="simple">
+<li><p>Feature or Effect contributions to prediction</p></li>
+<li><p>Feature or Effect values for the sample</p></li>
+<li><p>Comparison to average behavior</p></li>
+<li><p>Direction and magnitude of effects</p></li>
+</ul>
+<p><strong>Centering Options</strong></p>
+<ol class="arabic simple">
+<li><p>Uncentered Analysis (centered=False):</p>
+<ul class="simple">
+<li><p>Raw feature contributions</p></li>
+<li><p>Direct interpretation</p></li>
+<li><p>May have identifiability issues</p></li>
+</ul>
+</li>
+<li><p>Centered Analysis (centered=True):</p>
+<ul class="simple">
+<li><p>Compares to population mean</p></li>
+<li><p>More stable interpretation</p></li>
+<li><p>Better for relative importance</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<aside class="topic">
+<p class="topic-title">Example 1: Bike Sharing</p>
+<blockquote>
+<div><p>The example below demonstrates how to use MoDeVa with its high-code APis for the Bike Sharing dataset from the UCI repository, which consists of 20,640 samples and 9 features, fetched by sklearn.datasets. The response variable MedHouseVal (Median Home Value) is continuous and is a regression problem.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../auto_galleries/dev/0_models/plot_5_lineartree_reg.html#sphx-glr-source-auto-galleries-dev-0-models-plot-5-lineartree-reg-py"><span class="std std-ref">Linear Tree Regression</span></a></p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">Examples 2: Taiwan Credit</p>
+<blockquote>
+<div><p>The second example below demonstrates how to use MoDeVa’s high-code APIs for the TaiwanCredit dataset from the UCI repository. This dataset comprises the credit card details of 30,000 clients in Taiwan from April 2005 to September 2005, and more information can be found on the TaiwanCreditData website. The <cite>FlagDefault</cite> variable serves as the response for this classification problem.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../auto_galleries/dev/0_models/plot_5_lineartree_cls.html#sphx-glr-source-auto-galleries-dev-0-models-plot-5-lineartree-cls-py"><span class="std std-ref">Linear Tree Classification</span></a></p></li>
+</ul>
+</aside>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="gbdt.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Gradient Boosted Decision Trees</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="neuraltree.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Neural Tree</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-tree">Linear Tree</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-tree-in-modeva">Linear Tree in MoDeVa</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages">Advantages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-boosted-linear-tree-gblt">Gradient Boosted Linear Tree (GBLT)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gblt-in-modeva">GBLT in MoDeVa</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretable-gblt-with-depth-1-trees">Interpretable GBLT with Depth-1 Trees</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-interpretation">Global Interpretation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-interpretation">Local Interpretation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#individual-prediction-analysis">Individual Prediction Analysis</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2025, Modeva Team.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

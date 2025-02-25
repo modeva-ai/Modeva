@@ -1,0 +1,737 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Data Quality (Outlier Detection) &#8212; Modeva  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=578d8e15" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/hide_links.css?v=60d22a59" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=23db8a6b" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_source/user_guide/data/data_quality_outlier';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.5" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.jpg" class="logo__image only-light" alt=""/>
+    <img src="../../../_static/logo.jpg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Modeva-AI</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Data Quality (Outlier Detection)</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="data-quality-outlier-detection">
+<h1>Data Quality (Outlier Detection)<a class="headerlink" href="#data-quality-outlier-detection" title="Link to this heading">#</a></h1>
+<p>In addition to the data integrity test, the subsequent component of data quality involves outlier detection. This submodule is designed to identify outliers following the data preparation step. The outcomes of this analysis provide users with valuable insights to pinpoint and eliminate outliers, thereby improving the quality and reliability of subsequent modeling tasks.</p>
+<section id="methodology">
+<h2>Methodology<a class="headerlink" href="#methodology" title="Link to this heading">#</a></h2>
+<p>Eight distinct outlier detection methods are provided, including Isolation Forest, Cluster-Based Local Outlier Factor (CBLOF), Principal Component Analysis (PCA), KmeansTree, K-Nearest Neighbor (KNN), Histogram-Based Outlier Detection (HBOS), One-Class SVM and Empirical Cumulative Distribution-based Outlier Detection (ECOD). All these methods are implemented in the <cite>piml.data.outlier_detection</cite> module. For each outlier detection estimator, the prediction output is the outlier score of each sample. The higher the outlier score, the more likely the sample is an outlier.</p>
+<section id="isolation-forest">
+<h3>Isolation Forest<a class="headerlink" href="#isolation-forest" title="Link to this heading">#</a></h3>
+<p>This algorithm adopts a unique approach to isolate observations by following a random selection process <a class="reference internal" href="outlier_detect.html#liu2008" id="id1"><span>[Liu2008]</span></a>. It begins by randomly choosing a feature from the dataset and then selecting a split value for that feature within the range of its maximum and minimum values. This process is repeated recursively to construct isolation trees, until the node has only one instance, or all data at the node have the same values.</p>
+<p>The algorithm measures the anomaly score based on the average path length required to isolate each observation. Outliers are expected to have shorter average path lengths, indicating they are easier to separate from the rest of the data. In contrast, normal observations will require longer paths for isolation. The randomness in feature and split value selection contributes to the algorithm’s efficiency and ability to handle high-dimensional datasets. It does not rely on the specific distribution of the data, making it suitable for various types of data and outlier detection tasks. Note that the <a class="reference external" href="../../modules/generated/piml.data.outlier_detection.IsolationForest.html">IsolationForest</a> in PiML is a wrapper of sklearn’s implementation <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html">sklearn.ensemble.IsolationForest</a>.</p>
+</section>
+<section id="cluster-based-local-outlier-factor-cblof">
+<h3>Cluster-Based Local Outlier Factor (CBLOF)<a class="headerlink" href="#cluster-based-local-outlier-factor-cblof" title="Link to this heading">#</a></h3>
+<p>This method for outlier detection is based on cluster analysis, originally proposed by <a class="reference internal" href="outlier_detect.html#he2003" id="id2"><span>[He2003]</span></a>. The process can be divided into the following steps:</p>
+<ul>
+<li><p>Partition the data into clusters using K-means or Gaussian mixture model. Clusters can be classified into two categories, namely large clusters and small clusters, based on the size of each cluster. The size of a cluster is determined by the number of points it contains, and a given threshold is utilized for this classification.</p></li>
+<li><p>Calculate the CBLOF score for each sample.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>For samples belonging to large clusters, compute the Euclidean distance between each sample and its corresponding cluster centroid. This distance represents the outlier score for samples within large clusters.</p></li>
+<li><p>For samples belonging to small clusters, calculate the Euclidean distance between each sample and the centroid of the nearest large cluster. This distance serves as the outlier score for samples within small clusters.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Multiplication by Cluster Size (optional): By default, the outlier score is not multiplied by the cluster size. However, if desired, the outlier score can be multiplied by the cluster size to emphasize the impact of outliers within larger clusters.</p></li>
+</ul>
+<p>This method effectively utilizes the characteristics of clusters to detect outliers. The score calculation considers both the distances within a cluster and the relative distances to neighboring clusters. By combining these factors, the CBLOF score provides a comprehensive measure for identifying and quantifying outliers in the dataset. See more API details in <a class="reference external" href="../../modules/generated/piml.data.outlier_detection.CBLOF.html">CBLOF</a>.</p>
+</section>
+<section id="principal-component-analysis">
+<h3>Principal Component Analysis<a class="headerlink" href="#principal-component-analysis" title="Link to this heading">#</a></h3>
+<p>In addition to the clustering-based methods, dimensionality reduction techniques like Principal Component Analysis (PCA) can also be utilized for outlier detection. In PiML, there are two PCA-based methods for calculating the outlier score: Mahalanobis distance and error reconstruction, as elaborated in <a class="reference external" href="../../modules/generated/piml.data.outlier_detection.PCA.html">PCA</a>.</p>
+<ul class="simple">
+<li><p><strong>Mahalanobis distance</strong>: This method computes the distance between each data point and the centroid of the dataset, taking into account the covariance structure of the data. The Mahalanobis distance accounts for correlations between variables and provides a measure of how far each data point deviates from the overall centroid. The Mahalanobis distance can be obtained easily with PCA under the formula, see <a class="reference internal" href="outlier_detect.html#shyu2003" id="id3"><span>[Shyu2003]</span></a> for details.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[MD(x)^2 = \sum z_{i}^{2} / \lambda_{i},\]</div>
+<p>where <span class="math notranslate nohighlight">\(z_{i}\)</span> are the <span class="math notranslate nohighlight">\(i\)</span>-th principal component scores, and <span class="math notranslate nohighlight">\(\lambda_{i}\)</span> is the <span class="math notranslate nohighlight">\(i\)</span>-th eigenvalue of the covariance matrix which can be explained as the variance. But this is precisely the sum of squared distances in the transformed PCA space, which gives us the desired result.</p>
+<ul class="simple">
+<li><p><strong>Error reconstruction</strong>: This method utilizes the reconstruction error obtained from reconstructing each data point using the principal components. The reconstruction error quantifies the dissimilarity between the original data point and its reconstructed representation. Higher reconstruction errors indicate potential outliers.</p></li>
+</ul>
+<p>In PiML, the reconstruction is performed by fitting an XGBoost model between the principal components and the covariates. This model is then used to reconstruct the covariates <span class="math notranslate nohighlight">\(X_{new}\)</span>. The difference between the original covariates and the reconstructed data is calculated as the reconstruction error, i.e., <span class="math notranslate nohighlight">\(X - X_{new}\)</span>. Finally, we also calculate the Mahalanobis distance of the reconstruction error as the final outlier score, to account for the correlations among reconstruction errors. If the reconstruction errors of each feature are mutually independent, the outlier score reduces to the mean squared reconstruction error.</p>
+</section>
+<section id="kmeanstree">
+<h3>KmeansTree<a class="headerlink" href="#kmeanstree" title="Link to this heading">#</a></h3>
+<p>This method is proposed by the PiML authors, it combines the advantages of the cluster-based method and PCA-based method. The algorithm follows the steps outlined below:</p>
+<ul class="simple">
+<li><p>Iterative K-means Clustering: The dataset is split iteratively using the K-means clustering algorithm with K set to 2. This process continues until certain conditions are met, such as reaching the maximum depth, the maximum number of levels, or a specific distributional distance threshold between two child leaves.</p></li>
+<li><p>PCA Error Reconstruction-based Outlier Detection: This step is the same as the algorithm described in the PCA-based method above, but it is performed for each cluster separately.</p></li>
+</ul>
+<p>The KmeansTree method takes advantage of the splitting behavior of the K-means clustering algorithm and the dimensionality reduction capabilities of PCA. By combining these techniques and utilizing the Mahalanobis distance, it aims to effectively detect outliers in the data. The KmeansTree approach can enhance outlier detection performance by increasing the homogeneity of the data after clustering. For further details, please refer to the <a class="reference external" href="../../modules/generated/piml.data.outlier_detection.KMeansTree.html">KMeansTree</a> module in PiML.</p>
+</section>
+<section id="k-nearest-neighbor">
+<h3>K-Nearest Neighbor<a class="headerlink" href="#k-nearest-neighbor" title="Link to this heading">#</a></h3>
+<p>While KNN is more commonly known for its use in classification and regression, it can also be adapted for outlier detection, see <a class="reference internal" href="#ramaswamy2000" id="id5"><span>[Ramaswamy2000]</span></a> and <a class="reference internal" href="#angiulli2002" id="id6"><span>[Angiulli2002]</span></a>. The idea is to consider data points that have fewer neighbors as potential outliers. Here’s a simple explanation of how KNN can be used for outlier detection:</p>
+<ul class="simple">
+<li><p>Distance Calculation: As in the typical KNN algorithm, calculate the distances between a data point and all other points in the dataset using a distance metric such as Euclidean distance.</p></li>
+<li><p>Sorting: Sort the distances in ascending order.</p></li>
+<li><p>Thresholding: Consider the top ‘K’ distances, where ‘k’ is a user-defined parameter.</p></li>
+<li><p>Aggregation: Calculate the largest / mean / median distance of the top ‘K’ distances. This value is used as the outlier score for the data point.</p></li>
+</ul>
+<p>The rationale behind this approach is that outliers are expected to have fewer similar data points in their vicinity compared to the majority of the data. By setting an appropriate threshold and ‘k’ value, you can control the sensitivity of the outlier detection. For further details, please refer to the <a class="reference external" href="../../modules/generated/piml.data.outlier_detection.KNN.html">KNN</a> module in PiML.</p>
+</section>
+<section id="histogram-based-outlier-detection">
+<h3>Histogram-based outlier detection<a class="headerlink" href="#histogram-based-outlier-detection" title="Link to this heading">#</a></h3>
+<p>Histogram-based outlier detection is a method that relies on analyzing the distribution of data using histograms and identifying anomalies based on deviations from the expected patterns. Here’s a brief overview of how this approach works:</p>
+<ul class="simple">
+<li><p>Histogram Binning: we create histogram binning for all features, and each data point is assigned to a specific bin based on its value.</p></li>
+<li><p>Outlier Scoring: outlier scores are calculated using the frequencies of each bin, using the following formula:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    score(x) = - \sum_{j=1}^{p}{\log{(f_j(x) + \alpha)}},
+\end{aligned}\]</div>
+<p>where <span class="math notranslate nohighlight">\(p\)</span> is the number of features. <span class="math notranslate nohighlight">\(f_j\)</span> is the jth features’ density function. And <span class="math notranslate nohighlight">\(\alpha\)</span> serves as the regularizer to prevent overflow, by default, <span class="math notranslate nohighlight">\(\alpha\)</span> is set to 0.1. Data points that fall into bins with significantly lower frequencies than the majority of bins may be considered outliers.</p>
+<p>The advantage of histogram-based outlier detection is that it provides a visual representation of the data distribution, making it easier to interpret and understand the characteristics of outliers. However, the effectiveness of this method depends on the appropriate selection of bin sizes and threshold values, which may require some tuning. This method might not capture complex relationships in high-dimensional data as effectively as some other advanced outlier detection techniques. For more information about the algorithm, refer to <a class="reference internal" href="#goldstein2012" id="id7"><span>[goldstein2012]</span></a>. For detailed information about the API, please see <a class="reference external" href="../../modules/generated/piml.data.outlier_detection.HBOS.html">HBOS</a>.</p>
+</section>
+<section id="one-class-svm">
+<h3>One Class SVM<a class="headerlink" href="#one-class-svm" title="Link to this heading">#</a></h3>
+<p>One-class SVM (Support Vector Machine) is a machine learning algorithm commonly used for outlier detection, see the algorithm details in <a class="reference internal" href="#scholkopf2001" id="id8"><span>[Schölkopf2001]</span></a>. Unlike traditional SVMs that are designed for binary classification tasks (e.g., separating data into two classes), One-Class SVM is trained only on the “normal” class, and its goal is to identify outliers or anomalies.</p>
+<p>The key advantage of One-Class SVM is its ability to work well in high-dimensional spaces and to identify outliers even when the normal data distribution is not clearly defined. It is particularly useful in scenarios where normal data is prevalent, but outliers are rare and may exhibit different patterns.</p>
+<p>However, it’s important to note that One-Class SVM requires careful parameter tuning, such as selecting the appropriate kernel and regularization parameters, to achieve optimal performance. The choice of kernel function (e.g., radial basis function, polynomial) can significantly impact the algorithm’s ability to capture the underlying structure of the data.</p>
+<p>In PiML, we provide a wrapper of the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.OneClassSVM.html">OneClassSVM</a> class in <cite>scikit-learn</cite>, see detailed information about the API in <a class="reference external" href="../../modules/generated/piml.data.outlier_detection.OneClassSVM.html">OCSVM</a>.</p>
+</section>
+<section id="empirical-cumulative-distribution-based-outlier-detection">
+<h3>Empirical Cumulative Distribution-based Outlier Detection<a class="headerlink" href="#empirical-cumulative-distribution-based-outlier-detection" title="Link to this heading">#</a></h3>
+<p>Empirical cumulative distribution Function is a non-parametric way to estimate the cumulative distribution function of a dataset. In the context of outlier detection, it can be used to identify data points that deviate from the expected cumulative distribution.</p>
+<p>ECOD leverages the skewness of a distribution to assign outlier scores to each dimension. If a distribution is right-skewed, the outlier score is determined using the CDF. Conversely, if the distribution is left-skewed, the outlier score is derived from its complement 1-CDF. ECOD then aggregates the univariate outlier scores across all dimensions to obtain the overall outlier score. The outlier score for a sample <span class="math notranslate nohighlight">\(x\)</span> is calculated using the following formula:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+    score(x) = - \sum_{j=1}^{p}{\max \{ -\log{(F_j(x))}, -\log{(F_j(-x))}, - s_l \log{(F_j(x))} - s_r \log{(F_j(-x))} \}},
+\end{aligned}\]</div>
+<p>where <span class="math notranslate nohighlight">\(p\)</span> is the number of features, and <span class="math notranslate nohighlight">\(F_j\)</span> is the empirical cumulative density function of the jth feature. Two skewness indicators are used: <span class="math notranslate nohighlight">\(s_l\)</span> and <span class="math notranslate nohighlight">\(s_r\)</span>. If a distribution exhibits left skewness or no skewness, <span class="math notranslate nohighlight">\(s_l\)</span> is assigned a value of 1; otherwise, it is set to 0. Similarly, if a distribution displays right skewness or no skewness, <span class="math notranslate nohighlight">\(s_r\)</span> is set to 1; otherwise, it is assigned a value of 0.</p>
+<p>For more information about the algorithm, refer to the publication <a class="reference internal" href="#li2021" id="id9"><span>[Li2021]</span></a>. For detailed information about the API, see <a class="reference external" href="../../modules/generated/piml.data.outlier_detection.ECOD.html">ECOD</a>.</p>
+</section>
+</section>
+<section id="analysis-and-comparison">
+<h2>Analysis and Comparison<a class="headerlink" href="#analysis-and-comparison" title="Link to this heading">#</a></h2>
+<p>This subsection briefly introduces the usage of outlier detection methods in PiML. The function name is <cite>data_quality</cite>. The key parameters include:</p>
+<ul class="simple">
+<li><p><cite>method</cite>: The outlier detection method to be used, which needs to be an instance of <a class="reference external" href="../../modules/generated/piml.data.outlier_detection.IsolationForest.html">IsolationForest</a>, <a class="reference external" href="../../modules/generated/piml.data.outlier_detection.CBLOF.html">CBLOF</a>, <a class="reference external" href="../../modules/generated/piml.data.outlier_detection.PCA.html">PCA</a>, <a class="reference external" href="../../modules/generated/piml.data.outlier_detection.KMeansTree.html">KMeansTree</a>, <a class="reference external" href="../../modules/generated/piml.data.outlier_detection.KNN.html">KNN</a>, <a class="reference external" href="../../modules/generated/piml.data.outlier_detection.HBOS.html">HBOS</a>, <a class="reference external" href="../../modules/generated/piml.data.outlier_detection.OneClassSVM.html">OCSVM</a> and <a class="reference external" href="../../modules/generated/piml.data.outlier_detection.ECOD.html">ECOD</a>.</p></li>
+<li><p><cite>show</cite>: The type of analysis to be performed.</p></li>
+<li><p><cite>threshold</cite>: The threshold to decide whether a sample is an outlier.</p></li>
+<li><p><cite>remove_outliers</cite>: If True, then the outliers will be removed from the dataset.</p></li>
+</ul>
+<section id="outlier-score-distribution">
+<h3>Outlier Score distribution<a class="headerlink" href="#outlier-score-distribution" title="Link to this heading">#</a></h3>
+<p>Here is an example of displaying the score distribution of the PCA-based outlier detection method. The keyword of this plot is “od_score_distribution”. The parameter <cite>threshold</cite> is used to decide whether a sample is an outlier, which is the quantile of the outlier score of all samples, within 0 and 1.</p>
+<figure class="align-left">
+<a class="reference external image-reference" href="../../auto_examples/0_data/plot_4_data_quality.html"><img alt="_source/auto_examples/0_data/images/sphx_glr_plot_4_data_quality_001.png" src="_source/auto_examples/0_data/images/sphx_glr_plot_4_data_quality_001.png" />
+</a>
+</figure>
+<p>In this plot, the red dotted line represents the actual threshold of the outlier scores. Samples with outlier scores greater than this threshold are classified as outliers.</p>
+</section>
+<section id="marginal-distribution-of-outliers">
+<h3>Marginal Distribution of Outliers<a class="headerlink" href="#marginal-distribution-of-outliers" title="Link to this heading">#</a></h3>
+<p>Here is an example of displaying the marginal distribution of detected outliers against a feature of interest. The keyword of this plot is “od_marginal_outlier_distribution”.</p>
+<figure class="align-left">
+<a class="reference external image-reference" href="../../auto_examples/0_data/plot_4_data_quality.html"><img alt="_source/auto_examples/0_data/images/sphx_glr_plot_4_data_quality_009.png" src="_source/auto_examples/0_data/images/sphx_glr_plot_4_data_quality_009.png" />
+</a>
+</figure>
+<p>In this plot, a circle mark is used to indicate the presence of outliers. Although many of the outliers may fall within the normal range of individual features, they are still considered outliers in the context of the multivariate feature space. This phenomenon highlights the importance of considering the relationships and interactions between multiple features when identifying outliers.</p>
+</section>
+<section id="comparison-of-different-methods">
+<h3>Comparison of Different Methods<a class="headerlink" href="#comparison-of-different-methods" title="Link to this heading">#</a></h3>
+<p>We use t-SNE to reduce the dimension of data to 2D for better visualization. Below is an example of comparing different methods, and the keyword of this plot is “od_tsne_comparison”.</p>
+<figure class="align-left">
+<a class="reference external image-reference" href="../../auto_examples/0_data/plot_4_data_quality.html"><img alt="_source/auto_examples/0_data/images/sphx_glr_plot_4_data_quality_010.png" src="_source/auto_examples/0_data/images/sphx_glr_plot_4_data_quality_010.png" />
+</a>
+</figure>
+<p>It is worth noting that, to mitigate the computational burden, the t-SNE algorithm used for visualization purposes is fitted using subsampled data. This subsampling technique allows for a representative subset of the data to be used, reducing the complexity of the t-SNE computation while still providing meaningful insights. In the plot mentioned above, the visualization reveals that the outliers detected by the two algorithms under comparison are noticeably distinct from each other. This discrepancy suggests that the algorithms may consider different aspects of the data when identifying outliers.</p>
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<p>The full example codes of this section can be found in the following link.</p>
+<aside class="topic">
+<p class="topic-title">Example</p>
+<ul class="simple">
+<li><p><span class="xref std std-ref">sphx_glr_auto_examples_0_data_plot_4_data_quality.py</span></p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="liu2008" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">Liu2008</a><span class="fn-bracket">]</span></span>
+<p>Fei Tony Liu, Kai Ming Ting, Zhi-Hua Zhou (2008). <a class="reference external" href="https://ieeexplore.ieee.org/abstract/document/4781136">Isolation Forest</a>, 2008 Eighth IEEE International Conference on Data Mining, Pisa, Italy, 2008, pp. 413-422, doi: 10.1109/ICDM.2008.17.</p>
+</div>
+<div class="citation" id="he2003" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">He2003</a><span class="fn-bracket">]</span></span>
+<p>Zengyou He, Xiaofei Xu, Shengchun Deng (2003). <a class="reference external" href="https://www.sciencedirect.com/science/article/abs/pii/S0167865503000035">Discovering cluster-based local outliers</a>, Pattern recognition letters, 24(9-10), 1641-1650.</p>
+</div>
+<div class="citation" id="shyu2003" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">Shyu2003</a><span class="fn-bracket">]</span></span>
+<p>Mei-Ling Shyu, Shu-Ching Chen, Kanoksri Sarinnapakorn, LiWu Chang (2003). <a class="reference external" href="https://homepages.laas.fr/owe/METROSEC/DOC/FDM03.pdf">A novel anomaly detection scheme based on principal component classifier</a>, Miami Univ Coral Gables Fl Dept of Electrical and Computer Engineering.</p>
+</div>
+<div class="citation" id="ramaswamy2000" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">Ramaswamy2000</a><span class="fn-bracket">]</span></span>
+<p>Sridhar Ramaswamy, Rajeev Rastogi, Kyuseok Shim (2000). <a class="reference external" href="https://www.researchgate.net/publication/221212827_Efficient_Algorithms_for_Mining_Outliers_from_Large_Data_Sets">Efficient Algorithms for Mining Outliers from Large Data Sets</a>, ACM SIGMOD Record 29(2):427-438.</p>
+</div>
+<div class="citation" id="angiulli2002" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">Angiulli2002</a><span class="fn-bracket">]</span></span>
+<p>Fabrizio Angiulli, Clara Pizzuti (2002). <a class="reference external" href="https://www.researchgate.net/publication/220699183_Fast_Outlier_Detection_in_High_Dimensional_Spaces">Fast Outlier Detection in High Dimensional Spaces</a>, Conference: Principles of Data Mining and Knowledge Discovery, 6th European Conference, PKDD 2002, Helsinki, Finland, August 19-23, 2002, Proceedings.</p>
+</div>
+<div class="citation" id="goldstein2012" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">goldstein2012</a><span class="fn-bracket">]</span></span>
+<p>Markus Goldstein and Andreas Dengel (2012). <a class="reference external" href="https://www.researchgate.net/publication/231614824_Histogram-based_Outlier_Score_HBOS_A_fast_Unsupervised_Anomaly_Detection_Algorithm">Histogram-based outlier score (HBOS): a fast unsupervised anomaly detection algorithm</a>, KI-2012: Poster and Demo Track, pages 59–63, 2012.</p>
+</div>
+<div class="citation" id="scholkopf2001" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">Schölkopf2001</a><span class="fn-bracket">]</span></span>
+<p>Bernhard Schölkopf, John C. Platt, John Shawe-Taylor, Alexander J. Smola (2001). <a class="reference external" href="https://www.researchgate.net/publication/220499623_Estimating_Support_of_a_High-Dimensional_Distribution">Estimating Support of a High-Dimensional Distribution</a>, Neural Computation 13(7):1443-1471.</p>
+</div>
+<div class="citation" id="li2021" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id9">Li2021</a><span class="fn-bracket">]</span></span>
+<p>Zheng Li, Yue Zhao, Xiyang Hu, Nicola Botta, Cezar Ionescu, George H. Chen (2021). <a class="reference external" href="https://arxiv.org/pdf/2201.00382.pdf">ECOD: Unsupervised Outlier Detection Using Empirical Cumulative Distribution Functions</a>, arXiv:2201.00382.</p>
+</div>
+</div>
+</aside>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methodology">Methodology</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#isolation-forest">Isolation Forest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cluster-based-local-outlier-factor-cblof">Cluster-Based Local Outlier Factor (CBLOF)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-component-analysis">Principal Component Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kmeanstree">KmeansTree</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#k-nearest-neighbor">K-Nearest Neighbor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#histogram-based-outlier-detection">Histogram-based outlier detection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-class-svm">One Class SVM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#empirical-cumulative-distribution-based-outlier-detection">Empirical Cumulative Distribution-based Outlier Detection</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-and-comparison">Analysis and Comparison</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#outlier-score-distribution">Outlier Score distribution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal-distribution-of-outliers">Marginal Distribution of Outliers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-of-different-methods">Comparison of Different Methods</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2025, Modeva Team.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

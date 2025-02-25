@@ -1,0 +1,977 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Mixture of Experts (MoE) &#8212; Modeva  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=578d8e15" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/hide_links.css?v=60d22a59" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=23db8a6b" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_source/user_guide/models/moe';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Diagnostic Suite" href="../testing.html" />
+    <link rel="prev" title="ReLU Neural Network" href="reludnn.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.5" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.jpg" class="logo__image only-light" alt=""/>
+    <img src="../../../_static/logo.jpg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Modeva-AI</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data.html">Data Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modelwrapping.html">Model Wrapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explain.html">Model Explainability</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../models.html">Interpretable Models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="glm.html">Generalized Linear Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tree.html">Decision Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gbdt.html">Gradient Boosted Decision Trees</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gblt.html">Linear Tree and Gradient Boosted Linear Trees</a></li>
+<li class="toctree-l2"><a class="reference internal" href="neuraltree.html">Neural Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gaminet.html">GAMI-Net</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reludnn.html">ReLU Neural Network</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Mixture of Experts (MoE)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html">Diagnostic Suite</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../usage.html" class="nav-link">Using Modeva</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../models.html" class="nav-link">Interpretable Models</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Mixture of Experts (MoE)</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="mixture-of-experts-moe">
+<h1>Mixture of Experts (MoE)<a class="headerlink" href="#mixture-of-experts-moe" title="Link to this heading">#</a></h1>
+<p>Modern datasets—whether in finance, healthcare, or marketing—are inherently heterogeneous, comprising multiple subpopulations with distinct characteristics and drivers. Traditional “one-size-fits-all” models often fall short in such settings, leading to suboptimal predictions and reduced robustness when faced with shifts in data distribution. This motivates the need for advanced modeling approaches that achieve the following objectives:</p>
+<p><strong>Capturing Data Heterogeneity:</strong>
+By adaptively learning both local and global patterns, a model can tailor its predictions to the nuanced behaviors within different regions of the data. This adaptive learning not only improves overall predictive accuracy but also facilitates a deeper understanding of the complex interactions present in diverse datasets.</p>
+<p><strong>Segmented Models with Actionable Insights:</strong>
+Many real-world applications benefit from identifying and modeling distinct segments within the data, as each segment may be driven by unique factors. Segmenting the data enables the development of specialized models that highlight the critical drivers for each subgroup, thereby supporting targeted decision-making and interpretable results.</p>
+<p><strong>Enhanced Resilience Against Distribution Drift:</strong>
+A mixture of experts (MoE) framework naturally supports more homogeneous performance across varying data segments. By training specialized experts on segments that share similar characteristics, the model is less vulnerable to distribution drift. This segmentation ensures that even if one part of the data distribution shifts, the corresponding expert remains well-calibrated, thereby enhancing the overall model’s robustness and stability.</p>
+<p>To address these challenges, MoDeVa provides a mixture of experts model that integrates soft clustering with expert predictors. Initially, the data is partitioned into clusters, with each sample receiving a probabilistic membership assignment across clusters. Specialized XGBoost models are then trained for each cluster using weighted samples, and their predictions are aggregated based on these membership probabilities. Furthermore, the cluster centroids are optimized via Particle Swarm Optimization (PSO), dynamically refining the segmentation to ensure that both local expertise and global patterns are effectively captured.</p>
+<p>This approach not only enhances predictive performance by accommodating data heterogeneity and uncovering distinct drivers but also delivers more resilient and uniformly performing models in the face of distribution drift.</p>
+<p>The Mixture of Experts (MoE) model in MoDeVa combines multiple interpretable XGBoost models, each specializing in different regions of the feature space. By using shallow trees (depth 1 or 2) for both gating and expert models, it maintains interpretability through functional ANOVA decomposition while enabling local expertise development.</p>
+<p><strong>Key Benefits:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Interpretable predictions</p></li>
+<li><p>Local specialization</p></li>
+<li><p>Robust performance</p></li>
+<li><p>Clear effect attribution</p></li>
+</ul>
+</div></blockquote>
+<section id="model-architecture">
+<h2>Model Architecture<a class="headerlink" href="#model-architecture" title="Link to this heading">#</a></h2>
+<p>The model consists of three main components:</p>
+<p><strong>1. Gating Model:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Determines cluster memberships</p></li>
+<li><p>Assigns sample weights</p></li>
+</ul>
+</div></blockquote>
+<p><strong>2. Expert Models:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Individual XGBoost models</p></li>
+<li><p>Depth-restricted trees</p></li>
+<li><p>Linear terminal nodes</p></li>
+</ul>
+</div></blockquote>
+<p><strong>3. Mixture Layer:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Combines expert predictions</p></li>
+<li><p>Weights by membership probabilities</p></li>
+<li><p>Produces final output</p></li>
+</ul>
+</div></blockquote>
+<section id="mathematical-formulation">
+<h3>Mathematical Formulation<a class="headerlink" href="#mathematical-formulation" title="Link to this heading">#</a></h3>
+<p>Given a dataset <span class="math notranslate nohighlight">\(\mathcal{D} = {(x_i, y_i)}_{i=1}^n\)</span> where <span class="math notranslate nohighlight">\(x_i \in \mathbb{R}^d\)</span> represents the feature vector and <span class="math notranslate nohighlight">\(y_i\)</span> is the target, the model employs <span class="math notranslate nohighlight">\(K\)</span> experts. Each expert <span class="math notranslate nohighlight">\(f_k(x)\)</span> is an XGBoost model, and the overall prediction is a weighted combination of the experts’ outputs.</p>
+<p><strong>Soft Membership Calculation</strong>
+For each data point <span class="math notranslate nohighlight">\(x_i\)</span> and cluster <span class="math notranslate nohighlight">\(k\)</span> with centroid <span class="math notranslate nohighlight">\(c_k\)</span>, the probability membership is computed using a softmax over the negative squared Euclidean distance scaled by a temperature parameter <span class="math notranslate nohighlight">\(\tau\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-soft-membership">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eq-soft-membership" title="Link to this equation">#</a></span>\[p_{ik} = \frac{\exp\left(-\frac{|x_i - c_k|^2}{\tau}\right)} {\sum_{j=1}^K \exp\left(-\frac{|x_i - c_j|^2}{\tau}\right)}\]</div>
+<p><strong>Expert Prediction Aggregation</strong>
+Each expert <span class="math notranslate nohighlight">\(f_k(x)\)</span> is trained on the full dataset with samples weighted by their respective membership <span class="math notranslate nohighlight">\(p_{ik}\)</span>. The aggregated prediction for an input <span class="math notranslate nohighlight">\(x\)</span> is given by:</p>
+<div class="math notranslate nohighlight" id="equation-eq-aggregation">
+<span class="eqno">(2)<a class="headerlink" href="#equation-eq-aggregation" title="Link to this equation">#</a></span>\[\hat{y}(x) = \sum_{k=1}^K p_k(x) . f_k(x)\]</div>
+<p><strong>Overall Loss Function</strong>
+The model’s parameters, which include the experts’ parameters <span class="math notranslate nohighlight">\(\theta\)</span> and the cluster centroids <span class="math notranslate nohighlight">\({c_k}_{k=1}^K\)</span>, are optimized by minimizing the loss function:</p>
+<div class="math notranslate nohighlight" id="equation-eq-loss">
+<span class="eqno">(3)<a class="headerlink" href="#equation-eq-loss" title="Link to this equation">#</a></span>\[L(\theta, {c_k}) = \sum_{i=1}^n \ell\Bigl(y_i, \hat{y}(x_i)\Bigr)\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(\ell\)</span> denotes an appropriate loss function (e.g., squared error for regression or log-loss for classification).</p>
+<p><strong>Centroid Optimization via Particle Swarm Optimization (PSO)</strong>
+Due to the non-differentiability of XGBoost, the cluster centroids are optimized using Particle Swarm Optimization (PSO). In PSO, each particle represents a candidate set of centroids, and the particle updates are defined as follows:</p>
+<p><strong>PSO Velocity Update Equation</strong></p>
+<div class="math notranslate nohighlight" id="equation-eq-pso-velocity">
+<span class="eqno">(4)<a class="headerlink" href="#equation-eq-pso-velocity" title="Link to this equation">#</a></span>\[v_{i}^{(t+1)} = \omega\, v_{i}^{(t)} + c_1\, r_1\, \Bigl(p_{i,\text{best}} - x_{i}^{(t)}\Bigr) + c_2\, r_2\, \Bigl(g_{\text{best}} - x_{i}^{(t)}\Bigr)\]</div>
+<p><strong>PSO Position Update Equation</strong></p>
+<div class="math notranslate nohighlight" id="equation-eq-pso-position">
+<span class="eqno">(5)<a class="headerlink" href="#equation-eq-pso-position" title="Link to this equation">#</a></span>\[x_{i}^{(t+1)} = x_{i}^{(t)} + v_{i}^{(t+1)}\]</div>
+</section>
+<section id="step-by-step-process">
+<h3>Step-by-Step Process<a class="headerlink" href="#step-by-step-process" title="Link to this heading">#</a></h3>
+<p><strong>Initialization:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Define <span class="math notranslate nohighlight">\(K\)</span>: Select the number of clusters/experts.</p></li>
+<li><p>Centroid Initialization: Initialize the cluster centroids <span class="math notranslate nohighlight">\({c_k}_{k=1}^K\)</span> using a clustering method such as k-means.</p></li>
+<li><p>PSO Setup: Initialize a swarm of particles, where each particle represents a candidate set of centroids. Set initial velocities and PSO parameters ( <span class="math notranslate nohighlight">\(\omega\)</span>, <span class="math notranslate nohighlight">\(c_1\)</span>, and <span class="math notranslate nohighlight">\(c_2\)</span>).</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Soft Assignment:</strong></p>
+<p>For each data point <span class="math notranslate nohighlight">\(x_i\)</span>, compute the soft membership probabilities <span class="math notranslate nohighlight">\(p_{ik}\)</span> using Equation <a class="reference internal" href="#equation-eq-soft-membership">(1)</a>.</p>
+<p><strong>Expert Training:</strong></p>
+<p>Train an XGBoost model <span class="math notranslate nohighlight">\(f_k(x)\)</span> for each cluster <span class="math notranslate nohighlight">\(k\)</span>. Each training sample is weighted by its corresponding membership <span class="math notranslate nohighlight">\(p_{ik}\)</span> to focus the expert on its relevant data region.</p>
+<p><strong>Prediction Aggregation:</strong></p>
+<p>For a given input <span class="math notranslate nohighlight">\(x\)</span>, compute the membership probabilities <span class="math notranslate nohighlight">\(p_k(x)\)</span> and obtain the overall prediction using Equation <a class="reference internal" href="#equation-eq-aggregation">(2)</a>.</p>
+<p><strong>Loss Computation:</strong></p>
+<p>Evaluate the overall loss <span class="math notranslate nohighlight">\(L(\theta, {c_k})\)</span> across the dataset as per Equation <a class="reference internal" href="#equation-eq-loss">(3)</a>.</p>
+<p><strong>Centroid Optimization via PSO:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Particle Evaluation:</strong> For each particle (candidate centroids), update the soft assignments, retrain the experts as necessary, and compute the overall loss.</p></li>
+<li><p><strong>Particle Update:</strong> Update the velocities and positions of the particles using Equations <a class="reference internal" href="#equation-eq-pso-velocity">(4)</a> and <a class="reference internal" href="#equation-eq-pso-position">(5)</a>.</p></li>
+<li><p><strong>Selection:</strong> Choose the particle with the lowest loss as the best candidate.</p></li>
+<li><p><strong>Iteration:</strong> Repeat the PSO process until the loss converges or a maximum number of iterations is reached.</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Iteration and Convergence:</strong></p>
+<p>Optionally, iterate the entire process by recomputing soft assignments, retraining experts, and re-optimizing centroids until the model performance stabilizes.</p>
+</section>
+</section>
+<section id="moe-in-modeva">
+<h2>MoE in MoDeVa<a class="headerlink" href="#moe-in-modeva" title="Link to this heading">#</a></h2>
+<p><strong>Data Setup</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">DataSet</span>
+<span class="c1">## Create dataset object holder</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">()</span>
+<span class="c1">## Loading MoDeVa pre-loaded dataset &quot;Bikesharing&quot;</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;BikeSharing&quot;</span><span class="p">)</span>
+<span class="c1">## Preprocess the data</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">scale_numerical</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;cnt&quot;</span><span class="p">,),</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;log1p&quot;</span><span class="p">)</span> <span class="c1"># Log transfomed target</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_feature_type</span><span class="p">(</span><span class="n">feature</span><span class="o">=</span><span class="s2">&quot;hr&quot;</span><span class="p">,</span> <span class="n">feature_type</span><span class="o">=</span><span class="s2">&quot;categorical&quot;</span><span class="p">)</span> <span class="c1"># set to categorical feature</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_feature_type</span><span class="p">(</span><span class="n">feature</span><span class="o">=</span><span class="s2">&quot;mnth&quot;</span><span class="p">,</span> <span class="n">feature_type</span><span class="o">=</span><span class="s2">&quot;categorical&quot;</span><span class="p">)</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">scale_numerical</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">feature_names_numerical</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;standardize&quot;</span><span class="p">)</span> <span class="c1"># standardized numerical features</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_inactive_features</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;yr&quot;</span><span class="p">,</span> <span class="s2">&quot;season&quot;</span><span class="p">,</span> <span class="s2">&quot;temp&quot;</span><span class="p">))</span> <span class="c1"># deactivate some features</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">preprocess</span><span class="p">()</span>
+<span class="c1">## Split data into training and testing sets randomly</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_random_split</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Model Setup</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># For regression tasks</span>
+<span class="kn">from</span> <span class="nn">modeva.models</span> <span class="kn">import</span> <span class="n">MoMoERegressor</span>
+<span class="n">model_moe</span> <span class="o">=</span> <span class="n">MoMoERegressor</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;MOE_Regression&quot;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># For classification tasks</span>
+<span class="kn">from</span> <span class="nn">modeva.models</span> <span class="kn">import</span> <span class="n">MoMoEClassifier</span>
+<span class="n">model_moe</span> <span class="o">=</span> <span class="n">MoMoEClassifier</span><span class="p">(</span><span class="s2">&quot;MOE_Classification&quot;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For the full list of hyperparameters, please see the API of <a class="reference external" href="../../modules/generated/modeva.models.MoMoERegressor.html">MoMoERegressor</a> and <a class="reference external" href="../../modules/generated/modeva.models.MoMoEClassifier.html">MoMoEClassifier</a>.</p>
+<p><strong>Model Training</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># train model with input: ds.train_x and target: ds.train_y</span>
+<span class="n">model_moe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">train_x</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">train_y</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Reporting and Diagnostics Setup</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a testsuite that bundles dataset and model</span>
+<span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">TestSuite</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">TestSuite</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">model_moe</span><span class="p">)</span> <span class="c1"># store bundle of dataset and model in fs</span>
+</pre></div>
+</div>
+<p><strong>Performance Assessment</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># View model performance metrics</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_accuracy_table</span><span class="p">()</span>
+<span class="c1"># display the output</span>
+<span class="n">result</span><span class="o">.</span><span class="n">table</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/moe_perf.png"><img alt="../../../_images/moe_perf.png" class="align-center" src="../../../_images/moe_perf.png" style="width: 300px;" />
+</a>
+</section>
+<section id="interpretation-functional-anova-representation">
+<h2>Interpretation: Functional ANOVA Representation<a class="headerlink" href="#interpretation-functional-anova-representation" title="Link to this heading">#</a></h2>
+<p>Model interpretation is attributed to its individual expert model and functional ANOVA decomposition is similar to that of Gradient Boosted Decision Tree</p>
+<section id="gating-decomposition">
+<h3>Gating Decomposition<a class="headerlink" href="#gating-decomposition" title="Link to this heading">#</a></h3>
+<p>The gating model decomposes as:</p>
+<div class="math notranslate nohighlight">
+\[p_j(x) = \mu_j + \sum_i g_{ij}(x_i) + \sum_{ik} g_{ikj}(x_i, x_k)\]</div>
+<p>where:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mu_j\)</span> is base membership probability</p></li>
+<li><p><span class="math notranslate nohighlight">\(g_{ij}(x_i)\)</span> are main effects</p></li>
+<li><p><span class="math notranslate nohighlight">\(g_{ikj}(x_i, x_k)\)</span> are interaction effects</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="expert-decomposition">
+<h3>Expert Decomposition<a class="headerlink" href="#expert-decomposition" title="Link to this heading">#</a></h3>
+<p>Each expert model decomposes as:</p>
+<div class="math notranslate nohighlight">
+\[f_j(x) = \mu_j + \sum_i f_{ij}(x_i) + \sum_{ik} f_{ikj}(x_i, x_k)\]</div>
+<p>where:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mu_j\)</span> is expert’s base prediction</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_{ij}(x_i)\)</span> are expert’s main effects</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_{ikj}(x_i, x_k)\)</span> are expert’s interactions</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="effect-attribution">
+<h3>Effect Attribution<a class="headerlink" href="#effect-attribution" title="Link to this heading">#</a></h3>
+<p>Local effects are computed for:</p>
+<ol class="arabic simple">
+<li><p>Gating Model:</p>
+<ul class="simple">
+<li><p>Feature contributions to memberships</p></li>
+<li><p>Split point impacts</p></li>
+<li><p>Region assignments</p></li>
+</ul>
+</li>
+<li><p>Expert Models:</p>
+<ul class="simple">
+<li><p>Feature effects on predictions</p></li>
+<li><p>Interaction patterns</p></li>
+<li><p>Local behavior</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="global-interpretation">
+<h2>Global Interpretation<a class="headerlink" href="#global-interpretation" title="Link to this heading">#</a></h2>
+<p>The inherent interpretation of GAMI-Net includes the main effect plot, pairwise interaction plot, effect importance plot, and feature importance plot.</p>
+<section id="feature-importance">
+<h3>Feature Importance<a class="headerlink" href="#feature-importance" title="Link to this heading">#</a></h3>
+<p>Feature impacts in MoE are calculated for each cluster (expert).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Global feature importance</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_fi</span><span class="p">()</span>
+<span class="c1"># Plot the result</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Feature important plots will be generated for each cluster (expert). The following are some examples.</p>
+<div class="side-by-side docutils container">
+<a class="reference internal image-reference" href="../../../_images/moe_fi_1.png"><img alt="../../../_images/moe_fi_1.png" src="../../../_images/moe_fi_1.png" style="width: 45%;" />
+</a>
+<a class="reference internal image-reference" href="../../../_images/moe_fi_2.png"><img alt="../../../_images/moe_fi_2.png" src="../../../_images/moe_fi_2.png" style="width: 45%;" />
+</a>
+</div>
+<p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_fi.html">TestSuite.interpret_fi</a>.</p>
+<p><strong>Importance Metrics:</strong></p>
+<ul class="simple">
+<li><p>Based on variance of marginal effects</p></li>
+<li><p>Normalized to sum to 1</p></li>
+<li><p>Higher values indicate stronger influence</p></li>
+<li><p>Accounts for feature scale differences</p></li>
+</ul>
+</section>
+<section id="effect-importance">
+<h3>Effect Importance<a class="headerlink" href="#effect-importance" title="Link to this heading">#</a></h3>
+<p>Impact according to functional ANOVA components (main and interaction effects) are calculated for each cluster (expert)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Global effect importance</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_ei</span><span class="p">()</span>
+<span class="c1"># Plot the result</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_bars</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="c1"># Only top 10 are displayed</span>
+</pre></div>
+</div>
+<div class="side-by-side docutils container">
+<a class="reference internal image-reference" href="../../../_images/moe_ei_1.png"><img alt="../../../_images/moe_ei_1.png" src="../../../_images/moe_ei_1.png" style="width: 45%;" />
+</a>
+<a class="reference internal image-reference" href="../../../_images/moe_ei_2.png"><img alt="../../../_images/moe_ei_2.png" src="../../../_images/moe_ei_2.png" style="width: 45%;" />
+</a>
+</div>
+<p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_ei.html">TestSuite.interpret_ei</a>.</p>
+<p><strong>Importance Metrics:</strong></p>
+<ul class="simple">
+<li><p>Based on variance of individual functional ANOVA term effects (main or interaction effect)</p></li>
+<li><p>Higher values indicate stronger influence</p></li>
+</ul>
+<p><strong>Categorical Variables</strong></p>
+<ul class="simple">
+<li><p>One-hot encoded automatically</p></li>
+<li><p>Can view importance per category</p></li>
+<li><p>Interpretable through reference levels</p></li>
+</ul>
+</section>
+<section id="global-effect-plot">
+<h3>Global Effect Plot<a class="headerlink" href="#global-effect-plot" title="Link to this heading">#</a></h3>
+<p>Plot the main and interaction effect plot of features for each cluster (expert)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Main effect plot of feature: &quot;hr&quot;</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_effects</span><span class="p">(</span><span class="n">features</span> <span class="o">=</span> <span class="s2">&quot;hr&quot;</span><span class="p">)</span>
+<span class="c1"># Plot the result</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+
+<span class="c1"># Interaction effect plot of features: &quot;hum&quot; and &quot;windspeed&quot;</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_effects</span><span class="p">(</span><span class="n">features</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;hum&quot;</span><span class="p">,</span><span class="s2">&quot;windspeed&quot;</span><span class="p">))</span>
+<span class="c1"># Plot the result</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="side-by-side docutils container">
+<a class="reference internal image-reference" href="../../../_images/moe_hr.png"><img alt="../../../_images/moe_hr.png" src="../../../_images/moe_hr.png" style="width: 45%;" />
+</a>
+<a class="reference internal image-reference" href="../../../_images/MoE_hum_windspeed_1.png"><img alt="../../../_images/MoE_hum_windspeed_1.png" src="../../../_images/MoE_hum_windspeed_1.png" style="width: 45%;" />
+</a>
+</div>
+<p>Main and interaction plots for all clusters.</p>
+<p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_effects.html">TestSuite.interpret_effects</a>.</p>
+</section>
+</section>
+<section id="local-interpretation">
+<h2>Local Interpretation<a class="headerlink" href="#local-interpretation" title="Link to this heading">#</a></h2>
+<p>Local interpretation is calculated for each cluster (expert).</p>
+<section id="individual-prediction-analysis">
+<h3>Individual Prediction Analysis<a class="headerlink" href="#individual-prediction-analysis" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Local interpretation for specific sample: sample_index = 10</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_local_fi</span><span class="p">(</span><span class="n">sample_index</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">centered</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>   <span class="c1"># local feature importance</span>
+<span class="c1"># Plot the result</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="side-by-side docutils container">
+<a class="reference internal image-reference" href="../../../_images/MoE_local_fi_1.png"><img alt="../../../_images/MoE_local_fi_1.png" src="../../../_images/MoE_local_fi_1.png" style="width: 45%;" />
+</a>
+<a class="reference internal image-reference" href="../../../_images/MoE_local_fi_2.png"><img alt="../../../_images/MoE_local_fi_2.png" src="../../../_images/MoE_local_fi_2.png" style="width: 45%;" />
+</a>
+</div>
+<p>The local feature importances for each cluster (expert) for sample number 10.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_local_ei</span><span class="p">(</span><span class="n">sample_index</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>   <span class="c1"># local effect importance</span>
+<span class="c1"># Plot the result</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_bars</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="side-by-side docutils container">
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../_images/MoE_local_ei_1.png"><img alt="../../../_images/MoE_local_ei_1.png" src="../../../_images/MoE_local_ei_1.png" style="width: 45%;" />
+</a>
+<a class="reference internal image-reference" href="../../../_images/MoE_local_ei_2.png"><img alt="../../../_images/MoE_local_ei_2.png" src="../../../_images/MoE_local_ei_2.png" style="width: 45%;" />
+</a>
+</div></blockquote>
+<p>The local feature importances for each cluster (expert) for sample number 10.</p>
+</div>
+<p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_local_fi.html">TestSuite.interpret_local_fi</a> and <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_local_ei.html">TestSuite.interpret_local_ei</a> .</p>
+<p>The weights (contribution) of experts to overall response can be checked as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_local_moe_weights</span><span class="p">(</span><span class="n">sample_index</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/moe_local_weight.png"><img alt="../../../_images/moe_local_weight.png" class="align-center" src="../../../_images/moe_local_weight.png" style="width: 500px;" />
+</a>
+<p>For the full list of arguments of the API see <a href="#id1"><span class="problematic" id="id2">`TestSuite.interpret_local_moe_weights`_</span></a></p>
+<p>To understand the distribution difference between a cluster (expert) to the rest, marginal distribution distance such as using PSI can be displayed as follows.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_moe_cluster_analysis</span><span class="p">()</span>
+<span class="n">cluster_no</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">data_results</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">data_drift_test</span><span class="p">(</span><span class="o">**</span><span class="n">results</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="n">cluster_no</span><span class="p">][</span><span class="s2">&quot;data_info&quot;</span><span class="p">],</span>
+                               <span class="n">distance_metric</span><span class="o">=</span><span class="s2">&quot;PSI&quot;</span><span class="p">,</span>
+                               <span class="n">psi_method</span><span class="o">=</span><span class="s2">&quot;uniform&quot;</span><span class="p">,</span>
+                               <span class="n">psi_bins</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">data_results</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;summary&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/moe_PSI.png"><img alt="../../../_images/moe_PSI.png" class="align-center" src="../../../_images/moe_PSI.png" style="width: 500px;" />
+</a>
+<p>For the full list of arguments of the API see <a href="#id3"><span class="problematic" id="id4">`DataSet.data_drift_test.html#modeva.DataSet.data_drift_test`_</span></a></p>
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<aside class="topic">
+<p class="topic-title">Example 1: Bike Sharing</p>
+<blockquote>
+<div><p>The example below demonstrates how to use MoDeVa with its high-code APis for the Bike Sharing dataset from the UCI repository, which consists of 20,640 samples and 9 features, fetched by sklearn.datasets. The response variable MedHouseVal (Median Home Value) is continuous and is a regression problem.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../auto_galleries/dev/0_models/plot_4_moe_reg.html#sphx-glr-source-auto-galleries-dev-0-models-plot-4-moe-reg-py"><span class="std std-ref">Mixture of Expert (MoE) Regression</span></a></p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">Examples 2: Taiwan Credit</p>
+<blockquote>
+<div><p>The second example below demonstrates how to use MoDeVa’s high-code APIs for the TaiwanCredit dataset from the UCI repository. This dataset comprises the credit card details of 30,000 clients in Taiwan from April 2005 to September 2005, and more information can be found on the TaiwanCreditData website. The <cite>FlagDefault</cite> variable serves as the response for this classification problem.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../auto_galleries/dev/0_models/plot_4_moe_cls.html#sphx-glr-source-auto-galleries-dev-0-models-plot-4-moe-cls-py"><span class="std std-ref">Mixture of Expert (MoE) Classification</span></a></p></li>
+</ul>
+</aside>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="reludnn.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">ReLU Neural Network</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../testing.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Diagnostic Suite</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-architecture">Model Architecture</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-formulation">Mathematical Formulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-process">Step-by-Step Process</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moe-in-modeva">MoE in MoDeVa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-functional-anova-representation">Interpretation: Functional ANOVA Representation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gating-decomposition">Gating Decomposition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expert-decomposition">Expert Decomposition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#effect-attribution">Effect Attribution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-interpretation">Global Interpretation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-importance">Feature Importance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#effect-importance">Effect Importance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#global-effect-plot">Global Effect Plot</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-interpretation">Local Interpretation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#individual-prediction-analysis">Individual Prediction Analysis</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2025, Modeva Team.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

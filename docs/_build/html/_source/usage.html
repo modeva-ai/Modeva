@@ -1,0 +1,1048 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Using Modeva &#8212; Modeva  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=578d8e15" />
+    <link rel="stylesheet" type="text/css" href="../_static/hide_links.css?v=60d22a59" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=23db8a6b" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_source/usage';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Introduction" href="user_guide/introduction.html" />
+    <link rel="prev" title="Installation" href="install.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.5" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.jpg" class="logo__image only-light" alt=""/>
+    <img src="../_static/logo.jpg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Modeva-AI</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="user_guide/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/data.html">Data Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/modelwrapping.html">Model Wrapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/explain.html">Model Explainability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/models.html">Interpretable Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/testing.html">Diagnostic Suite</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Using Modeva</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="using-modeva">
+<h1>Using Modeva<a class="headerlink" href="#using-modeva" title="Link to this heading">#</a></h1>
+<p>This section contains what you need to know to use Modeva.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/introduction.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/introduction.html#key-modules">Key Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/introduction.html#conceptual-soundness">Conceptual Soundness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/introduction.html#outcome-analysis">Outcome Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/introduction.html#special-features">Special Features</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/data.html">Data Processing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/data/data_basic_operations.html">Basic Data Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/data/data_basic_operations.html#data-loading">Data Loading</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/data/data_basic_operations.html#built-in-dataset">Built-in Dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/data/data_basic_operations.html#external-dataset">External Dataset</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/data/data_basic_operations.html#data-summary">Data Summary</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/data/data_basic_operations.html#categorical-variables">Categorical Variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/data/data_basic_operations.html#numerical-variables">Numerical Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/data/data_basic_operations.html#data-preprocessing">Data Preprocessing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/data/data_basic_operations.html#handling-missing-values">Handling Missing Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/data/data_basic_operations.html#categorical-variable-encoding">Categorical Variable Encoding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/data/data_basic_operations.html#numerical-variable-scaling">Numerical Variable Scaling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/data/data_basic_operations.html#numerical-variable-binning">Numerical Variable Binning</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/data/data_basic_operations.html#data-preparation">Data Preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/data/data_basic_operations.html#data-registration">Data Registration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/data/data_basic_operations.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/data/eda.html">Exploratory Data Analysis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/data/eda.html#univariate-1d-plots">Univariate (1D) Plots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/data/eda.html#bivariate-2d-plots">Bivariate (2D) Plots</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/data/eda.html#d-scatter-plot">3D Scatter Plot</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/data/eda.html#correlation-heatmap">Correlation Heatmap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/data/eda.html#pca-plot">PCA Plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/data/eda.html#examples">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/data/eda.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/data/feature_select.html">Feature Selection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/data/feature_select.html#correlation-coefficient">Correlation Coefficient</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/data/feature_select.html#feature-importance">Feature Importance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/data/feature_select.html#conditional-independence">Conditional Independence</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/data/feature_select.html#rcit-test">RCIT Test</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/data/feature_select.html#fbedk-algorithm">FBEDk Algorithm</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/data/feature_select.html#examples">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/data/feature_select.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/data/outlier_detect.html">Outlier Detection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/data/outlier_detect.html#cblof">CBLOF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/data/outlier_detect.html#isolation-forest">Isolation Forest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/data/outlier_detect.html#pca-based-method">PCA-based Method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/data/outlier_detect.html#examples">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/data/outlier_detect.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/data/subsample.html">Subsampling and Data Drift</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/data/subsample.html#subsampling">Subsampling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/data/subsample.html#distribution-drift">Distribution Drift</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/data/subsample.html#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/modelwrapping.html">Model Wrapping</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/wrapping/wrappers.html">Model Wrappers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/wrapping/wrappers.html#sklearn-model-wrapper">Sklearn Model Wrapper</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/wrapping/wrappers.html#prepare-external-data-and-model">1. Prepare external data and model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/wrapping/wrappers.html#wrapping-data-into-modeva">2. Wrapping data into Modeva</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/wrapping/wrappers.html#wrapping-sklearn-model-into-modeva">3. Wrapping Sklearn model into Modeva</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/wrapping/wrappers.html#create-testsuite-for-model-validation">4. Create TestSuite for model validation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/wrapping/wrappers.html#arbitrary-model-wrapper">Arbitrary Model Wrapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/wrapping/wrappers.html#scored-model-wrapper">Scored Model Wrapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/wrapping/wrappers.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/wrapping/modelzoo.html">Model Zoo and Leaderboard</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/wrapping/modelzoo.html#model-management">Model Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/wrapping/modelzoo.html#training-and-leaderboard">Training and Leaderboard</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/wrapping/modelzoo.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/wrapping/hpo.html">Model Tuning</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/wrapping/hpo.html#modeltune-usage">ModelTune Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/wrapping/hpo.html#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/explain.html">Model Explainability</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/explain/Global.html">Global Explainability</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/explain/Global.html#pfi-permutation-feature-importance">PFI (Permutation Feature Importance)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/explain/Global.html#hstats-friedman-s-h-statistic">Hstats (Friedman’s H-statistic)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/explain/Global.html#pdp-partial-dependence-plot">PDP (Partial Dependence Plot)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/explain/Global.html#ale-accumulated-local-effects">ALE (Accumulated Local Effects)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/explain/Global.html#examples">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/explain/Global.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/explain/Local.html">Local Explainability</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/explain/Local.html#lime-local-interpretable-model-agnostic-explanation">LIME (Local Interpretable Model-Agnostic Explanation)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/explain/Local.html#shap-shapley-additive-explanations">SHAP (SHapley Additive exPlanations)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/explain/Local.html#exact-solution">Exact Solution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/explain/Local.html#kernelshap">KernelSHAP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/explain/Local.html#linearshap-and-treeshap">LinearSHAP and TreeSHAP</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/explain/Local.html#examples">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/explain/Local.html#references">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/models.html">Interpretable Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/models/glm.html">Generalized Linear Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/glm.html#glm-in-modeva">GLM in MoDeVa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/glm.html#global-interpretation">Global Interpretation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/glm.html#local-interpretation">Local Interpretation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/glm.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/models/tree.html">Decision Tree</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/tree.html#decision-tree-in-modeva">Decision Tree in MoDeVa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/tree.html#global-interpretation">Global Interpretation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/tree.html#local-interpretation">Local Interpretation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/tree.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/models/gbdt.html">Gradient Boosted Decision Trees</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/gbdt.html#mathematical-formulation">Mathematical Formulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/gbdt.html#gbdt-in-modeva">GBDT in MoDeVa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/gbdt.html#interpretability-through-functional-anova">Interpretability Through Functional ANOVA</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/gbdt.html#special-cases-with-limited-depth">Special Cases with Limited Depth</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/gbdt.html#functional-anova-decomposition-process-for-tree-ensembles">Functional ANOVA Decomposition Process for Tree Ensembles</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="user_guide/models/gbdt.html#aggregation-stage">1. Aggregation Stage</a></li>
+<li class="toctree-l5"><a class="reference internal" href="user_guide/models/gbdt.html#purification-stage">2. Purification Stage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/gbdt.html#global-interpretation">Global Interpretation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/gbdt.html#feature-importance">Feature Importance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/gbdt.html#effect-importance">Effect Importance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/gbdt.html#global-effect-plot">Global Effect Plot</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/gbdt.html#local-interpretation">Local Interpretation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/gbdt.html#individual-prediction-analysis">Individual Prediction Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/gbdt.html#monotonicity-constraint-in-gbdt">Monotonicity Constraint in GBDT</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/gbdt.html#benefits">Benefits</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="user_guide/models/gbdt.html#interpretability-enhancement">Interpretability Enhancement</a></li>
+<li class="toctree-l5"><a class="reference internal" href="user_guide/models/gbdt.html#model-quality">Model Quality</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/gbdt.html#interaction-with-anova-decomposition">Interaction with ANOVA Decomposition</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="user_guide/models/gbdt.html#main-effects">Main Effects</a></li>
+<li class="toctree-l5"><a class="reference internal" href="user_guide/models/gbdt.html#pairwise-interactions">Pairwise Interactions</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/gbdt.html#empirical-results">Empirical Results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/gbdt.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/models/gblt.html">Linear Tree and Gradient Boosted Linear Trees</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/gblt.html#linear-tree">Linear Tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/gblt.html#linear-tree-in-modeva">Linear Tree in MoDeVa</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/gblt.html#advantages">Advantages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/gblt.html#gradient-boosted-linear-tree-gblt">Gradient Boosted Linear Tree (GBLT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/gblt.html#gblt-in-modeva">GBLT in MoDeVa</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/gblt.html#interpretable-gblt-with-depth-1-trees">Interpretable GBLT with Depth-1 Trees</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/gblt.html#global-interpretation">Global Interpretation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/gblt.html#local-interpretation">Local Interpretation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/gblt.html#individual-prediction-analysis">Individual Prediction Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/gblt.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/models/neuraltree.html">Neural Tree</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/neuraltree.html#model-architecture">Model architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/neuraltree.html#base-model-gblt-depth-1">Base Model: GBLT Depth-1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/neuraltree.html#neural-tree-transformation">Neural Tree Transformation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/neuraltree.html#neural-tree-in-modeva">Neural Tree in MoDeVa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/neuraltree.html#functional-anova-representation">Functional ANOVA Representation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/neuraltree.html#basic-decomposition">Basic Decomposition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/neuraltree.html#effect-computation">Effect Computation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/neuraltree.html#purification-constraints">Purification Constraints</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/neuraltree.html#effect-attribution">Effect Attribution</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/neuraltree.html#global-interpretation">Global Interpretation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/neuraltree.html#feature-importance">Feature Importance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/neuraltree.html#effect-importance">Effect Importance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/neuraltree.html#global-effect-plot">Global Effect Plot</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/neuraltree.html#local-interpretation">Local Interpretation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/neuraltree.html#individual-prediction-analysis">Individual Prediction Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/neuraltree.html#monotonicity-constraints-in-neural-tree">Monotonicity Constraints in Neural Tree</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/neuraltree.html#loss-function-with-monotonicity-constraint">Loss Function with Monotonicity Constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/neuraltree.html#implementation-considerations">Implementation Considerations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/neuraltree.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/models/gaminet.html">GAMI-Net</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/gaminet.html#gami-net-in-modeva">GAMI-Net in MoDeVa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/gaminet.html#functional-anova-representation">Functional ANOVA Representation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/gaminet.html#basic-decomposition">Basic Decomposition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/gaminet.html#effect-computation">Effect Computation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/gaminet.html#purification-constraints">Purification Constraints</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/gaminet.html#effect-attribution">Effect Attribution</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/gaminet.html#global-interpretation">Global Interpretation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/gaminet.html#local-interpretation">Local Interpretation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/gaminet.html#individual-prediction-analysis">Individual Prediction Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/gaminet.html#monotonicity-constraints-in-gami-net">Monotonicity Constraints in GAMI-Net</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/gaminet.html#loss-function-with-monotonicity-constraint-in-gami-net">Loss Function with Monotonicity Constraint in GAMI-Net</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/gaminet.html#explanation">Explanation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/gaminet.html#implementation-considerations">Implementation Considerations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/gaminet.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/models/reludnn.html">ReLU Neural Network</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/reludnn.html#model-architecture">Model architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/reludnn.html#local-linear-models-llm">Local Linear Models (LLM)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/reludnn.html#relu-dnn-in-modeva">ReLU DNN in MoDeVa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/reludnn.html#model-interpretation">Model Interpretation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/reludnn.html#llm-summary-table">LLM Summary Table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/reludnn.html#parallel-coordinate-plot">Parallel Coordinate Plot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/reludnn.html#feature-importance-plot">Feature Importance Plot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/reludnn.html#llm-profile-plot">LLM profile plot</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/reludnn.html#local-interpretation">Local Interpretation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/reludnn.html#individual-prediction-analysis">Individual Prediction Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/reludnn.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/models/moe.html">Mixture of Experts (MoE)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/moe.html#model-architecture">Model Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/moe.html#mathematical-formulation">Mathematical Formulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/moe.html#step-by-step-process">Step-by-Step Process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/moe.html#moe-in-modeva">MoE in MoDeVa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/moe.html#interpretation-functional-anova-representation">Interpretation: Functional ANOVA Representation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/moe.html#gating-decomposition">Gating Decomposition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/moe.html#expert-decomposition">Expert Decomposition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/moe.html#effect-attribution">Effect Attribution</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/moe.html#global-interpretation">Global Interpretation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/moe.html#feature-importance">Feature Importance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/moe.html#effect-importance">Effect Importance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/moe.html#global-effect-plot">Global Effect Plot</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/moe.html#local-interpretation">Local Interpretation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/models/moe.html#individual-prediction-analysis">Individual Prediction Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/models/moe.html#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/testing.html">Diagnostic Suite</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/testing/performance.html">Performance and Residual Analysis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/performance.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/performance.html#classification-metrics">Classification Metrics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/performance.html#regression-metrics">Regression Metrics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/performance.html#challenges-in-measuring-model-performance">Challenges in Measuring Model Performance</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/performance.html#performance-evaluation-in-modeva">Performance Evaluation in MoDeVa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/performance.html#residual-analysis">Residual Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/performance.html#purpose-of-residual-analysis">Purpose of Residual Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/performance.html#steps-in-residual-analysis">Steps in Residual Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/performance.html#techniques-for-residual-analysis">Techniques for Residual Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/performance.html#interpreting-residual-analysis-results">Interpreting Residual Analysis Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/performance.html#applications-of-residual-analysis">Applications of Residual Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/performance.html#residual-analysis-in-modeva">Residual Analysis in MoDeVa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/performance.html#performance-comparison">Performance Comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/performance.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/testing/weakspot.html">Weakness Detection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/weakspot.html#introduction">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/weakspot.html#why-weakness-detection-is-important">Why Weakness Detection is Important</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/weakspot.html#key-approaches-to-weakness-detection">Key Approaches to Weakness Detection</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/weakspot.html#weakness-detection-in-modeva">Weakness Detection in MoDeVa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/weakspot.html#error-slicing-for-weakness-detection">Error Slicing for Weakness Detection</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/weakspot.html#uniform-binning">1. Uniform Binning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/weakspot.html#quantile-binning">2. Quantile Binning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/weakspot.html#automatic-binning-using-a-depth-1-or-2-xgboost-tree">3. Automatic Binning Using a Depth-1 or 2 XGBoost Tree</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/weakspot.html#additional-utilities-for-slicing">Additional Utilities for Slicing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/weakspot.html#weakness-comparison">Weakness Comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/weakspot.html#advanced-slicing">Advanced Slicing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/weakspot.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/testing/overfit.html">Underfitting and Overfitting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/overfit.html#empirical-risk-and-generalization-gap">Empirical Risk and Generalization Gap</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/overfit.html#empirical-risk-decomposition">Empirical Risk Decomposition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/overfit.html#estimation-from-training-and-test-errors">Estimation from Training and Test Errors</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="user_guide/testing/overfit.html#training-error">Training Error:</a></li>
+<li class="toctree-l5"><a class="reference internal" href="user_guide/testing/overfit.html#test-error">Test Error:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/overfit.html#generalization-gap">Generalization Gap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/overfit.html#overfitting-characterization">Overfitting Characterization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/overfit.html#practical-applications">Practical Applications</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/overfit.html#slicing-generalization-gap">Slicing Generalization Gap</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/overfit.html#weakness-detection-methods">Weakness Detection Methods</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="user_guide/testing/overfit.html#univariate-partitioning">1. Univariate Partitioning:</a></li>
+<li class="toctree-l5"><a class="reference internal" href="user_guide/testing/overfit.html#multivariate-region-detection">2. Multivariate Region Detection:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/overfit.html#identifying-problematic-regions">Identifying Problematic Regions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/overfit.html#overfitting-slicing-in-modeva">Overfitting Slicing in MoDeVa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/overfit.html#overfit-comparison">Overfit Comparison</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/overfit.html#characterization-of-weak-regions">Characterization of Weak Regions</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="user_guide/testing/overfit.html#data-sparsity">1. Data Sparsity:</a></li>
+<li class="toctree-l5"><a class="reference internal" href="user_guide/testing/overfit.html#complexity-measure">2. Complexity Measure:</a></li>
+<li class="toctree-l5"><a class="reference internal" href="user_guide/testing/overfit.html#uncertainty-assessment">3. Uncertainty Assessment:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/overfit.html#overfitting-and-model-robustness">Overfitting and Model Robustness</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/overfit.html#theoretical-framework">Theoretical Framework</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="user_guide/testing/overfit.html#gradient-sensitivity">1. Gradient Sensitivity:</a></li>
+<li class="toctree-l5"><a class="reference internal" href="user_guide/testing/overfit.html#local-curvature">2. Local Curvature:</a></li>
+<li class="toctree-l5"><a class="reference internal" href="user_guide/testing/overfit.html#generalization-gap-connection">3. Generalization Gap Connection:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/overfit.html#manifestations">Manifestations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/overfit.html#remediation-strategies-for-model-weaknesses-identified-by-gap-analysis">Remediation Strategies for Model Weaknesses Identified by Gap Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/overfit.html#data-centric-solutions">Data-Centric Solutions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/overfit.html#feature-engineering-solutions">Feature Engineering Solutions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/overfit.html#model-centric-approaches">Model-Centric Approaches</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/overfit.html#implementation-framework">Implementation Framework</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/overfit.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/testing/reliability.html">Reliability</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/reliability.html#conformal-prediction">Conformal Prediction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/reliability.html#full-conformal-prediction">Full Conformal Prediction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/reliability.html#split-conformal-prediction">Split Conformal Prediction</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="user_guide/testing/reliability.html#nonconformity-score">Nonconformity Score:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/reliability.html#reliability-analysis-in-modeva">Reliability Analysis in MoDeVa</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/reliability.html#reliability-assessment">Reliability Assessment:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/reliability.html#identification-of-reliability-issue-and-impactful-variables">Identification of Reliability Issue and Impactful Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/reliability.html#reliability-diagnostics-in-modeva">Reliability Diagnostics in MoDeVa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/reliability.html#reliability-comparison">Reliability Comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/reliability.html#strategies-for-addressing-model-weaknesses">Strategies for Addressing Model Weaknesses</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/reliability.html#data-centric-approaches">Data-Centric Approaches</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/reliability.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/testing/robustness.html">Robustness</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/robustness.html#input-perturbation-for-robustness-test">Input Perturbation for Robustness Test</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/robustness.html#simple-perturbation-with-normally-distributed-random-noise">Simple Perturbation with Normally Distributed Random Noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/robustness.html#quantile-perturbation-with-uniform-noise">Quantile Perturbation with Uniform Noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/robustness.html#perturbation-for-categorical-variable">Perturbation for Categorical Variable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/robustness.html#practical-considerations">Practical Considerations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/robustness.html#robustness-analysis-in-modeva">Robustness Analysis in MoDeVa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/robustness.html#identification-of-robustness-issue-and-impactful-variables">Identification of Robustness Issue and Impactful Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/robustness.html#robustness-comparison">Robustness Comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/robustness.html#strategies-for-addressing-model-weaknesses">Strategies for Addressing Model Weaknesses</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/robustness.html#data-centric-approaches">Data-Centric Approaches</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/robustness.html#model-centric-approaches">Model-Centric Approaches</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/robustness.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/testing/resilience.html">Resilience</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/resilience.html#resilience-analysis-in-modeva">Resilience Analysis in MoDeVa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/resilience.html#identification-of-impactful-variables">Identification of Impactful Variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/resilience.html#jensen-shannon-divergence">Jensen-Shannon Divergence</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="user_guide/testing/resilience.html#continuous-formulation">Continuous Formulation:</a></li>
+<li class="toctree-l5"><a class="reference internal" href="user_guide/testing/resilience.html#discrete-formulation-psi">Discrete Formulation (PSI):</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/resilience.html#wasserstein-distance">Wasserstein Distance</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="user_guide/testing/resilience.html#id1">Continuous Formulation:</a></li>
+<li class="toctree-l5"><a class="reference internal" href="user_guide/testing/resilience.html#discrete-formulation">Discrete Formulation:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/resilience.html#kolmogorov-smirnov-statistic">Kolmogorov-Smirnov Statistic</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="user_guide/testing/resilience.html#id2">Continuous Formulation:</a></li>
+<li class="toctree-l5"><a class="reference internal" href="user_guide/testing/resilience.html#id3">Discrete Formulation:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/resilience.html#resilience-through-cluster-analysis">Resilience Through Cluster Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/resilience.html#resilience-comparison">Resilience Comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/resilience.html#strategies-for-addressing-model-weaknesses">Strategies for Addressing Model Weaknesses</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/resilience.html#data-centric-approaches">Data-Centric Approaches</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/resilience.html#model-centric-approaches">Model-Centric Approaches</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/resilience.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/testing/fairness.html">Fairness</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/fairness.html#definitions-of-group-fairness">Definitions of Group Fairness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/fairness.html#metrics-for-group-fairness">Metrics for Group Fairness</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/fairness.html#adverse-impact-ratio-air-for-disparate-impact">Adverse Impact Ratio (AIR) for Disparate Impact</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/fairness.html#fairness-metrics-in-modeva">Fairness Metrics in MoDeVa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/fairness.html#fairness-evaluation-in-modeva">Fairness Evaluation in MoDeVa</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/fairness.html#slicing-for-fairness-diagnostics">Slicing for Fairness Diagnostics</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/fairness.html#fairness-comparison">Fairness Comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/fairness.html#fairness-mitigation">Fairness Mitigation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/fairness.html#threshold-adjustment">Threshold Adjustment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/fairness.html#feature-binning">Feature Binning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/fairness.html#tradeoffs-between-performance-and-fairness">Tradeoffs Between Performance and Fairness</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/testing/fairness.html#combined-application-of-threshold-adjustment-and-feature-binning">Combined Application of Threshold Adjustment and Feature Binning</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/testing/fairness.html#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="install.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Installation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="user_guide/introduction.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Introduction</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2025, Modeva Team.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

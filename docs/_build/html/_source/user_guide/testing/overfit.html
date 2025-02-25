@@ -1,0 +1,1130 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Underfitting and Overfitting &#8212; Modeva  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=578d8e15" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/hide_links.css?v=60d22a59" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=23db8a6b" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_source/user_guide/testing/overfit';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Reliability" href="reliability.html" />
+    <link rel="prev" title="Weakness Detection" href="weakspot.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.5" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.jpg" class="logo__image only-light" alt=""/>
+    <img src="../../../_static/logo.jpg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Modeva-AI</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data.html">Data Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modelwrapping.html">Model Wrapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explain.html">Model Explainability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models.html">Interpretable Models</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../testing.html">Diagnostic Suite</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="performance.html">Performance and Residual Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="weakspot.html">Weakness Detection</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Underfitting and Overfitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reliability.html">Reliability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="robustness.html">Robustness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resilience.html">Resilience</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fairness.html">Fairness</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../usage.html" class="nav-link">Using Modeva</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../testing.html" class="nav-link">Diagnostic Suite</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Underfitting and Overfitting</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="underfitting-and-overfitting">
+<h1>Underfitting and Overfitting<a class="headerlink" href="#underfitting-and-overfitting" title="Link to this heading">#</a></h1>
+<p>The bias-variance tradeoff explains the relationship between a model’s ability to fit training data and its generalization to unseen data. Striking the right balance between bias and variance is critical for building robust machine learning models.</p>
+<section id="empirical-risk-and-generalization-gap">
+<h2>Empirical Risk and Generalization Gap<a class="headerlink" href="#empirical-risk-and-generalization-gap" title="Link to this heading">#</a></h2>
+<section id="empirical-risk-decomposition">
+<h3>Empirical Risk Decomposition<a class="headerlink" href="#empirical-risk-decomposition" title="Link to this heading">#</a></h3>
+<p>The expected prediction error (empirical risk) for a model <span class="math notranslate nohighlight">\(f̂\)</span> at point <span class="math notranslate nohighlight">\(x\)</span> can be decomposed as:</p>
+<div class="math notranslate nohighlight">
+\[E[(Y - \hat{f}(x))^2] = \underbrace{(E[\hat{f}(x)] - f(x))^2}_{\text{Bias}^2} + \underbrace{E[(\hat{f}(x) - E[\hat{f}(x)])^2]}_{\text{Variance}} + \underbrace{\sigma^2}_{\text{Noise}}\]</div>
+<dl class="simple">
+<dt>where:</dt><dd><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(f(x)\)</span> is true function</p></li>
+<li><p><span class="math notranslate nohighlight">\(E[f̂(x)]\)</span> is expected prediction</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma^2\)</span> is irreducible error</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="estimation-from-training-and-test-errors">
+<h3>Estimation from Training and Test Errors<a class="headerlink" href="#estimation-from-training-and-test-errors" title="Link to this heading">#</a></h3>
+<section id="training-error">
+<h4>Training Error:<a class="headerlink" href="#training-error" title="Link to this heading">#</a></h4>
+<div class="math notranslate nohighlight">
+\[\text{Train Error} = \frac{1}{n}\sum_{i=1}^n (y_i - \hat{f}(x_i))^2\]</div>
+<ul class="simple">
+<li><p>Underestimates true error due to fitting noise</p></li>
+<li><p>Captures part of bias term</p></li>
+<li><p>Does not capture variance</p></li>
+</ul>
+</section>
+<section id="test-error">
+<h4>Test Error:<a class="headerlink" href="#test-error" title="Link to this heading">#</a></h4>
+<div class="math notranslate nohighlight">
+\[\text{Test Error} = E_{x,y}[(y - \hat{f}(x))^2]\]</div>
+<ul class="simple">
+<li><p>Includes both bias and variance</p></li>
+<li><p>Better estimate of true error</p></li>
+<li><p>Independent of training process</p></li>
+</ul>
+</section>
+</section>
+<section id="generalization-gap">
+<h3>Generalization Gap<a class="headerlink" href="#generalization-gap" title="Link to this heading">#</a></h3>
+<p>The difference between test and training error:</p>
+<div class="math notranslate nohighlight">
+\[\text{Gap} = \text{Test Error} - \text{Training Error}
+            = \text{Var}[\hat{f}(x)] + [\text{Bias}^2[\hat{f}(x)] - \text{OptimisticBias}]\]</div>
+<dl class="simple">
+<dt>This shows:</dt><dd><ol class="arabic simple">
+<li><p>Gap directly measures overfitting</p></li>
+<li><p>Training error underestimates true bias</p></li>
+<li><p>Variance contributes fully to gap</p></li>
+</ol>
+</dd>
+</dl>
+</section>
+<section id="overfitting-characterization">
+<h3>Overfitting Characterization<a class="headerlink" href="#overfitting-characterization" title="Link to this heading">#</a></h3>
+<p>Based on gap magnitude:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\text{Overfitting Level} = \begin{cases}
+\text{None} &amp; \text{if Gap} \approx 0 \\
+\text{Mild} &amp; \text{if Gap} &gt; 0 \text{ and stable} \\
+\text{Severe} &amp; \text{if Gap} \gg 0 \text{ or growing}
+\end{cases}\end{split}\]</div>
+<p>Key insights:</p>
+<ul class="simple">
+<li><p><strong>Underfitting (High Bias):</strong></p>
+<ul>
+<li><p>Both training and testing errors are high.</p></li>
+<li><p>The gap between them is small or negligible.</p></li>
+</ul>
+</li>
+<li><p><strong>Overfitting (High Variance):</strong></p>
+<ul>
+<li><p>Training error is low, but testing error is significantly higher, creating a large gap.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="practical-applications">
+<h3>Practical Applications<a class="headerlink" href="#practical-applications" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Model Selection:</p>
+<ul class="simple">
+<li><p>Choose models minimizing gap while maintaining acceptable training error</p></li>
+<li><p>Use gap trends to guide complexity decisions</p></li>
+</ul>
+</li>
+<li><p>Training Process:</p>
+<ul class="simple">
+<li><p>Monitor gap for early stopping</p></li>
+<li><p>Adjust regularization based on gap</p></li>
+<li><p>Balance model capacity against gap size</p></li>
+</ul>
+</li>
+<li><p>Performance Evaluation:</p>
+<ul class="simple">
+<li><p>Compare models using both errors and gaps</p></li>
+<li><p>Consider gap stability</p></li>
+<li><p>Account for dataset size effects</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="slicing-generalization-gap">
+<h2>Slicing Generalization Gap<a class="headerlink" href="#slicing-generalization-gap" title="Link to this heading">#</a></h2>
+<p>Slicing divides the data into subsets based on feature values, residuals, or clusters. This allows for localized analysis of model performance, helping to diagnose underfitting or overfitting in specific regions of the input space.</p>
+<p>Define local generalization gap for region <span class="math notranslate nohighlight">\(R\)</span> in feature space:</p>
+<div class="math notranslate nohighlight">
+\[\text{Gap}(R) = E[(Y - \hat{f}(X))^2 | X \in R] - \frac{1}{|R_{\text{train}}|}\sum_{i: x_i \in R} (y_i - \hat{f}(x_i))^2\]</div>
+<p>where:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(R\)</span> is a region in feature space</p></li>
+<li><p><span class="math notranslate nohighlight">\(|R_{train}|\)</span> is number of training points in <span class="math notranslate nohighlight">\(R\)</span></p></li>
+</ul>
+</div></blockquote>
+<section id="weakness-detection-methods">
+<h3>Weakness Detection Methods<a class="headerlink" href="#weakness-detection-methods" title="Link to this heading">#</a></h3>
+<section id="univariate-partitioning">
+<h4>1. Univariate Partitioning:<a class="headerlink" href="#univariate-partitioning" title="Link to this heading">#</a></h4>
+<p>For each feature j:</p>
+<div class="math notranslate nohighlight">
+\[R_j^k = \{X: q_k \leq X_j &lt; q_{k+1}\}\]</div>
+<p>where:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(q_k\)</span> are partitions (or quantiles) of feature <span class="math notranslate nohighlight">\(j\)</span></p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(Gap(R_j^k)\)</span> for each bin <span class="math notranslate nohighlight">\(k\)</span></p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="multivariate-region-detection">
+<h4>2. Multivariate Region Detection:<a class="headerlink" href="#multivariate-region-detection" title="Link to this heading">#</a></h4>
+<p>Identify high-gap multivariate regions:</p>
+<div class="math notranslate nohighlight">
+\[R_{i,j}^{k,l} = \{X: q_k \leq X_i &lt; q_{k+1}\} \cdot \{X: q_l \leq X_j &lt; q_{l+1}\}\]</div>
+<p>where:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(q_k,q_l\)</span> are partitions (or quantiles) of feature <span class="math notranslate nohighlight">\(i,j\)</span></p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(Gap(R_{i,j}^{k,l})\)</span> for each bin <span class="math notranslate nohighlight">\(k,l\)</span></p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="identifying-problematic-regions">
+<h3>Identifying Problematic Regions<a class="headerlink" href="#identifying-problematic-regions" title="Link to this heading">#</a></h3>
+<p>Flag regions where:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\text{Gap}(R) &gt; \text(Threshold) \\
+\text(Threshold) = \mu_{\text{gap}} + \beta \cdot \sigma_{\text{gap}}\end{split}\]</div>
+<p>where:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mu_\text{gap}\)</span> is mean gap across all regions</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma_\text{gap}\)</span> is standard deviation of gaps</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta\)</span> is sensitivity parameter (e.g., 1.5-2)</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="overfitting-slicing-in-modeva">
+<h2>Overfitting Slicing in MoDeVa<a class="headerlink" href="#overfitting-slicing-in-modeva" title="Link to this heading">#</a></h2>
+<p><strong>Data Setup</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">DataSet</span>
+<span class="c1"># Create dataset object holder</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">()</span>
+<span class="c1"># Loading MoDeVa pre-loaded dataset &quot;Bikesharing&quot;</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;BikeSharing&quot;</span><span class="p">)</span>  <span class="c1"># Changed dataset name</span>
+<span class="c1"># Split data into training and testing sets randomly</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_random_split</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Model Setup</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Regression tasks using lightGBM and xgboost</span>
+<span class="kn">from</span> <span class="nn">modeva.models</span> <span class="kn">import</span> <span class="n">MoLGBMRegressor</span><span class="p">,</span> <span class="n">MoXGBRegressor</span>
+
+<span class="c1"># for lightGBM</span>
+<span class="n">model_lgbm</span> <span class="o">=</span> <span class="n">MoLGBMRegressor</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;LGBM_model&quot;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="c1"># for xgboost</span>
+<span class="n">model_xgb</span> <span class="o">=</span> <span class="n">MoXGBRegressor</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;XGB_model&quot;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="c1"># for catboost</span>
+</pre></div>
+</div>
+<p><strong>Model Training</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># train model with input: ds.train_x and target: ds.train_y</span>
+<span class="n">model_lgbm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">train_x</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">train_y</span><span class="p">)</span>
+<span class="n">model_xgb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">train_x</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">train_y</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Reporting and Diagnostic Setup</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a testsuite that bundles dataset and model</span>
+<span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">TestSuite</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">TestSuite</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">model_lgbm</span><span class="p">)</span> <span class="c1"># store bundle of dataset and model in fs</span>
+<span class="c1"># overfit (gap) slicing for features = season</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_overfit</span><span class="p">(</span>
+   <span class="n">train_dataset</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span>
+   <span class="n">test_dataset</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
+   <span class="n">features</span><span class="o">=</span><span class="s2">&quot;season&quot;</span><span class="p">,</span>
+   <span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;quantile&quot;</span>
+   <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;MAE&quot;</span><span class="p">,</span>
+   <span class="n">threshold</span><span class="o">=</span><span class="mf">8.0</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">table</span>
+<span class="c1"># To visualize the results</span>
+<span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The slicing above is done using “method = quantile” binning with “threshold = 8.0”. For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_slicing_overfit.html">TestSuite.diagnose_slicing_overfit</a>.</p>
+<p><strong>Retrieving samples below threshold value</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">modeva.testsuite.utils.slicing_utils</span> <span class="kn">import</span> <span class="n">get_data_info</span>
+<span class="n">data_info</span> <span class="o">=</span> <span class="n">get_data_info</span><span class="p">(</span><span class="n">res_value</span><span class="o">=</span><span class="n">results</span><span class="o">.</span><span class="n">value</span><span class="p">)[</span><span class="s2">&quot;season&quot;</span><span class="p">]</span>
+<span class="n">data_info</span>
+</pre></div>
+</div>
+<p><strong>Comparing distribution difference between below and above threshold</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data_results</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">data_drift_test</span><span class="p">(</span>
+   <span class="o">**</span><span class="n">data_info</span><span class="p">,</span>
+   <span class="n">distance_metric</span><span class="o">=</span><span class="s2">&quot;PSI&quot;</span><span class="p">,</span>
+   <span class="n">psi_method</span><span class="o">=</span><span class="s2">&quot;uniform&quot;</span><span class="p">,</span>
+   <span class="n">psi_bins</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">data_results</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;summary&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Slicing for a Set of Features with automated binning</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_overfit</span><span class="p">(</span>
+   <span class="n">train_dataset</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span>
+   <span class="n">test_dataset</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
+   <span class="n">features</span><span class="o">=</span><span class="p">((</span><span class="s2">&quot;hr&quot;</span><span class="p">,</span> <span class="p">),</span> <span class="p">(</span><span class="s2">&quot;season&quot;</span><span class="p">,),</span> <span class="p">(</span><span class="s2">&quot;temp&quot;</span><span class="p">,</span> <span class="p">)),</span>
+   <span class="n">method</span><span class="o">=</span><span class="s2">&quot;auto-xgb1&quot;</span><span class="p">,</span>
+   <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;MAE&quot;</span><span class="p">,</span>
+   <span class="n">threshold</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">table</span>
+<span class="c1"># To visualize a single feature</span>
+<span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;hr&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>2-Feature Interaction Slicing</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_overfit</span><span class="p">(</span>
+   <span class="n">train_dataset</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span>
+   <span class="n">test_dataset</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
+   <span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;hr&quot;</span><span class="p">,</span> <span class="s2">&quot;season&quot;</span><span class="p">),</span>
+   <span class="n">method</span><span class="o">=</span><span class="s2">&quot;auto-xgb1&quot;</span><span class="p">,</span>
+   <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;MAE&quot;</span><span class="p">,</span>
+   <span class="n">threshold</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">table</span>
+</pre></div>
+</div>
+</section>
+<section id="overfit-comparison">
+<h2>Overfit Comparison<a class="headerlink" href="#overfit-comparison" title="Link to this heading">#</a></h2>
+<p>Slices of several models can be compared as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tsc</span> <span class="o">=</span> <span class="n">TestSuite</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">models</span><span class="o">=</span><span class="p">[</span><span class="n">model_lgbm</span><span class="p">,</span> <span class="n">model_xgb</span><span class="p">])</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">tsc</span><span class="o">.</span><span class="n">compare_slicing_overfit</span><span class="p">(</span>
+   <span class="n">train_dataset</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span>
+   <span class="n">test_dataset</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
+   <span class="n">features</span><span class="o">=</span><span class="s2">&quot;hr&quot;</span><span class="p">,</span>
+   <span class="n">method</span><span class="o">=</span><span class="s2">&quot;quantile&quot;</span><span class="p">,</span>
+   <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+   <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;MAE&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Check the API reference for detail arguments of <a class="reference external" href="../../modules/generated/modeva.TestSuite.compare_slicing_overfit.html">TestSuite.compare_slicing_overfit</a>.</p>
+<section id="characterization-of-weak-regions">
+<h3>Characterization of Weak Regions<a class="headerlink" href="#characterization-of-weak-regions" title="Link to this heading">#</a></h3>
+<section id="data-sparsity">
+<h4>1. Data Sparsity:<a class="headerlink" href="#data-sparsity" title="Link to this heading">#</a></h4>
+<div class="math notranslate nohighlight">
+\[\text{Density Ratio}(R) = \frac{|R_{\text{test}}|/|{\text{test}}|}{|R_{\text{train}}|/|{\text{train}}|}\]</div>
+</section>
+<section id="complexity-measure">
+<h4>2. Complexity Measure:<a class="headerlink" href="#complexity-measure" title="Link to this heading">#</a></h4>
+<div class="math notranslate nohighlight">
+\[\text{Local Complexity}(R) = \text{Var}[\hat{f}(X) | X \in R]\]</div>
+</section>
+<section id="uncertainty-assessment">
+<h4>3. Uncertainty Assessment:<a class="headerlink" href="#uncertainty-assessment" title="Link to this heading">#</a></h4>
+<div class="math notranslate nohighlight">
+\[\text{Uncertainty}(R) = \text{Std}[(Y - \hat{f}(X))^2 | X \in R]\]</div>
+</section>
+</section>
+</section>
+<section id="overfitting-and-model-robustness">
+<h2>Overfitting and Model Robustness<a class="headerlink" href="#overfitting-and-model-robustness" title="Link to this heading">#</a></h2>
+<p>MoDeVa provides robustness test capability. Robustness measures a model’s ability to maintain performance when subjected to input perturbations or noise. The detail description of the robustness test can be found in the <a class="reference external" href="../testing/robustness.html">robustness</a> testing section.</p>
+<p>The relationship between overfitting and robustness can be understood through the lens of local Lipschitz continuity:</p>
+<div class="math notranslate nohighlight">
+\[|f(x + \delta) - f(x)| \leq L||\delta|| \text{ for small } \delta\]</div>
+<section id="theoretical-framework">
+<h3>Theoretical Framework<a class="headerlink" href="#theoretical-framework" title="Link to this heading">#</a></h3>
+<section id="gradient-sensitivity">
+<h4>1. Gradient Sensitivity:<a class="headerlink" href="#gradient-sensitivity" title="Link to this heading">#</a></h4>
+<p>For an overfit model:</p>
+<div class="math notranslate nohighlight">
+\[||\nabla f(x)|| \text{ tends to be larger}
+\implies \text{Higher sensitivity to perturbations}\]</div>
+</section>
+<section id="local-curvature">
+<h4>2. Local Curvature:<a class="headerlink" href="#local-curvature" title="Link to this heading">#</a></h4>
+<div class="math notranslate nohighlight">
+\[\text{Overfitting} \rightarrow \text{Higher Local Curvature} \rightarrow \text{Larger } ||\nabla^2 f(x)||\]</div>
+</section>
+<section id="generalization-gap-connection">
+<h4>3. Generalization Gap Connection:<a class="headerlink" href="#generalization-gap-connection" title="Link to this heading">#</a></h4>
+<div class="math notranslate nohighlight">
+\[E[|f(x + \delta) - f(x)|] \approx ||\nabla f(x)|| \cdot E[||\delta||]
+\text{ correlates with gap size}\]</div>
+</section>
+</section>
+<section id="manifestations">
+<h3>Manifestations<a class="headerlink" href="#manifestations" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p>Decision Boundary Complexity:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Overfit models → Complex, wiggly boundaries</p></li>
+<li><p>More sensitive to small perturbations</p></li>
+<li><p>Higher local Lipschitz constants</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Feature Sensitivity:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Overfit models rely heavily on noise</p></li>
+<li><p>Small changes have larger effects</p></li>
+<li><p>Less stable predictions</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Neighborhood Consistency:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Robust models → Similar predictions for similar inputs</p></li>
+<li><p>Overfit models → More erratic local behavior</p></li>
+<li><p>Affects adversarial robustness</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+</section>
+</section>
+<section id="remediation-strategies-for-model-weaknesses-identified-by-gap-analysis">
+<h2>Remediation Strategies for Model Weaknesses Identified by Gap Analysis<a class="headerlink" href="#remediation-strategies-for-model-weaknesses-identified-by-gap-analysis" title="Link to this heading">#</a></h2>
+<section id="data-centric-solutions">
+<h3>Data-Centric Solutions<a class="headerlink" href="#data-centric-solutions" title="Link to this heading">#</a></h3>
+<p><strong>1. Targeted Data Collection:</strong></p>
+<p>For regions <span class="math notranslate nohighlight">\(R\)</span> with large gaps:</p>
+<div class="math notranslate nohighlight">
+\[P(X_{\text{new}} \in R) \propto \text{Gap}(R)\]</div>
+<p>Approaches:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Active learning in high-gap regions</p></li>
+<li><p>Stratified sampling based on gap size</p></li>
+<li><p>Domain expert data collection</p></li>
+</ul>
+</div></blockquote>
+<p><strong>2. Data Cleaning:</strong></p>
+<ul class="simple">
+<li><p>Remove noisy samples in high-gap regions</p></li>
+<li><p>Validate labels in problematic areas</p></li>
+<li><p>Handle outliers affecting local gaps</p></li>
+</ul>
+</section>
+<section id="feature-engineering-solutions">
+<h3>Feature Engineering Solutions<a class="headerlink" href="#feature-engineering-solutions" title="Link to this heading">#</a></h3>
+<p><strong>1. Interaction Features:</strong></p>
+<p>Create new features for high-gap regions:</p>
+<div class="math notranslate nohighlight">
+\[f_{\text{new}} = g(X_i, X_j) \text{ where } (i,j) \in \text{high-gap pairs}\]</div>
+<p><strong>2. Domain-Specific Transformations:</strong></p>
+<div class="math notranslate nohighlight">
+\[X_{\text{transformed}} = h(X) \text{ based on } \text{Gap}(R)\]</div>
+<dl class="simple">
+<dt>Examples:</dt><dd><ul class="simple">
+<li><p>Log transforms for skewed features</p></li>
+<li><p>Binning for nonlinear relationships</p></li>
+<li><p>Feature combinations based on domain knowledge</p></li>
+<li><p>Apply constrainst such as monotonicity</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>3. Feature Selection:</strong></p>
+<p>Weight features by gap reduction:</p>
+<div class="math notranslate nohighlight">
+\[w_i = -\frac{\partial \text{Gap}(R)}{\partial X_i}\]</div>
+</section>
+<section id="model-centric-approaches">
+<h3>Model-Centric Approaches<a class="headerlink" href="#model-centric-approaches" title="Link to this heading">#</a></h3>
+<p><strong>1. Select alternative modeling frameworks</strong></p>
+<p><strong>2. Local Model Enhancement:</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}f_{\text{enhanced}}(X) = \begin{cases}
+f_{\text{local}}(X) &amp; \text{if } X \in R_{\text{weak}} \\
+f_{\text{global}}(X) &amp; \text{otherwise}
+\end{cases}\end{split}\]</div>
+<p><strong>3. Ensemble Strategies (Mixture of Experts):</strong></p>
+<div class="math notranslate nohighlight">
+\[f_{\text{ensemble}}(X_i) = \sum_{k} w_{k,i}(X_i)f_k(X_i)\]</div>
+<p>where:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(w_{k,i}(X)\)</span> higher in high-gap regions</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_k\)</span> specialized for different regions</p></li>
+</ul>
+</div></blockquote>
+<p>Apply Mixture of Experts (MoE) model with proper regularization. The detail description of the MOE can be found in the <a class="reference external" href="../models/moe.html">moe</a> section.</p>
+<p><strong>4. Loss Function Adjustments</strong></p>
+<p><strong>1. L1/L2 Regularization:</strong></p>
+<p><strong>L1 Regularization (Lasso):</strong></p>
+<div class="math notranslate nohighlight">
+\[L_{\text{total}} = L_{\text{pred}} + \lambda_1 \sum_{i} |w_i|\]</div>
+<dl class="simple">
+<dt>Properties:</dt><dd><ul class="simple">
+<li><p>Promotes sparsity</p></li>
+<li><p>Helps feature selection</p></li>
+<li><p>May be too aggressive in high-sensitivity regions</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>L2 Regularization (Ridge):</strong></p>
+<div class="math notranslate nohighlight">
+\[L_{\text{total}} = L_{\text{pred}} + \lambda_2 \sum_{i} w_i^2\]</div>
+<dl class="simple">
+<dt>Properties:</dt><dd><ul class="simple">
+<li><p>Smooths decision boundaries</p></li>
+<li><p>More stable than L1</p></li>
+<li><p>Might not address local sensitivity issues</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>2. Gap-Weighted Loss:</strong></p>
+<div class="math notranslate nohighlight">
+\[L_{\text{new}}(X,y) = L_{\text{original}}(X,y) \cdot (1 + \alpha \cdot \text{LocalGap}(X))\]</div>
+<p><strong>3. Region-Specific Penalties:</strong></p>
+<div class="math notranslate nohighlight">
+\[L_{\text{total}} = L_{\text{pred}} + \lambda \sum_{R \in \text{weak}} \text{Penalty}(R)\]</div>
+</section>
+<section id="implementation-framework">
+<h3>Implementation Framework<a class="headerlink" href="#implementation-framework" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Prioritization:</p>
+<ul class="simple">
+<li><p>Rank regions by gap size</p></li>
+<li><p>Assess feasibility of each solution</p></li>
+<li><p>Consider implementation cost</p></li>
+</ul>
+</li>
+<li><p>Validation:</p>
+<ul class="simple">
+<li><p>Monitor gap reduction</p></li>
+<li><p>Check for negative side effects</p></li>
+<li><p>Validate on holdout set</p></li>
+</ul>
+</li>
+<li><p>Iteration:</p>
+<ul class="simple">
+<li><p>Start with simplest solutions</p></li>
+<li><p>Gradually add complexity</p></li>
+<li><p>Monitor impact on overall model</p></li>
+</ul>
+</li>
+</ol>
+<p>The bias-variance tradeoff highlights the balance between underfitting and overfitting. By analyzing the gap between training and testing errors and applying slicing techniques to evaluate performance across subsets, practitioners can diagnose specific issues and improve model reliability. Striking the right balance ensures optimal generalization and robust predictions for unseen data.</p>
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<aside class="topic">
+<p class="topic-title">Example 1: Bike Sharing</p>
+<blockquote>
+<div><p>The example below demonstrates how to use MoDeVa with its high-code APis for the Bike Sharing dataset from the UCI repository, which consists of 20,640 samples and 9 features, fetched by sklearn.datasets. The response variable MedHouseVal (Median Home Value) is continuous and is a regression problem.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../auto_galleries/val/2_overfitting/plot_1_slice_overfit_reg.html#sphx-glr-source-auto-galleries-val-2-overfitting-plot-1-slice-overfit-reg-py"><span class="std std-ref">Overfitting Analysis (Regression)</span></a></p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">Examples 2: Taiwan Credit</p>
+<blockquote>
+<div><p>The second example below demonstrates how to use MoDeVa’s high-code APIs for the TaiwanCredit dataset from the UCI repository. This dataset comprises the credit card details of 30,000 clients in Taiwan from April 2005 to September 2005, and more information can be found on the TaiwanCreditData website. The <cite>FlagDefault</cite> variable serves as the response for this classification problem.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../auto_galleries/val/2_overfitting/plot_0_slice_overfit_cls.html#sphx-glr-source-auto-galleries-val-2-overfitting-plot-0-slice-overfit-cls-py"><span class="std std-ref">Overfitting Analysis (Classification)</span></a></p></li>
+</ul>
+</aside>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="weakspot.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Weakness Detection</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="reliability.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Reliability</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#empirical-risk-and-generalization-gap">Empirical Risk and Generalization Gap</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#empirical-risk-decomposition">Empirical Risk Decomposition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation-from-training-and-test-errors">Estimation from Training and Test Errors</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training-error">Training Error:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#test-error">Test Error:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalization-gap">Generalization Gap</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-characterization">Overfitting Characterization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-applications">Practical Applications</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing-generalization-gap">Slicing Generalization Gap</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weakness-detection-methods">Weakness Detection Methods</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#univariate-partitioning">1. Univariate Partitioning:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#multivariate-region-detection">2. Multivariate Region Detection:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identifying-problematic-regions">Identifying Problematic Regions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-slicing-in-modeva">Overfitting Slicing in MoDeVa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overfit-comparison">Overfit Comparison</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#characterization-of-weak-regions">Characterization of Weak Regions</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#data-sparsity">1. Data Sparsity:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#complexity-measure">2. Complexity Measure:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertainty-assessment">3. Uncertainty Assessment:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-and-model-robustness">Overfitting and Model Robustness</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#theoretical-framework">Theoretical Framework</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-sensitivity">1. Gradient Sensitivity:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#local-curvature">2. Local Curvature:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#generalization-gap-connection">3. Generalization Gap Connection:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manifestations">Manifestations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remediation-strategies-for-model-weaknesses-identified-by-gap-analysis">Remediation Strategies for Model Weaknesses Identified by Gap Analysis</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-centric-solutions">Data-Centric Solutions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering-solutions">Feature Engineering Solutions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-centric-approaches">Model-Centric Approaches</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-framework">Implementation Framework</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2025, Modeva Team.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
