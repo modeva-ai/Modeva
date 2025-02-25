@@ -1,6 +1,7 @@
 .idea
 
-# Ignore all files in galleries
-galleries/*/*
-# Except .ipynb files
-!galleries/*/*.ipynb
+## Ignore all files in galleries except ipynb
+
+galleries/**
+!galleries/**/
+!galleries/**/*.ipynb
