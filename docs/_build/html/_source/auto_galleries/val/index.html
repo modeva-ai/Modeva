@@ -52,7 +52,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '_source/auto_galleries/val/index';</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Explainability" href="0_explainability/index.html" />
+    <link rel="next" title="Model Residual" href="0_residual/index.html" />
     <link rel="prev" title="Tuning with optuna (Experimental)" href="../dev/3_hpo/plot_3_optuna.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -201,26 +201,6 @@
   <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
 </button></div>
       
-        <div class="navbar-item">
-<div class="version-switcher__container dropdown pst-js-only">
-  <button id="pst-version-switcher-button-2"
-    type="button"
-    class="version-switcher__button btn btn-sm dropdown-toggle"
-    data-bs-toggle="dropdown"
-    aria-haspopup="listbox"
-    aria-controls="pst-version-switcher-list-2"
-    aria-label="Version switcher list"
-  >
-    Choose version  <!-- this text may get changed later by javascript -->
-    <span class="caret"></span>
-  </button>
-  <div id="pst-version-switcher-list-2"
-    class="version-switcher__menu dropdown-menu list-group-flush py-0"
-    role="listbox" aria-labelledby="pst-version-switcher-button-2">
-    <!-- dropdown will be populated by javascript on page load -->
-  </div>
-</div></div>
-      
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
         <li class="nav-item">
@@ -347,26 +327,6 @@
   <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
 </button></div>
         
-          <div class="navbar-item">
-<div class="version-switcher__container dropdown pst-js-only">
-  <button id="pst-version-switcher-button-3"
-    type="button"
-    class="version-switcher__button btn btn-sm dropdown-toggle"
-    data-bs-toggle="dropdown"
-    aria-haspopup="listbox"
-    aria-controls="pst-version-switcher-list-3"
-    aria-label="Version switcher list"
-  >
-    Choose version  <!-- this text may get changed later by javascript -->
-    <span class="caret"></span>
-  </button>
-  <div id="pst-version-switcher-list-3"
-    class="version-switcher__menu dropdown-menu list-group-flush py-0"
-    role="listbox" aria-labelledby="pst-version-switcher-button-3">
-    <!-- dropdown will be populated by javascript on page load -->
-  </div>
-</div></div>
-        
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
         <li class="nav-item">
@@ -408,7 +368,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../data/index.html">Dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Model Development</a></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Model Validation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="0_explainability/index.html">Explainability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="0_residual/index.html">Model Residual</a></li>
 <li class="toctree-l2"><a class="reference internal" href="1_performance/index.html">Model Performance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2_overfitting/index.html">Overfit Detection</a></li>
@@ -416,6 +375,7 @@
 <li class="toctree-l2"><a class="reference internal" href="4_resilience/index.html">Resilience Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="5_robustness/index.html">Robustness Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="6_fairness/index.html">Fairness Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7_explainability/index.html">Explainability</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../util/index.html">Utilities</a></li>
@@ -477,17 +437,7 @@
   <section id="model-validation">
 <span id="modeva-examples-validation"></span><h1>Model Validation<a class="headerlink" href="#model-validation" title="Link to this heading">#</a></h1>
 <p>Examples of validation tests in modeva.</p>
-<div class="sphx-glr-thumbnails"></div><section id="explainability">
-<h2>Explainability<a class="headerlink" href="#explainability" title="Link to this heading">#</a></h2>
-<p>Examples of modeva post-hoc explainability.</p>
-<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Global Explainability"><img alt="" src="../../../_images/sphx_glr_plot_0_global_explain_thumb.png" />
-<p><a class="reference internal" href="0_explainability/plot_0_global_explain.html#sphx-glr-source-auto-galleries-val-0-explainability-plot-0-global-explain-py"><span class="std std-ref">Global Explainability</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Global Explainability</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Local Explainability"><img alt="" src="../../../_images/sphx_glr_plot_1_local_explain_thumb.png" />
-<p><a class="reference internal" href="0_explainability/plot_1_local_explain.html#sphx-glr-source-auto-galleries-val-0-explainability-plot-1-local-explain-py"><span class="std std-ref">Local Explainability</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Local Explainability</div>
-</div></div></section>
-<section id="model-residual">
+<div class="sphx-glr-thumbnails"></div><section id="model-residual">
 <h2>Model Residual<a class="headerlink" href="#model-residual" title="Link to this heading">#</a></h2>
 <p>Examples of modeva residual analysis.</p>
 <div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Evaluate model residuals."><img alt="" src="../../../_images/sphx_glr_plot_1_residual_cls_thumb.png" />
@@ -506,11 +456,11 @@
 </div><div class="sphx-glr-thumbcontainer" tooltip="Evaluate model performance and residuals."><img alt="" src="../../../_images/sphx_glr_plot_0_accuracy_table_reg_thumb.png" />
 <p><a class="reference internal" href="1_performance/plot_0_accuracy_table_reg.html#sphx-glr-source-auto-galleries-val-1-performance-plot-0-accuracy-table-reg-py"><span class="std std-ref">Performance Metrics (Regression)</span></a></p>
   <div class="sphx-glr-thumbnail-title">Performance Metrics (Regression)</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how to analyze model performance across different data slices for classification problems using various slicing methods and metrics."><img alt="" src="../../../_images/sphx_glr_plot_2_slice_accuracy_cls_thumb.png" />
-<p><a class="reference internal" href="1_performance/plot_2_slice_accuracy_cls.html#sphx-glr-source-auto-galleries-val-1-performance-plot-2-slice-accuracy-cls-py"><span class="std std-ref">Sliced Performance (Classification)</span></a></p>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how to analyze model performance across different data slices for classification problems using various slicing methods and metrics."><img alt="" src="../../../_images/sphx_glr_plot_1_slice_accuracy_cls_thumb.png" />
+<p><a class="reference internal" href="1_performance/plot_1_slice_accuracy_cls.html#sphx-glr-source-auto-galleries-val-1-performance-plot-1-slice-accuracy-cls-py"><span class="std std-ref">Sliced Performance (Classification)</span></a></p>
   <div class="sphx-glr-thumbnail-title">Sliced Performance (Classification)</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how to analyze model performance across different data slices for regression problems using various slicing methods and metrics."><img alt="" src="../../../_images/sphx_glr_plot_2_slice_accuracy_reg_thumb.png" />
-<p><a class="reference internal" href="1_performance/plot_2_slice_accuracy_reg.html#sphx-glr-source-auto-galleries-val-1-performance-plot-2-slice-accuracy-reg-py"><span class="std std-ref">Sliced Performance (Regression)</span></a></p>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how to analyze model performance across different data slices for regression problems using various slicing methods and metrics."><img alt="" src="../../../_images/sphx_glr_plot_1_slice_accuracy_reg_thumb.png" />
+<p><a class="reference internal" href="1_performance/plot_1_slice_accuracy_reg.html#sphx-glr-source-auto-galleries-val-1-performance-plot-1-slice-accuracy-reg-py"><span class="std std-ref">Sliced Performance (Regression)</span></a></p>
   <div class="sphx-glr-thumbnail-title">Sliced Performance (Regression)</div>
 </div></div></section>
 <section id="overfit-detection">
@@ -559,6 +509,16 @@
 <div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="This example requires full licence, and the program will break if you use the trial licence."><img alt="" src="../../../_images/sphx_glr_plot_0_fairness_cls_thumb.png" />
 <p><a class="reference internal" href="6_fairness/plot_0_fairness_cls.html#sphx-glr-source-auto-galleries-val-6-fairness-plot-0-fairness-cls-py"><span class="std std-ref">Model Fairness Analysis (Classification)</span></a></p>
   <div class="sphx-glr-thumbnail-title">Model Fairness Analysis (Classification)</div>
+</div></div></section>
+<section id="explainability">
+<h2>Explainability<a class="headerlink" href="#explainability" title="Link to this heading">#</a></h2>
+<p>Examples of modeva post-hoc explainability.</p>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Global Explainability"><img alt="" src="../../../_images/sphx_glr_plot_0_global_explain_thumb.png" />
+<p><a class="reference internal" href="7_explainability/plot_0_global_explain.html#sphx-glr-source-auto-galleries-val-7-explainability-plot-0-global-explain-py"><span class="std std-ref">Global Explainability</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Global Explainability</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Local Explainability"><img alt="" src="../../../_images/sphx_glr_plot_1_local_explain_thumb.png" />
+<p><a class="reference internal" href="7_explainability/plot_1_local_explain.html#sphx-glr-source-auto-galleries-val-7-explainability-plot-1-local-explain-py"><span class="std std-ref">Local Explainability</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Local Explainability</div>
 </div></div><div class="toctree-wrapper compound">
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -585,11 +545,11 @@
       </div>
     </a>
     <a class="right-next"
-       href="0_explainability/index.html"
+       href="0_residual/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Explainability</p>
+        <p class="prev-next-title">Model Residual</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -612,7 +572,6 @@
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explainability">Explainability</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-residual">Model Residual</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-performance">Model Performance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overfit-detection">Overfit Detection</a></li>
@@ -620,6 +579,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resilience-analysis">Resilience Analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#robustness-analysis">Robustness Analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fairness-analysis">Fairness Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explainability">Explainability</a></li>
 </ul>
   </nav></div>
 

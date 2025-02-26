@@ -201,26 +201,6 @@
   <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
 </button></div>
       
-        <div class="navbar-item">
-<div class="version-switcher__container dropdown pst-js-only">
-  <button id="pst-version-switcher-button-2"
-    type="button"
-    class="version-switcher__button btn btn-sm dropdown-toggle"
-    data-bs-toggle="dropdown"
-    aria-haspopup="listbox"
-    aria-controls="pst-version-switcher-list-2"
-    aria-label="Version switcher list"
-  >
-    Choose version  <!-- this text may get changed later by javascript -->
-    <span class="caret"></span>
-  </button>
-  <div id="pst-version-switcher-list-2"
-    class="version-switcher__menu dropdown-menu list-group-flush py-0"
-    role="listbox" aria-labelledby="pst-version-switcher-button-2">
-    <!-- dropdown will be populated by javascript on page load -->
-  </div>
-</div></div>
-      
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
         <li class="nav-item">
@@ -346,26 +326,6 @@
   <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
   <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
 </button></div>
-        
-          <div class="navbar-item">
-<div class="version-switcher__container dropdown pst-js-only">
-  <button id="pst-version-switcher-button-3"
-    type="button"
-    class="version-switcher__button btn btn-sm dropdown-toggle"
-    data-bs-toggle="dropdown"
-    aria-haspopup="listbox"
-    aria-controls="pst-version-switcher-list-3"
-    aria-label="Version switcher list"
-  >
-    Choose version  <!-- this text may get changed later by javascript -->
-    <span class="caret"></span>
-  </button>
-  <div id="pst-version-switcher-list-3"
-    class="version-switcher__menu dropdown-menu list-group-flush py-0"
-    role="listbox" aria-labelledby="pst-version-switcher-button-3">
-    <!-- dropdown will be populated by javascript on page load -->
-  </div>
-</div></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -542,15 +502,15 @@
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>testsuite_name</strong> (<em>str</em>) – The testsuite to display.</p></li>
-<li><p><strong>test_list</strong> (<em>list</em>) – <p>The content list of test.
-eg: [{‘name’: ‘test1’, ‘run_id’: ‘xxx’, ‘display_table’: True, ‘display_plot’: True},</p>
-<blockquote>
-<div><p>{‘name’: ‘test2’, ‘display_table’: True, ‘display_plot’: False}]</p>
-</div></blockquote>
-<dl class="simple">
-<dt>or</dt><dd><p>[‘test1’, ‘test2’]</p>
-</dd>
-</dl>
+<li><p><strong>test_list</strong> (<em>list</em>) – <p>The content list of test, e.g.,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;test1&#39;</span><span class="p">,</span> <span class="s1">&#39;run_id&#39;</span><span class="p">:</span> <span class="s1">&#39;xxx&#39;</span><span class="p">,</span> <span class="s1">&#39;display_table&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;display_plot&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+ <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;test2&#39;</span><span class="p">,</span> <span class="s1">&#39;display_table&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;display_plot&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}]</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;test1&#39;</span><span class="p">,</span> <span class="s1">&#39;test2&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
 </p></li>
 </ul>
 </dd>

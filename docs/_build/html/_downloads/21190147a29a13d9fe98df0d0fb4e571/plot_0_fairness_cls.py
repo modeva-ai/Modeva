@@ -60,7 +60,8 @@ group_config = {
     "Gender-Male": {"feature": "SEX", "protected": 2.0, "reference": 1.0},
     "Gender-Female": {"feature": "SEX", "protected": 1.0, "reference": 2.0},
     "MARRIAGE": {"feature": "MARRIAGE", "protected": 2.0, "reference": 1.0},
-    "AGE": {"feature": "AGE", "protected": {"lower": 60, "lower_inclusive": True}, "reference": {"upper": 60, "upper_inclusive": False}}
+    "AGE": {"feature": "AGE", "protected": {"lower": 60, "lower_inclusive": True},
+            "reference": {"upper": 60, "upper_inclusive": False}}
 }
 
 # %%
@@ -86,7 +87,7 @@ data_results.plot(name="summary")
 # Single feature slicing
 results = ts.diagnose_slicing_fairness(features="PAY_1",
                                        group_config=group_config,
-                                       dataset="train",
+                                       dataset="test",
                                        metric="AIR")
 results.plot()
 
@@ -94,16 +95,16 @@ results.plot()
 # Bivariate features slicing
 results = ts.diagnose_slicing_fairness(features=("PAY_1", "BILL_AMT1"),
                                        group_config=group_config,
-                                       dataset="train",
+                                       dataset="test",
                                        metric="AIR",
                                        threshold=0.9)
-results.plot("Gender-Male")
+results.plot(name="Gender-Male")
 
 # %% 
 # Batch mode single feature slicing
 results = ts.diagnose_slicing_fairness(features=(("BILL_AMT1",), ("BILL_AMT2",), ("BILL_AMT3",)),
                                        group_config=group_config,
-                                       dataset="train",
+                                       dataset="test",
                                        metric="AIR",
                                        method="auto-xgb1", bins=5)
 results.table["Gender-Male"]
@@ -112,7 +113,7 @@ results.table["Gender-Male"]
 # Batch mode 1D Slicing (all features by setting features=None)
 results = ts.diagnose_slicing_fairness(features=None,
                                        group_config=group_config,
-                                       dataset="train",
+                                       dataset="test",
                                        metric="AIR",
                                        method="auto-xgb1", bins=5)
 results.table["Gender-Male"]
@@ -121,7 +122,9 @@ results.table["Gender-Male"]
 # Fairness comparison
 # ----------------------------------------------------------
 tsc = TestSuite(ds, models=[model1, model2])
-results = tsc.compare_fairness(group_config=group_config, metric="AIR", threshold=0.8)
+results = tsc.compare_fairness(group_config=group_config,
+                               metric="AIR",
+                               threshold=0.8)
 results.plot()
 
 # %%
@@ -129,9 +132,9 @@ results.plot()
 result = tsc.compare_slicing_fairness(features="BILL_AMT1",
                                       group_config=group_config,
                                       favorable_label=1,
-                                      dataset="train",
+                                      dataset="test",
                                       metric="AIR")
-result.table["MoXGBClassifier"]["Gender-Male"]
+result.table["Gender-Male"]
 
 # %%
 # Unfairness mitigation
@@ -139,17 +142,19 @@ result.table["MoXGBClassifier"]["Gender-Male"]
 # By adjusting threshold of predict proba
 result = ts.diagnose_mitigate_unfair_thresholding(group_config=group_config,
                                                   favorable_label=1,
-                                                  dataset="train",
+                                                  dataset="test",
                                                   metric="AIR",
-                                                  performance_metric="ACC",
+                                                  performance_metric="AUC",
                                                   proba_cutoff=30)
-result.table
+result.plot("Gender-Male", figsize=(8, 5))
 
 # %%
 # By binning features
-result = ts.diagnose_mitigate_unfair_thresholding(group_config=group_config,
-                                                  favorable_label=1,
-                                                  dataset="train",
-                                                  metric="AIR",
-                                                  proba_cutoff=(0.1, 0.5, 0.9))
-result.table
+result = ts.diagnose_mitigate_unfair_binning(group_config=group_config,
+                                             favorable_label=1,
+                                             dataset="test",
+                                             metric="AIR",
+                                             performance_metric="AUC",
+                                             binning_method='uniform',
+                                             bins=10)
+result.plot("Gender-Male")

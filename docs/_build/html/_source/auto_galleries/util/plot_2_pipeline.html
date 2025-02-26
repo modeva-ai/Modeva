@@ -201,26 +201,6 @@
   <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
 </button></div>
       
-        <div class="navbar-item">
-<div class="version-switcher__container dropdown pst-js-only">
-  <button id="pst-version-switcher-button-2"
-    type="button"
-    class="version-switcher__button btn btn-sm dropdown-toggle"
-    data-bs-toggle="dropdown"
-    aria-haspopup="listbox"
-    aria-controls="pst-version-switcher-list-2"
-    aria-label="Version switcher list"
-  >
-    Choose version  <!-- this text may get changed later by javascript -->
-    <span class="caret"></span>
-  </button>
-  <div id="pst-version-switcher-list-2"
-    class="version-switcher__menu dropdown-menu list-group-flush py-0"
-    role="listbox" aria-labelledby="pst-version-switcher-button-2">
-    <!-- dropdown will be populated by javascript on page load -->
-  </div>
-</div></div>
-      
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
         <li class="nav-item">
@@ -346,26 +326,6 @@
   <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
   <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
 </button></div>
-        
-          <div class="navbar-item">
-<div class="version-switcher__container dropdown pst-js-only">
-  <button id="pst-version-switcher-button-3"
-    type="button"
-    class="version-switcher__button btn btn-sm dropdown-toggle"
-    data-bs-toggle="dropdown"
-    aria-haspopup="listbox"
-    aria-controls="pst-version-switcher-list-3"
-    aria-label="Version switcher list"
-  >
-    Choose version  <!-- this text may get changed later by javascript -->
-    <span class="caret"></span>
-  </button>
-  <div id="pst-version-switcher-list-3"
-    class="version-switcher__menu dropdown-menu list-group-flush py-0"
-    role="listbox" aria-labelledby="pst-version-switcher-button-3">
-    <!-- dropdown will be populated by javascript on page load -->
-  </div>
-</div></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -504,7 +464,7 @@ train models, and evaluate their performance using a pipeline.</p>
 <p>Import required modules</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">DataSet</span>
 <span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">TestSuite</span>
-<span class="kn">from</span> <span class="nn">modeva.models</span> <span class="kn">import</span> <a href="https://scikit-learn.org/stable/modules/generated/sklearn.base.ClassifierMixin.html#sklearn.base.ClassifierMixin" title="sklearn.base.ClassifierMixin" class="sphx-glr-backref-module-sklearn-base sphx-glr-backref-type-py-class"><span class="n">MoLGBMClassifier</span></a>
+<span class="kn">from</span> <span class="nn">modeva.models</span> <span class="kn">import</span> <span class="n">MoLGBMClassifier</span>
 <span class="kn">from</span> <span class="nn">modeva.automation.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
 </pre></div>
 </div>
@@ -524,10 +484,10 @@ train models, and evaluate their performance using a pipeline.</p>
     <span class="k">return</span> <span class="n">ds</span>
 
 <span class="k">def</span> <span class="nf">train_model</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
-    <span class="n">model</span> <span class="o">=</span> <a href="https://scikit-learn.org/stable/modules/generated/sklearn.base.ClassifierMixin.html#sklearn.base.ClassifierMixin" title="sklearn.base.ClassifierMixin" class="sphx-glr-backref-module-sklearn-base sphx-glr-backref-type-py-class"><span class="n">MoLGBMClassifier</span></a><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;LGBM&quot;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">MoLGBMClassifier</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;LGBM&quot;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">train_x</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">train_y</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
 
-    <span class="n">model_tuned</span> <span class="o">=</span> <a href="https://scikit-learn.org/stable/modules/generated/sklearn.base.ClassifierMixin.html#sklearn.base.ClassifierMixin" title="sklearn.base.ClassifierMixin" class="sphx-glr-backref-module-sklearn-base sphx-glr-backref-type-py-class"><span class="n">MoLGBMClassifier</span></a><span class="p">(</span><span class="n">eta</span><span class="o">=</span><span class="mf">0.928576</span><span class="p">,</span>
+    <span class="n">model_tuned</span> <span class="o">=</span> <span class="n">MoLGBMClassifier</span><span class="p">(</span><span class="n">eta</span><span class="o">=</span><span class="mf">0.928576</span><span class="p">,</span>
                                    <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
                                    <span class="n">linear_tree</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                                    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;LGMB-Tuned&quot;</span><span class="p">,</span>
@@ -594,7 +554,7 @@ Executing step: test_model
 <section id="save-the-pipeline-results-optional">
 <h2>Save the pipeline results (optional)<a class="headerlink" href="#save-the-pipeline-results-optional" title="Link to this heading">#</a></h2>
 <p>p.save()</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 6.469 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 6.020 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-source-auto-galleries-util-plot-2-pipeline-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/d60fb65c85fef5faf61ff4491ab54359/plot_2_pipeline.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_2_pipeline.ipynb</span></code></a></p>

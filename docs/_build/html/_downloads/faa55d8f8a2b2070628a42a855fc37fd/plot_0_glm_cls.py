@@ -52,12 +52,29 @@ results = ts.interpret_coef(features=("PAY_1", "PAY_2", "PAY_3", "EDUCATION", "S
 results.plot()
 
 # %%
-# Local feature importance analysis
+# Feature importance
 # ----------------------------------------------------------
-results = ts.interpret_local_fi(dataset="train", sample_index=15, centered=True)
+results = ts.interpret_fi()
 results.plot()
 
 # %%
-# Another sample in test set
-results = ts.interpret_local_linear_fi(dataset="test", sample_index=15, centered=True)
+# Main effect plot
+# ----------------------------------------------------------
+results = ts.interpret_effects(features="PAY_1")
+results.plot()
+
+# %%
+# Local feature importance analysis
+# ----------------------------------------------------------
+results = ts.interpret_local_fi(dataset="train",
+                                sample_index=15,
+                                centered=True)
+results.plot()
+
+# %%
+# Local feature importance with linear coefficients
+# ----------------------------------------------------------
+results = ts.interpret_local_linear_fi(dataset="test",
+                                       sample_index=15,
+                                       centered=True)
 results.plot()

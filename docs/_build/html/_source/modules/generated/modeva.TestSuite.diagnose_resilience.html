@@ -201,26 +201,6 @@
   <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
 </button></div>
       
-        <div class="navbar-item">
-<div class="version-switcher__container dropdown pst-js-only">
-  <button id="pst-version-switcher-button-2"
-    type="button"
-    class="version-switcher__button btn btn-sm dropdown-toggle"
-    data-bs-toggle="dropdown"
-    aria-haspopup="listbox"
-    aria-controls="pst-version-switcher-list-2"
-    aria-label="Version switcher list"
-  >
-    Choose version  <!-- this text may get changed later by javascript -->
-    <span class="caret"></span>
-  </button>
-  <div id="pst-version-switcher-list-2"
-    class="version-switcher__menu dropdown-menu list-group-flush py-0"
-    role="listbox" aria-labelledby="pst-version-switcher-button-2">
-    <!-- dropdown will be populated by javascript on page load -->
-  </div>
-</div></div>
-      
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
         <li class="nav-item">
@@ -346,26 +326,6 @@
   <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
   <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
 </button></div>
-        
-          <div class="navbar-item">
-<div class="version-switcher__container dropdown pst-js-only">
-  <button id="pst-version-switcher-button-3"
-    type="button"
-    class="version-switcher__button btn btn-sm dropdown-toggle"
-    data-bs-toggle="dropdown"
-    aria-haspopup="listbox"
-    aria-controls="pst-version-switcher-list-3"
-    aria-label="Version switcher list"
-  >
-    Choose version  <!-- this text may get changed later by javascript -->
-    <span class="caret"></span>
-  </button>
-  <div id="pst-version-switcher-list-3"
-    class="version-switcher__menu dropdown-menu list-group-flush py-0"
-    role="listbox" aria-labelledby="pst-version-switcher-button-3">
-    <!-- dropdown will be populated by javascript on page load -->
-  </div>
-</div></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -536,7 +496,7 @@
 <h1>modeva.TestSuite.diagnose_resilience<a class="headerlink" href="#modeva-testsuite-diagnose-resilience" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="modeva.TestSuite.diagnose_resilience">
-<span class="sig-prename descclassname"><span class="pre">TestSuite.</span></span><span class="sig-name descname"><span class="pre">diagnose_resilience</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'test'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'worst-sample'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_clusters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.TestSuite.diagnose_resilience" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">TestSuite.</span></span><span class="sig-name descname"><span class="pre">diagnose_resilience</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'test'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'worst-sample'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphas</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_clusters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.TestSuite.diagnose_resilience" title="Link to this definition">#</a></dt>
 <dd><p>Evaluate model resilience by analyzing performance on challenging data subsets.</p>
 <p>This method assesses how well the model maintains its performance when faced with
 increasingly difficult or anomalous samples. It helps identify potential vulnerabilities
@@ -559,6 +519,8 @@ and understand the model’s behavior under stress conditions.</p>
 <li><p>For regression (default=”MSE”): “MSE”, “MAE”, and “R2”</p></li>
 </ul>
 </p></li>
+<li><p><strong>alphas</strong> (<em>tuple</em><em> of </em><em>float</em><em>, </em><em>default=None</em>) – Fraction of worst ratios within (0, 1].
+If None, it defaults to (0.1, 0.2, 0.3, …, 0.9, 1.0).</p></li>
 <li><p><strong>n_clusters</strong> (<em>int</em><em>, </em><em>default=10</em>) – Number of clusters for the “worst-cluster” method. Ignored for other methods.</p></li>
 <li><p><strong>random_state</strong> (<em>int</em><em>, </em><em>default=0</em>) – Random seed for reproducibility.</p></li>
 </ul>
@@ -586,34 +548,13 @@ and understand the model’s behavior under stress conditions.</p>
 </ul>
 </div></blockquote>
 </li>
-<li><dl>
-<dt>value: Dictionary with scores for different fractions of worst samples (0.1 to 1.0)</dt><dd><blockquote>
-<div><p>and corresponding sample indices</p>
-</div></blockquote>
-<ul>
-<li><p>”data_info”: The sample indices of reliable/unreliable samples, which can be further used for data distribution test, e.g.,</p>
-<blockquote>
-<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data_results</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">data_drift_test</span><span class="p">(</span><span class="o">**</span><span class="n">results</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="s2">&quot;data_info&quot;</span><span class="p">])</span>
-<span class="n">data_results</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;summary&quot;</span><span class="p">)</span>
-<span class="n">data_results</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="s2">&quot;density&quot;</span><span class="p">,</span> <span class="s2">&quot;MedInc&quot;</span><span class="p">))</span>
-</pre></div>
-</div>
-</div></blockquote>
-</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><p>ValidationResult</p>
-<ul class="simple">
 <li><p>table: DataFrame showing performance scores across different fractions</p></li>
 <li><p>options: Dictionary of visualizations configuration for a line plot where x-axis is the worst fractions (0 to 1), and y-axis is performance metric. Run <cite>results.plot()</cite> to show this plot.</p></li>
 </ul>
 </p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="modeva.utils.results.ValidationResult.html#modeva.utils.results.ValidationResult" title="modeva.utils.results.ValidationResult">ValidationResult</a></p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>

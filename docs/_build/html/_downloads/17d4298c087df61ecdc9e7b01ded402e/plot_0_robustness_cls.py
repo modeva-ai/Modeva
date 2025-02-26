@@ -82,6 +82,10 @@ data_results = ds.data_drift_test(**data_info,
 data_results.plot("summary")
 
 # %%
+# Single feature density plot
+data_results.plot(("density", "PAY_1"))
+
+# %%
 # Bivariate feature slicing
 results = ts.diagnose_slicing_robustness(features=("PAY_1", "PAY_2"),
                                          perturb_features=("PAY_1", "EDUCATION",),

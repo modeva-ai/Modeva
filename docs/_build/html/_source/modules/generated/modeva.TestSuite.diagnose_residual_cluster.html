@@ -201,26 +201,6 @@
   <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
 </button></div>
       
-        <div class="navbar-item">
-<div class="version-switcher__container dropdown pst-js-only">
-  <button id="pst-version-switcher-button-2"
-    type="button"
-    class="version-switcher__button btn btn-sm dropdown-toggle"
-    data-bs-toggle="dropdown"
-    aria-haspopup="listbox"
-    aria-controls="pst-version-switcher-list-2"
-    aria-label="Version switcher list"
-  >
-    Choose version  <!-- this text may get changed later by javascript -->
-    <span class="caret"></span>
-  </button>
-  <div id="pst-version-switcher-list-2"
-    class="version-switcher__menu dropdown-menu list-group-flush py-0"
-    role="listbox" aria-labelledby="pst-version-switcher-button-2">
-    <!-- dropdown will be populated by javascript on page load -->
-  </div>
-</div></div>
-      
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
         <li class="nav-item">
@@ -346,26 +326,6 @@
   <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
   <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
 </button></div>
-        
-          <div class="navbar-item">
-<div class="version-switcher__container dropdown pst-js-only">
-  <button id="pst-version-switcher-button-3"
-    type="button"
-    class="version-switcher__button btn btn-sm dropdown-toggle"
-    data-bs-toggle="dropdown"
-    aria-haspopup="listbox"
-    aria-controls="pst-version-switcher-list-3"
-    aria-label="Version switcher list"
-  >
-    Choose version  <!-- this text may get changed later by javascript -->
-    <span class="caret"></span>
-  </button>
-  <div id="pst-version-switcher-list-3"
-    class="version-switcher__menu dropdown-menu list-group-flush py-0"
-    role="listbox" aria-labelledby="pst-version-switcher-button-3">
-    <!-- dropdown will be populated by javascript on page load -->
-  </div>
-</div></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -599,11 +559,9 @@ Only used as response_type=”pi_width”.</p></li>
 <li><p>data: Name of the dataset used</p></li>
 <li><p>model: Name of the model used</p></li>
 <li><p>inputs: Input parameters used for the test</p></li>
-<li><dl>
-<dt>value: Dict with clustering results including feature importance, embeddings,</dt><dd><blockquote>
-<div><p>and per-cluster performance</p>
-</div></blockquote>
-<ul>
+<li><p>value: Dict with clustering results including feature importance, embeddings, and per-cluster performance</p>
+<blockquote>
+<div><ul>
 <li><p>”feature_importance”: residual feature importance by random forest</p></li>
 <li><p>”cluster_labels”: cluster labels of each sample</p></li>
 <li><p>”clusters”: Nested dict containing the detailed information about each cluster, the i-th cluster can be accessed via its cluster id, i.e., <cite>results.value[“cluster”][i]</cite>, which includes items:</p>
@@ -620,8 +578,7 @@ Only used as response_type=”pi_width”.</p></li>
 </div></blockquote>
 </li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 </li>
 <li><p>table: DataFrame with performance metrics for each cluster</p></li>
 <li><p>options: Dictionary of visualizations configuration. Run <cite>results.plot(name=xxx)</cite> to show all plots; Run <cite>results.plot(name=xxx)</cite> to display one preferred plot; and the following names are available:</p>
