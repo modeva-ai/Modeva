@@ -42,7 +42,8 @@ ds.preprocess()
 # ----------------------------------------------------------
 model = MoElasticNet(name="GLM",
                      feature_names=ds.feature_names,
-                     feature_types=ds.feature_types)
+                     feature_types=ds.feature_types,
+                     alpha=0.01)
 model.fit(ds.train_x, ds.train_y)
 
 # %%
@@ -59,13 +60,29 @@ results = ts.interpret_coef(features=("season", "yr", "workingday", "weathersit"
 results.plot()
 
 # %%
+# Feature importance
+# ----------------------------------------------------------
+results = ts.interpret_fi()
+results.plot()
+
+# %%
+# Main effect plot
+# ----------------------------------------------------------
+results = ts.interpret_effects(features="hr")
+results.plot()
+
+# %%
 # Local feature importance analysis
 # ----------------------------------------------------------
-results = ts.interpret_local_fi(dataset="train", sample_index=15, centered=True)
+results = ts.interpret_local_fi(dataset="train",
+                                sample_index=15,
+                                centered=True)
 results.plot()
 
 # %%
 # Local feature importance with linear coefficients
 # ----------------------------------------------------------
-results = ts.interpret_local_linear_fi(dataset="train", sample_index=15, centered=True)
+results = ts.interpret_local_linear_fi(dataset="train",
+                                       sample_index=15,
+                                       centered=True)
 results.plot()

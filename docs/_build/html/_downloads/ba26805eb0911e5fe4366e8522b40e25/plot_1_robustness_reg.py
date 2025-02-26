@@ -126,6 +126,10 @@ data_results = ds.data_drift_test(
 data_results.plot("summary")
 
 # %%
+# Single feature density plot
+data_results.plot(("density", "hr"))
+
+# %%
 # Model robustness comparison
 # ----------------------------------------------------------
 tsc = TestSuite(ds, models=[model1, model2])

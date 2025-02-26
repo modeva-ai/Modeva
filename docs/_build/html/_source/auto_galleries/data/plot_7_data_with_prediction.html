@@ -1,0 +1,1814 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Data with Model Predictions &#8212; Modeva  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=578d8e15" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/hide_links.css?v=60d22a59" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=23db8a6b" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_source/auto_galleries/data/plot_7_data_with_prediction';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Dealing with Extra Data Sets" href="plot_8_extra_data.html" />
+    <link rel="prev" title="Outlier Detection" href="plot_6_outlier_detection.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.5" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.jpg" class="logo__image only-light" alt=""/>
+    <img src="../../../_static/logo.jpg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Modeva-AI</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Galleries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Dataset</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="plot_0_data_operations.html">Basic Dataset Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_1_eda.html">Exploratory Data Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_2_feature_selection.html">Feature Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_3_feature_engineering.html">Data Processing and Feature Engineering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_4_subsampling.html">Subsampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_5_drift_test.html">Data Drift Test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_6_outlier_detection.html">Outlier Detection</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Data with Model Predictions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_8_extra_data.html">Dealing with Extra Data Sets</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Model Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../val/index.html">Model Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util/index.html">Utilities</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../galleries.html" class="nav-link">Example Galleries</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Dataset</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Data with Model Predictions</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-source-auto-galleries-data-plot-7-data-with-prediction-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="data-with-model-predictions">
+<span id="sphx-glr-source-auto-galleries-data-plot-7-data-with-prediction-py"></span><h1>Data with Model Predictions<a class="headerlink" href="#data-with-model-predictions" title="Link to this heading">#</a></h1>
+<div style="margin: 0 0;">
+    <a href="https://colab.research.google.com/github/modeva-ai/Modeva/blob/docs/galleries/data/plot_7_data_with_prediction.ipynb" target="_blank" style="text-decoration: none;">
+        <button style="background-color: white; border: none; color: black; padding: 0px 0px;
+                       text-align: center; text-decoration: none; display: inline-block; font-size: 20px;
+                       margin: 0px 0px 10px 0px; cursor: pointer; border-radius: 0px;">
+            <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Colab Logo" style="height: 30px; vertical-align: middle;">
+        </button>
+    </a>
+</div><p>This example requires full licence, and the program will break if you use the trial licence.</p>
+<p>Installation</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># To install the required package, use the following command:</span>
+<span class="c1"># pip install modeva</span>
+</pre></div>
+</div>
+<p>Authentication</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># To get authentication, use the following command: (To get full access please replace the token to your own token)</span>
+<span class="c1"># from modeva.utils.authenticate import authenticate</span>
+<span class="c1"># authenticate(token=&#39;eaaa4301-b140-484c-8e93-f9f633c8bacb&#39;)</span>
+</pre></div>
+</div>
+<p>Import modeva modules</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">DataSet</span>
+<span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">TestSuite</span>
+<span class="kn">from</span> <span class="nn">modeva.models</span> <span class="kn">import</span> <span class="n">MoXGBRegressor</span>
+<span class="kn">from</span> <span class="nn">modeva.models</span> <span class="kn">import</span> <span class="n">MoScoredRegressor</span>
+</pre></div>
+</div>
+<p>Load data</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">()</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;BikeSharing&quot;</span><span class="p">)</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_random_split</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Fit a XGB model</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">MoXGBRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">train_x</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">train_y</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<style>#sk-container-id-1 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: black;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-1 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-1 pre {
+  padding: 0;
+}
+
+#sk-container-id-1 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-1 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-1 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-1 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-1 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-1 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-1 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-1 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-1 label.sk-toggleable__label {
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-1 div.sk-toggleable__content {
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  max-height: 200px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label label.sk-toggleable__label,
+#sk-container-id-1 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-1 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-1 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-1 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-1 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 1ex;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-1 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-1 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>MoXGBRegressor(base_score=None, booster=None, callbacks=None,
+               colsample_bylevel=None, colsample_bynode=None,
+               colsample_bytree=None, device=None, early_stopping_rounds=None,
+               enable_categorical=False, eval_metric=None, feature_types=None,
+               gamma=None, grow_policy=None, importance_type=None,
+               interaction_constraints=None, learning_rate=None, max_bin=None,
+               max_cat_threshold=None, max_cat_to_onehot=None,
+               max_delta_step=None, max_depth=2, max_leaves=None,
+               min_child_weight=None, missing=nan, monotone_constraints=None,
+               multi_strategy=None, n_estimators=None, n_jobs=None,
+               num_parallel_tree=None, objective=&#x27;reg:squarederror&#x27;, ...)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;MoXGBRegressor<span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>MoXGBRegressor(base_score=None, booster=None, callbacks=None,
+               colsample_bylevel=None, colsample_bynode=None,
+               colsample_bytree=None, device=None, early_stopping_rounds=None,
+               enable_categorical=False, eval_metric=None, feature_types=None,
+               gamma=None, grow_policy=None, importance_type=None,
+               interaction_constraints=None, learning_rate=None, max_bin=None,
+               max_cat_threshold=None, max_cat_to_onehot=None,
+               max_delta_step=None, max_depth=2, max_leaves=None,
+               min_child_weight=None, missing=nan, monotone_constraints=None,
+               multi_strategy=None, n_estimators=None, n_jobs=None,
+               num_parallel_tree=None, objective=&#x27;reg:squarederror&#x27;, ...)</pre></div> </div></div></div></div>
+</div>
+<br />
+<br /><p>Get XGB predictions and combine it to original dataframe</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">to_df</span><span class="p">()</span>
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;prediction&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>season</th>
+      <th>yr</th>
+      <th>mnth</th>
+      <th>hr</th>
+      <th>holiday</th>
+      <th>weekday</th>
+      <th>workingday</th>
+      <th>weathersit</th>
+      <th>temp</th>
+      <th>atemp</th>
+      <th>hum</th>
+      <th>windspeed</th>
+      <th>cnt</th>
+      <th>prediction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>6</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0.24</td>
+      <td>0.2879</td>
+      <td>0.81</td>
+      <td>0.0000</td>
+      <td>16</td>
+      <td>36.931103</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>6</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0.22</td>
+      <td>0.2727</td>
+      <td>0.80</td>
+      <td>0.0000</td>
+      <td>40</td>
+      <td>-1.341274</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>0</td>
+      <td>6</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0.22</td>
+      <td>0.2727</td>
+      <td>0.80</td>
+      <td>0.0000</td>
+      <td>32</td>
+      <td>-26.962809</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>3</td>
+      <td>0</td>
+      <td>6</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0.24</td>
+      <td>0.2879</td>
+      <td>0.75</td>
+      <td>0.0000</td>
+      <td>13</td>
+      <td>-72.667824</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>4</td>
+      <td>0</td>
+      <td>6</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0.24</td>
+      <td>0.2879</td>
+      <td>0.75</td>
+      <td>0.0000</td>
+      <td>1</td>
+      <td>-72.667824</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>17374</th>
+      <td>1</td>
+      <td>1</td>
+      <td>12</td>
+      <td>19</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>0.26</td>
+      <td>0.2576</td>
+      <td>0.60</td>
+      <td>0.1642</td>
+      <td>119</td>
+      <td>237.800262</td>
+    </tr>
+    <tr>
+      <th>17375</th>
+      <td>1</td>
+      <td>1</td>
+      <td>12</td>
+      <td>20</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>0.26</td>
+      <td>0.2576</td>
+      <td>0.60</td>
+      <td>0.1642</td>
+      <td>89</td>
+      <td>137.656616</td>
+    </tr>
+    <tr>
+      <th>17376</th>
+      <td>1</td>
+      <td>1</td>
+      <td>12</td>
+      <td>21</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0.26</td>
+      <td>0.2576</td>
+      <td>0.60</td>
+      <td>0.1642</td>
+      <td>90</td>
+      <td>93.125214</td>
+    </tr>
+    <tr>
+      <th>17377</th>
+      <td>1</td>
+      <td>1</td>
+      <td>12</td>
+      <td>22</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0.26</td>
+      <td>0.2727</td>
+      <td>0.56</td>
+      <td>0.1343</td>
+      <td>61</td>
+      <td>57.753876</td>
+    </tr>
+    <tr>
+      <th>17378</th>
+      <td>1</td>
+      <td>1</td>
+      <td>12</td>
+      <td>23</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0.26</td>
+      <td>0.2727</td>
+      <td>0.65</td>
+      <td>0.1343</td>
+      <td>49</td>
+      <td>26.636641</td>
+    </tr>
+  </tbody>
+</table>
+<p>17379 rows × 14 columns</p>
+</div>
+</div>
+<br />
+<br /><p>Next, we will use this combined data to do model validation</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">new_ds</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;scored-test-demo&quot;</span><span class="p">)</span>
+<span class="n">new_ds</span><span class="o">.</span><span class="n">load_dataframe</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">new_ds</span><span class="o">.</span><span class="n">set_train_idx</span><span class="p">(</span><span class="n">train_idx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">train_idx</span><span class="p">))</span>
+<span class="n">new_ds</span><span class="o">.</span><span class="n">set_test_idx</span><span class="p">(</span><span class="n">test_idx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">test_idx</span><span class="p">))</span>
+<span class="n">new_ds</span><span class="o">.</span><span class="n">set_target</span><span class="p">(</span><span class="n">feature</span><span class="o">=</span><span class="s2">&quot;cnt&quot;</span><span class="p">)</span>
+<span class="n">new_ds</span><span class="o">.</span><span class="n">set_prediction</span><span class="p">(</span><span class="n">feature</span><span class="o">=</span><span class="s2">&quot;prediction&quot;</span><span class="p">)</span>
+<span class="n">new_ds</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">override</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Reload the model (optional)</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">reload_ds</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;scored-test-demo&quot;</span><span class="p">)</span>
+<span class="n">reload_ds</span><span class="o">.</span><span class="n">load_registered_data</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;scored-test-demo&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Run tests without the model object, note that the robustness test is not available for scored model</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">MoScoredRegressor</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="n">new_ds</span><span class="p">)</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">TestSuite</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Run accuracy test without the model object</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_accuracy_table</span><span class="p">()</span>
+<span class="n">results</span><span class="o">.</span><span class="n">table</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MSE</th>
+      <th>MAE</th>
+      <th>R2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>train</th>
+      <td>6124.369609</td>
+      <td>55.853476</td>
+      <td>0.813179</td>
+    </tr>
+    <tr>
+      <th>test</th>
+      <td>6557.755482</td>
+      <td>57.549641</td>
+      <td>0.803478</td>
+    </tr>
+    <tr>
+      <th>GAP</th>
+      <td>433.385873</td>
+      <td>1.696166</td>
+      <td>-0.009701</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Run residual analysis test without the model object</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_residual_analysis</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="s2">&quot;hr&quot;</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">table</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>hr</th>
+      <th>Residual</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>11.0</td>
+      <td>-38.097382</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>17.0</td>
+      <td>59.346985</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3.0</td>
+      <td>-32.558922</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>15.0</td>
+      <td>-51.624382</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>7.0</td>
+      <td>-12.996155</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1995</th>
+      <td>6.0</td>
+      <td>-7.306258</td>
+    </tr>
+    <tr>
+      <th>1996</th>
+      <td>10.0</td>
+      <td>14.951874</td>
+    </tr>
+    <tr>
+      <th>1997</th>
+      <td>6.0</td>
+      <td>-50.298096</td>
+    </tr>
+    <tr>
+      <th>1998</th>
+      <td>10.0</td>
+      <td>-115.138412</td>
+    </tr>
+    <tr>
+      <th>1999</th>
+      <td>21.0</td>
+      <td>-68.111206</td>
+    </tr>
+  </tbody>
+</table>
+<p>2000 rows × 2 columns</p>
+</div>
+</div>
+<br />
+<br /><p>Run reliability test without the model object</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_reliability</span><span class="p">()</span>
+<span class="n">results</span><span class="o">.</span><span class="n">table</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Avg.Width</th>
+      <th>Avg.Coverage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>189.687531</td>
+      <td>0.901036</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Run resilience test without the model object</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_resilience</span><span class="p">()</span>
+<span class="n">results</span><span class="o">.</span><span class="n">table</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MSE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.1</th>
+      <td>39957.515154</td>
+    </tr>
+    <tr>
+      <th>0.2</th>
+      <td>25754.177892</td>
+    </tr>
+    <tr>
+      <th>0.3</th>
+      <td>19179.696219</td>
+    </tr>
+    <tr>
+      <th>0.4</th>
+      <td>15260.727856</td>
+    </tr>
+    <tr>
+      <th>0.5</th>
+      <td>12634.640444</td>
+    </tr>
+    <tr>
+      <th>0.6</th>
+      <td>10743.632617</td>
+    </tr>
+    <tr>
+      <th>0.7</th>
+      <td>9303.855556</td>
+    </tr>
+    <tr>
+      <th>0.8</th>
+      <td>8183.324067</td>
+    </tr>
+    <tr>
+      <th>0.9</th>
+      <td>7285.629466</td>
+    </tr>
+    <tr>
+      <th>1.0</th>
+      <td>6557.755482</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Run slicing accuracy test without the model object</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_accuracy</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="s2">&quot;hr&quot;</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="s2">&quot;main&quot;</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;MAE&quot;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">table</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Feature</th>
+      <th>Segment</th>
+      <th>Size</th>
+      <th>MAE</th>
+      <th>Threshold</th>
+      <th>Weak</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>7</th>
+      <td>hr</td>
+      <td>[16.10, 18.40)</td>
+      <td>1458</td>
+      <td>115.177261</td>
+      <td>0</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>hr</td>
+      <td>[6.90, 9.20)</td>
+      <td>2181</td>
+      <td>100.083151</td>
+      <td>0</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>hr</td>
+      <td>[13.80, 16.10)</td>
+      <td>2188</td>
+      <td>57.893123</td>
+      <td>0</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>hr</td>
+      <td>[11.50, 13.80)</td>
+      <td>1457</td>
+      <td>56.588372</td>
+      <td>0</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>hr</td>
+      <td>[9.20, 11.50)</td>
+      <td>1454</td>
+      <td>55.421357</td>
+      <td>0</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>hr</td>
+      <td>[18.40, 20.70)</td>
+      <td>1456</td>
+      <td>48.355448</td>
+      <td>0</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>hr</td>
+      <td>[20.70, 23.00]</td>
+      <td>2184</td>
+      <td>40.399835</td>
+      <td>0</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>hr</td>
+      <td>[2.30, 4.60)</td>
+      <td>1394</td>
+      <td>39.957594</td>
+      <td>0</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>hr</td>
+      <td>[0.00, 2.30)</td>
+      <td>2165</td>
+      <td>24.055148</td>
+      <td>0</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>hr</td>
+      <td>[4.60, 6.90)</td>
+      <td>1442</td>
+      <td>23.746540</td>
+      <td>0</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Run slicing overfit test without the model object</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_overfit</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="s2">&quot;hr&quot;</span><span class="p">,</span> <span class="n">train_dataset</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="n">test_dataset</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;MAE&quot;</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">table</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Feature</th>
+      <th>Segment</th>
+      <th>train-Size</th>
+      <th>train-MAE</th>
+      <th>test-Size</th>
+      <th>test-MAE</th>
+      <th>GAP</th>
+      <th>Threshold</th>
+      <th>Weak</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>8</th>
+      <td>hr</td>
+      <td>[6.90, 9.20)</td>
+      <td>1736</td>
+      <td>99.093091</td>
+      <td>445</td>
+      <td>103.945496</td>
+      <td>4.852405</td>
+      <td>1.696166</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>hr</td>
+      <td>[18.40, 20.70)</td>
+      <td>1171</td>
+      <td>47.751288</td>
+      <td>285</td>
+      <td>50.837806</td>
+      <td>3.086518</td>
+      <td>1.696166</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>hr</td>
+      <td>[13.80, 16.10)</td>
+      <td>1743</td>
+      <td>57.266649</td>
+      <td>445</td>
+      <td>60.346930</td>
+      <td>3.080281</td>
+      <td>1.696166</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>hr</td>
+      <td>[0.00, 2.30)</td>
+      <td>1737</td>
+      <td>23.726041</td>
+      <td>428</td>
+      <td>25.390801</td>
+      <td>1.664760</td>
+      <td>1.696166</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>hr</td>
+      <td>[11.50, 13.80)</td>
+      <td>1166</td>
+      <td>56.310554</td>
+      <td>291</td>
+      <td>57.701555</td>
+      <td>1.391002</td>
+      <td>1.696166</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>hr</td>
+      <td>[9.20, 11.50)</td>
+      <td>1160</td>
+      <td>55.224693</td>
+      <td>294</td>
+      <td>56.197313</td>
+      <td>0.972620</td>
+      <td>1.696166</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>hr</td>
+      <td>[20.70, 23.00]</td>
+      <td>1737</td>
+      <td>40.227978</td>
+      <td>447</td>
+      <td>41.067656</td>
+      <td>0.839678</td>
+      <td>1.696166</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>hr</td>
+      <td>[4.60, 6.90)</td>
+      <td>1175</td>
+      <td>23.756332</td>
+      <td>267</td>
+      <td>23.703447</td>
+      <td>-0.052885</td>
+      <td>1.696166</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>hr</td>
+      <td>[2.30, 4.60)</td>
+      <td>1110</td>
+      <td>40.279756</td>
+      <td>284</td>
+      <td>38.698437</td>
+      <td>-1.581320</td>
+      <td>1.696166</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>hr</td>
+      <td>[16.10, 18.40)</td>
+      <td>1168</td>
+      <td>115.874692</td>
+      <td>290</td>
+      <td>112.368296</td>
+      <td>-3.506395</td>
+      <td>1.696166</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 3.821 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-source-auto-galleries-data-plot-7-data-with-prediction-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/85c4ccd0f73f15c6e196dac9f60be44a/plot_7_data_with_prediction.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_7_data_with_prediction.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/3be37277d3410e996e94a4e009ea82ff/plot_7_data_with_prediction.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_7_data_with_prediction.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/0b44bc8a4d5b5e693af8057ab7992262/plot_7_data_with_prediction.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">plot_7_data_with_prediction.zip</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="plot_6_outlier_detection.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Outlier Detection</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="plot_8_extra_data.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Dealing with Extra Data Sets</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2025, Modeva Team.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

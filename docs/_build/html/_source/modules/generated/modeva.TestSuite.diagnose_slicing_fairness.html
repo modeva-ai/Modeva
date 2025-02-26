@@ -201,26 +201,6 @@
   <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
 </button></div>
       
-        <div class="navbar-item">
-<div class="version-switcher__container dropdown pst-js-only">
-  <button id="pst-version-switcher-button-2"
-    type="button"
-    class="version-switcher__button btn btn-sm dropdown-toggle"
-    data-bs-toggle="dropdown"
-    aria-haspopup="listbox"
-    aria-controls="pst-version-switcher-list-2"
-    aria-label="Version switcher list"
-  >
-    Choose version  <!-- this text may get changed later by javascript -->
-    <span class="caret"></span>
-  </button>
-  <div id="pst-version-switcher-list-2"
-    class="version-switcher__menu dropdown-menu list-group-flush py-0"
-    role="listbox" aria-labelledby="pst-version-switcher-button-2">
-    <!-- dropdown will be populated by javascript on page load -->
-  </div>
-</div></div>
-      
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
         <li class="nav-item">
@@ -346,26 +326,6 @@
   <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
   <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
 </button></div>
-        
-          <div class="navbar-item">
-<div class="version-switcher__container dropdown pst-js-only">
-  <button id="pst-version-switcher-button-3"
-    type="button"
-    class="version-switcher__button btn btn-sm dropdown-toggle"
-    data-bs-toggle="dropdown"
-    aria-haspopup="listbox"
-    aria-controls="pst-version-switcher-list-3"
-    aria-label="Version switcher list"
-  >
-    Choose version  <!-- this text may get changed later by javascript -->
-    <span class="caret"></span>
-  </button>
-  <div id="pst-version-switcher-list-3"
-    class="version-switcher__menu dropdown-menu list-group-flush py-0"
-    role="listbox" aria-labelledby="pst-version-switcher-button-3">
-    <!-- dropdown will be populated by javascript on page load -->
-  </div>
-</div></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -626,7 +586,7 @@ Note: Cannot specify bins for categorical features.</p></li>
 </ul>
 </p></li>
 <li><p><strong>n_estimators</strong> (<em>int</em><em>, </em><em>default=1000</em>) – Number of estimators in xgboost, used when method=”auto-xgb1”.</p></li>
-<li><p><strong>threshold</strong> (<em>float</em><em> or </em><em>int</em><em>, </em><em>default=None</em>) – Threshold for filtering fairness metric results. If not specified, it will not be used.</p></li>
+<li><p><strong>threshold</strong> (<em>float</em><em> or </em><em>int</em><em>, </em><em>default=None</em>) – Threshold for filtering fairness metric results. If not specified, it will be the fairness metric of the whole population of each group, respectively.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -656,11 +616,10 @@ Note: Cannot specify bins for categorical features.</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p>table: dictionary of dataframe with performance and fairness metric scores after adjusting the threshold.</p>
+<li><p>table: dictionary of fairness metric table.</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>”Fairness”: Fairness scores table</p></li>
-<li><p>”Performance”: Predictive performance table</p></li>
+<li><p>”&lt;group_name&gt;”: Table of fairness metrics for each segment.</p></li>
 </ul>
 </div></blockquote>
 </li>

@@ -201,26 +201,6 @@
   <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
 </button></div>
       
-        <div class="navbar-item">
-<div class="version-switcher__container dropdown pst-js-only">
-  <button id="pst-version-switcher-button-2"
-    type="button"
-    class="version-switcher__button btn btn-sm dropdown-toggle"
-    data-bs-toggle="dropdown"
-    aria-haspopup="listbox"
-    aria-controls="pst-version-switcher-list-2"
-    aria-label="Version switcher list"
-  >
-    Choose version  <!-- this text may get changed later by javascript -->
-    <span class="caret"></span>
-  </button>
-  <div id="pst-version-switcher-list-2"
-    class="version-switcher__menu dropdown-menu list-group-flush py-0"
-    role="listbox" aria-labelledby="pst-version-switcher-button-2">
-    <!-- dropdown will be populated by javascript on page load -->
-  </div>
-</div></div>
-      
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
         <li class="nav-item">
@@ -343,26 +323,6 @@
   <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
 </button></div>
         
-          <div class="navbar-item">
-<div class="version-switcher__container dropdown pst-js-only">
-  <button id="pst-version-switcher-button-3"
-    type="button"
-    class="version-switcher__button btn btn-sm dropdown-toggle"
-    data-bs-toggle="dropdown"
-    aria-haspopup="listbox"
-    aria-controls="pst-version-switcher-list-3"
-    aria-label="Version switcher list"
-  >
-    Choose version  <!-- this text may get changed later by javascript -->
-    <span class="caret"></span>
-  </button>
-  <div id="pst-version-switcher-list-3"
-    class="version-switcher__menu dropdown-menu list-group-flush py-0"
-    role="listbox" aria-labelledby="pst-version-switcher-button-3">
-    <!-- dropdown will be populated by javascript on page load -->
-  </div>
-</div></div>
-        
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
         <li class="nav-item">
@@ -404,13 +364,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../../data/index.html">Dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">Model Development</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Model Validation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../0_explainability/index.html">Explainability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../0_residual/index.html">Model Residual</a></li>
 <li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">Model Performance</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="plot_0_accuracy_table_cls.html">Performance Metrics (Classification)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="plot_0_accuracy_table_reg.html">Performance Metrics (Regression)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_2_slice_accuracy_cls.html">Sliced Performance (Classification)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_2_slice_accuracy_reg.html">Sliced Performance (Regression)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_1_slice_accuracy_cls.html">Sliced Performance (Classification)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_1_slice_accuracy_reg.html">Sliced Performance (Regression)</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="../2_overfitting/index.html">Overfit Detection</a></li>
@@ -418,6 +377,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../4_resilience/index.html">Resilience Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../5_robustness/index.html">Robustness Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../6_fairness/index.html">Fairness Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../7_explainability/index.html">Explainability</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../../util/index.html">Utilities</a></li>
@@ -488,11 +448,11 @@
 </div><div class="sphx-glr-thumbcontainer" tooltip="Evaluate model performance and residuals."><img alt="" src="../../../../_images/sphx_glr_plot_0_accuracy_table_reg_thumb.png" />
 <p><a class="reference internal" href="plot_0_accuracy_table_reg.html#sphx-glr-source-auto-galleries-val-1-performance-plot-0-accuracy-table-reg-py"><span class="std std-ref">Performance Metrics (Regression)</span></a></p>
   <div class="sphx-glr-thumbnail-title">Performance Metrics (Regression)</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how to analyze model performance across different data slices for classification problems using various slicing methods and metrics."><img alt="" src="../../../../_images/sphx_glr_plot_2_slice_accuracy_cls_thumb.png" />
-<p><a class="reference internal" href="plot_2_slice_accuracy_cls.html#sphx-glr-source-auto-galleries-val-1-performance-plot-2-slice-accuracy-cls-py"><span class="std std-ref">Sliced Performance (Classification)</span></a></p>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how to analyze model performance across different data slices for classification problems using various slicing methods and metrics."><img alt="" src="../../../../_images/sphx_glr_plot_1_slice_accuracy_cls_thumb.png" />
+<p><a class="reference internal" href="plot_1_slice_accuracy_cls.html#sphx-glr-source-auto-galleries-val-1-performance-plot-1-slice-accuracy-cls-py"><span class="std std-ref">Sliced Performance (Classification)</span></a></p>
   <div class="sphx-glr-thumbnail-title">Sliced Performance (Classification)</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how to analyze model performance across different data slices for regression problems using various slicing methods and metrics."><img alt="" src="../../../../_images/sphx_glr_plot_2_slice_accuracy_reg_thumb.png" />
-<p><a class="reference internal" href="plot_2_slice_accuracy_reg.html#sphx-glr-source-auto-galleries-val-1-performance-plot-2-slice-accuracy-reg-py"><span class="std std-ref">Sliced Performance (Regression)</span></a></p>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how to analyze model performance across different data slices for regression problems using various slicing methods and metrics."><img alt="" src="../../../../_images/sphx_glr_plot_1_slice_accuracy_reg_thumb.png" />
+<p><a class="reference internal" href="plot_1_slice_accuracy_reg.html#sphx-glr-source-auto-galleries-val-1-performance-plot-1-slice-accuracy-reg-py"><span class="std std-ref">Sliced Performance (Regression)</span></a></p>
   <div class="sphx-glr-thumbnail-title">Sliced Performance (Regression)</div>
 </div></div><div class="toctree-wrapper compound">
 </div>
