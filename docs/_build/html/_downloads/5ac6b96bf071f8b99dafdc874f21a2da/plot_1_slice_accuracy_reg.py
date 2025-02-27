@@ -11,7 +11,7 @@ for regression problems using various slicing methods and metrics.
 # Installation
 
 # To install the required package, use the following command:
-# pip install modeva
+# !pip install modeva
 
 # %%
 # Authentication

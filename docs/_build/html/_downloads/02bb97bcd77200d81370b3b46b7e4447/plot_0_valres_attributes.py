@@ -10,7 +10,7 @@ This example demonstrates the basic attributes of the ValidationResults object.
 # Installation
 
 # To install the required package, use the following command:
-# pip install modeva
+# !pip install modeva
 
 # %%
 # Authentication

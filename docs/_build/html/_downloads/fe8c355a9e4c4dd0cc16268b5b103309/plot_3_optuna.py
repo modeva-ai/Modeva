@@ -10,7 +10,7 @@ To run this code, you need to have optuna installed.
 # Installation
 
 # To install the required package, use the following command:
-# pip install modeva
+# !pip install modeva
 
 # %%
 # Authentication
