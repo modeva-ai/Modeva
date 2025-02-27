@@ -38,7 +38,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=23db8a6b" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d18aedc6" />
   
   <!-- So that users can add custom icons -->
   <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
@@ -426,6 +426,67 @@
 <h1>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading">#</a></h1>
 <p>This section contains the key class reference of Modeva, frequently asked questions, and utilities.</p>
 <div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules/data.html">DataSet</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/data.html#data-loading-and-management">Data Loading and Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/data.html#data-exploration">Data Exploration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/data.html#preprocessing">Preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/data.html#feature-selection-and-management">Feature Selection and Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/data.html#outlier-detection">Outlier Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/data.html#data-access-and-properties">Data Access and Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/data.html#train-test-split-management">Train-Test Split Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/data.html#extra-and-protected-data-management">Extra and Protected Data Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/data.html#data-drift-and-sampling">Data Drift and Sampling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules/modelzoo.html">Model Zoo</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/modelzoo.html#model-management">Model Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/modelzoo.html#model-training">Model Training</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/modelzoo.html#model-registry">Model Registry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/modelzoo.html#properties">Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules/models.html">Interpretable Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/models.html#regression">Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/models.html#classification">Classification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules/hpo.html">Hyperparameter Tuning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/generated/modeva.models.ModelTunePSO.html">modeva.models.ModelTunePSO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/generated/modeva.models.ModelTuneOptuna.html">modeva.models.ModelTuneOptuna</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/generated/modeva.models.ModelTuneGridSearch.html">modeva.models.ModelTuneGridSearch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/generated/modeva.models.ModelTuneRandomSearch.html">modeva.models.ModelTuneRandomSearch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules/wrappers.html">Model Wrappers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/wrappers.html#class-based-wrappers">Class-based Wrappers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/wrappers.html#alternative-function-based-wrappers">Alternative Function-based Wrappers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules/testsuite.html">Test Suite</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/testsuite.html#post-hoc-explanation">Post-hoc Explanation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/testsuite.html#inherent-interpretation">Inherent Interpretation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/testsuite.html#diagnostics">Diagnostics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/testsuite.html#model-comparison">Model Comparison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/testsuite.html#utilities">Utilities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules/results.html">Validation Result</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/generated/modeva.utils.results.ValidationResult.html">modeva.utils.results.ValidationResult</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules/pipeline.html">Pipeline</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/generated/modeva.automation.pipeline.Pipeline.html">modeva.automation.pipeline.Pipeline</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules/utilities.html">Utilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/generated/modeva.utils.mlflow.clear_mlflow_home.html">modeva.utils.mlflow.clear_mlflow_home</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/generated/modeva.utils.mlflow.set_mlflow_home.html">modeva.utils.mlflow.set_mlflow_home</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/generated/modeva.utils.mlflow.get_mlflow_home.html">modeva.utils.mlflow.get_mlflow_home</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/generated/modeva.testsuite.utils.slicing_utils.get_data_info.html">modeva.testsuite.utils.slicing_utils.get_data_info</a></li>
+</ul>
+</li>
+</ul>
 </div>
 </section>
 

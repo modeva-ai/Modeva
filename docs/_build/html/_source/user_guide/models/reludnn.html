@@ -38,7 +38,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=23db8a6b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=d18aedc6" />
   
   <!-- So that users can add custom icons -->
   <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
@@ -482,11 +482,16 @@
 <h2>ReLU DNN in MoDeVa<a class="headerlink" href="#relu-dnn-in-modeva" title="Link to this heading">#</a></h2>
 <p><strong>Data Setup</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">DataSet</span>
-<span class="c1"># Create dataset object holder</span>
+<span class="c1">## Create dataset object holder</span>
 <span class="n">ds</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">()</span>
-<span class="c1"># Loading MoDeVa pre-loaded dataset &quot;Bikesharing&quot;</span>
-<span class="n">ds</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;BikeSharing&quot;</span><span class="p">)</span>  <span class="c1"># Changed dataset name</span>
-<span class="c1"># Split data into training and testing sets randomly</span>
+<span class="c1">## Loading MoDeVa pre-loaded dataset &quot;Bikesharing&quot;</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;BikeSharing&quot;</span><span class="p">)</span>
+<span class="c1">## Preprocess the data</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">scale_numerical</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;cnt&quot;</span><span class="p">,),</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;log1p&quot;</span><span class="p">)</span> <span class="c1"># Log transfomed target</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">scale_numerical</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">feature_names</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;minmax&quot;</span><span class="p">)</span> <span class="c1"># standardized numerical features</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_inactive_features</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;yr&quot;</span><span class="p">,</span> <span class="s2">&quot;season&quot;</span><span class="p">,</span> <span class="s2">&quot;temp&quot;</span><span class="p">))</span> <span class="c1"># deactivate some features</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">preprocess</span><span class="p">()</span>
+<span class="c1">## Split data into training and testing sets randomly</span>
 <span class="n">ds</span><span class="o">.</span><span class="n">set_random_split</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -525,6 +530,8 @@
 <span class="n">result</span><span class="o">.</span><span class="n">table</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/ReLU_perf.png"><img alt="../../../_images/ReLU_perf.png" class="align-center" src="../../../_images/ReLU_perf.png" style="width: 300px;" />
+</a>
 </section>
 <section id="model-interpretation">
 <h2>Model Interpretation<a class="headerlink" href="#model-interpretation" title="Link to this heading">#</a></h2>
@@ -537,6 +544,8 @@
 <span class="n">result</span><span class="o">.</span><span class="n">table</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/ReLU_llm.png"><img alt="../../../_images/ReLU_llm.png" class="align-center" src="../../../_images/ReLU_llm.png" style="width: 300px;" />
+</a>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_llm_summary.html">TestSuite.interpret_llm_summary</a>.</p>
 <p>The table shows the summary statistics for each LLM, each row represents an LLM with the following statistics.</p>
 <blockquote>
@@ -558,6 +567,8 @@
 <span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="_source/images/ReLU_Parallel_Coordinate.png"><img alt="_source/images/ReLU_Parallel_Coordinate.png" class="align-center" src="_source/images/ReLU_Parallel_Coordinate.png" style="width: 500px;" />
+</a>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_llm_pc.html">TestSuite.interpret_llm_pc</a>.</p>
 <p>This plot is used for visualizing coefficients of different LLMs, where each line represents a single LLM. The x-axis shows feature names and the y-axis shows the coefficient values. As this is a static plot, we only plot the top 10 important features, see the <cite>Feature Importance Plot</cite> section for details. From the figure above, we can see that <cite>Pay_1</cite> is the most important feature, with a wide range of coefficient values. The second and the third important variables are <cite>PAY_AMT1</cite> and <cite>PAY_3</cite>, respectively.</p>
 <p>In general, this plot can be roughly interpreted in the following way.</p>
@@ -570,6 +581,8 @@
 <section id="feature-importance-plot">
 <h3>Feature Importance Plot<a class="headerlink" href="#feature-importance-plot" title="Link to this heading">#</a></h3>
 <p>This global feature importance plot (with the keyword “global_fi”) visualizes the most important features in descending order.</p>
+<a class="reference internal image-reference" href="../../../_images/ReLU_fi.png"><img alt="../../../_images/ReLU_fi.png" class="align-center" src="../../../_images/ReLU_fi.png" style="width: 500px;" />
+</a>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_fi.html">TestSuite.interpret_fi</a>.</p>
 <p>To calculate the feature importance, we first calculate the squared sum of LLM coefficients per feature; then the importance values are normalized such that their sum equals one.</p>
 </section>
@@ -585,6 +598,8 @@
 <section id="individual-prediction-analysis">
 <h3>Individual Prediction Analysis<a class="headerlink" href="#individual-prediction-analysis" title="Link to this heading">#</a></h3>
 <p>The local feature importance plot (with the keyword “local_fi”) shows the prediction decomposition of a single training sample.</p>
+<a class="reference internal image-reference" href="../../../_images/ReLU_local_fi.png"><img alt="../../../_images/ReLU_local_fi.png" class="align-center" src="../../../_images/ReLU_local_fi.png" style="width: 500px;" />
+</a>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.local_linear_fi.html">TestSuite.local_linear_fi</a>.</p>
 <p><strong>Components:</strong></p>
 <ul class="simple">

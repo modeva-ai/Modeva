@@ -13,7 +13,7 @@ train models, and evaluate their performance using a pipeline.
 # Installation
 
 # To install the required package, use the following command:
-# pip install modeva
+# !pip install modeva
 
 # %%
 # Authentication
