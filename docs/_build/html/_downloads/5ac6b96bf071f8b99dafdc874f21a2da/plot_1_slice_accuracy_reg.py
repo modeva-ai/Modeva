@@ -25,6 +25,7 @@ for regression problems using various slicing methods and metrics.
 from modeva import DataSet
 from modeva import TestSuite
 from modeva.models import MoLGBMRegressor, MoXGBRegressor
+from modeva.testsuite.utils.slicing_utils import get_data_info
 
 # %%
 # Load and prepare dataset
@@ -111,6 +112,24 @@ results = ts.diagnose_slicing_accuracy(
     metric="MAE"
 )
 results.plot(figsize=(6, 5))
+
+# %%
+# Test distributional difference between weak samples and the rest
+data_info = get_data_info(res_value=results.value)
+data_results = ds.data_drift_test(**data_info[("hr", "season")],
+                                  distance_metric="PSI",
+                                  psi_method="uniform",
+                                  psi_bins=10)
+data_results.plot("summary")
+
+# %%
+# Get the list of available figure names in the result object
+data_results.get_figure_names()
+
+# %%
+# Generate a plot in the result object using the figure name
+data_results.plot(('density', 'hr'))
+
 
 # %%
 # Model comparison

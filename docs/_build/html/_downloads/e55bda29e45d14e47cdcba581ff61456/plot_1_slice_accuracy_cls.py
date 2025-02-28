@@ -87,7 +87,8 @@ results.plot(figsize=(6, 5))
 
 # %%
 # Custom binning (Numerical feature)
-results = ts.diagnose_slicing_accuracy(features="LIMIT_BAL", method="precompute",
+results = ts.diagnose_slicing_accuracy(features="LIMIT_BAL",
+                                       method="precompute",
                                        bins={"LIMIT_BAL": (0.0, 50000, 1000000)},
                                        metric="AUC")
 results.table
@@ -111,19 +112,19 @@ results.table
 # %%
 # Slicing with 2 features
 results = ts.diagnose_slicing_accuracy(features=("PAY_1", "PAY_AMT1"),
-                                       method="uniform", bins=10,
-                                       metric="AUC", threshold=0.5)
+                                       method="uniform",
+                                       bins=10,
+                                       metric="AUC",
+                                       threshold=0.5)
 results.table
 
 # %%
-# Get samples that are below the threshold
-data_info = get_data_info(res_value=results.value)[("PAY_1", "PAY_AMT1")]
-data_info
-
-# %%
 # Test distributional difference between weak samples and the rest
-data_results = ds.data_drift_test(**data_info, distance_metric="PSI",
-                                  psi_method="uniform", psi_bins=10)
+data_info = get_data_info(res_value=results.value)
+data_results = ds.data_drift_test(**data_info[("PAY_1", "PAY_AMT1")],
+                                  distance_metric="PSI",
+                                  psi_method="uniform",
+                                  psi_bins=10)
 data_results.plot("summary")
 
 # %%

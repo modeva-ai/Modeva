@@ -26,8 +26,9 @@ from modeva import TestSuite
 from modeva.models import MoLGBMClassifier
 from modeva.models import MoXGBClassifier
 from modeva.data.utils.loading import load_builtin_data
+from modeva.testsuite.utils.slicing_utils import get_data_info
 
-# %% 
+# %%
 # Load and prepare dataset
 data = load_builtin_data("TaiwanCredit").drop(['SEX', 'MARRIAGE', 'AGE'], axis=1)
 
@@ -72,6 +73,7 @@ results = ts.diagnose_fairness(group_config=group_config,
                                threshold=0.8)
 results.plot()
 
+# %%
 # Check distribution drift of protected and reference groups (example for the "Gender-Male" group)
 data_results = ds.data_drift_test(
     **results.value["Gender-Male"]["data_info"],
@@ -80,6 +82,10 @@ data_results = ds.data_drift_test(
     psi_bins=10
 )
 data_results.plot(name="summary")
+
+# %%
+# Analyze data drift for single variable
+data_results.plot(name=("density", "PAY_1"))
 
 # %%
 # Slicing fairness analysis
@@ -117,6 +123,21 @@ results = ts.diagnose_slicing_fairness(features=None,
                                        metric="AIR",
                                        method="auto-xgb1", bins=5)
 results.table["Gender-Male"]
+
+# %%
+# Analyze data drift
+data_info = get_data_info(res_value=results.value["PAY_1"]["Gender-Male"])
+data_results = ds.data_drift_test(
+    **data_info["PAY_1"],
+    distance_metric="PSI",
+    psi_method="uniform",
+    psi_bins=10
+)
+data_results.plot("summary")
+
+# %%
+# Single feature density plot
+data_results.plot(("density", "PAY_1"))
 
 # %% 
 # Fairness comparison

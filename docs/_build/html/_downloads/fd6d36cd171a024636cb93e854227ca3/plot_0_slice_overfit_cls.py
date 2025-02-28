@@ -50,8 +50,7 @@ results = ts.diagnose_slicing_overfit(
     train_dataset="train", 
     test_dataset="test",
     features="PAY_1", 
-    metric="AUC", 
-    threshold=-0.1
+    metric="AUC"
 )
 results.table
 
@@ -69,6 +68,10 @@ data_results = ds.data_drift_test(
     psi_bins=10
 )
 data_results.plot("summary")
+
+# %%
+# Single feature density plot
+data_results.plot(("density", "PAY_1"))
 
 # %%
 # Batch mode 1D slicing analysis

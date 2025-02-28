@@ -535,11 +535,18 @@ To determine the maximum size of input perturbations for robustness testing, a l
 <h2>Robustness Analysis in MoDeVa<a class="headerlink" href="#robustness-analysis-in-modeva" title="Link to this heading">#</a></h2>
 <p><strong>Data Setup</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">DataSet</span>
-<span class="c1"># Create dataset object holder</span>
+<span class="c1">## Create dataset object holder</span>
 <span class="n">ds</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">()</span>
-<span class="c1"># Loading MoDeVa pre-loaded dataset &quot;Bikesharing&quot;</span>
-<span class="n">ds</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;BikeSharing&quot;</span><span class="p">)</span>  <span class="c1"># Changed dataset name</span>
-<span class="c1"># Split data into training and testing sets randomly</span>
+<span class="c1">## Loading MoDeVa pre-loaded dataset &quot;Bikesharing&quot;</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;BikeSharing&quot;</span><span class="p">)</span>
+<span class="c1">## Preprocess the data</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">scale_numerical</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;cnt&quot;</span><span class="p">,),</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;log1p&quot;</span><span class="p">)</span> <span class="c1"># Log transfomed target</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_feature_type</span><span class="p">(</span><span class="n">feature</span><span class="o">=</span><span class="s2">&quot;hr&quot;</span><span class="p">,</span> <span class="n">feature_type</span><span class="o">=</span><span class="s2">&quot;categorical&quot;</span><span class="p">)</span> <span class="c1"># set to categorical feature</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_feature_type</span><span class="p">(</span><span class="n">feature</span><span class="o">=</span><span class="s2">&quot;mnth&quot;</span><span class="p">,</span> <span class="n">feature_type</span><span class="o">=</span><span class="s2">&quot;categorical&quot;</span><span class="p">)</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">scale_numerical</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">feature_names_numerical</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;standardize&quot;</span><span class="p">)</span> <span class="c1"># standardized numerical features</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_inactive_features</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;yr&quot;</span><span class="p">,</span> <span class="s2">&quot;season&quot;</span><span class="p">,</span> <span class="s2">&quot;temp&quot;</span><span class="p">))</span> <span class="c1"># deactivate some features</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">preprocess</span><span class="p">()</span>
+<span class="c1">## Split data into training and testing sets randomly</span>
 <span class="n">ds</span><span class="o">.</span><span class="n">set_random_split</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -577,13 +584,16 @@ To determine the maximum size of input perturbations for robustness testing, a l
 <span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/robustness_Performance.png"><img alt="../../../_images/robustness_Performance.png" class="align-center" src="../../../_images/robustness_Performance.png" style="width: 500px;" />
+</a>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_robustness.html">TestSuite.diagnose_robustness</a>.</p>
 </section>
 <section id="identification-of-robustness-issue-and-impactful-variables">
 <h2>Identification of Robustness Issue and Impactful Variables<a class="headerlink" href="#identification-of-robustness-issue-and-impactful-variables" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Apply slicing technique to identify variables and their intervals with the most performance degradation</p></li>
-<li><p>Select sub-samples with the most performance degradation and identify variables with the highest PSI</p></li>
+<li><p>Fit inherently interpretable model (e.g., xgboost depth-2) with error degradation as target and plot the effects (main or interaction) as well as variable importance with respected to robustness measure.</p></li>
+<li><p>Select sub-samples with less robust and visualize and compare the distributions between less robust vs. the rest. Distribution difference can be quantified using measure such as PSI.</p></li>
 </ul>
 <p><strong>Univariate robustness slicing</strong></p>
 <p>Below is an example of slicing on</p>
@@ -605,6 +615,8 @@ To determine the maximum size of input perturbations for robustness testing, a l
 <span class="n">results</span><span class="o">.</span><span class="n">table</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/robustness_slice_hr.png"><img alt="../../../_images/robustness_slice_hr.png" class="align-center" src="../../../_images/robustness_slice_hr.png" style="width: 500px;" />
+</a>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_slicing_robustness.html">TestSuite.diagnose_slicing_robustness</a>.</p>
 <p><strong>Distribution difference for a specific feature</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># retrieve result for &quot;hr&quot; feature</span>
@@ -629,17 +641,19 @@ To determine the maximum size of input perturbations for robustness testing, a l
 <p>Example of bivariate slicing on features=(“hr”, “atemp”)</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_robustness</span><span class="p">(</span>
    <span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;hr&quot;</span><span class="p">,</span> <span class="s2">&quot;atemp&quot;</span><span class="p">),</span>
-   <span class="n">perturb_features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;hum&quot;</span><span class="p">,</span> <span class="s2">&quot;temp&quot;</span><span class="p">),</span>
+   <span class="n">perturb_features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;hum&quot;</span><span class="p">,</span> <span class="s2">&quot;atemp&quot;</span><span class="p">),</span>
    <span class="n">noise_levels</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
    <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;MSE&quot;</span><span class="p">,</span>
    <span class="n">threshold</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
 <span class="n">results</span><span class="o">.</span><span class="n">table</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/robustness_hr_atemp.png"><img alt="../../../_images/robustness_hr_atemp.png" class="align-center" src="../../../_images/robustness_hr_atemp.png" style="width: 500px;" />
+</a>
 <p><strong>Multiple Univariate Slicing</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_robustness</span><span class="p">(</span>
-   <span class="n">features</span><span class="o">=</span><span class="p">((</span><span class="s2">&quot;hr&quot;</span><span class="p">,),</span> <span class="p">(</span><span class="s2">&quot;atemp&quot;</span><span class="p">,),</span> <span class="p">(</span><span class="s2">&quot;season&quot;</span><span class="p">,)),</span>
-   <span class="n">perturb_features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;temp&quot;</span><span class="p">,</span> <span class="s2">&quot;hum&quot;</span><span class="p">),</span>
+   <span class="n">features</span><span class="o">=</span><span class="p">((</span><span class="s2">&quot;hr&quot;</span><span class="p">,),</span> <span class="p">(</span><span class="s2">&quot;atemp&quot;</span><span class="p">,),</span> <span class="p">(</span><span class="s2">&quot;weekday&quot;</span><span class="p">,)),</span>
+   <span class="n">perturb_features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;atemp&quot;</span><span class="p">,</span> <span class="s2">&quot;hum&quot;</span><span class="p">),</span>
    <span class="n">noise_levels</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
    <span class="n">perturb_method</span><span class="o">=</span><span class="s2">&quot;quantile&quot;</span><span class="p">,</span>
    <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;MSE&quot;</span><span class="p">,</span>
@@ -647,6 +661,8 @@ To determine the maximum size of input perturbations for robustness testing, a l
 <span class="n">results</span><span class="o">.</span><span class="n">table</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/robustness_multiple.png"><img alt="../../../_images/robustness_multiple.png" class="align-center" src="../../../_images/robustness_multiple.png" style="width: 500px;" />
+</a>
 </section>
 <section id="robustness-comparison">
 <h2>Robustness Comparison<a class="headerlink" href="#robustness-comparison" title="Link to this heading">#</a></h2>
@@ -661,8 +677,12 @@ To determine the maximum size of input perturbations for robustness testing, a l
 <span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="_source/images/robustness_compare.png"><img alt="_source/images/robustness_compare.png" class="align-center" src="_source/images/robustness_compare.png" style="width: 500px;" />
+</a>
 <p>Check the API reference for detail arguments of <a class="reference external" href="../../modules/generated/modeva.TestSuite.compare_robustness.html">TestSuite.compare_robustness</a>.</p>
 <p>The robustness of multiple models can be compared for each feature using variable slicing:</p>
+<a class="reference internal image-reference" href="../../../_images/robustness_slice_compare.png"><img alt="../../../_images/robustness_slice_compare.png" class="align-center" src="../../../_images/robustness_slice_compare.png" style="width: 500px;" />
+</a>
 <p>Check the API reference for detail arguments of <a class="reference external" href="../../modules/generated/modeva.TestSuite.compare_slicing_robustness.html">TestSuite.compare_slicing_robustness</a>.</p>
 </section>
 <section id="strategies-for-addressing-model-weaknesses">
@@ -725,7 +745,7 @@ To determine the maximum size of input perturbations for robustness testing, a l
 <div><p>The example below demonstrates how to use MoDeVa with its high-code APis for the Bike Sharing dataset from the UCI repository, which consists of 20,640 samples and 9 features, fetched by sklearn.datasets. The response variable MedHouseVal (Median Home Value) is continuous and is a regression problem.</p>
 </div></blockquote>
 <ul class="simple">
-<li><p><a class="reference internal" href="../../auto_galleries/val/5_robustness/plot_1_robustness_reg.html#sphx-glr-source-auto-galleries-val-5-robustness-plot-1-robustness-reg-py"><span class="std std-ref">Robustness Analysis (Regression)</span></a></p></li>
+<li><p><span class="xref std std-ref">sphx_glr__source_auto_galleries_val_5_resilience_plot_1_robustness_reg.py</span></p></li>
 </ul>
 </aside>
 <aside class="topic">
@@ -734,7 +754,7 @@ To determine the maximum size of input perturbations for robustness testing, a l
 <div><p>The second example below demonstrates how to use MoDeVa’s high-code APIs for the TaiwanCredit dataset from the UCI repository. This dataset comprises the credit card details of 30,000 clients in Taiwan from April 2005 to September 2005, and more information can be found on the TaiwanCreditData website. The <cite>FlagDefault</cite> variable serves as the response for this classification problem.</p>
 </div></blockquote>
 <ul class="simple">
-<li><p><a class="reference internal" href="../../auto_galleries/val/5_robustness/plot_0_robustness_cls.html#sphx-glr-source-auto-galleries-val-5-robustness-plot-0-robustness-cls-py"><span class="std std-ref">Robustness Analysis (Classification)</span></a></p></li>
+<li><p><span class="xref std std-ref">sphx_glr__source_auto_galleries_val_5_resilience_plot_0_robustness_cls.py</span></p></li>
 </ul>
 </aside>
 </section>
