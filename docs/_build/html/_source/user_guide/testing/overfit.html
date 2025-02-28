@@ -608,11 +608,18 @@
 <h2>Overfitting Slicing in MoDeVa<a class="headerlink" href="#overfitting-slicing-in-modeva" title="Link to this heading">#</a></h2>
 <p><strong>Data Setup</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">DataSet</span>
-<span class="c1"># Create dataset object holder</span>
+<span class="c1">## Create dataset object holder</span>
 <span class="n">ds</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">()</span>
-<span class="c1"># Loading MoDeVa pre-loaded dataset &quot;Bikesharing&quot;</span>
-<span class="n">ds</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;BikeSharing&quot;</span><span class="p">)</span>  <span class="c1"># Changed dataset name</span>
-<span class="c1"># Split data into training and testing sets randomly</span>
+<span class="c1">## Loading MoDeVa pre-loaded dataset &quot;Bikesharing&quot;</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;BikeSharing&quot;</span><span class="p">)</span>
+<span class="c1">## Preprocess the data</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">scale_numerical</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;cnt&quot;</span><span class="p">,),</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;log1p&quot;</span><span class="p">)</span> <span class="c1"># Log transfomed target</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_feature_type</span><span class="p">(</span><span class="n">feature</span><span class="o">=</span><span class="s2">&quot;hr&quot;</span><span class="p">,</span> <span class="n">feature_type</span><span class="o">=</span><span class="s2">&quot;categorical&quot;</span><span class="p">)</span> <span class="c1"># set to categorical feature</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_feature_type</span><span class="p">(</span><span class="n">feature</span><span class="o">=</span><span class="s2">&quot;mnth&quot;</span><span class="p">,</span> <span class="n">feature_type</span><span class="o">=</span><span class="s2">&quot;categorical&quot;</span><span class="p">)</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">scale_numerical</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">feature_names_numerical</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;standardize&quot;</span><span class="p">)</span> <span class="c1"># standardized numerical features</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_inactive_features</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;yr&quot;</span><span class="p">,</span> <span class="s2">&quot;season&quot;</span><span class="p">,</span> <span class="s2">&quot;temp&quot;</span><span class="p">))</span> <span class="c1"># deactivate some features</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">preprocess</span><span class="p">()</span>
+<span class="c1">## Split data into training and testing sets randomly</span>
 <span class="n">ds</span><span class="o">.</span><span class="n">set_random_split</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -642,18 +649,19 @@
    <span class="n">train_dataset</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span>
    <span class="n">test_dataset</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
    <span class="n">features</span><span class="o">=</span><span class="s2">&quot;season&quot;</span><span class="p">,</span>
-   <span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;quantile&quot;</span>
+   <span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;quantile&quot;</span><span class="p">,</span>
    <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;MAE&quot;</span><span class="p">,</span>
-   <span class="n">threshold</span><span class="o">=</span><span class="mf">8.0</span><span class="p">)</span>
+   <span class="n">threshold</span><span class="o">=</span><span class="mf">0.0065</span><span class="p">)</span>
 <span class="n">results</span><span class="o">.</span><span class="n">table</span>
+
 <span class="c1"># To visualize the results</span>
 <span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>The slicing above is done using “method = quantile” binning with “threshold = 8.0”. For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_slicing_overfit.html">TestSuite.diagnose_slicing_overfit</a>.</p>
+<p>The slicing above is done using “method = quantile” binning with “threshold = 0.0065”. For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_slicing_overfit.html">TestSuite.diagnose_slicing_overfit</a>.</p>
 <p><strong>Retrieving samples below threshold value</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">modeva.testsuite.utils.slicing_utils</span> <span class="kn">import</span> <span class="n">get_data_info</span>
-<span class="n">data_info</span> <span class="o">=</span> <span class="n">get_data_info</span><span class="p">(</span><span class="n">res_value</span><span class="o">=</span><span class="n">results</span><span class="o">.</span><span class="n">value</span><span class="p">)[</span><span class="s2">&quot;season&quot;</span><span class="p">]</span>
+<span class="n">data_info</span> <span class="o">=</span> <span class="n">get_data_info</span><span class="p">(</span><span class="n">res_value</span><span class="o">=</span><span class="n">results</span><span class="o">.</span><span class="n">value</span><span class="p">)[</span><span class="s2">&quot;hr&quot;</span><span class="p">]</span>
 <span class="n">data_info</span>
 </pre></div>
 </div>
@@ -666,30 +674,35 @@
 <span class="n">data_results</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;summary&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/overfit_PSI.png"><img alt="../../../_images/overfit_PSI.png" class="align-center" src="../../../_images/overfit_PSI.png" style="width: 500px;" />
+</a>
 <p><strong>Slicing for a Set of Features with automated binning</strong>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_overfit</span><span class="p">(</span>
    <span class="n">train_dataset</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span>
    <span class="n">test_dataset</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
-   <span class="n">features</span><span class="o">=</span><span class="p">((</span><span class="s2">&quot;hr&quot;</span><span class="p">,</span> <span class="p">),</span> <span class="p">(</span><span class="s2">&quot;season&quot;</span><span class="p">,),</span> <span class="p">(</span><span class="s2">&quot;temp&quot;</span><span class="p">,</span> <span class="p">)),</span>
+   <span class="n">features</span><span class="o">=</span><span class="p">((</span><span class="s2">&quot;hr&quot;</span><span class="p">,</span> <span class="p">),</span> <span class="p">(</span><span class="s2">&quot;workingday&quot;</span><span class="p">,),</span> <span class="p">(</span><span class="s2">&quot;atemp&quot;</span><span class="p">,</span> <span class="p">)),</span>
    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;auto-xgb1&quot;</span><span class="p">,</span>
    <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;MAE&quot;</span><span class="p">,</span>
-   <span class="n">threshold</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+   <span class="n">threshold</span><span class="o">=</span><span class="mf">0.0065</span><span class="p">)</span>
 <span class="n">results</span><span class="o">.</span><span class="n">table</span>
 <span class="c1"># To visualize a single feature</span>
-<span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;hr&quot;</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;atemp&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><strong>2-Feature Interaction Slicing</strong>:</p>
+<p><strong>2-Feature Interaction Slicing</strong>:
+Two dimensional slicing</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_overfit</span><span class="p">(</span>
    <span class="n">train_dataset</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span>
    <span class="n">test_dataset</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
-   <span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;hr&quot;</span><span class="p">,</span> <span class="s2">&quot;season&quot;</span><span class="p">),</span>
+   <span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;hr&quot;</span><span class="p">,</span> <span class="s2">&quot;atemp&quot;</span><span class="p">),</span>
    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;auto-xgb1&quot;</span><span class="p">,</span>
    <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;MAE&quot;</span><span class="p">,</span>
-   <span class="n">threshold</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+   <span class="n">threshold</span><span class="o">=</span><span class="mf">0.0065</span><span class="p">)</span>
 <span class="n">results</span><span class="o">.</span><span class="n">table</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/overfit_slice_hr_atemp.png"><img alt="../../../_images/overfit_slice_hr_atemp.png" class="align-center" src="../../../_images/overfit_slice_hr_atemp.png" style="width: 500px;" />
+</a>
 </section>
 <section id="overfit-comparison">
 <h2>Overfit Comparison<a class="headerlink" href="#overfit-comparison" title="Link to this heading">#</a></h2>
@@ -704,6 +717,8 @@
    <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;MAE&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/overfit_compare.png"><img alt="../../../_images/overfit_compare.png" class="align-center" src="../../../_images/overfit_compare.png" style="width: 500px;" />
+</a>
 <p>Check the API reference for detail arguments of <a class="reference external" href="../../modules/generated/modeva.TestSuite.compare_slicing_overfit.html">TestSuite.compare_slicing_overfit</a>.</p>
 <section id="characterization-of-weak-regions">
 <h3>Characterization of Weak Regions<a class="headerlink" href="#characterization-of-weak-regions" title="Link to this heading">#</a></h3>

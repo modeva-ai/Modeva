@@ -57,6 +57,18 @@ results = ts.diagnose_robustness(
 results.plot(figsize=(6, 5))
 
 # %%
+# Analyze data drift between small and large prediction changes groups
+data_results = ds.data_drift_test(**results.value[0.2]["data_info"],
+                                  distance_metric="PSI",
+                                  psi_method="uniform",
+                                  psi_bins=10)
+data_results.plot("summary")
+
+# %%
+# Analyze data drift for single variable
+data_results.plot(("density", "hr"))
+
+# %%
 # Slicing robustness analysis
 # -------------------------------------------------------------------
 # Single feature slicing
@@ -69,17 +81,6 @@ results = ts.diagnose_slicing_robustness(
     threshold=0.2
 )
 results.table
-
-# %%
-# Analyze data drift for a specific feature
-data_info = get_data_info(res_value=results.value)["hr"]
-data_results = ds.data_drift_test(
-    **data_info,
-    distance_metric="PSI",
-    psi_method="uniform",
-    psi_bins=10
-)
-data_results.plot("summary")
 
 # %%
 # Bivariate feature slicing
@@ -116,9 +117,9 @@ results.table
 
 # %%
 # Analyze data drift
-data_info = get_data_info(res_value=results.value)["hr"]
+data_info = get_data_info(res_value=results.value)
 data_results = ds.data_drift_test(
-    **data_info,
+    **data_info["hr"],
     distance_metric="PSI",
     psi_method="uniform",
     psi_bins=10

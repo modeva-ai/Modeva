@@ -564,11 +564,18 @@
 <h2>Performance Evaluation in MoDeVa<a class="headerlink" href="#performance-evaluation-in-modeva" title="Link to this heading">#</a></h2>
 <p><strong>Data Setup</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">DataSet</span>
-<span class="c1"># Create dataset object holder</span>
+<span class="c1">## Create dataset object holder</span>
 <span class="n">ds</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">()</span>
-<span class="c1"># Loading MoDeVa pre-loaded dataset &quot;Bikesharing&quot;</span>
-<span class="n">ds</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;BikeSharing&quot;</span><span class="p">)</span>  <span class="c1"># Changed dataset name</span>
-<span class="c1"># Split data into training and testing sets randomly</span>
+<span class="c1">## Loading MoDeVa pre-loaded dataset &quot;Bikesharing&quot;</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;BikeSharing&quot;</span><span class="p">)</span>
+<span class="c1">## Preprocess the data</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">scale_numerical</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;cnt&quot;</span><span class="p">,),</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;log1p&quot;</span><span class="p">)</span> <span class="c1"># Log transfomed target</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_feature_type</span><span class="p">(</span><span class="n">feature</span><span class="o">=</span><span class="s2">&quot;hr&quot;</span><span class="p">,</span> <span class="n">feature_type</span><span class="o">=</span><span class="s2">&quot;categorical&quot;</span><span class="p">)</span> <span class="c1"># set to categorical feature</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_feature_type</span><span class="p">(</span><span class="n">feature</span><span class="o">=</span><span class="s2">&quot;mnth&quot;</span><span class="p">,</span> <span class="n">feature_type</span><span class="o">=</span><span class="s2">&quot;categorical&quot;</span><span class="p">)</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">scale_numerical</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">feature_names_numerical</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;standardize&quot;</span><span class="p">)</span> <span class="c1"># standardized numerical features</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_inactive_features</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;yr&quot;</span><span class="p">,</span> <span class="s2">&quot;season&quot;</span><span class="p">,</span> <span class="s2">&quot;temp&quot;</span><span class="p">))</span> <span class="c1"># deactivate some features</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">preprocess</span><span class="p">()</span>
+<span class="c1">## Split data into training and testing sets randomly</span>
 <span class="n">ds</span><span class="o">.</span><span class="n">set_random_split</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -599,6 +606,8 @@
 <span class="n">results</span><span class="o">.</span><span class="n">table</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/xgb_perf.png"><img alt="../../../_images/xgb_perf.png" class="align-center" src="../../../_images/xgb_perf.png" style="width: 300px;" />
+</a>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_accuracy_table.html">TestSuite.diagnose_accuracy_table</a>.</p>
 </section>
 <section id="residual-analysis">
@@ -704,6 +713,8 @@
 <span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/xgb_Residual_plot.png"><img alt="../../../_images/xgb_Residual_plot.png" class="align-center" src="../../../_images/xgb_Residual_plot.png" style="width: 500px;" />
+</a>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_residual_analysis.html">TestSuite.diagnose_residual_analysis</a>.</p>
 </section>
 <section id="performance-comparison">
@@ -716,6 +727,14 @@
 <span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+<div class="side-by-side docutils container">
+<a class="reference internal image-reference" href="../../../_images/Accuracy_Comparison_MSE.png"><img alt="../../../_images/Accuracy_Comparison_MSE.png" src="../../../_images/Accuracy_Comparison_MSE.png" style="width: 30%;" />
+</a>
+<a class="reference internal image-reference" href="../../../_images/Accuracy_Comparison_MAE.png"><img alt="../../../_images/Accuracy_Comparison_MAE.png" src="../../../_images/Accuracy_Comparison_MAE.png" style="width: 30%;" />
+</a>
+<a class="reference internal image-reference" href="_source/images/MAccuracy_Comparison_R2.png"><img alt="_source/images/MAccuracy_Comparison_R2.png" src="_source/images/MAccuracy_Comparison_R2.png" style="width: 30%;" />
+</a>
+</div>
 <p>Check the API reference for detail arguments of <a class="reference external" href="../../modules/generated/modeva.TestSuite.compare_accuracy_table.html">TestSuite.compare_accuracy_table</a>.</p>
 </section>
 <section id="examples">
@@ -726,7 +745,7 @@
 <div><p>The example below demonstrates how to use MoDeVa with its high-code APis for the Bike Sharing dataset from the UCI repository, which consists of 20,640 samples and 9 features, fetched by sklearn.datasets. The response variable MedHouseVal (Median Home Value) is continuous and is a regression problem.</p>
 </div></blockquote>
 <ul class="simple">
-<li><p><a class="reference internal" href="../../auto_galleries/val/1_performance/plot_0_accuracy_table_reg.html#sphx-glr-source-auto-galleries-val-1-performance-plot-0-accuracy-table-reg-py"><span class="std std-ref">Performance Metrics (Regression)</span></a></p></li>
+<li><p><span class="xref std std-ref">sphx_glr__source_auto_galleries_val_1_performance_plot_0_accuracy.py</span></p></li>
 </ul>
 </aside>
 <aside class="topic">
@@ -735,7 +754,7 @@
 <div><p>The second example below demonstrates how to use MoDeVa’s high-code APIs for the TaiwanCredit dataset from the UCI repository. This dataset comprises the credit card details of 30,000 clients in Taiwan from April 2005 to September 2005, and more information can be found on the TaiwanCreditData website. The <cite>FlagDefault</cite> variable serves as the response for this classification problem.</p>
 </div></blockquote>
 <ul class="simple">
-<li><p><a class="reference internal" href="../../auto_galleries/val/1_performance/plot_0_accuracy_table_cls.html#sphx-glr-source-auto-galleries-val-1-performance-plot-0-accuracy-table-cls-py"><span class="std std-ref">Performance Metrics (Classification)</span></a></p></li>
+<li><p><a class="reference internal" href="../../auto_galleries/val/3_reliability/plot_0_reliability_cls.html#sphx-glr-source-auto-galleries-val-3-reliability-plot-0-reliability-cls-py"><span class="std std-ref">Reliability Analysis (Classification)</span></a></p></li>
 </ul>
 </aside>
 </section>

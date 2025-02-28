@@ -736,6 +736,14 @@ Recall Ratio = \frac{(TP_{p}) / (TP_{p}+FN_{p})}{(TP_{r}) / (TP_{r}+FN_{r})}.
 </pre></div>
 </div>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_slicing_fairness.html">TestSuite.diagnose_slicing_fairness</a>.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_source/images/SlicingFairness_gender.png"><img alt="_source/images/SlicingFairness_gender.png" src="_source/images/SlicingFairness_gender.png" style="width: 30%;" />
+</a>
+<a class="reference internal image-reference" href="../../../_images/Slicing_Fairness_marriage.png"><img alt="../../../_images/Slicing_Fairness_marriage.png" src="../../../_images/Slicing_Fairness_marriage.png" style="width: 30%;" />
+</a>
+<a class="reference internal image-reference" href="../../../_images/Slicing_Fairness_age.png"><img alt="../../../_images/Slicing_Fairness_age.png" src="../../../_images/Slicing_Fairness_age.png" style="width: 30%;" />
+</a>
+</div></blockquote>
 <p><strong>2. Bivariate Slicing</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_fairness</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;PAY_1&quot;</span><span class="p">,</span> <span class="s2">&quot;BILL_AMT1&quot;</span><span class="p">),</span>
                                     <span class="n">group_config</span><span class="o">=</span><span class="n">group_config</span><span class="p">,</span>
@@ -745,10 +753,12 @@ Recall Ratio = \frac{(TP_{p}) / (TP_{p}+FN_{p})}{(TP_{r}) / (TP_{r}+FN_{r})}.
 <span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;MARRIAGE&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/Slicing_Fairness_marriage_AIR.png"><img alt="../../../_images/Slicing_Fairness_marriage_AIR.png" class="align-center" src="../../../_images/Slicing_Fairness_marriage_AIR.png" style="width: 500px;" />
+</a>
 <p><strong>3. Evaluation for All Features</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create tuple for feature list in ds.features_names</span>
 <span class="n">feature_names</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">((</span><span class="n">x</span><span class="p">,)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
-<span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_fairness</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">feature_names</span><span class="p">),</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_fairness</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">feature_names</span><span class="p">,</span>
                                     <span class="n">group_config</span><span class="o">=</span><span class="n">group_config</span><span class="p">,</span>
                                     <span class="n">dataset</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span>
                                     <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;AIR&quot;</span><span class="p">,</span>
@@ -756,6 +766,8 @@ Recall Ratio = \frac{(TP_{p}) / (TP_{p}+FN_{p})}{(TP_{r}) / (TP_{r}+FN_{r})}.
 <span class="n">results</span><span class="o">.</span><span class="n">table</span><span class="p">[</span><span class="s2">&quot;MARRIAGE&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/fairness_slicing_all.png"><img alt="../../../_images/fairness_slicing_all.png" class="align-center" src="../../../_images/fairness_slicing_all.png" style="width: 500px;" />
+</a>
 </section>
 </section>
 <section id="fairness-comparison">
@@ -766,6 +778,10 @@ Recall Ratio = \frac{(TP_{p}) / (TP_{p}+FN_{p})}{(TP_{r}) / (TP_{r}+FN_{r})}.
 <span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/Fairness_Comparison.png"><img alt="../../../_images/Fairness_Comparison.png" src="../../../_images/Fairness_Comparison.png" style="width: 45%;" />
+</a>
+<a class="reference internal image-reference" href="../../../_images/Fairness_Distance_Comparison.png"><img alt="../../../_images/Fairness_Distance_Comparison.png" src="../../../_images/Fairness_Distance_Comparison.png" style="width: 45%;" />
+</a>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.compare_fairness.html">TestSuite.compare_fairness</a>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">tsc</span><span class="o">.</span><span class="n">compare_slicing_fairness</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="s2">&quot;BILL_AMT1&quot;</span><span class="p">,</span>
                                    <span class="n">group_config</span><span class="o">=</span><span class="n">group_config</span><span class="p">,</span>
@@ -776,6 +792,8 @@ Recall Ratio = \frac{(TP_{p}) / (TP_{p}+FN_{p})}{(TP_{r}) / (TP_{r}+FN_{r})}.
 <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">table</span><span class="p">[</span><span class="s2">&quot;LGBM_model&quot;</span><span class="p">][</span><span class="s2">&quot;MARRIAGE&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/fairness_compare_models.png"><img alt="../../../_images/fairness_compare_models.png" class="align-center" src="../../../_images/fairness_compare_models.png" style="width: 500px;" />
+</a>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.compare_slicing_fairness.html">TestSuite.compare_slicing_fairness</a>.</p>
 </section>
 <section id="fairness-mitigation">
@@ -801,9 +819,11 @@ Recall Ratio = \frac{(TP_{p}) / (TP_{p}+FN_{p})}{(TP_{r}) / (TP_{r}+FN_{r})}.
                                                <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;AIR&quot;</span><span class="p">,</span>
                                                <span class="n">performance_metric</span><span class="o">=</span><span class="s2">&quot;ACC&quot;</span><span class="p">,</span>
                                                <span class="n">proba_cutoff</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">))</span>
+<span class="n">result</span><span class="o">.</span><span class="n">table</span>
 </pre></div>
 </div>
-<p>result.table</p>
+<a class="reference internal image-reference" href="../../../_images/fairness_cut_offs.png"><img alt="../../../_images/fairness_cut_offs.png" class="align-center" src="../../../_images/fairness_cut_offs.png" style="width: 500px;" />
+</a>
 </section>
 <section id="feature-binning">
 <h3>Feature Binning<a class="headerlink" href="#feature-binning" title="Link to this heading">#</a></h3>
@@ -839,9 +859,15 @@ Recall Ratio = \frac{(TP_{p}) / (TP_{p}+FN_{p})}{(TP_{r}) / (TP_{r}+FN_{r})}.
                                                <span class="n">performance_metric</span> <span class="o">=</span> <span class="s2">&quot;AUC&quot;</span><span class="p">,</span>
                                                <span class="n">binning_method</span> <span class="o">=</span> <span class="s2">&quot;quantile&quot;</span><span class="p">,</span>
                                                <span class="n">bins</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
-<span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/fairness_bin_GENDER.png"><img alt="../../../_images/fairness_bin_GENDER.png" class="align-center" src="../../../_images/fairness_bin_GENDER.png" style="width: 500px;" />
+</a>
+<a class="reference internal image-reference" href="../../../_images/fairness_bin_MARRIAGE.png"><img alt="../../../_images/fairness_bin_MARRIAGE.png" class="align-center" src="../../../_images/fairness_bin_MARRIAGE.png" style="width: 500px;" />
+</a>
+<a class="reference internal image-reference" href="../../../_images/fairness_bin_AGE.png"><img alt="../../../_images/fairness_bin_AGE.png" class="align-center" src="../../../_images/fairness_bin_AGE.png" style="width: 500px;" />
+</a>
 </section>
 <section id="tradeoffs-between-performance-and-fairness">
 <h3>Tradeoffs Between Performance and Fairness<a class="headerlink" href="#tradeoffs-between-performance-and-fairness" title="Link to this heading">#</a></h3>

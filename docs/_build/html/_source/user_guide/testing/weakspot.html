@@ -520,6 +520,8 @@
 <span class="n">results</span><span class="o">.</span><span class="n">table</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/weakness_slice.png"><img alt="../../../_images/weakness_slice.png" class="align-center" src="../../../_images/weakness_slice.png" style="width: 500px;" />
+</a>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_accuracy_table.html">TestSuite.diagnose_accuracy_table</a> and <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_slicing_accuracy.html">TestSuite.diagnose_slicing_accuracy</a>.</p>
 </section>
 <section id="error-slicing-for-weakness-detection">
@@ -543,12 +545,15 @@
 <ul class="simple">
 <li><p>Can result in empty or sparse bins for skewed distributions.</p></li>
 </ul>
-<p><strong>Example in MoDeVa:</strong></p>
+<p><strong>Example in MoDeVa:</strong>
+The following is an example to identify feature importance driving the error.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Analyze residual feature importance</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_residual_fi</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;uniform&quot;</span><span class="p">)</span>
 <span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/Residual_Feature_importance_bin.png"><img alt="../../../_images/Residual_Feature_importance_bin.png" class="align-center" src="../../../_images/Residual_Feature_importance_bin.png" style="width: 500px;" />
+</a>
 <p>For the full list of arguments of the API see <a href="#id1"><span class="problematic" id="id2">`TestSuite.diagnose_accuracy_residual_fi`_</span></a>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uniform binning numerical feature</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_accuracy</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">((</span><span class="s2">&quot;LIMIT_BAL&quot;</span><span class="p">,</span> <span class="p">),</span> <span class="p">(</span><span class="s2">&quot;PAY_1&quot;</span><span class="p">,</span> <span class="p">)),</span>
@@ -558,6 +563,8 @@
 <span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/Slicing_Accuracy_limit_pay.png"><img alt="../../../_images/Slicing_Accuracy_limit_pay.png" class="align-center" src="../../../_images/Slicing_Accuracy_limit_pay.png" style="width: 500px;" />
+</a>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_slicing_accuracy.html">TestSuite.diagnose_slicing_accuracy</a>.</p>
 </section>
 <section id="quantile-binning">
@@ -587,6 +594,8 @@
 <span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/Slicing_Accuracy_quantile.png"><img alt="../../../_images/Slicing_Accuracy_quantile.png" class="align-center" src="../../../_images/Slicing_Accuracy_quantile.png" style="width: 500px;" />
+</a>
 </section>
 <section id="automatic-binning-using-a-depth-1-or-2-xgboost-tree">
 <h3>3. Automatic Binning Using a Depth-1 or 2 XGBoost Tree<a class="headerlink" href="#automatic-binning-using-a-depth-1-or-2-xgboost-tree" title="Link to this heading">#</a></h3>
@@ -618,6 +627,10 @@
 <span class="n">results</span><span class="o">.</span><span class="n">table</span>   <span class="c1"># Display results in table</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/Slicing_Accuracy_auto_xgb1.png"><img alt="../../../_images/Slicing_Accuracy_auto_xgb1.png" class="align-center" src="../../../_images/Slicing_Accuracy_auto_xgb1.png" style="width: 500px;" />
+</a>
+<a class="reference internal image-reference" href="../../../_images/Slicing_Accuracy_auto_xgb1_table.png"><img alt="../../../_images/Slicing_Accuracy_auto_xgb1_table.png" class="align-center" src="../../../_images/Slicing_Accuracy_auto_xgb1_table.png" style="width: 500px;" />
+</a>
 <p><strong>User-defined Binning</strong>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Customm binning</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_accuracy</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="s2">&quot;LIMIT_BAL&quot;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;precompute&quot;</span><span class="p">,</span>
@@ -626,12 +639,16 @@
 <span class="n">results</span><span class="o">.</span><span class="n">table</span>   <span class="c1"># Display results in table</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/Slicing_Accuracy_custom_table.png"><img alt="../../../_images/Slicing_Accuracy_custom_table.png" class="align-center" src="../../../_images/Slicing_Accuracy_custom_table.png" style="width: 500px;" />
+</a>
 <p><strong>Slicing for a Set of Features</strong>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_accuracy</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">((</span><span class="s2">&quot;PAY_1&quot;</span><span class="p">,</span> <span class="p">),</span> <span class="p">(</span><span class="s2">&quot;BILL_AMT1&quot;</span><span class="p">,),</span> <span class="p">(</span><span class="s2">&quot;PAY_AMT1&quot;</span><span class="p">,</span> <span class="p">)),</span>
                                    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;quantile&quot;</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;AUC&quot;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
 <span class="n">results</span><span class="o">.</span><span class="n">table</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/Slicing_Accuracy_multiple.png"><img alt="../../../_images/Slicing_Accuracy_multiple.png" class="align-center" src="../../../_images/Slicing_Accuracy_multiple.png" style="width: 500px;" />
+</a>
 <p><strong>2-Feature Interaction Slicing</strong>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_accuracy</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;PAY_1&quot;</span><span class="p">,</span> <span class="s2">&quot;PAY_AMT1&quot;</span><span class="p">),</span>
                                    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;uniform&quot;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
@@ -639,6 +656,8 @@
 <span class="n">results</span><span class="o">.</span><span class="n">table</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/Slicing_Accuracy_interaction.png"><img alt="../../../_images/Slicing_Accuracy_interaction.png" class="align-center" src="../../../_images/Slicing_Accuracy_interaction.png" style="width: 500px;" />
+</a>
 <p>Slicing data through binning allows for detailed weakness detection by isolating feature ranges or regions where the model performs poorly. Uniform and quantile binning are simple yet effective for exploratory analysis, while automatic binning using a depth-1 XGBoost tree provides optimized, target-driven insights. These methods, when combined, offer a robust framework for identifying and addressing model weaknesses.</p>
 </section>
 <section id="additional-utilities-for-slicing">
@@ -653,14 +672,22 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data_results</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">data_drift_test</span><span class="p">(</span><span class="o">**</span><span class="n">data_info</span><span class="p">,</span> <span class="n">distance_metric</span><span class="o">=</span><span class="s2">&quot;PSI&quot;</span><span class="p">,</span>
                               <span class="n">psi_method</span><span class="o">=</span><span class="s2">&quot;uniform&quot;</span><span class="p">,</span> <span class="n">psi_bins</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">data_results</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;summary&quot;</span><span class="p">)</span>
-
-<span class="c1"># To get the list of figure names in the &quot;data_results&quot; object for further plotting</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/Slicing_Accuracy_PSI.png"><img alt="../../../_images/Slicing_Accuracy_PSI.png" class="align-center" src="../../../_images/Slicing_Accuracy_PSI.png" style="width: 500px;" />
+</a>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># To get the list of figure names in the &quot;data_results&quot; object for further plotting</span>
 <span class="n">data_results</span><span class="o">.</span><span class="n">get_figure_names</span><span class="p">()</span>
-
-<span class="c1"># Example of plotting from the list of figures</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/Slicing_Accuracy_figure_name.png"><img alt="../../../_images/Slicing_Accuracy_figure_name.png" class="align-center" src="../../../_images/Slicing_Accuracy_figure_name.png" style="width: 500px;" />
+</a>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example of plotting from the list of figures</span>
 <span class="n">data_results</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="s1">&#39;density&#39;</span><span class="p">,</span> <span class="s1">&#39;PAY_1&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="_source/images/Slicing_Accuracy_Density_Comparison.png"><img alt="_source/images/Slicing_Accuracy_Density_Comparison.png" class="align-center" src="_source/images/Slicing_Accuracy_Density_Comparison.png" style="width: 500px;" />
+</a>
 </section>
 </section>
 <section id="weakness-comparison">
@@ -673,6 +700,8 @@
 <span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="_source/images/Slicing_Accuracy_Density_Comparison_pay.png"><img alt="_source/images/Slicing_Accuracy_Density_Comparison_pay.png" class="align-center" src="_source/images/Slicing_Accuracy_Density_Comparison_pay.png" style="width: 500px;" />
+</a>
 <p>Check the API reference for detail arguments of <a class="reference external" href="../../modules/generated/modeva.TestSuite.compare_slicing_accuracy.html">TestSuite.compare_slicing_accuracy</a>.</p>
 <p><strong>2. Categorical Features</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tsc</span> <span class="o">=</span> <span class="n">TestSuite</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">models</span><span class="o">=</span><span class="p">[</span><span class="n">model1</span><span class="p">,</span> <span class="n">model2</span><span class="p">])</span>
@@ -681,6 +710,8 @@
 <span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="_source/images/Slicing_Accuracy_Density_Comparison_education.png"><img alt="_source/images/Slicing_Accuracy_Density_Comparison_education.png" class="align-center" src="_source/images/Slicing_Accuracy_Density_Comparison_education.png" style="width: 500px;" />
+</a>
 </section>
 <section id="advanced-slicing">
 <h2>Advanced Slicing<a class="headerlink" href="#advanced-slicing" title="Link to this heading">#</a></h2>

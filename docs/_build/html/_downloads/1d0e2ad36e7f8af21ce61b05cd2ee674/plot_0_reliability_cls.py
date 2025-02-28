@@ -26,6 +26,7 @@ from modeva import DataSet
 from modeva import TestSuite
 from modeva.models import MoLGBMClassifier
 from modeva.models import MoXGBClassifier
+from modeva.testsuite.utils.slicing_utils import get_data_info
 
 # %%
 # Load and prepare dataset
@@ -115,10 +116,25 @@ results = ts.diagnose_slicing_reliability(
 )
 results.table
 
-
 # %%
 # Draw the coverage plot of each feature
 results.plot("PAY_1")
+
+# %%
+# Analyze data drift between samples above and under the threshold
+data_info = get_data_info(res_value=results.value)
+data_results = ds.data_drift_test(
+    **data_info["PAY_1"],
+    distance_metric="PSI",
+    psi_method="uniform",
+    psi_bins=10
+)
+data_results.plot("summary")
+
+# %%
+# Single feature density plot
+data_results.plot(("density", "PAY_1"))
+
 
 # %%
 # 2D feature interaction reliability analysis
@@ -132,6 +148,7 @@ results = ts.diagnose_slicing_reliability(
 )
 results.table
 
+
 # %%
 # Model reliability comparison
 # -------------------------------------------
@@ -139,7 +156,7 @@ tsc = TestSuite(ds, models=[model1, model2])
 results = tsc.compare_reliability(
     train_dataset="train", 
     test_dataset="test",
-    test_size=0.5, 
+    test_size=0.5,
     alpha=0.1, 
     max_depth=5,
     random_state=0

@@ -64,9 +64,9 @@ results.plot()
 
 # %%
 # Analyze data drift between samples above and under the threshold
-data_info = get_data_info(res_value=results.value)["season"]
+data_info = get_data_info(res_value=results.value)
 data_results = ds.data_drift_test(
-    **data_info, 
+    **data_info["season"],
     distance_metric="PSI", 
     psi_method="uniform", 
     psi_bins=10
@@ -101,15 +101,20 @@ results.table
 # Visualize the results for one feature
 results.plot(name="hr", figsize=(6, 6))
 
+# %%
 # Analyze data drift for 'hr' feature
-data_info = get_data_info(res_value=results.value)["hr"]
+data_info = get_data_info(res_value=results.value)
 data_results = ds.data_drift_test(
-    **data_info,
+    **data_info["hr"],
     distance_metric="PSI",
     psi_method="uniform",
     psi_bins=10
 )
 data_results.plot("summary")
+
+# %%
+# Single feature density plot
+data_results.plot(("density", "hr"))
 
 # %%
 # 2D feature interaction analysis

@@ -688,8 +688,7 @@ After fitting a new decision tree <span class="math notranslate nohighlight">\(h
 <section id="global-interpretation">
 <h2>Global Interpretation<a class="headerlink" href="#global-interpretation" title="Link to this heading">#</a></h2>
 <p>The inherent interpretation of Depth-2 GBDT includes the main effect plot, pairwise interaction plot, effect importance plot, and feature importance plot.</p>
-<section id="feature-importance">
-<h3>Feature Importance<a class="headerlink" href="#feature-importance" title="Link to this heading">#</a></h3>
+<p><strong>Feature Importance</strong></p>
 <p>Assess overall feature impact:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Global feature importance</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_fi</span><span class="p">()</span>
@@ -707,9 +706,7 @@ After fitting a new decision tree <span class="math notranslate nohighlight">\(h
 <li><p>Higher values indicate stronger influence</p></li>
 <li><p>Accounts for feature scale differences</p></li>
 </ul>
-</section>
-<section id="effect-importance">
-<h3>Effect Importance<a class="headerlink" href="#effect-importance" title="Link to this heading">#</a></h3>
+<p><strong>Effect Importance</strong></p>
 <p>Assess overall impact according to functional ANOVA components: main and interaction effect</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Global effect importance</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_ei</span><span class="p">()</span>
@@ -717,6 +714,8 @@ After fitting a new decision tree <span class="math notranslate nohighlight">\(h
 <span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/xgb_ei.png"><img alt="../../../_images/xgb_ei.png" class="align-center" src="../../../_images/xgb_ei.png" style="width: 500px;" />
+</a>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_ei.html">TestSuite.interpret_ei</a>.</p>
 <p><strong>Importance Metrics:</strong></p>
 <ul class="simple">
@@ -729,7 +728,6 @@ After fitting a new decision tree <span class="math notranslate nohighlight">\(h
 <li><p>Can view importance per category</p></li>
 <li><p>Interpretable through reference levels</p></li>
 </ul>
-</section>
 <section id="global-effect-plot">
 <h3>Global Effect Plot<a class="headerlink" href="#global-effect-plot" title="Link to this heading">#</a></h3>
 <p>Plot the main and interaction effect plot of features</p>
@@ -935,8 +933,6 @@ After fitting a new decision tree <span class="math notranslate nohighlight">\(h
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-interpretation">Global Interpretation</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-importance">Feature Importance</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#effect-importance">Effect Importance</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#global-effect-plot">Global Effect Plot</a></li>
 </ul>
 </li>
