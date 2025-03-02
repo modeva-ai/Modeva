@@ -448,7 +448,7 @@
 <p><strong>Basic Concept</strong></p>
 <blockquote>
 <div><ul>
-<li><p>Traditional Decision Trees: Use constant predictions at their leaves. For example, in regression tasks, each leaf might simply predict the mean value of the target variable for the data points falling into that leaf.</p></li>
+<li><p>Traditional Decision Trees: Use constant predictions at their leaves. For example, in regression tasks, each leaf simply predicts the mean value of the target variable for the data points falling into that leaf.</p></li>
 <li><p>Linear Trees:Enhance this by replacing the constant value at the leaves with a linear model. Each leaf contains a small regression model that predicts the target as a linear combination of the features specific to that leaf. This allows the model to:</p>
 <blockquote>
 <div><ul class="simple">
@@ -526,16 +526,10 @@
 <blockquote>
 <div><ul class="simple">
 <li><p>Captures more nuanced patterns in the data because the linear model in each leaf can adapt to local trends.</p></li>
-<li><p>Improved Predictive Power:</p></li>
+<li><p>Improved Predictive Power: Compared to traditional decision trees, linear trees reduce bias in regions where the target variable has linear relationships with input features.</p></li>
+<li><p>Interpretable: Each leaf’s linear model can provide insight into the feature contributions for predictions in that region.</p></li>
 </ul>
 </div></blockquote>
-<dl class="simple">
-<dt>Compared to traditional decision trees, linear trees reduce bias in regions where the target variable has linear relationships with input features.</dt><dd><ul class="simple">
-<li><p>Interpretable:</p></li>
-</ul>
-</dd>
-</dl>
-<p>Each leaf’s linear model can provide insight into the feature contributions for predictions in that region.</p>
 </section>
 </section>
 <section id="gradient-boosted-linear-tree-gblt">
@@ -576,7 +570,7 @@
 <section id="gblt-in-modeva">
 <h2>GBLT in MoDeVa<a class="headerlink" href="#gblt-in-modeva" title="Link to this heading">#</a></h2>
 <p><strong>Model Setup</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="c1"># For regression tasks</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># For regression tasks</span>
 <span class="kn">from</span> <span class="nn">modeva.models</span> <span class="kn">import</span> <span class="n">MoGLMTreeBoostRegressor</span>
 <span class="n">model_gblt</span> <span class="o">=</span> <span class="n">MoGLMTreeBoostRegressor</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;GBLT&quot;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 
@@ -604,7 +598,7 @@
 <span class="n">result</span><span class="o">.</span><span class="n">table</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_source/images/gblt_perf.png"><img alt="_source/images/gblt_perf.png" class="align-center" src="_source/images/gblt_perf.png" style="width: 300px;" />
+<a class="reference internal image-reference" href="../../../_images/gblt_perf.png"><img alt="../../../_images/gblt_perf.png" class="align-center" src="../../../_images/gblt_perf.png" style="width: 300px;" />
 </a>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_accuracy_table.html">TestSuite.diagnose_accuracy_table</a>.</p>
 <section id="interpretable-gblt-with-depth-1-trees">
@@ -617,11 +611,9 @@
 \beta_2^\mathrm{T}x + \alpha_2 &amp; \text{if } x_s \gt \text{threshold}
 \end{cases}\end{split}\]</div>
 <p><strong>Functional ANOVA Representation</strong></p>
-<p>The model can be decomposed as:
-.. math:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> \<span class="n">mu</span> <span class="o">+</span> \<span class="n">sum_j</span> <span class="n">f_j</span><span class="p">(</span><span class="n">x_j</span><span class="p">)</span> <span class="o">+</span> \<span class="n">sum_</span><span class="p">{</span><span class="n">j</span> \<span class="n">lt</span> <span class="n">k</span><span class="p">}</span> <span class="n">f_</span><span class="p">{</span><span class="n">jk</span><span class="p">}(</span><span class="n">x_j</span><span class="p">,</span> <span class="n">x_k</span><span class="p">)</span>
-</pre></div>
-</div>
+<p>The model can be decomposed as:</p>
+<div class="math notranslate nohighlight">
+\[f(x) = \mu + \sum_j f_j(x_j) + \sum_{j \lt k} f_{jk}(x_j, x_k)\]</div>
 <p>Components:
 1. Main Effects (<span class="math notranslate nohighlight">\(f_j\)</span>):</p>
 <blockquote>
@@ -691,6 +683,10 @@
 <span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/gblt_hr.png"><img alt="../../../_images/gblt_hr.png" class="align-center" src="../../../_images/gblt_hr.png" style="width: 500px;" />
+</a>
+<a class="reference internal image-reference" href="../../../_images/gblt_hr_workingday.png"><img alt="../../../_images/gblt_hr_workingday.png" class="align-center" src="../../../_images/gblt_hr_workingday.png" style="width: 500px;" />
+</a>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_effects.html">TestSuite.interpret_effects</a>.</p>
 </section>
 <section id="local-interpretation">
@@ -699,6 +695,13 @@
 <h3>Individual Prediction Analysis<a class="headerlink" href="#individual-prediction-analysis" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Local interpretation for specific sample: sample_index = 10</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_local_fi</span><span class="p">(</span><span class="n">sample_index</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">centered</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>   <span class="c1"># local feature importance</span>
+<span class="c1"># Plot the result</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/gblt_local_fi.png"><img alt="../../../_images/gblt_local_fi.png" class="align-center" src="../../../_images/gblt_local_fi.png" style="width: 500px;" />
+</a>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_local_ei</span><span class="p">(</span><span class="n">sample_index</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">centered</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>   <span class="c1"># local effect importance</span>
 <span class="c1"># Plot the result</span>
 <span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>

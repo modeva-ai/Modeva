@@ -544,7 +544,7 @@
 <span class="n">result</span><span class="o">.</span><span class="n">table</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../../_images/ReLU_llm.png"><img alt="../../../_images/ReLU_llm.png" class="align-center" src="../../../_images/ReLU_llm.png" style="width: 300px;" />
+<a class="reference internal image-reference" href="../../../_images/ReLU_llm.png"><img alt="../../../_images/ReLU_llm.png" class="align-center" src="../../../_images/ReLU_llm.png" style="width: 500px;" />
 </a>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_llm_summary.html">TestSuite.interpret_llm_summary</a>.</p>
 <p>The table shows the summary statistics for each LLM, each row represents an LLM with the following statistics.</p>
@@ -567,7 +567,7 @@
 <span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_source/images/ReLU_Parallel_Coordinate.png"><img alt="_source/images/ReLU_Parallel_Coordinate.png" class="align-center" src="_source/images/ReLU_Parallel_Coordinate.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="../../../_images/ReLU_Parallel_Coordinate.png"><img alt="../../../_images/ReLU_Parallel_Coordinate.png" class="align-center" src="../../../_images/ReLU_Parallel_Coordinate.png" style="width: 500px;" />
 </a>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_llm_pc.html">TestSuite.interpret_llm_pc</a>.</p>
 <p>This plot is used for visualizing coefficients of different LLMs, where each line represents a single LLM. The x-axis shows feature names and the y-axis shows the coefficient values. As this is a static plot, we only plot the top 10 important features, see the <cite>Feature Importance Plot</cite> section for details. From the figure above, we can see that <cite>Pay_1</cite> is the most important feature, with a wide range of coefficient values. The second and the third important variables are <cite>PAY_AMT1</cite> and <cite>PAY_3</cite>, respectively.</p>
@@ -589,6 +589,8 @@
 <section id="llm-profile-plot">
 <h3>LLM profile plot<a class="headerlink" href="#llm-profile-plot" title="Link to this heading">#</a></h3>
 <p>The local linear profile plot shows the marginal linear functions upon centering, and it requires the specification of feature to plot.</p>
+<a class="reference internal image-reference" href="../../../_images/ReLU_hr.png"><img alt="../../../_images/ReLU_hr.png" class="align-center" src="../../../_images/ReLU_hr.png" style="width: 500px;" />
+</a>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_llm_profile.html">TestSuite.interpret_llm_profile</a>.</p>
 <p>In this plot, each line represents an LLM. The x-axis shows unique values of the specified feature, and the y-axis is the marginal effect (coefficient times feature values) of that feature. To make this plot more elegant, we only visualize the top 30 LLMs and the marginal effects are all de-meaned.</p>
 </section>

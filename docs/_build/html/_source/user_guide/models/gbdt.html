@@ -737,6 +737,8 @@ After fitting a new decision tree <span class="math notranslate nohighlight">\(h
 <span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/xgb_hr_ef.png"><img alt="../../../_images/xgb_hr_ef.png" class="align-center" src="../../../_images/xgb_hr_ef.png" style="width: 500px;" />
+</a>
 </section>
 </section>
 <section id="local-interpretation">
@@ -745,6 +747,13 @@ After fitting a new decision tree <span class="math notranslate nohighlight">\(h
 <h3>Individual Prediction Analysis<a class="headerlink" href="#individual-prediction-analysis" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Local interpretation for specific sample: sample_index = 10</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_local_fi</span><span class="p">(</span><span class="n">sample_index</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">centered</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>   <span class="c1"># local feature importance</span>
+<span class="c1"># Plot the result</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/xgb_local_fi.png"><img alt="../../../_images/xgb_local_fi.png" class="align-center" src="../../../_images/xgb_local_fi.png" style="width: 500px;" />
+</a>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_local_ei</span><span class="p">(</span><span class="n">sample_index</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">centered</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>   <span class="c1"># local effect importance</span>
 <span class="c1"># Plot the result</span>
 <span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>

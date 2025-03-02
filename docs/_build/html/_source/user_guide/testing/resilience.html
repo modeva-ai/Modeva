@@ -454,18 +454,42 @@
 <p><strong>Distribution Shift Scenarios</strong></p>
 <p>There are many scenarios that can be employed to simulate a shift between the training/testing (or overall) distribution and the deployment distribution, MoDeVa provides the following scenarios:</p>
 <blockquote>
-<div><p><strong>1. Drift to Worst Performing Samples</strong>
-Idea: Identify samples on which the model’s performance is poorest measured by error metrics or mispredictions—and simulate drift by increasing their proportion.
-Rationale: This can mimic a “worst-case” scenario where the deployment data disproportionately resembles the “hard” cases, revealing vulnerabilities in the model.
-<strong>2. Drift to Clusters (KMeans) to the Worst Performing Cluster</strong>
-Idea: Use a clustering algorithm (e.g., k-means) on the feature space to segment the data. Then, determine which cluster exhibits the worst performance and simulate drift by focusing on this subgroup.
-Rationale: Clustering can capture latent subpopulations in the data. If one cluster consistently underperforms, it may represent a niche or anomalous group, and simulating drift toward this cluster can expose model weaknesses specific to that segment.
-<strong>3. Drift to the Edge (Outer Side of the Distribution)</strong>
-Idea: Identify samples that lie at the periphery of the overall data distribution. This involves using distance metrics (Mahalanobis distance) to quantify how “far” a sample is from the center of the data.
-Rationale: Edge cases are typically less represented during training and can behave like out-of-distribution (OOD) samples. Shifting towards these samples can test the model’s ability to generalize to more extreme, less typical cases.
-<strong>4. Drift to Distribution of Samples that are Hardest to Predict</strong>
-Idea: Determine which samples the model finds most uncertain or difficult to predict—-high predictive entropy, low confidence scores, or high error rates.
-Rationale: These samples are where the model is least reliable. By simulating a scenario where these “hard” samples become more common, you can assess how well the model handles uncertainty and whether strategies like uncertainty-aware training or selective prediction might help.</p>
+<div><p><strong>1. Drift to Worst Performing Samples</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Idea: Identify samples on which the model’s performance is poorest measured by error metrics or mispredictions—and simulate drift by increasing their proportion.</p></li>
+<li><p>Rationale: This can mimic a “worst-case” scenario where the deployment data disproportionately resembles the “hard” cases, revealing vulnerabilities in the model.</p></li>
+</ul>
+</div></blockquote>
+<a class="reference internal image-reference" href="../../../_images/Resilience_worst_sample.png"><img alt="../../../_images/Resilience_worst_sample.png" class="align-center" src="../../../_images/Resilience_worst_sample.png" style="width: 60%;" />
+</a>
+<p><strong>2. Drift to Clusters (KMeans) to the Worst Performing Cluster</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Idea: Use a clustering algorithm (e.g., k-means) on the feature space to segment the data. Then, determine which cluster exhibits the worst performance and simulate drift by focusing on this subgroup.</p></li>
+<li><p>Rationale: Clustering can capture latent subpopulations in the data. If one cluster consistently underperforms, it may represent a niche or anomalous group, and simulating drift toward this cluster can expose model weaknesses specific to that segment.</p></li>
+</ul>
+</div></blockquote>
+<a class="reference internal image-reference" href="../../../_images/Resilience_worst_cluster.png"><img alt="../../../_images/Resilience_worst_cluster.png" class="align-center" src="../../../_images/Resilience_worst_cluster.png" style="width: 60%;" />
+</a>
+<p><strong>3. Drift to the Edge (Outer Side of the Distribution)</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Idea: Identify samples that lie at the periphery of the overall data distribution. This involves using distance metrics (Mahalanobis distance) to quantify how “far” a sample is from the center of the data.</p></li>
+<li><p>Rationale: Edge cases are typically less represented during training and can behave like out-of-distribution (OOD) samples. Shifting towards these samples can test the model’s ability to generalize to more extreme, less typical cases.</p></li>
+</ul>
+</div></blockquote>
+<a class="reference internal image-reference" href="../../../_images/Resilience_outer_sample.png"><img alt="../../../_images/Resilience_outer_sample.png" class="align-center" src="../../../_images/Resilience_outer_sample.png" style="width: 60%;" />
+</a>
+<p><strong>4. Drift to Distribution of Samples that are Hardest to Predict</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Idea: Determine which samples the model finds most uncertain or difficult to predict—-high predictive entropy, low confidence scores, or high error rates.</p></li>
+<li><p>Rationale: These samples are where the model is least reliable. By simulating a scenario where these “hard” samples become more common, you can assess how well the model handles uncertainty and whether strategies like uncertainty-aware training or selective prediction might help.</p></li>
+</ul>
+</div></blockquote>
+<a class="reference internal image-reference" href="../../../_images/Resilience_hard_sample.png"><img alt="../../../_images/Resilience_hard_sample.png" class="align-center" src="../../../_images/Resilience_hard_sample.png" style="width: 60%;" />
+</a>
 </div></blockquote>
 <dl class="simple">
 <dt><strong>Perormance Degradation Assessment</strong></dt><dd><ul class="simple">
@@ -538,9 +562,9 @@ Rationale: These samples are where the model is least reliable. By simulating a 
 </pre></div>
 </div>
 <div class="side-by-side docutils container">
-<a class="reference internal image-reference" href="_source/images/Resilience_wosrt_sample.png"><img alt="_source/images/Resilience_wosrt_sample.png" src="_source/images/Resilience_wosrt_sample.png" style="width: 45%;" />
+<a class="reference internal image-reference" href="../../../_images/Resilience_worst_sample.png"><img alt="../../../_images/Resilience_worst_sample.png" src="../../../_images/Resilience_worst_sample.png" style="width: 45%;" />
 </a>
-<a class="reference internal image-reference" href="_source/images/Resilience_wosrt_cluster.png"><img alt="_source/images/Resilience_wosrt_cluster.png" src="_source/images/Resilience_wosrt_cluster.png" style="width: 45%;" />
+<a class="reference internal image-reference" href="../../../_images/Resilience_worst_cluster.png"><img alt="../../../_images/Resilience_worst_cluster.png" src="../../../_images/Resilience_worst_cluster.png" style="width: 45%;" />
 </a>
 </div>
 <div class="side-by-side docutils container">
@@ -564,8 +588,7 @@ Rationale: These samples are where the model is least reliable. By simulating a 
 This section presents both theoretical (continuous) and computational (discrete) formulations of key distribution shift metrics.</p>
 <section id="jensen-shannon-divergence">
 <h3>Jensen-Shannon Divergence<a class="headerlink" href="#jensen-shannon-divergence" title="Link to this heading">#</a></h3>
-<section id="continuous-formulation">
-<h4>Continuous Formulation:<a class="headerlink" href="#continuous-formulation" title="Link to this heading">#</a></h4>
+<p><strong>Continuous Formulation:</strong></p>
 <p>For probability density functions of shifted distribution p(x) and reference distribution q(x):</p>
 <div class="math notranslate nohighlight">
 \[JSD(P||Q) = \frac{1}{2}\int p(x)\log\frac{p(x)}{m(x)}dx + \frac{1}{2}\int q(x)\log\frac{q(x)}{m(x)}dx\]</div>
@@ -575,9 +598,7 @@ This section presents both theoretical (continuous) and computational (discrete)
 <li><p><span class="math notranslate nohighlight">\(m(x) = \frac{1}{2}(p(x) + q(x))\)</span></p></li>
 </ul>
 </div></blockquote>
-</section>
-<section id="discrete-formulation-psi">
-<h4>Discrete Formulation (PSI):<a class="headerlink" href="#discrete-formulation-psi" title="Link to this heading">#</a></h4>
+<p><strong>Discrete Formulation (PSI):</strong></p>
 <p>For binned data with K bins:</p>
 <div class="math notranslate nohighlight">
 \[PSI = \sum_{i=1}^K (p_i - q_i)\log\frac{p_i}{q_i}\]</div>
@@ -590,17 +611,13 @@ This section presents both theoretical (continuous) and computational (discrete)
 </ul>
 </div></blockquote>
 </section>
-</section>
 <section id="wasserstein-distance">
 <h3>Wasserstein Distance<a class="headerlink" href="#wasserstein-distance" title="Link to this heading">#</a></h3>
-<section id="id1">
-<h4>Continuous Formulation:<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<p><strong>Continuous Formulation:</strong></p>
 <p>For cumulative distribution functions F(x) and G(x):</p>
 <div class="math notranslate nohighlight">
 \[W(P,Q) = \int_{-\infty}^{\infty} |F(x) - G(x)|dx\]</div>
-</section>
-<section id="discrete-formulation">
-<h4>Discrete Formulation:<a class="headerlink" href="#discrete-formulation" title="Link to this heading">#</a></h4>
+<p><strong>Discrete Formulation:</strong></p>
 <p>For empirical distributions with sorted values <span class="math notranslate nohighlight">\(\{x_i\}_{i=1}^n\)</span> and <span class="math notranslate nohighlight">\(\{y_i\}_{i=1}^n\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[W(P,Q) = \sum_{i=1}^n |F_n(x_i) - G_n(x_i)|\Delta x_i\]</div>
@@ -613,16 +630,12 @@ This section presents both theoretical (continuous) and computational (discrete)
 </ul>
 </div></blockquote>
 </section>
-</section>
 <section id="kolmogorov-smirnov-statistic">
 <h3>Kolmogorov-Smirnov Statistic<a class="headerlink" href="#kolmogorov-smirnov-statistic" title="Link to this heading">#</a></h3>
-<section id="id2">
-<h4>Continuous Formulation:<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
+<p><strong>Continuous Formulation:</strong></p>
 <div class="math notranslate nohighlight">
 \[KS = \sup_{x \in \mathbb{R}} |F(x) - G(x)|\]</div>
-</section>
-<section id="id3">
-<h4>Discrete Formulation:<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<p><strong>Discrete Formulation:</strong></p>
 <p>For empirical distributions:</p>
 <div class="math notranslate nohighlight">
 \[KS = \max_{i} |F_n(x_i) - G_n(x_i)|\]</div>
@@ -674,7 +687,6 @@ This section presents both theoretical (continuous) and computational (discrete)
 </div></blockquote>
 <p>the univariate distribution shifts and the summary of features ranked according to their PSIs.</p>
 </section>
-</section>
 <section id="resilience-comparison">
 <h3>Resilience Comparison<a class="headerlink" href="#resilience-comparison" title="Link to this heading">#</a></h3>
 <p>Resilience of several models can be compared as follows:</p>
@@ -704,56 +716,49 @@ This section presents both theoretical (continuous) and computational (discrete)
 </dd>
 </dl>
 <p><strong>Analysis Using Random Forest Clustering</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_resilience_cluster</span><span class="p">(</span>
-   <span class="n">cluster_method</span><span class="o">=</span><span class="s2">&quot;cluster_qr&quot;</span><span class="p">,</span>
-   <span class="n">n_clusters</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-   <span class="n">rf_n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-   <span class="n">rf_max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-   <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;MAE&quot;</span><span class="p">)</span>
-<span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;performance&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_residual_cluster</span><span class="p">(</span>
+   <span class="n">dataset</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="c1"># use the test dataset</span>
+   <span class="n">response_type</span><span class="o">=</span><span class="s2">&quot;abs_residual&quot;</span><span class="p">,</span> <span class="c1"># use the absolute residual</span>
+   <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;MAE&quot;</span><span class="p">,</span> <span class="c1"># use the MAE metric</span>
+   <span class="n">n_clusters</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="c1"># number of clusters</span>
+   <span class="n">cluster_method</span><span class="o">=</span><span class="s2">&quot;pam&quot;</span><span class="p">,</span> <span class="c1"># use the PAM clustering method</span>
+   <span class="n">sample_size</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="c1"># sample size</span>
+   <span class="n">rf_n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="c1"># number of trees</span>
+   <span class="n">rf_max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="c1"># maximum depth of the trees</span>
+   <span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">table</span> <span class="c1"># display the table of cluster performance</span>
+<span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;cluster_performance&quot;</span><span class="p">)</span> <span class="c1"># display the plot of cluster performance</span>
+<span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;feature_importance&quot;</span><span class="p">)</span> <span class="c1"># display feature importarce for the performance drift</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../../_images/resilience_RF.png"><img alt="../../../_images/resilience_RF.png" class="align-center" src="../../../_images/resilience_RF.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="../../../_images/resilience_RF_table.png"><img alt="../../../_images/resilience_RF_table.png" class="align-center" src="../../../_images/resilience_RF_table.png" style="width: 300px;" />
 </a>
-<p>Check the API reference for detail arguments of <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_resilience_cluster.html">TestSuite.diagnose_resilience_cluster</a>.</p>
+<a class="reference internal image-reference" href="../../../_images/resilience_RF_performance.png"><img alt="../../../_images/resilience_RF_performance.png" class="align-center" src="../../../_images/resilience_RF_performance.png" style="width: 500px;" />
+</a>
+<a class="reference internal image-reference" href="../../../_images/resilience_RF_FI.png"><img alt="../../../_images/resilience_RF_FI.png" class="align-center" src="../../../_images/resilience_RF_FI.png" style="width: 500px;" />
+</a>
+<p>Check the API reference for detail arguments of <a href="#id1"><span class="problematic" id="id2">`TestSuite.diagnose_residual_cluster`_</span></a>.</p>
 <p><strong>Data Drift for a Specific Cluster</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cluster_id</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">data_results</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">data_drift_test</span><span class="p">(</span>
    <span class="o">**</span><span class="n">results</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="s2">&quot;clusters&quot;</span><span class="p">][</span><span class="n">cluster_id</span><span class="p">][</span><span class="s2">&quot;data_info&quot;</span><span class="p">],</span>
-   <span class="n">distance_metric</span><span class="o">=</span><span class="s2">&quot;PSI&quot;</span><span class="p">,</span>
-   <span class="n">psi_method</span><span class="o">=</span><span class="s2">&quot;uniform&quot;</span><span class="p">,</span>
-   <span class="n">psi_bins</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">data_results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+   <span class="n">distance_metric</span><span class="o">=</span><span class="s2">&quot;PSI&quot;</span><span class="p">,</span> <span class="c1"># use the PSI metric</span>
+   <span class="n">psi_method</span><span class="o">=</span><span class="s2">&quot;uniform&quot;</span><span class="p">,</span>  <span class="c1"># use the uniform method</span>
+   <span class="n">psi_bins</span><span class="o">=</span><span class="mi">10</span> <span class="c1"># use 10 bins</span>
+<span class="p">)</span>
+<span class="n">data_results</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;summary&quot;</span><span class="p">)</span> <span class="c1"># display the summary of distribution shift</span>
+<span class="n">data_results</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;density&#39;</span><span class="p">,</span> <span class="s1">&#39;hr&#39;</span><span class="p">))</span> <span class="c1"># display the density plot of the feature &#39;hr&#39;</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="../../../_images/resilience_RF_PSI.png"><img alt="../../../_images/resilience_RF_PSI.png" class="align-center" src="../../../_images/resilience_RF_PSI.png" style="width: 500px;" />
 </a>
 <p>In this example, specific analysis is applied to cluster ID 2 and is compared to overall data as a baseline.</p>
 <div class="side-by-side docutils container">
-<a class="reference internal image-reference" href="../../../_images/resilience_Density_RF_weekday.png"><img alt="../../../_images/resilience_Density_RF_weekday.png" src="../../../_images/resilience_Density_RF_weekday.png" style="width: 45%;" />
-</a>
 <a class="reference internal image-reference" href="../../../_images/resilience_Density_RF_hr.png"><img alt="../../../_images/resilience_Density_RF_hr.png" src="../../../_images/resilience_Density_RF_hr.png" style="width: 45%;" />
 </a>
-</div>
-<div class="side-by-side docutils container">
-<a class="reference internal image-reference" href="_source/images/resilience_Density_RF_workingday.png"><img alt="_source/images/resilience_Density_RF_workingday.png" src="_source/images/resilience_Density_RF_workingday.png" style="width: 45%;" />
-</a>
-<a class="reference internal image-reference" href="_source/images/resilience_Density_RF_hum.png"><img alt="_source/images/resilience_Density_RF_hum.png" src="_source/images/resilience_Density_RF_hum.png" style="width: 45%;" />
+<a class="reference internal image-reference" href="../../../_images/resilience_Density_RF_hum.png"><img alt="../../../_images/resilience_Density_RF_hum.png" src="../../../_images/resilience_Density_RF_hum.png" style="width: 45%;" />
 </a>
 </div>
-<p>Resilience among models can be compared in more details by using Random Forest clustering approach:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">tsc</span><span class="o">.</span><span class="n">compare_resilience_cluster</span><span class="p">(</span>
-   <span class="n">cluster_method</span><span class="o">=</span><span class="s2">&quot;cluster_qr&quot;</span><span class="p">,</span>
-   <span class="n">n_clusters</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-   <span class="n">rf_n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-   <span class="n">rf_max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-   <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;MSE&quot;</span><span class="p">)</span>
-<span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-</pre></div>
-</div>
-<a class="reference internal image-reference" href="../../../_images/resilience_compare_RF.png"><img alt="../../../_images/resilience_compare_RF.png" class="align-center" src="../../../_images/resilience_compare_RF.png" style="width: 500px;" />
-</a>
-<p>Check the API reference for detail arguments of <a class="reference external" href="../../modules/generated/modeva.TestSuite.compare_resilience_cluster.html">TestSuite.compare_resilience_cluster</a>.</p>
 </section>
 <section id="strategies-for-addressing-model-weaknesses">
 <h2>Strategies for Addressing Model Weaknesses<a class="headerlink" href="#strategies-for-addressing-model-weaknesses" title="Link to this heading">#</a></h2>
@@ -885,21 +890,9 @@ f_{global}(X) &amp; \text{otherwise}
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resilience-analysis-in-modeva">Resilience Analysis in MoDeVa</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measuring-distribution-drift">Measuring Distribution Drift</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jensen-shannon-divergence">Jensen-Shannon Divergence</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-formulation">Continuous Formulation:</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-formulation-psi">Discrete Formulation (PSI):</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wasserstein-distance">Wasserstein Distance</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Continuous Formulation:</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-formulation">Discrete Formulation:</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kolmogorov-smirnov-statistic">Kolmogorov-Smirnov Statistic</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Continuous Formulation:</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Discrete Formulation:</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jensen-shannon-divergence">Jensen-Shannon Divergence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wasserstein-distance">Wasserstein Distance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kolmogorov-smirnov-statistic">Kolmogorov-Smirnov Statistic</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resilience-comparison">Resilience Comparison</a></li>
 </ul>
 </li>

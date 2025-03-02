@@ -578,6 +578,8 @@
 <section id="global-interpretation">
 <h2>Global Interpretation<a class="headerlink" href="#global-interpretation" title="Link to this heading">#</a></h2>
 <p>The inherent interpretation of GAMI-Net includes the main effect plot, pairwise interaction plot, effect importance plot, and feature importance plot.</p>
+<section id="feature-importance">
+<h3>Feature Importance<a class="headerlink" href="#feature-importance" title="Link to this heading">#</a></h3>
 <p>Assess overall feature impact:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Global feature importance</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_fi</span><span class="p">()</span>
@@ -595,6 +597,9 @@
 <li><p>Higher values indicate stronger influence</p></li>
 <li><p>Accounts for feature scale differences</p></li>
 </ul>
+</section>
+<section id="effect-importance">
+<h3>Effect Importance<a class="headerlink" href="#effect-importance" title="Link to this heading">#</a></h3>
 <p>Assess overall impact according to functional ANOVA components: main and interaction effect</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Global effect importance</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_ei</span><span class="p">()</span>
@@ -610,11 +615,17 @@
 <li><p>Based on variance of individual functional ANOVA term effects (main or interaction effect)</p></li>
 <li><p>Higher values indicate stronger influence</p></li>
 </ul>
+</section>
+<section id="categorical-variables">
+<h3>Categorical Variables<a class="headerlink" href="#categorical-variables" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>One-hot encoded automatically</p></li>
 <li><p>Can view importance per category</p></li>
 <li><p>Interpretable through reference levels</p></li>
 </ul>
+</section>
+<section id="global-effect-plot">
+<h3>Global Effect Plot<a class="headerlink" href="#global-effect-plot" title="Link to this heading">#</a></h3>
 <p>Plot the main and interaction effect plot of features</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Main effect plot of feature: &quot;hr&quot;</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_effects</span><span class="p">(</span><span class="n">features</span> <span class="o">=</span> <span class="s2">&quot;hr&quot;</span><span class="p">)</span>
@@ -622,9 +633,18 @@
 <span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_source/images/gami_hr_weekday.png"><img alt="_source/images/gami_hr_weekday.png" class="align-center" src="_source/images/gami_hr_weekday.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="../../../_images/gami_hr.png"><img alt="../../../_images/gami_hr.png" class="align-center" src="../../../_images/gami_hr.png" style="width: 500px;" />
+</a>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Interaction effect plot of features: &quot;hr&quot; and &quot;weekday&quot;</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_effects</span><span class="p">(</span><span class="n">features</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;hr&quot;</span><span class="p">,</span><span class="s2">&quot;workingday&quot;</span><span class="p">))</span>
+<span class="c1"># Plot the result</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/gami_hr_workingday.png"><img alt="../../../_images/gami_hr_workingday.png" class="align-center" src="../../../_images/gami_hr_workingday.png" style="width: 500px;" />
 </a>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_effects.html">TestSuite.interpret_effects</a>.</p>
+</section>
 </section>
 <section id="local-interpretation">
 <h2>Local Interpretation<a class="headerlink" href="#local-interpretation" title="Link to this heading">#</a></h2>
@@ -632,6 +652,13 @@
 <h3>Individual Prediction Analysis<a class="headerlink" href="#individual-prediction-analysis" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Local interpretation for specific sample: sample_index = 10</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_local_fi</span><span class="p">(</span><span class="n">sample_index</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">centered</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>   <span class="c1"># local feature importance</span>
+<span class="c1"># Plot the result</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/gami_local_fi.png"><img alt="../../../_images/gami_local_fi.png" class="align-center" src="../../../_images/gami_local_fi.png" style="width: 500px;" />
+</a>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_local_ei</span><span class="p">(</span><span class="n">sample_index</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">centered</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>   <span class="c1"># local effect importance</span>
 <span class="c1"># Plot the result</span>
 <span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
@@ -790,7 +817,13 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#effect-attribution">Effect Attribution</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-interpretation">Global Interpretation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-interpretation">Global Interpretation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-importance">Feature Importance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#effect-importance">Effect Importance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#categorical-variables">Categorical Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#global-effect-plot">Global Effect Plot</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-interpretation">Local Interpretation</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#individual-prediction-analysis">Individual Prediction Analysis</a></li>
 </ul>

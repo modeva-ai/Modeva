@@ -465,6 +465,9 @@
 <span class="n">ds</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;BikeSharing&quot;</span><span class="p">)</span>  <span class="c1"># Changed dataset name</span>
 <span class="c1"># Split data into training and testing sets randomly</span>
 <span class="n">ds</span><span class="o">.</span><span class="n">set_random_split</span><span class="p">()</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_target</span><span class="p">(</span><span class="s2">&quot;cnt&quot;</span><span class="p">)</span> <span class="c1"># set the target variable</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">scale_numerical</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;cnt&quot;</span><span class="p">,),</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;log1p&quot;</span><span class="p">)</span> <span class="c1"># scale the target variable</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">preprocess</span><span class="p">()</span> <span class="c1"># preprocess the data</span>
 </pre></div>
 </div>
 <p><strong>Model Setup</strong></p>
@@ -486,7 +489,7 @@
 <p><strong>Reporting and Diagnostics</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a testsuite that bundles dataset and model</span>
 <span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">TestSuite</span>
-<span class="n">ts</span> <span class="o">=</span> <span class="n">TestSuite</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">model_dtree</span><span class="p">)</span> <span class="c1"># store bundle of dataset and model in fs</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">TestSuite</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">model_dtree</span><span class="p">)</span> <span class="c1"># store bundle of dataset and model in ts</span>
 </pre></div>
 </div>
 <p><strong>Performance Assessment</strong></p>
@@ -496,6 +499,8 @@
 <span class="n">result</span><span class="o">.</span><span class="n">table</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/tree_perf.png"><img alt="../../../_images/tree_perf.png" class="align-center" src="../../../_images/tree_perf.png" style="width: 300px;" />
+</a>
 </section>
 <section id="global-interpretation">
 <h2>Global Interpretation<a class="headerlink" href="#global-interpretation" title="Link to this heading">#</a></h2>
@@ -504,17 +509,21 @@
 <span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/tree_global.png"><img alt="../../../_images/tree_global.png" class="align-center" src="../../../_images/tree_global.png" style="width: 500px;" />
+</a>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_global_tree.html">TestSuite.interpret_global_tree</a>.</p>
 <p>This generates a visualization of the complete decision tree model structure showing all nodes and splits in the decision tree model, providing a global view.
 Each box in the diagram represents a node in the decision tree. It includes information such as the node ID, the splitting rule used to split the dataset, the criterion value, the sample size, and the average value of the response.</p>
 </section>
 <section id="local-interpretation">
 <h2>Local Interpretation<a class="headerlink" href="#local-interpretation" title="Link to this heading">#</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># # Local interpretation for specific sample: sample_index = 10</span>
-<span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_local_tree</span><span class="p">(</span><span class="n">sample_index</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># # Local interpretation for specific sample: sample_index = 0</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_local_tree</span><span class="p">(</span><span class="n">sample_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/tree_local.png"><img alt="../../../_images/tree_local.png" class="align-center" src="../../../_images/tree_local.png" style="width: 500px;" />
+</a>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_local_tree.html">TestSuite.interpret_local_tree</a>.</p>
 <p>This generates a visualization of the decision path for a specific sample through the decision tree by highlighting the specific nodes and path traversed when classifying/predicting a single sample.</p>
 </section>

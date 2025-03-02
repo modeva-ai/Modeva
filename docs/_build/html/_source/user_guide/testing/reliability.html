@@ -547,12 +547,6 @@
 <span class="n">ds</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">()</span>
 <span class="c1"># Loading MoDeVa pre-loaded dataset &quot;Bikesharing&quot;</span>
 <span class="n">ds</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;BikeSharing&quot;</span><span class="p">)</span>  <span class="c1"># Changed dataset name</span>
-<span class="c1"># Split data into training and testing sets randomly</span>
-<span class="n">ds</span><span class="o">.</span><span class="n">set_random_split</span><span class="p">()</span>    <span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">DataSet</span>
-<span class="c1">## Create dataset object holder</span>
-<span class="n">ds</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">()</span>
-<span class="c1">## Loading MoDeVa pre-loaded dataset &quot;Bikesharing&quot;</span>
-<span class="n">ds</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;BikeSharing&quot;</span><span class="p">)</span>
 <span class="c1">## Preprocess the data</span>
 <span class="n">ds</span><span class="o">.</span><span class="n">scale_numerical</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;cnt&quot;</span><span class="p">,),</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;log1p&quot;</span><span class="p">)</span> <span class="c1"># Log transfomed target</span>
 <span class="n">ds</span><span class="o">.</span><span class="n">set_feature_type</span><span class="p">(</span><span class="n">feature</span><span class="o">=</span><span class="s2">&quot;hr&quot;</span><span class="p">,</span> <span class="n">feature_type</span><span class="o">=</span><span class="s2">&quot;categorical&quot;</span><span class="p">)</span> <span class="c1"># set to categorical feature</span>
@@ -604,7 +598,7 @@
 </div></blockquote>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># reliability assessment using Split Conformal Prediction</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_reliability</span><span class="p">(</span>
-    <span class="n">train_dataset</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
+    <span class="n">train_dataset</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="c1"># train dataset</span>
     <span class="n">test_dataset</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
     <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
     <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
@@ -613,7 +607,7 @@
 <span class="n">results</span><span class="o">.</span><span class="n">table</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../../_images/reliability_width.png"><img alt="../../../_images/reliability_width.png" class="align-center" src="../../../_images/reliability_width.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="../../../_images/reliability_width.png"><img alt="../../../_images/reliability_width.png" class="align-center" src="../../../_images/reliability_width.png" style="width: 400px;" />
 </a>
 <p>The table shows the average width of prediction interval and the coverage.</p>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_reliability.html">TestSuite.diagnose_reliability</a>.</p>
@@ -710,6 +704,11 @@
 </a>
 <p><strong>Plot the density of variables:</strong>
 To understand the distribution of unreliable region vs. the remaining, marginal distribution plot can be used as follows.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data_results</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="s2">&quot;density&quot;</span><span class="p">,</span> <span class="s2">&quot;hr&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/reliability_Density.png"><img alt="../../../_images/reliability_Density.png" class="align-center" src="../../../_images/reliability_Density.png" style="width: 500px;" />
+</a>
 <p><strong>Slicing Reliability</strong>
 The reliability for a given feature can be analyzed through feature slicing. Below is an example for features=”hr” and metric=”width”:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_reliability</span><span class="p">(</span>
@@ -722,6 +721,8 @@ The reliability for a given feature can be analyzed through feature slicing. Bel
 <span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/reliability_slice.png"><img alt="../../../_images/reliability_slice.png" class="align-center" src="../../../_images/reliability_slice.png" style="width: 500px;" />
+</a>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_slicing_reliability.html">TestSuite.diagnose_slicing_reliability</a>.</p>
 <p><strong>Univariate slicing for multiple features</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_reliability</span><span class="p">(</span>
@@ -736,6 +737,12 @@ The reliability for a given feature can be analyzed through feature slicing. Bel
 <span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;weekday&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/reliability_slice_hr.png"><img alt="../../../_images/reliability_slice_hr.png" class="align-center" src="../../../_images/reliability_slice_hr.png" style="width: 500px;" />
+</a>
+<a class="reference internal image-reference" href="../../../_images/reliability_slice_atemp.png"><img alt="../../../_images/reliability_slice_atemp.png" class="align-center" src="../../../_images/reliability_slice_atemp.png" style="width: 500px;" />
+</a>
+<a class="reference internal image-reference" href="../../../_images/reliability_slice_weekday.png"><img alt="../../../_images/reliability_slice_weekday.png" class="align-center" src="../../../_images/reliability_slice_weekday.png" style="width: 500px;" />
+</a>
 <p><strong>Bivariate slicing: interactions on reliability</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_reliability</span><span class="p">(</span>
     <span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;hr&quot;</span><span class="p">,</span> <span class="s2">&quot;atemp&quot;</span><span class="p">),</span>
@@ -746,29 +753,31 @@ The reliability for a given feature can be analyzed through feature slicing. Bel
 <span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/reliability_slice_hr_atemp.png"><img alt="../../../_images/reliability_slice_hr_atemp.png" class="align-center" src="../../../_images/reliability_slice_hr_atemp.png" style="width: 500px;" />
+</a>
 </section>
 <section id="reliability-comparison">
 <h2>Reliability Comparison<a class="headerlink" href="#reliability-comparison" title="Link to this heading">#</a></h2>
 <p>Reliability of several models can be compared as follows:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="n">fsc</span> <span class="o">=</span> <span class="n">TestSuite</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">models</span><span class="o">=</span><span class="p">[</span><span class="n">model_lgbm</span><span class="p">,</span> <span class="n">model_xgb</span><span class="p">])</span>
-  <span class="c1"># resilreliability comparison of 2 models specified in fsc</span>
-   <span class="n">results</span> <span class="o">=</span> <span class="n">fsc</span><span class="o">.</span><span class="n">compare_reliability</span><span class="p">(</span>
-       <span class="n">train_dataset</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span>
-       <span class="n">test_dataset</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
-       <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-       <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
-       <span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-       <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span>
-   <span class="p">)</span>
-   <span class="n">results</span><span class="o">.</span><span class="n">table</span>
-
-<span class="o">..</span> <span class="n">image</span><span class="p">::</span> <span class="o">../../</span><span class="n">images</span><span class="o">/</span><span class="n">reliability_compare</span><span class="o">.</span><span class="n">png</span>
-  <span class="p">:</span><span class="n">align</span><span class="p">:</span> <span class="n">center</span>
-   <span class="p">:</span><span class="n">width</span><span class="p">:</span> <span class="mi">500</span><span class="n">px</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fsc</span> <span class="o">=</span> <span class="n">TestSuite</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">models</span><span class="o">=</span><span class="p">[</span><span class="n">model_lgbm</span><span class="p">,</span> <span class="n">model_xgb</span><span class="p">])</span>
+<span class="c1"># resilreliability comparison of 2 models specified in fsc</span>
+ <span class="n">results</span> <span class="o">=</span> <span class="n">fsc</span><span class="o">.</span><span class="n">compare_reliability</span><span class="p">(</span>
+     <span class="n">train_dataset</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span>
+     <span class="n">test_dataset</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
+     <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+     <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+     <span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+     <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span>
+ <span class="p">)</span>
+ <span class="n">results</span><span class="o">.</span><span class="n">table</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/reliability_compare.png"><img alt="../../../_images/reliability_compare.png" class="align-center" src="../../../_images/reliability_compare.png" style="width: 300px;" />
+</a>
 <p>Check the API reference for detail arguments of <a class="reference external" href="../../modules/generated/modeva.TestSuite.compare_reliability.html">TestSuite.compare_reliability</a>.</p>
 <p>The uncertainty of multiple models can be compared for each feature using variable slicing:</p>
+<a class="reference internal image-reference" href="../../../_images/reliability_slice_compare.png"><img alt="../../../_images/reliability_slice_compare.png" class="align-center" src="../../../_images/reliability_slice_compare.png" style="width: 500px;" />
+</a>
 <p>Check the API reference for detail arguments of <a class="reference external" href="../../modules/generated/modeva.TestSuite.compare_slicing_reliability.html">TestSuite.compare_slicing_reliability</a>.</p>
 </section>
 <section id="strategies-for-addressing-model-weaknesses">
@@ -826,6 +835,50 @@ f_{global}(X) &amp; \text{otherwise}
 </dd>
 </dl>
 </section>
+</section>
+<section id="supervised-machine-learning-random-forest-clustering">
+<h2>Supervised Machine Learning: Random Forest Clustering<a class="headerlink" href="#supervised-machine-learning-random-forest-clustering" title="Link to this heading">#</a></h2>
+<p>Prediction interval width can be used as a target clustering variable for supervised machine learning clustering using Random Forest proximity..</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_residual_cluster</span><span class="p">(</span>
+    <span class="n">dataset</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="c1"># dataset</span>
+    <span class="n">response_type</span><span class="o">=</span><span class="s2">&quot;pi_width&quot;</span><span class="p">,</span> <span class="c1"># response type</span>
+    <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;MAE&quot;</span><span class="p">,</span> <span class="c1"># metric</span>
+    <span class="n">n_clusters</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="c1"># number of clusters</span>
+    <span class="n">cluster_method</span><span class="o">=</span><span class="s2">&quot;pam&quot;</span><span class="p">,</span> <span class="c1"># clustering method</span>
+    <span class="n">sample_size</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="c1"># sample size</span>
+    <span class="n">rf_n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="c1"># number of trees</span>
+<span class="n">rf_max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">table</span> <span class="c1">#</span>
+<span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span> <span class="c1">#</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/Reliability_RF_Table.png"><img alt="../../../_images/Reliability_RF_Table.png" class="align-center" src="../../../_images/Reliability_RF_Table.png" style="width: 700px;" />
+</a>
+<div class="side-by-side docutils container">
+<a class="reference internal image-reference" href="../../../_images/Cluster_Reliability_Width.png"><img alt="../../../_images/Cluster_Reliability_Width.png" src="../../../_images/Cluster_Reliability_Width.png" style="width: 45%;" />
+</a>
+<a class="reference internal image-reference" href="../../../_images/Cluster_Reliability_Performance.png"><img alt="../../../_images/Cluster_Reliability_Performance.png" src="../../../_images/Cluster_Reliability_Performance.png" style="width: 45%;" />
+</a>
+</div>
+<a class="reference internal image-reference" href="../../../_images/Feature_Importance_Reliability.png"><img alt="../../../_images/Feature_Importance_Reliability.png" class="align-center" src="../../../_images/Feature_Importance_Reliability.png" style="width: 500px;" />
+</a>
+<p>The following code shows how to identify the high-uncertainty region and interpret the results:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cluster_id</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># cluster id</span>
+<span class="n">data_results</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">data_drift_test</span><span class="p">(</span>
+   <span class="o">**</span><span class="n">results</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="s2">&quot;clusters&quot;</span><span class="p">][</span><span class="n">cluster_id</span><span class="p">][</span><span class="s2">&quot;data_info&quot;</span><span class="p">],</span> <span class="c1"># use the cluster_id</span>
+   <span class="n">distance_metric</span><span class="o">=</span><span class="s2">&quot;PSI&quot;</span><span class="p">,</span> <span class="c1"># distance metric using PSI</span>
+   <span class="n">psi_method</span><span class="o">=</span><span class="s2">&quot;uniform&quot;</span><span class="p">,</span> <span class="c1"># psi method using uniform distribution</span>
+   <span class="n">psi_bins</span><span class="o">=</span><span class="mi">10</span> <span class="c1"># psi bins</span>
+<span class="p">)</span>
+<span class="n">data_results</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;summary&quot;</span><span class="p">)</span> <span class="c1"># plot summary of data drift test</span>
+<span class="n">data_results</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;density&#39;</span><span class="p">,</span> <span class="s1">&#39;atemp&#39;</span><span class="p">))</span> <span class="c1"># plot density plot for feature &quot;hr&quot;</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/Reliability_RF_PSI.png"><img alt="../../../_images/Reliability_RF_PSI.png" class="align-center" src="../../../_images/Reliability_RF_PSI.png" style="width: 500px;" />
+</a>
+<a class="reference internal image-reference" href="../../../_images/Reliability_Density_atemp.png"><img alt="../../../_images/Reliability_Density_atemp.png" class="align-center" src="../../../_images/Reliability_Density_atemp.png" style="width: 500px;" />
+</a>
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
@@ -916,6 +969,7 @@ f_{global}(X) &amp; \text{otherwise}
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-centric-approaches">Data-Centric Approaches</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-machine-learning-random-forest-clustering">Supervised Machine Learning: Random Forest Clustering</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
   </nav></div>
