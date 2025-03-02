@@ -520,7 +520,7 @@
 <span class="n">results</span><span class="o">.</span><span class="n">table</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../../_images/weakness_slice.png"><img alt="../../../_images/weakness_slice.png" class="align-center" src="../../../_images/weakness_slice.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="../../../_images/weakness_slice.png"><img alt="../../../_images/weakness_slice.png" class="align-center" src="../../../_images/weakness_slice.png" style="width: 300px;" />
 </a>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_accuracy_table.html">TestSuite.diagnose_accuracy_table</a> and <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_slicing_accuracy.html">TestSuite.diagnose_slicing_accuracy</a>.</p>
 </section>
@@ -629,7 +629,7 @@ The following is an example to identify feature importance driving the error.</p
 </div>
 <a class="reference internal image-reference" href="../../../_images/Slicing_Accuracy_auto_xgb1.png"><img alt="../../../_images/Slicing_Accuracy_auto_xgb1.png" class="align-center" src="../../../_images/Slicing_Accuracy_auto_xgb1.png" style="width: 500px;" />
 </a>
-<a class="reference internal image-reference" href="../../../_images/Slicing_Accuracy_auto_xgb1_table.png"><img alt="../../../_images/Slicing_Accuracy_auto_xgb1_table.png" class="align-center" src="../../../_images/Slicing_Accuracy_auto_xgb1_table.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="../../../_images/Slicing_Accuracy_auto_xgb1_table.png"><img alt="../../../_images/Slicing_Accuracy_auto_xgb1_table.png" class="align-center" src="../../../_images/Slicing_Accuracy_auto_xgb1_table.png" style="width: 300px;" />
 </a>
 <p><strong>User-defined Binning</strong>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Customm binning</span>
@@ -639,7 +639,7 @@ The following is an example to identify feature importance driving the error.</p
 <span class="n">results</span><span class="o">.</span><span class="n">table</span>   <span class="c1"># Display results in table</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../../_images/Slicing_Accuracy_custom_table.png"><img alt="../../../_images/Slicing_Accuracy_custom_table.png" class="align-center" src="../../../_images/Slicing_Accuracy_custom_table.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="../../../_images/Slicing_Accuracy_custom_table.png"><img alt="../../../_images/Slicing_Accuracy_custom_table.png" class="align-center" src="../../../_images/Slicing_Accuracy_custom_table.png" style="width: 400px;" />
 </a>
 <p><strong>Slicing for a Set of Features</strong>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_accuracy</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">((</span><span class="s2">&quot;PAY_1&quot;</span><span class="p">,</span> <span class="p">),</span> <span class="p">(</span><span class="s2">&quot;BILL_AMT1&quot;</span><span class="p">,),</span> <span class="p">(</span><span class="s2">&quot;PAY_AMT1&quot;</span><span class="p">,</span> <span class="p">)),</span>
@@ -647,7 +647,7 @@ The following is an example to identify feature importance driving the error.</p
 <span class="n">results</span><span class="o">.</span><span class="n">table</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../../_images/Slicing_Accuracy_multiple.png"><img alt="../../../_images/Slicing_Accuracy_multiple.png" class="align-center" src="../../../_images/Slicing_Accuracy_multiple.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="../../../_images/Slicing_Accuracy_multiple.png"><img alt="../../../_images/Slicing_Accuracy_multiple.png" class="align-center" src="../../../_images/Slicing_Accuracy_multiple.png" style="width: 400px;" />
 </a>
 <p><strong>2-Feature Interaction Slicing</strong>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_accuracy</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;PAY_1&quot;</span><span class="p">,</span> <span class="s2">&quot;PAY_AMT1&quot;</span><span class="p">),</span>
@@ -656,7 +656,7 @@ The following is an example to identify feature importance driving the error.</p
 <span class="n">results</span><span class="o">.</span><span class="n">table</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../../_images/Slicing_Accuracy_interaction.png"><img alt="../../../_images/Slicing_Accuracy_interaction.png" class="align-center" src="../../../_images/Slicing_Accuracy_interaction.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="../../../_images/Slicing_Accuracy_interaction.png"><img alt="../../../_images/Slicing_Accuracy_interaction.png" class="align-center" src="../../../_images/Slicing_Accuracy_interaction.png" style="width: 400px;" />
 </a>
 <p>Slicing data through binning allows for detailed weakness detection by isolating feature ranges or regions where the model performs poorly. Uniform and quantile binning are simple yet effective for exploratory analysis, while automatic binning using a depth-1 XGBoost tree provides optimized, target-driven insights. These methods, when combined, offer a robust framework for identifying and addressing model weaknesses.</p>
 </section>
@@ -680,13 +680,13 @@ The following is an example to identify feature importance driving the error.</p
 <span class="n">data_results</span><span class="o">.</span><span class="n">get_figure_names</span><span class="p">()</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../../_images/Slicing_Accuracy_figure_name.png"><img alt="../../../_images/Slicing_Accuracy_figure_name.png" class="align-center" src="../../../_images/Slicing_Accuracy_figure_name.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="../../../_images/Slicing_Accuracy_figure_name.png"><img alt="../../../_images/Slicing_Accuracy_figure_name.png" class="align-center" src="../../../_images/Slicing_Accuracy_figure_name.png" style="width: 300px;" />
 </a>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example of plotting from the list of figures</span>
 <span class="n">data_results</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="s1">&#39;density&#39;</span><span class="p">,</span> <span class="s1">&#39;PAY_1&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_source/images/Slicing_Accuracy_Density_Comparison.png"><img alt="_source/images/Slicing_Accuracy_Density_Comparison.png" class="align-center" src="_source/images/Slicing_Accuracy_Density_Comparison.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="../../../_images/Slicing_Accuracy_Density_Comparison.png"><img alt="../../../_images/Slicing_Accuracy_Density_Comparison.png" class="align-center" src="../../../_images/Slicing_Accuracy_Density_Comparison.png" style="width: 500px;" />
 </a>
 </section>
 </section>
@@ -700,7 +700,7 @@ The following is an example to identify feature importance driving the error.</p
 <span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_source/images/Slicing_Accuracy_Density_Comparison_pay.png"><img alt="_source/images/Slicing_Accuracy_Density_Comparison_pay.png" class="align-center" src="_source/images/Slicing_Accuracy_Density_Comparison_pay.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="../../../_images/Slicing_Accuracy_Comparison_pay.png"><img alt="../../../_images/Slicing_Accuracy_Comparison_pay.png" class="align-center" src="../../../_images/Slicing_Accuracy_Comparison_pay.png" style="width: 500px;" />
 </a>
 <p>Check the API reference for detail arguments of <a class="reference external" href="../../modules/generated/modeva.TestSuite.compare_slicing_accuracy.html">TestSuite.compare_slicing_accuracy</a>.</p>
 <p><strong>2. Categorical Features</strong></p>
@@ -710,7 +710,7 @@ The following is an example to identify feature importance driving the error.</p
 <span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_source/images/Slicing_Accuracy_Density_Comparison_education.png"><img alt="_source/images/Slicing_Accuracy_Density_Comparison_education.png" class="align-center" src="_source/images/Slicing_Accuracy_Density_Comparison_education.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="../../../_images/Slicing_Accuracy_Comparison_education.png"><img alt="../../../_images/Slicing_Accuracy_Comparison_education.png" class="align-center" src="../../../_images/Slicing_Accuracy_Comparison_education.png" style="width: 500px;" />
 </a>
 </section>
 <section id="advanced-slicing">

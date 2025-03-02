@@ -467,17 +467,26 @@
 <span class="c1"># Loading MoDeVa pre-loaded dataset &quot;Bikesharing&quot;</span>
 <span class="n">ds</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;BikeSharing&quot;</span><span class="p">)</span>  <span class="c1"># Changed dataset name</span>
 <span class="c1"># Split data into training and testing sets randomly</span>
-<span class="n">ds</span><span class="o">.</span><span class="n">set_random_split</span><span class="p">()</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_random_split</span><span class="p">()</span>  <span class="c1"># split the data into training and testing sets randomly</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_target</span><span class="p">(</span><span class="s2">&quot;cnt&quot;</span><span class="p">)</span> <span class="c1"># set the target variable</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">scale_numerical</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;cnt&quot;</span><span class="p">,),</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;log1p&quot;</span><span class="p">)</span> <span class="c1"># scale the target variable</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">preprocess</span><span class="p">()</span> <span class="c1"># preprocess the data</span>
 </pre></div>
 </div>
 <p><strong>Model Setup</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">modeva.models</span> <span class="kn">import</span> <span class="n">MoElasticNet</span><span class="p">,</span> <span class="n">MoLogisticRegression</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="kn">from</span> <span class="nn">modeva.models</span> <span class="kn">import</span> <span class="n">MoElasticNet</span><span class="p">,</span> <span class="n">MoLogisticRegression</span>
 
-<span class="c1"># For regression tasks</span>
-<span class="n">model_glm</span> <span class="o">=</span> <span class="n">MoElasticNet</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Regression_model&quot;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">l1_ratio</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
+ <span class="c1"># For regression tasks</span>
+<span class="n">model_glm</span> <span class="o">=</span> <span class="n">MoElasticNet</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;GLM&quot;</span><span class="p">,</span>
+                 <span class="n">feature_names</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">feature_names</span><span class="p">,</span> <span class="c1"># feature names</span>
+                 <span class="n">feature_types</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">feature_types</span><span class="p">,</span> <span class="c1"># feature types</span>
+                 <span class="n">alpha</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="c1"># regularization parameter</span>
+                 <span class="n">l1_ratio</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span> <span class="c1"># regularization parameter</span>
 
-<span class="c1"># For classification tasks</span>
-<span class="n">model_glm</span> <span class="o">=</span> <span class="n">MoLogisticRegression</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Logit_model&quot;</span><span class="p">)</span>
+ <span class="c1"># For classification tasks</span>
+ <span class="n">model_glm</span> <span class="o">=</span> <span class="n">MoLogisticRegression</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;GLM&quot;</span><span class="p">,</span>
+                          <span class="n">feature_names</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">feature_names</span><span class="p">,</span> <span class="c1"># feature names</span>
+                          <span class="n">feature_types</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">feature_types</span><span class="p">)</span> <span class="c1"># feature types</span>
 </pre></div>
 </div>
 <p>For the full list of hyperparameters, please see the API of <a class="reference external" href="../../modules/generated/modeva.models.MoElasticNet.html">MoElasticNet</a> and <a class="reference external" href="../../modules/generated/modeva.models.MoLogisticRegression.html">MoLogisticRegression</a>.</p>
@@ -514,6 +523,8 @@
 <span class="n">result</span><span class="o">.</span><span class="n">table</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/glm_perf.png"><img alt="../../../_images/glm_perf.png" class="align-center" src="../../../_images/glm_perf.png" style="width: 300px;" />
+</a>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_accuracy_table.html">TestSuite.diagnose_accuracy_table</a>.</p>
 </section>
 <section id="global-interpretation">
@@ -525,6 +536,8 @@
 <span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/glm_coef.png"><img alt="../../../_images/glm_coef.png" class="align-center" src="../../../_images/glm_coef.png" style="width: 500px;" />
+</a>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_coef.html">TestSuite.interpret_coef</a>.</p>
 <p>Key Aspects:</p>
 <ul class="simple">
@@ -541,6 +554,8 @@
 <span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/glm_fi.png"><img alt="../../../_images/glm_fi.png" class="align-center" src="../../../_images/glm_fi.png" style="width: 500px;" />
+</a>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_fi.html">TestSuite.interpret_fi</a>.</p>
 <p>Importance Metrics:</p>
 <ul class="simple">
@@ -559,13 +574,24 @@
 <section id="local-interpretation">
 <h2>Local Interpretation<a class="headerlink" href="#local-interpretation" title="Link to this heading">#</a></h2>
 <p><strong>Individual Prediction Analysis</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Local interpretation for specific sample: sample_index = 10</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_local_fi</span><span class="p">(</span><span class="n">sample_index</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">centered</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Local interpretation for specific sample: sample_index = 15</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_local_fi</span><span class="p">(</span><span class="n">sample_index</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span> <span class="n">centered</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="c1"># Plot the result</span>
 <span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_local_fi.html">TestSuite.interpret_local_fi</a>.</p>
+<a class="reference internal image-reference" href="../../../_images/glm_local.png"><img alt="../../../_images/glm_local.png" class="align-center" src="../../../_images/glm_local.png" style="width: 500px;" />
+</a>
+<p>To show local importance along with regression coeficients:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Local interpretation for specific sample: sample_index = 15</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_local_linear_fi</span><span class="p">(</span><span class="n">sample_index</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span> <span class="n">centered</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="c1"># Plot the result</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/glm_local_coef.png"><img alt="../../../_images/glm_local_coef.png" class="align-center" src="../../../_images/glm_local_coef.png" style="width: 500px;" />
+</a>
+<p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_local_fi.html">TestSuite.interpret_local_fi</a> and <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_local_linear_fi.html">TestSuite.interpret_local_linear_fi</a>.</p>
 <p><strong>Components:</strong></p>
 <ul class="simple">
 <li><p>Stem: DIrection and magnitude to prediction (regression coefficient)</p></li>

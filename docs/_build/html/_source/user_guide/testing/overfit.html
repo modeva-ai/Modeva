@@ -631,7 +631,6 @@
 <span class="n">model_lgbm</span> <span class="o">=</span> <span class="n">MoLGBMRegressor</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;LGBM_model&quot;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 <span class="c1"># for xgboost</span>
 <span class="n">model_xgb</span> <span class="o">=</span> <span class="n">MoXGBRegressor</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;XGB_model&quot;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="c1"># for catboost</span>
 </pre></div>
 </div>
 <p><strong>Model Training</strong></p>
@@ -653,11 +652,14 @@
    <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;MAE&quot;</span><span class="p">,</span>
    <span class="n">threshold</span><span class="o">=</span><span class="mf">0.0065</span><span class="p">)</span>
 <span class="n">results</span><span class="o">.</span><span class="n">table</span>
-
 <span class="c1"># To visualize the results</span>
 <span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/overfit_slice_table_hr.png"><img alt="../../../_images/overfit_slice_table_hr.png" class="align-center" src="../../../_images/overfit_slice_table_hr.png" style="width: 500px;" />
+</a>
+<a class="reference internal image-reference" href="../../../_images/overfit_slice_plot_hr.png"><img alt="../../../_images/overfit_slice_plot_hr.png" class="align-center" src="../../../_images/overfit_slice_plot_hr.png" style="width: 500px;" />
+</a>
 <p>The slicing above is done using “method = quantile” binning with “threshold = 0.0065”. For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_slicing_overfit.html">TestSuite.diagnose_slicing_overfit</a>.</p>
 <p><strong>Retrieving samples below threshold value</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">modeva.testsuite.utils.slicing_utils</span> <span class="kn">import</span> <span class="n">get_data_info</span>
@@ -689,6 +691,10 @@
 <span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;atemp&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/overfit_slice_multiple.png"><img alt="../../../_images/overfit_slice_multiple.png" class="align-center" src="../../../_images/overfit_slice_multiple.png" style="width: 500px;" />
+</a>
+<a class="reference internal image-reference" href="../../../_images/overfit_slicing_atemp.png"><img alt="../../../_images/overfit_slicing_atemp.png" class="align-center" src="../../../_images/overfit_slicing_atemp.png" style="width: 500px;" />
+</a>
 <p><strong>2-Feature Interaction Slicing</strong>:
 Two dimensional slicing</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_overfit</span><span class="p">(</span>
@@ -701,7 +707,7 @@ Two dimensional slicing</p>
 <span class="n">results</span><span class="o">.</span><span class="n">table</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../../_images/overfit_slice_hr_atemp.png"><img alt="../../../_images/overfit_slice_hr_atemp.png" class="align-center" src="../../../_images/overfit_slice_hr_atemp.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="../../../_images/overfit_slice_hr_atemp.png"><img alt="../../../_images/overfit_slice_hr_atemp.png" class="align-center" src="../../../_images/overfit_slice_hr_atemp.png" style="width: 600px;" />
 </a>
 </section>
 <section id="overfit-comparison">
@@ -717,7 +723,7 @@ Two dimensional slicing</p>
    <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;MAE&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../../_images/overfit_compare.png"><img alt="../../../_images/overfit_compare.png" class="align-center" src="../../../_images/overfit_compare.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="../../../_images/overfit_compare.png"><img alt="../../../_images/overfit_compare.png" class="align-center" src="../../../_images/overfit_compare.png" style="width: 600px;" />
 </a>
 <p>Check the API reference for detail arguments of <a class="reference external" href="../../modules/generated/modeva.TestSuite.compare_slicing_overfit.html">TestSuite.compare_slicing_overfit</a>.</p>
 <section id="characterization-of-weak-regions">

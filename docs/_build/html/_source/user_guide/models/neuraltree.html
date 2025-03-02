@@ -655,6 +655,14 @@
 <span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/neuralTree_hr.png"><img alt="../../../_images/neuralTree_hr.png" class="align-center" src="../../../_images/neuralTree_hr.png" style="width: 500px;" />
+</a>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Interaction effect plot of features: &quot;hr&quot; and &quot;workingday&quot;</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_effects</span><span class="p">(</span><span class="n">features</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;hr&quot;</span><span class="p">,</span><span class="s2">&quot;workingday&quot;</span><span class="p">))</span>
+<span class="c1"># Plot the result</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
 <a class="reference internal image-reference" href="../../../_images/neuralTree_hr_workingday.png"><img alt="../../../_images/neuralTree_hr_workingday.png" class="align-center" src="../../../_images/neuralTree_hr_workingday.png" style="width: 500px;" />
 </a>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.interpret_effects.html">TestSuite.interpret_effects</a>.</p>
@@ -666,6 +674,13 @@
 <h3>Individual Prediction Analysis<a class="headerlink" href="#individual-prediction-analysis" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Local interpretation for specific sample: sample_index = 10</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_local_fi</span><span class="p">(</span><span class="n">sample_index</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">centered</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>   <span class="c1"># local feature importance</span>
+<span class="c1"># Plot the result</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/neuralTree_local_fi.png"><img alt="../../../_images/neuralTree_local_fi.png" class="align-center" src="../../../_images/neuralTree_local_fi.png" style="width: 500px;" />
+</a>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">interpret_local_ei</span><span class="p">(</span><span class="n">sample_index</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">centered</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>   <span class="c1"># local effect importance</span>
 <span class="c1"># Plot the result</span>
 <span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>

@@ -724,6 +724,16 @@ Recall Ratio = \frac{(TP_{p}) / (TP_{p}+FN_{p})}{(TP_{r}) / (TP_{r}+FN_{r})}.
 <span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../../_images/fairness_air.png"><img alt="../../../_images/fairness_air.png" class="align-center" src="../../../_images/fairness_air.png" style="width: 500px;" />
+</a>
+<div class="side-by-side docutils container">
+<a class="reference internal image-reference" href="../../../_images/fairness_gender.png"><img alt="../../../_images/fairness_gender.png" src="../../../_images/fairness_gender.png" style="width: 30%;" />
+</a>
+<a class="reference internal image-reference" href="../../../_images/fairness_marriage.png"><img alt="../../../_images/fairness_marriage.png" src="../../../_images/fairness_marriage.png" style="width: 30%;" />
+</a>
+<a class="reference internal image-reference" href="../../../_images/fairness_age.png"><img alt="../../../_images/fairness_age.png" src="../../../_images/fairness_age.png" style="width: 30%;" />
+</a>
+</div>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_fairness.html">TestSuite.diagnose_fairness</a>.</p>
 <section id="slicing-for-fairness-diagnostics">
 <h3>Slicing for Fairness Diagnostics<a class="headerlink" href="#slicing-for-fairness-diagnostics" title="Link to this heading">#</a></h3>
@@ -736,14 +746,14 @@ Recall Ratio = \frac{(TP_{p}) / (TP_{p}+FN_{p})}{(TP_{r}) / (TP_{r}+FN_{r})}.
 </pre></div>
 </div>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_slicing_fairness.html">TestSuite.diagnose_slicing_fairness</a>.</p>
-<blockquote>
-<div><a class="reference internal image-reference" href="_source/images/SlicingFairness_gender.png"><img alt="_source/images/SlicingFairness_gender.png" src="_source/images/SlicingFairness_gender.png" style="width: 30%;" />
+<div class="side-by-side docutils container">
+<a class="reference internal image-reference" href="../../../_images/Slicing_Fairness_gender.png"><img alt="../../../_images/Slicing_Fairness_gender.png" src="../../../_images/Slicing_Fairness_gender.png" style="width: 30%;" />
 </a>
 <a class="reference internal image-reference" href="../../../_images/Slicing_Fairness_marriage.png"><img alt="../../../_images/Slicing_Fairness_marriage.png" src="../../../_images/Slicing_Fairness_marriage.png" style="width: 30%;" />
 </a>
 <a class="reference internal image-reference" href="../../../_images/Slicing_Fairness_age.png"><img alt="../../../_images/Slicing_Fairness_age.png" src="../../../_images/Slicing_Fairness_age.png" style="width: 30%;" />
 </a>
-</div></blockquote>
+</div>
 <p><strong>2. Bivariate Slicing</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_slicing_fairness</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;PAY_1&quot;</span><span class="p">,</span> <span class="s2">&quot;BILL_AMT1&quot;</span><span class="p">),</span>
                                     <span class="n">group_config</span><span class="o">=</span><span class="n">group_config</span><span class="p">,</span>
@@ -766,7 +776,7 @@ Recall Ratio = \frac{(TP_{p}) / (TP_{p}+FN_{p})}{(TP_{r}) / (TP_{r}+FN_{r})}.
 <span class="n">results</span><span class="o">.</span><span class="n">table</span><span class="p">[</span><span class="s2">&quot;MARRIAGE&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../../_images/fairness_slicing_all.png"><img alt="../../../_images/fairness_slicing_all.png" class="align-center" src="../../../_images/fairness_slicing_all.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="../../../_images/fairness_slicing_all.png"><img alt="../../../_images/fairness_slicing_all.png" class="align-center" src="../../../_images/fairness_slicing_all.png" style="width: 400px;" />
 </a>
 </section>
 </section>
@@ -792,8 +802,9 @@ Recall Ratio = \frac{(TP_{p}) / (TP_{p}+FN_{p})}{(TP_{r}) / (TP_{r}+FN_{r})}.
 <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">table</span><span class="p">[</span><span class="s2">&quot;LGBM_model&quot;</span><span class="p">][</span><span class="s2">&quot;MARRIAGE&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../../_images/fairness_compare_models.png"><img alt="../../../_images/fairness_compare_models.png" class="align-center" src="../../../_images/fairness_compare_models.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="../../../_images/fairness_compare_models.png"><img alt="../../../_images/fairness_compare_models.png" class="align-center" src="../../../_images/fairness_compare_models.png" style="width: 400px;" />
 </a>
+<p>“NaN” values occur for bins where threre are only one class (protected or reference)</p>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.compare_slicing_fairness.html">TestSuite.compare_slicing_fairness</a>.</p>
 </section>
 <section id="fairness-mitigation">
@@ -822,7 +833,7 @@ Recall Ratio = \frac{(TP_{p}) / (TP_{p}+FN_{p})}{(TP_{r}) / (TP_{r}+FN_{r})}.
 <span class="n">result</span><span class="o">.</span><span class="n">table</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../../_images/fairness_cut_offs.png"><img alt="../../../_images/fairness_cut_offs.png" class="align-center" src="../../../_images/fairness_cut_offs.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="../../../_images/fairness_cut_offs.png"><img alt="../../../_images/fairness_cut_offs.png" class="align-center" src="../../../_images/fairness_cut_offs.png" style="width: 300px;" />
 </a>
 </section>
 <section id="feature-binning">
