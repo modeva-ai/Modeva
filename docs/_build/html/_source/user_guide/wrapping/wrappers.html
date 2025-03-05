@@ -56,7 +56,7 @@
     <link rel="prev" title="Model Wrapping" href="../modelwrapping.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="1.0.5" />
+  <meta name="docsearch:version" content="1.0.6" />
   </head>
   
   
@@ -438,10 +438,10 @@
 <h1>Model Wrappers<a class="headerlink" href="#model-wrappers" title="Link to this heading">#</a></h1>
 <p>Modeva provides a flexible way to wrap predictive models in scikit-learn style, arbitrary format, and pseudo model with only data inputs and scores. Below are these wrapper classes for both classification and regression models:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="../../modules/generated/modeva.models.MoSKLearnClassifier.html">modeva.MoSKLearnClassifier</a>: scikit-learn style classification model wrapper</p></li>
-<li><p><a class="reference external" href="../../modules/generated/modeva.models.MoSKLearnRegressor.html">modeva.MoSKLearnRegressor</a>: scikit-learn style regression model wrapper</p></li>
-<li><p><a class="reference external" href="../../modules/generated/modeva.models.MoArbitraryClassifier.html">modeva.MoArbitraryClassifier</a>: arbitrary classification model wrapper</p></li>
-<li><p><a class="reference external" href="../../modules/generated/modeva.models.MoArbitraryRegressor.html">modeva.MoArbitraryRegressor</a>: arbitrary regression model wrapper</p></li>
+<li><p><a class="reference external" href="../../modules/generated/modeva.models.MoSKLearnClassifier.html">modeva.models.MoSKLearnClassifier</a>: scikit-learn style classification model wrapper</p></li>
+<li><p><a class="reference external" href="../../modules/generated/modeva.models.MoSKLearnRegressor.html">modeva.models.MoSKLearnRegressor</a>: scikit-learn style regression model wrapper</p></li>
+<li><p><a class="reference external" href="../../modules/generated/modeva.models.MoClassifier.html">modeva.models.MoClassifier</a>: arbitrary classification model wrapper</p></li>
+<li><p><a class="reference external" href="../../modules/generated/modeva.models.MoRegressor.html">modeva.models.MoRegressor</a>: arbitrary regression model wrapper</p></li>
 <li><p><a class="reference external" href="../../modules/generated/modeva.models.MoScoredClassifier.html">modeva.models.MoScoredClassifier</a>: scored classification model wrapper</p></li>
 <li><p><a class="reference external" href="../../modules/generated/modeva.models.MoScoredRegressor.html">modeva.models.MoScoredRegressor</a>: scored regression model wrapper</p></li>
 </ul>
@@ -466,9 +466,9 @@
 
 <span class="n">data</span> <span class="o">=</span> <span class="n">fetch_california_housing</span><span class="p">()</span>
 <span class="n">train_idx</span><span class="p">,</span> <span class="n">test_idx</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
-                                    <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+                                       <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">SkMLP</span> <span class="o">=</span> <span class="n">MLPRegressor</span><span class="p">(</span><span class="n">hidden_layer_sizes</span><span class="o">=</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;tanh&quot;</span><span class="p">,</span>
-                    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+                     <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">SkMLP</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">data</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="n">train_idx</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -479,7 +479,7 @@
 <span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">DataSet</span>
 <span class="n">ds</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">()</span>
 <span class="n">ds</span><span class="o">.</span><span class="n">load_dataframe</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">feature_names</span><span class="p">),</span>
-                <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">target_names</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+                  <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">target_names</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">ds</span><span class="o">.</span><span class="n">set_train_idx</span><span class="p">(</span><span class="n">train_idx</span><span class="p">)</span>
 <span class="n">ds</span><span class="o">.</span><span class="n">set_test_idx</span><span class="p">(</span><span class="n">test_idx</span><span class="p">)</span>
 </pre></div>
@@ -507,7 +507,7 @@
 </section>
 <section id="arbitrary-model-wrapper">
 <h2>Arbitrary Model Wrapper<a class="headerlink" href="#arbitrary-model-wrapper" title="Link to this heading">#</a></h2>
-<p>For a non-Sklearn model in a arbitrary format, we may still wrap it by defining the <cite>predict_function</cite> (plus the <cite>predict_proba_function</cite> for classication models). Below is an example of wrapping an arbitrary model for regression tasks, which replaces Step 3 in the previous example.</p>
+<p>For a non-Sklearn model in a arbitrary format, we may still wrap it by defining the <cite>predict_function</cite> (plus the <cite>predict_proba_function</cite> for classification models). Below is an example of wrapping an arbitrary model for regression tasks, which replaces Step 3 in the previous example.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">predict_func</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">ArbModel</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
@@ -519,7 +519,7 @@
 <span class="kn">from</span> <span class="nn">modeva.models.wrappers.api</span> <span class="kn">import</span> <span class="n">modeva_arbitrary_regressor</span>
 
 <span class="n">WrapArbModel</span> <span class="o">=</span> <span class="n">modeva_arbitrary_regressor</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;WrapArbModel&quot;</span><span class="p">,</span>
-                                    <span class="n">predict_function</span><span class="o">=</span><span class="n">predict_func</span><span class="p">)</span>
+                                          <span class="n">predict_function</span><span class="o">=</span><span class="n">predict_func</span><span class="p">)</span>
 <span class="n">WrapArbModel</span>
 </pre></div>
 </div>
