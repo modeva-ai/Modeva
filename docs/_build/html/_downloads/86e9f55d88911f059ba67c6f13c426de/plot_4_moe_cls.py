@@ -19,9 +19,6 @@ Mixture of Expert (MoE) Classification
 
 # %% 
 # Import required modules
-import numpy as np
-import pandas as pd
-
 from modeva import DataSet
 from modeva import TestSuite
 from modeva.models import MoMoEClassifier
@@ -100,6 +97,10 @@ results.plot("0")
 # %%
 # Expert No. 2
 results.plot("2")
+
+# %%
+# Expert of all clusters
+results.plot("all")
 
 # %%
 # Local feature importance analysis

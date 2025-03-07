@@ -19,9 +19,6 @@ MoReLUDNN Classification
 
 # %% 
 # Import required modules
-import numpy as np
-import pandas as pd
-
 from modeva import DataSet
 from modeva import TestSuite
 from modeva.models import MoReLUDNNClassifier
