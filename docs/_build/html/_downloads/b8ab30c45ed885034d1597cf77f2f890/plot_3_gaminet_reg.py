@@ -19,10 +19,6 @@ GAMINet Regression
 
 # %%
 # Import required modules
-import sys
-import warnings
-import numpy as np
-import pandas as pd
 from modeva import DataSet
 from modeva import TestSuite
 from modeva.models import MoGAMINetRegressor
