@@ -747,15 +747,15 @@ To determine the maximum size of input perturbations for robustness testing, a l
 <section id="data-centric-approaches">
 <h3>Data-Centric Approaches<a class="headerlink" href="#data-centric-approaches" title="Link to this heading">#</a></h3>
 <p><strong>1. Feature Engineering:</strong></p>
-<p>Based on weakness patterns:
+<p>Based on weakness patterns (features causing robustness issue):
 * Perform feature transformation for those causing robustness issues</p>
 </section>
 <section id="model-centric-approaches">
 <h3>Model-Centric Approaches<a class="headerlink" href="#model-centric-approaches" title="Link to this heading">#</a></h3>
 <p><strong>1. Architecture Modifications:</strong></p>
-<p>Based on uncertainty patterns:</p>
+<p>Based on the robsutness patterns:</p>
 <ul class="simple">
-<li><p>Choose modeling alternative that is more robust</p></li>
+<li><p>Choose modeling alternative that is more robust (e.g., controlling tree depth in GBDT. number of nodes in neural networks, choosing basis functions in gradient boosted tree: constant or linear (LinearTree) at the terminal nodes)</p></li>
 <li><p>Incorporate domain knowledge via constraints (e.g., monotonicity)</p></li>
 </ul>
 <p><strong>2. Loss Function Adjustments:</strong></p>
@@ -765,23 +765,11 @@ To determine the maximum size of input perturbations for robustness testing, a l
 <p><strong>L1 Regularization (Lasso):</strong></p>
 <div class="math notranslate nohighlight">
 \[L_{\text{total}} = L_{\text{pred}} + \lambda_1 \sum_{i} |w_i|\]</div>
-<dl class="simple">
-<dt>Properties:</dt><dd><ul class="simple">
-<li><p>Promotes sparsity</p></li>
-<li><p>Helps feature selection</p></li>
-</ul>
-</dd>
-</dl>
+<p>Sparsity promotes robustness.</p>
 <p><strong>L2 Regularization (Ridge):</strong></p>
 <div class="math notranslate nohighlight">
 \[L_{\text{total}} = L_{\text{pred}} + \lambda_2 \sum_{i} w_i^2\]</div>
-<dl class="simple">
-<dt>Properties:</dt><dd><ul class="simple">
-<li><p>Smooths decision boundaries</p></li>
-<li><p>More stable than L1</p></li>
-</ul>
-</dd>
-</dl>
+<p>Equivalently injecting noise to training data has similar effect as L2 regularization.</p>
 <p><strong>Local Regularization</strong></p>
 <div class="math notranslate nohighlight">
 \[L_{new}(X,y) = L_{original}(X,y) + \lambda W(X)R(X)\]</div>
@@ -792,6 +780,8 @@ To determine the maximum size of input perturbations for robustness testing, a l
 <li><p><span class="math notranslate nohighlight">\(\lambda\)</span> balances overall performance vs local improvement by applying stronger regularization or adversarial (perturbed) training samples</p></li>
 </ul>
 </div></blockquote>
+<p><strong>Early stopping in the training phase</strong>
+This applicable to both gradient boosted decision tree and neural networks.</p>
 </section>
 </section>
 <section id="examples">
