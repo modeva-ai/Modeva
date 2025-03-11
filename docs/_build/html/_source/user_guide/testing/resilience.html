@@ -456,14 +456,14 @@
 <blockquote>
 <div><p><strong>1. Drift to Worst Performing Samples</strong>
 Idea: Identify samples on which the model’s performance is poorest measured by error metrics or mispredictions—and simulate drift by increasing their proportion.
-Rationale: This can mimic a “worst-case” scenario where the deployment data disproportionately resembles the “hard” cases, revealing vulnerabilities in the model.
-<strong>2. Drift to Clusters (KMeans) to the Worst Performing Cluster</strong>
+Rationale: This can mimic a “worst-case” scenario where the deployment data disproportionately resembles the “hard” cases, revealing vulnerabilities in the model.</p>
+<p><strong>2. Drift to Clusters (KMeans) to the Worst Performing Cluster</strong>
 Idea: Use a clustering algorithm (e.g., k-means) on the feature space to segment the data. Then, determine which cluster exhibits the worst performance and simulate drift by focusing on this subgroup.
-Rationale: Clustering can capture latent subpopulations in the data. If one cluster consistently underperforms, it may represent a niche or anomalous group, and simulating drift toward this cluster can expose model weaknesses specific to that segment.
-<strong>3. Drift to the Edge (Outer Side of the Distribution)</strong>
+Rationale: Clustering can capture latent subpopulations in the data. If one cluster consistently underperforms, it may represent a niche or anomalous group, and simulating drift toward this cluster can expose model weaknesses specific to that segment.</p>
+<p><strong>3. Drift to the Edge (Outer Side of the Distribution)</strong>
 Idea: Identify samples that lie at the periphery of the overall data distribution. This involves using distance metrics (Mahalanobis distance) to quantify how “far” a sample is from the center of the data.
-Rationale: Edge cases are typically less represented during training and can behave like out-of-distribution (OOD) samples. Shifting towards these samples can test the model’s ability to generalize to more extreme, less typical cases.
-<strong>4. Drift to Distribution of Samples that are Hardest to Predict</strong>
+Rationale: Edge cases are typically less represented during training and can behave like out-of-distribution (OOD) samples. Shifting towards these samples can test the model’s ability to generalize to more extreme, less typical cases.</p>
+<p><strong>4. Drift to Distribution of Samples that are Hardest to Predict</strong>
 Idea: Determine which samples the model finds most uncertain or difficult to predict—-high predictive entropy, low confidence scores, or high error rates.
 Rationale: These samples are where the model is least reliable. By simulating a scenario where these “hard” samples become more common, you can assess how well the model handles uncertainty and whether strategies like uncertainty-aware training or selective prediction might help.</p>
 </div></blockquote>
