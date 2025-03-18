@@ -56,7 +56,7 @@
     <link rel="prev" title="modeva.models.MoRegressor" href="modeva.models.MoRegressor.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="1.0.7" />
+  <meta name="docsearch:version" content="1.0.8" />
   </head>
   
   
@@ -376,10 +376,6 @@
 <li class="toctree-l2"><a class="reference internal" href="modeva.models.MoSKLearnClassifier.html">modeva.models.MoSKLearnClassifier</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.models.MoScoredRegressor.html">modeva.models.MoScoredRegressor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.models.MoScoredClassifier.html">modeva.models.MoScoredClassifier</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modeva.models.modeva_arbitrary_regressor.html">modeva.models.modeva_arbitrary_regressor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modeva.models.modeva_arbitrary_classifier.html">modeva.models.modeva_arbitrary_classifier</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modeva.models.modeva_sklearn_regressor.html">modeva.models.modeva_sklearn_regressor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modeva.models.modeva_sklearn_classifier.html">modeva.models.modeva_sklearn_classifier</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../testsuite.html">Test Suite</a></li>
@@ -448,12 +444,11 @@
 <h1>modeva.models.MoClassifier<a class="headerlink" href="#modeva-models-moclassifier" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="modeva.models.MoClassifier">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modeva.models.</span></span><span class="sig-name descname"><span class="pre">MoClassifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">predict_function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">predict_proba_function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.models.MoClassifier" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modeva.models.</span></span><span class="sig-name descname"><span class="pre">MoClassifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">predict_proba_function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.models.MoClassifier" title="Link to this definition">#</a></dt>
 <dd><p>A model wrapper for arbitrary classification models with predict, predict_proba, and fit functions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>predict_function</strong> (<em>callable</em>) – Callable function for making predictions. It takes 2D numpy array as inputs and outputs 1D numpy array.</p></li>
 <li><p><strong>predict_proba_function</strong> (<em>callable</em>) – Callable function for predicting probabilities. It takes 2D numpy array as inputs and outputs 2D numpy array.</p></li>
 <li><p><strong>fit_function</strong> (<em>callable</em><em>, </em><em>default=None</em>) – Callable function for fitting the model. It takes X, y, sample_weights, and hyperparameters as inputs and trains the model.</p></li>
 <li><p><strong>name</strong> (<em>str</em><em>, </em><em>default=None</em>) – Optional name for the model.</p></li>
@@ -461,6 +456,74 @@
 </ul>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="modeva.models.MoClassifier.calibrate_interval">
+<span class="sig-name descname"><span class="pre">calibrate_interval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.models.MoClassifier.calibrate_interval" title="Link to this definition">#</a></dt>
+<dd><p>Fit a conformal prediction model to the given data.</p>
+<p>This method computes the model’s prediction interval calibrated to the given data.</p>
+<p>It computes the calibration quantile based on predicted probabilities for the positive class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>X : np.ndarray</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Feature matrix for prediction.</p></li>
+<li><p><strong>y</strong> (<em>array-like</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>)</em>) – Target values.</p></li>
+<li><p><strong>alpha</strong> (<em>float</em><em>, </em><em>default=0.1</em>) – Expected miscoverage for the conformal prediction.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the model is neither a regressor nor a classifier.:</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modeva.models.MoClassifier.calibrate_proba">
+<span class="sig-name descname"><span class="pre">calibrate_proba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sigmoid'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.models.MoClassifier.calibrate_proba" title="Link to this definition">#</a></dt>
+<dd><p>Fit the calibration method on the model’s predictions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Feature matrix for prediction.</p></li>
+<li><p><strong>y</strong> (<em>np.ndarray</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>)</em>) – Ground truth labels.</p></li>
+<li><p><strong>sample_weight</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>,</em><em>)</em><em>, </em><em>default=None</em>) – Sample weights.</p></li>
+<li><p><strong>method</strong> (<em>{'sigmoid'</em><em>, </em><em>'isotonic'}</em><em>, </em><em>default='sigmoid'</em>) – <p>The calibration method.</p>
+<ul>
+<li><p>’sigmoid’: Platt’s method, i.e., fit a logistic regression on predicted probabilities and y</p></li>
+<li><p>’isotonic’: Fit an isotonic regression on predicted probabilities and y.</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>self</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Calibrated estimator</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modeva.models.MoClassifier.decision_function">
+<span class="sig-name descname"><span class="pre">decision_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calibration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.models.MoClassifier.decision_function" title="Link to this definition">#</a></dt>
+<dd><p>Computes the decision function for the given input data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Feature matrix for prediction.</p></li>
+<li><p><strong>calibration</strong> (<em>bool</em><em>, </em><em>default=True</em>) – If True, will use calibrated probability if calibration is done.
+Otherwise, will use raw probability.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>logit_prediction</strong> – Array of (calibrated) logit predictions.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>array, shape (n_samples,)</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="modeva.models.MoClassifier.fit">
 <span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.models.MoClassifier.fit" title="Link to this definition">#</a></dt>
@@ -516,34 +579,63 @@ contained subobjects that are estimators.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="modeva.models.MoClassifier.predict">
-<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.models.MoClassifier.predict" title="Link to this definition">#</a></dt>
-<dd><p>Makes predictions using the fitted model.</p>
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calibration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.models.MoClassifier.predict" title="Link to this definition">#</a></dt>
+<dd><p>Model predictions, calling the child class’s ‘_predict’ method.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>X</strong> (<em>array-like</em>) – Input features.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Feature matrix for prediction.</p></li>
+<li><p><strong>calibration</strong> (<em>bool</em><em>, </em><em>default=True</em>) – If True, will use calibrated probability if calibration is done.
+Otherwise, will use raw probability.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The predicted class labels.</p>
+<dd class="field-even"><p><strong>np.ndarray</strong></p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>array-like</p>
+<dd class="field-odd"><p>The (calibrated) final prediction</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modeva.models.MoClassifier.predict_interval">
+<span class="sig-name descname"><span class="pre">predict_interval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.models.MoClassifier.predict_interval" title="Link to this definition">#</a></dt>
+<dd><p>Predict the prediction set for the given data based on the conformal prediction model.</p>
+<p>This method computes the model prediction interval (regression) or prediction sets (classification) using conformal prediction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>np.ndarray</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Feature matrix for prediction.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>np.ndarray</strong> – in the format [n_samples, 2] for regressors or a flattened array for classifiers.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The lower and upper bounds of the prediction intervals for each sample</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If <cite>fit_conformal</cite> has not been called to fit the conformal prediction model: before calling this method.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="modeva.models.MoClassifier.predict_proba">
-<span class="sig-name descname"><span class="pre">predict_proba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.models.MoClassifier.predict_proba" title="Link to this definition">#</a></dt>
-<dd><p>Predicts class probabilities for the input features.</p>
+<span class="sig-name descname"><span class="pre">predict_proba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calibration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.models.MoClassifier.predict_proba" title="Link to this definition">#</a></dt>
+<dd><p>Predict (calibrated) probabilities for X.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>X</strong> (<em>array-like</em>) – Input features.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Feature matrix for prediction.</p></li>
+<li><p><strong>calibration</strong> (<em>bool</em><em>, </em><em>default=True</em>) – If True, will return calibrated probability if calibration is done.
+Otherwise, will return raw probability.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The predicted probabilities.</p>
+<dd class="field-even"><p><strong>np.ndarray</strong></p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>array-like</p>
+<dd class="field-odd"><p>The (calibrated) predicted probabilities</p>
 </dd>
 </dl>
 </dd></dl>
@@ -572,7 +664,7 @@ possible to update each component of a nested object.</p>
 <dd class="field-odd"><p><strong>**params</strong> (<em>dict</em>) – Estimator parameters.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>self</strong> – Estimator instance.</p>
+<dd class="field-even"><p><strong>self</strong></p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>estimator instance</p>
@@ -632,10 +724,14 @@ possible to update each component of a nested object.</p>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoClassifier"><code class="docutils literal notranslate"><span class="pre">MoClassifier</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoClassifier.calibrate_interval"><code class="docutils literal notranslate"><span class="pre">MoClassifier.calibrate_interval()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoClassifier.calibrate_proba"><code class="docutils literal notranslate"><span class="pre">MoClassifier.calibrate_proba()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoClassifier.decision_function"><code class="docutils literal notranslate"><span class="pre">MoClassifier.decision_function()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoClassifier.fit"><code class="docutils literal notranslate"><span class="pre">MoClassifier.fit()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoClassifier.get_params"><code class="docutils literal notranslate"><span class="pre">MoClassifier.get_params()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoClassifier.load"><code class="docutils literal notranslate"><span class="pre">MoClassifier.load()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoClassifier.predict"><code class="docutils literal notranslate"><span class="pre">MoClassifier.predict()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoClassifier.predict_interval"><code class="docutils literal notranslate"><span class="pre">MoClassifier.predict_interval()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoClassifier.predict_proba"><code class="docutils literal notranslate"><span class="pre">MoClassifier.predict_proba()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoClassifier.save"><code class="docutils literal notranslate"><span class="pre">MoClassifier.save()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoClassifier.set_params"><code class="docutils literal notranslate"><span class="pre">MoClassifier.set_params()</span></code></a></li>

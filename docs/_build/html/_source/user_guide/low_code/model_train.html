@@ -1,0 +1,611 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Model Training &#8212; Modeva  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=578d8e15" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/hide_links.css?v=60d22a59" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=fceb28cb" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_source/user_guide/low_code/model_train';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Model Tuning" href="model_tune.html" />
+    <link rel="prev" title="Data Processing" href="data_process.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.8" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.jpg" class="logo__image only-light" alt=""/>
+    <img src="../../../_static/logo.jpg" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Modeva-AI</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../usage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../galleries.html">
+    Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changes.html">
+    Changelog
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/modeva-ai/Modeva" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/Modeva" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data.html">Data Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modelwrapping.html">Model Wrapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explain.html">Model Explainability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models.html">Interpretable Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html">Diagnostic Suite</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../low_code.html">Low code</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="registry_hub.html">Registry Hub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_summary.html">Data Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eda_2d.html">EDA 2D Charts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eda_3d.html">EDA 3D Scatter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eda_multivariate.html">EDA Multivariate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_process.html">Data Processing</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Model Training</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_tune.html">Model Tuning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_test.html">Model Test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_compare.html">Model Comparison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_explainability.html">Model Explainability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_weakness.html">Weakness Test</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../usage.html" class="nav-link">Using Modeva</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../low_code.html" class="nav-link">Low code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Model Training</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="model-training">
+<h1>Model Training<a class="headerlink" href="#model-training" title="Link to this heading">#</a></h1>
+<p>The <strong>Model Training</strong> panel allows users to train, evaluate, and register machine learning models efficiently. The panel also provides a leaderboard to compare model performance and register the best-performing models.</p>
+<section id="workflow">
+<h2>Workflow<a class="headerlink" href="#workflow" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the Experiment and train a model</span>
+<span class="kn">from</span> <span class="nn">modeva</span> <span class="kn">import</span> <span class="n">Experiment</span>
+<span class="n">exp</span> <span class="o">=</span> <span class="n">Experiment</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Demo-SimuCredit&#39;</span><span class="p">)</span>
+<span class="n">exp</span><span class="o">.</span><span class="n">model_train</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/lowcode_model.png"><img alt="../../../_images/lowcode_model.png" class="align-center" src="../../../_images/lowcode_model.png" style="width: 600px;" />
+</a>
+<section id="step-1-dataset-model-selection">
+<h3>Step 1: Dataset &amp; Model Selection<a class="headerlink" href="#step-1-dataset-model-selection" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Select a Dataset</strong>: The dataset from the dropdown for processing is automatically selected based on the processed dataset of the experiment (e.g., <code class="docutils literal notranslate"><span class="pre">Demo-SimuCredit_md</span></code>).</p></li>
+<li><p><strong>Choose Model Type</strong>: Open the <strong>Model Type</strong> dropdown to select an algorithm (e.g., <code class="docutils literal notranslate"><span class="pre">XGBoost</span></code>, <code class="docutils literal notranslate"><span class="pre">LightGBM</span></code>, <code class="docutils literal notranslate"><span class="pre">CatBoost</span></code>…). The model object is auto-initialized based on the dataset task type (Regression/Classification).</p></li>
+</ol>
+</section>
+<section id="step-2-train-a-model">
+<h3>Step 2: Train a Model<a class="headerlink" href="#step-2-train-a-model" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Name Your Model</strong>: Enter a unique name in the <strong>Model Name</strong> field (e.g., <code class="docutils literal notranslate"><span class="pre">XGBoost</span></code>).</p></li>
+<li><p><strong>Adjust Hyperparameters</strong>: The hyperparameters settings are auto-initialized based on the selected model type. Users can modify these settings, such as <code class="docutils literal notranslate"><span class="pre">learning_rate</span></code>, <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> and other hyperparameters to optimize model performance.</p></li>
+<li><p><strong>Start Training</strong>: Click the <strong>Train</strong> button to begin training.</p></li>
+<li><p><strong>Monitor Progress</strong>: A progress bar indicates training status. Once completed, results appear in the <strong>Trained Model Leaderboard</strong>.</p></li>
+</ol>
+</section>
+<section id="step-3-evaluate-and-compare-models">
+<h3>Step 3: Evaluate and Compare Models<a class="headerlink" href="#step-3-evaluate-and-compare-models" title="Link to this heading">#</a></h3>
+<p><strong>Trained Models Leaderboard</strong>:</p>
+<ul class="simple">
+<li><p>Displays model performance metrics such as <code class="docutils literal notranslate"><span class="pre">AUC</span></code> and <code class="docutils literal notranslate"><span class="pre">ACC</span></code> for classification tasks, and <code class="docutils literal notranslate"><span class="pre">MSE</span></code> and <code class="docutils literal notranslate"><span class="pre">MAE</span></code> for regression tasks.</p></li>
+<li><p>Key columns also include <code class="docutils literal notranslate"><span class="pre">Model</span> <span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">Start</span> <span class="pre">Time</span></code> and <code class="docutils literal notranslate"><span class="pre">Duration</span></code>.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../../../_images/lowcode_model.png"><img alt="../../../_images/lowcode_model.png" class="align-center" src="../../../_images/lowcode_model.png" style="width: 600px;" />
+</a>
+<ul class="simple">
+<li><p>Click the <a class="reference internal" href="../../../_images/lowcode_parameter_icon.png"><img alt="param_icon" src="../../../_images/lowcode_parameter_icon.png" style="width: 25px; height: 25px;" /></a> icon to view the model hyperparameters.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../../../_images/lowcode_model_parameter.png"><img alt="../../../_images/lowcode_model_parameter.png" class="align-center" src="../../../_images/lowcode_model_parameter.png" style="width: 400px;" />
+</a>
+</section>
+<section id="step-4-register-a-model">
+<h3>Step 4: Register a Model<a class="headerlink" href="#step-4-register-a-model" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt><strong>Save a Trained Model</strong>:</dt><dd><ul class="simple">
+<li><p>Click the <a class="reference internal" href="../../../_images/lowcode_register_icon.png"><img alt="register_icon" src="../../../_images/lowcode_register_icon.png" style="width: 25px; height: 25px;" /></a> icon from one row of the <strong>Trained Models Leaderboard</strong> to register a model. After registration, it appears in the <strong>Registered Model Leaderboard</strong>.</p></li>
+</ul>
+</dd>
+</dl>
+<a class="reference internal image-reference" href="../../../_images/lowcode_model_registered.png"><img alt="../../../_images/lowcode_model_registered.png" class="align-center" src="../../../_images/lowcode_model_registered.png" style="width: 600px;" />
+</a>
+<p>This panel streamlines model experimentation and deployment. Users can train, evaluate, and register models with minimal effort, enabling rapid prototyping and deployment. For advanced users, the panel offers extensive customization options to fine-tune model performance. For more information, refer to the <strong>Model Wrapping</strong> documentation in the <strong>Modeva User Guide</strong>.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="data_process.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Data Processing</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="model_tune.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Model Tuning</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow">Workflow</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-dataset-model-selection">Step 1: Dataset &amp; Model Selection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-train-a-model">Step 2: Train a Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-evaluate-and-compare-models">Step 3: Evaluate and Compare Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-register-a-model">Step 4: Register a Model</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2025, Modeva Team.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,6 +1,6 @@
 """
 =================================================
-Wrapping sklearn-style Classifier and Regressor
+Wrapping sklearn-style Models
 =================================================
 
 This example requires full licence, and the program will break if you use the trial licence.
@@ -25,7 +25,7 @@ import numpy as np
 import pandas as pd
 from modeva import DataSet
 from modeva import TestSuite
-from modeva.models.wrappers.api import modeva_sklearn_regressor
+from modeva.models import MoSKLearnRegressor
 from lightgbm import LGBMRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import fetch_california_housing
@@ -53,7 +53,7 @@ ds.set_test_idx(test_idx)
 # %%
 # Wrap the model into Modeva
 # ----------------------------------------------------------
-model = modeva_sklearn_regressor(name="LGBM-sklearn", estimator=estimator)
+model = MoSKLearnRegressor(name="LGBM-sklearn", estimator=estimator)
 
 # %%
 # Create test suite for diagnostics

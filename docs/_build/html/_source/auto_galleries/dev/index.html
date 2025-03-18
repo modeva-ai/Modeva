@@ -56,7 +56,7 @@
     <link rel="prev" title="Dealing with Extra Data Sets" href="../data/plot_8_extra_data.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="1.0.7" />
+  <meta name="docsearch:version" content="1.0.8" />
   </head>
   
   
@@ -370,11 +370,13 @@
 <li class="toctree-l2"><a class="reference internal" href="plot_0_modelzoo.html">ModelZoo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="0_models/index.html">Built-in Interpretable Models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="1_extmodels/index.html">External Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_calibration/index.html">Model Calibration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="3_hpo/index.html">Hyperparameter Tuning</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../val/index.html">Model Validation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../util/index.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lowcode-gallery.html">Low Code</a></li>
 </ul>
 </div>
 </nav></div>
@@ -494,14 +496,33 @@
 <p><a class="reference internal" href="1_extmodels/noplot_4_spark.html#sphx-glr-source-auto-galleries-dev-1-extmodels-noplot-4-spark-py"><span class="std std-ref">Wrapping PySpark Models</span></a></p>
   <div class="sphx-glr-thumbnail-title">Wrapping PySpark Models</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="This example requires full licence, and the program will break if you use the trial licence."><img alt="" src="../../../_images/sphx_glr_plot_0_sklearn_thumb.png" />
-<p><a class="reference internal" href="1_extmodels/plot_0_sklearn.html#sphx-glr-source-auto-galleries-dev-1-extmodels-plot-0-sklearn-py"><span class="std std-ref">Wrapping sklearn-style Classifier and Regressor</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Wrapping sklearn-style Classifier and Regressor</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="This example requires full licence, and the program will break if you use the trial licence."><img alt="" src="../../../_images/sphx_glr_plot_1_arbitrary_thumb.png" />
-<p><a class="reference internal" href="1_extmodels/plot_1_arbitrary.html#sphx-glr-source-auto-galleries-dev-1-extmodels-plot-1-arbitrary-py"><span class="std std-ref">Wrapping Arbitrary Classifier or Regressor</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Wrapping Arbitrary Classifier or Regressor</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="This example requires full licence, and the program will break if you use the trial licence."><img alt="" src="../../../_images/sphx_glr_plot_2_scored_thumb.png" />
-<p><a class="reference internal" href="1_extmodels/plot_2_scored.html#sphx-glr-source-auto-galleries-dev-1-extmodels-plot-2-scored-py"><span class="std std-ref">Wrapping Scored Classifier or Regressor</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Wrapping Scored Classifier or Regressor</div>
+<p><a class="reference internal" href="1_extmodels/plot_0_sklearn.html#sphx-glr-source-auto-galleries-dev-1-extmodels-plot-0-sklearn-py"><span class="std std-ref">Wrapping sklearn-style Models</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Wrapping sklearn-style Models</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example requires full licence, and the program will break if you use the trial licence."><img alt="" src="../../../_images/sphx_glr_plot_1_arbitrary_cls_thumb.png" />
+<p><a class="reference internal" href="1_extmodels/plot_1_arbitrary_cls.html#sphx-glr-source-auto-galleries-dev-1-extmodels-plot-1-arbitrary-cls-py"><span class="std std-ref">Wrapping Arbitrary Classifier</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Wrapping Arbitrary Classifier</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example requires full licence, and the program will break if you use the trial licence."><img alt="" src="../../../_images/sphx_glr_plot_1_arbitrary_reg_thumb.png" />
+<p><a class="reference internal" href="1_extmodels/plot_1_arbitrary_reg.html#sphx-glr-source-auto-galleries-dev-1-extmodels-plot-1-arbitrary-reg-py"><span class="std std-ref">Wrapping Arbitrary Regressor</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Wrapping Arbitrary Regressor</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example requires full licence, and the program will break if you use the trial licence."><img alt="" src="../../../_images/sphx_glr_plot_2_scored_cls_thumb.png" />
+<p><a class="reference internal" href="1_extmodels/plot_2_scored_cls.html#sphx-glr-source-auto-galleries-dev-1-extmodels-plot-2-scored-cls-py"><span class="std std-ref">Wrapping Scored Classifier</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Wrapping Scored Classifier</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example requires full licence, and the program will break if you use the trial licence."><img alt="" src="../../../_images/sphx_glr_plot_2_scored_reg_thumb.png" />
+<p><a class="reference internal" href="1_extmodels/plot_2_scored_reg.html#sphx-glr-source-auto-galleries-dev-1-extmodels-plot-2-scored-reg-py"><span class="std std-ref">Wrapping Scored Regressor</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Wrapping Scored Regressor</div>
+</div></div></section>
+<section id="model-calibration">
+<h2>Model Calibration<a class="headerlink" href="#model-calibration" title="Link to this heading">#</a></h2>
+<p>Examples of calibrating models in modeva.</p>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="This example requires full licence, and the program will break if you use the trial licence."><img alt="" src="../../../_images/sphx_glr_plot_0_calibrate_proba_thumb.png" />
+<p><a class="reference internal" href="2_calibration/plot_0_calibrate_proba.html#sphx-glr-source-auto-galleries-dev-2-calibration-plot-0-calibrate-proba-py"><span class="std std-ref">Calibrating Binary Classifier</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Calibrating Binary Classifier</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example requires full licence, and the program will break if you use the trial licence."><img alt="" src="../../../_images/sphx_glr_plot_0_pred_interval_cls_thumb.png" />
+<p><a class="reference internal" href="2_calibration/plot_0_pred_interval_cls.html#sphx-glr-source-auto-galleries-dev-2-calibration-plot-0-pred-interval-cls-py"><span class="std std-ref">Calibrating Binary Classifier Prediction Interval</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Calibrating Binary Classifier Prediction Interval</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example requires full licence, and the program will break if you use the trial licence."><img alt="" src="../../../_images/sphx_glr_plot_0_pred_interval_reg_thumb.png" />
+<p><a class="reference internal" href="2_calibration/plot_0_pred_interval_reg.html#sphx-glr-source-auto-galleries-dev-2-calibration-plot-0-pred-interval-reg-py"><span class="std std-ref">Calibrating Regressor Prediction Interval</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Calibrating Regressor Prediction Interval</div>
 </div></div></section>
 <section id="hyperparameter-tuning">
 <h2>Hyperparameter Tuning<a class="headerlink" href="#hyperparameter-tuning" title="Link to this heading">#</a></h2>
@@ -573,6 +594,7 @@
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#built-in-interpretable-models">Built-in Interpretable Models</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#external-models">External Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-calibration">Model Calibration</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperparameter-tuning">Hyperparameter Tuning</a></li>
 </ul>
   </nav></div>
