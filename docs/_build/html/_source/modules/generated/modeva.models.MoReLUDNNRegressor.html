@@ -56,7 +56,7 @@
     <link rel="prev" title="modeva.models.MoXGBRegressor" href="modeva.models.MoXGBRegressor.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="1.0.7" />
+  <meta name="docsearch:version" content="1.0.8" />
   </head>
   
   
@@ -521,6 +521,29 @@ integer represents the number of neurons in a hidden layer.</p></li>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="modeva.models.MoReLUDNNRegressor.calibrate_interval">
+<span class="sig-name descname"><span class="pre">calibrate_interval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.models.MoReLUDNNRegressor.calibrate_interval" title="Link to this definition">#</a></dt>
+<dd><p>Fit a conformal prediction model to the given data.</p>
+<p>This method computes the model’s prediction interval calibrated to the given data.</p>
+<p>If the model is a regressor, splits the data with 50% for fitting lower (alpha / 5) and upper (1 - alpha / 2) gradient boosting trees-based quantile regression to the model’s residual; and 50% for calibration.</p>
+<p>If the model is a binary classifiers, it computes the calibration quantile based on predicted probabilities for the positive class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>X : np.ndarray</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Feature matrix for prediction.</p></li>
+<li><p><strong>y</strong> (<em>array-like</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>)</em>) – Target values.</p></li>
+<li><p><strong>alpha</strong> (<em>float</em><em>, </em><em>default=0.1</em>) – Expected miscoverage for the conformal prediction.</p></li>
+<li><p><strong>max_depth</strong> (<em>int</em><em>, </em><em>default=5</em>) – Maximum depth of the gradient boosting trees for regression tasks.
+Only used when task_type is REGRESSION.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the model is neither a regressor nor a classifier.:</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="modeva.models.MoReLUDNNRegressor.fit">
 <span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.models.MoReLUDNNRegressor.fit" title="Link to this definition">#</a></dt>
 <dd><p>Fit ReLuDNN model.</p>
@@ -576,18 +599,37 @@ contained subobjects that are estimators.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="modeva.models.MoReLUDNNRegressor.predict">
 <span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.models.MoReLUDNNRegressor.predict" title="Link to this definition">#</a></dt>
-<dd><p>Generate regression predictions for input samples.</p>
-<p>Processes input features through the trained neural network to produce
-continuous-valued predictions.</p>
+<dd><p>Model predictions, calling the child class’s ‘_predict’ method.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>X</strong> (<em>np.ndarray</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Input samples for which to generate predictions.</p>
+<dd class="field-odd"><p><strong>X</strong> (<em>np.ndarray</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Feature matrix for prediction.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>pred</strong> – Predicted values for each input sample.</p>
+<dd class="field-even"><p><strong>np.ndarray</strong></p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>np.ndarray of shape (n_samples,)</p>
+<dd class="field-odd"><p>The (calibrated) final prediction</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modeva.models.MoReLUDNNRegressor.predict_interval">
+<span class="sig-name descname"><span class="pre">predict_interval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.models.MoReLUDNNRegressor.predict_interval" title="Link to this definition">#</a></dt>
+<dd><p>Predict the prediction interval for the given data based on the conformal prediction model.</p>
+<p>It splits the data with 50% for fitting lower (alpha / 5) and upper (1 - alpha / 2) gradient boosting trees-based quantile regression to the model’s residual; and 50% for calibration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>np.ndarray</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Feature matrix for prediction.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>np.ndarray</strong> – in the format [n_samples, 2] for regressors or a flattened array for classifiers.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The lower and upper bounds of the prediction intervals for each sample</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If <cite>fit_conformal</cite> has not been called to fit the conformal prediction model: before calling this method.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -679,10 +721,12 @@ possible to update each component of a nested object.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoReLUDNNRegressor.net_"><code class="docutils literal notranslate"><span class="pre">MoReLUDNNRegressor.net_</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoReLUDNNRegressor.train_epoch_loss_"><code class="docutils literal notranslate"><span class="pre">MoReLUDNNRegressor.train_epoch_loss_</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoReLUDNNRegressor.validation_epoch_loss_"><code class="docutils literal notranslate"><span class="pre">MoReLUDNNRegressor.validation_epoch_loss_</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoReLUDNNRegressor.calibrate_interval"><code class="docutils literal notranslate"><span class="pre">MoReLUDNNRegressor.calibrate_interval()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoReLUDNNRegressor.fit"><code class="docutils literal notranslate"><span class="pre">MoReLUDNNRegressor.fit()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoReLUDNNRegressor.get_params"><code class="docutils literal notranslate"><span class="pre">MoReLUDNNRegressor.get_params()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoReLUDNNRegressor.load"><code class="docutils literal notranslate"><span class="pre">MoReLUDNNRegressor.load()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoReLUDNNRegressor.predict"><code class="docutils literal notranslate"><span class="pre">MoReLUDNNRegressor.predict()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoReLUDNNRegressor.predict_interval"><code class="docutils literal notranslate"><span class="pre">MoReLUDNNRegressor.predict_interval()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoReLUDNNRegressor.save"><code class="docutils literal notranslate"><span class="pre">MoReLUDNNRegressor.save()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoReLUDNNRegressor.set_params"><code class="docutils literal notranslate"><span class="pre">MoReLUDNNRegressor.set_params()</span></code></a></li>
 </ul>

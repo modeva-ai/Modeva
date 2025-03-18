@@ -56,7 +56,7 @@
     <link rel="prev" title="modeva.models.MoGLMTreeBoostRegressor" href="modeva.models.MoGLMTreeBoostRegressor.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="1.0.7" />
+  <meta name="docsearch:version" content="1.0.8" />
   </head>
   
   
@@ -504,6 +504,29 @@ interpretability through feature effects analysis.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="modeva.models.MoNeuralTreeRegressor.calibrate_interval">
+<span class="sig-name descname"><span class="pre">calibrate_interval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.models.MoNeuralTreeRegressor.calibrate_interval" title="Link to this definition">#</a></dt>
+<dd><p>Fit a conformal prediction model to the given data.</p>
+<p>This method computes the model’s prediction interval calibrated to the given data.</p>
+<p>If the model is a regressor, splits the data with 50% for fitting lower (alpha / 5) and upper (1 - alpha / 2) gradient boosting trees-based quantile regression to the model’s residual; and 50% for calibration.</p>
+<p>If the model is a binary classifiers, it computes the calibration quantile based on predicted probabilities for the positive class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>X : np.ndarray</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Feature matrix for prediction.</p></li>
+<li><p><strong>y</strong> (<em>array-like</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>)</em>) – Target values.</p></li>
+<li><p><strong>alpha</strong> (<em>float</em><em>, </em><em>default=0.1</em>) – Expected miscoverage for the conformal prediction.</p></li>
+<li><p><strong>max_depth</strong> (<em>int</em><em>, </em><em>default=5</em>) – Maximum depth of the gradient boosting trees for regression tasks.
+Only used when task_type is REGRESSION.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the model is neither a regressor nor a classifier.:</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="modeva.models.MoNeuralTreeRegressor.get_params">
 <span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.models.MoNeuralTreeRegressor.get_params" title="Link to this definition">#</a></dt>
 <dd><p>Get parameters for this estimator.
@@ -538,16 +561,37 @@ interpretability through feature effects analysis.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="modeva.models.MoNeuralTreeRegressor.predict">
 <span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.models.MoNeuralTreeRegressor.predict" title="Link to this definition">#</a></dt>
-<dd><p>output prediction for given samples</p>
+<dd><p>Model predictions, calling the child class’s ‘_predict’ method.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>X</strong> (<em>array-like</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – containing the input dataset</p>
+<dd class="field-odd"><p><strong>X</strong> (<em>np.ndarray</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Feature matrix for prediction.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>containing prediction</p>
+<dd class="field-even"><p><strong>np.ndarray</strong></p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>np.ndarray of shape (n_samples,)</p>
+<dd class="field-odd"><p>The (calibrated) final prediction</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modeva.models.MoNeuralTreeRegressor.predict_interval">
+<span class="sig-name descname"><span class="pre">predict_interval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.models.MoNeuralTreeRegressor.predict_interval" title="Link to this definition">#</a></dt>
+<dd><p>Predict the prediction interval for the given data based on the conformal prediction model.</p>
+<p>It splits the data with 50% for fitting lower (alpha / 5) and upper (1 - alpha / 2) gradient boosting trees-based quantile regression to the model’s residual; and 50% for calibration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>np.ndarray</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Feature matrix for prediction.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>np.ndarray</strong> – in the format [n_samples, 2] for regressors or a flattened array for classifiers.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The lower and upper bounds of the prediction intervals for each sample</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If <cite>fit_conformal</cite> has not been called to fit the conformal prediction model: before calling this method.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -637,9 +681,11 @@ possible to update each component of a nested object.</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoNeuralTreeRegressor"><code class="docutils literal notranslate"><span class="pre">MoNeuralTreeRegressor</span></code></a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoNeuralTreeRegressor.net_"><code class="docutils literal notranslate"><span class="pre">MoNeuralTreeRegressor.net_</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoNeuralTreeRegressor.calibrate_interval"><code class="docutils literal notranslate"><span class="pre">MoNeuralTreeRegressor.calibrate_interval()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoNeuralTreeRegressor.get_params"><code class="docutils literal notranslate"><span class="pre">MoNeuralTreeRegressor.get_params()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoNeuralTreeRegressor.load"><code class="docutils literal notranslate"><span class="pre">MoNeuralTreeRegressor.load()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoNeuralTreeRegressor.predict"><code class="docutils literal notranslate"><span class="pre">MoNeuralTreeRegressor.predict()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoNeuralTreeRegressor.predict_interval"><code class="docutils literal notranslate"><span class="pre">MoNeuralTreeRegressor.predict_interval()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoNeuralTreeRegressor.save"><code class="docutils literal notranslate"><span class="pre">MoNeuralTreeRegressor.save()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeva.models.MoNeuralTreeRegressor.set_params"><code class="docutils literal notranslate"><span class="pre">MoNeuralTreeRegressor.set_params()</span></code></a></li>
 </ul>

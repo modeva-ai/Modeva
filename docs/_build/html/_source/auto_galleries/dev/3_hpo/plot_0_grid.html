@@ -56,7 +56,7 @@
     <link rel="prev" title="Hyperparameter Tuning" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="1.0.7" />
+  <meta name="docsearch:version" content="1.0.8" />
   </head>
   
   
@@ -370,6 +370,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../plot_0_modelzoo.html">ModelZoo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../0_models/index.html">Built-in Interpretable Models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../1_extmodels/index.html">External Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_calibration/index.html">Model Calibration</a></li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Hyperparameter Tuning</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">Grid Search</a></li>
 <li class="toctree-l3"><a class="reference internal" href="plot_1_random.html">Random Search</a></li>
@@ -381,6 +382,7 @@
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../../val/index.html">Model Validation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../util/index.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lowcode-gallery.html">Low Code</a></li>
 </ul>
 </div>
 </nav></div>
@@ -538,7 +540,7 @@ to download the full example code.</p>
       <td>1</td>
       <td>1</td>
       <td>1</td>
-      <td>0.1317</td>
+      <td>0.0549</td>
     </tr>
     <tr>
       <th>11</th>
@@ -552,7 +554,7 @@ to download the full example code.</p>
       <td>2</td>
       <td>2</td>
       <td>2</td>
-      <td>0.0994</td>
+      <td>0.0820</td>
     </tr>
     <tr>
       <th>8</th>
@@ -566,7 +568,7 @@ to download the full example code.</p>
       <td>3</td>
       <td>3</td>
       <td>3</td>
-      <td>0.1129</td>
+      <td>0.0559</td>
     </tr>
     <tr>
       <th>13</th>
@@ -580,7 +582,7 @@ to download the full example code.</p>
       <td>4</td>
       <td>4</td>
       <td>4</td>
-      <td>0.0560</td>
+      <td>0.0343</td>
     </tr>
     <tr>
       <th>10</th>
@@ -594,7 +596,7 @@ to download the full example code.</p>
       <td>5</td>
       <td>5</td>
       <td>5</td>
-      <td>0.0555</td>
+      <td>0.0348</td>
     </tr>
     <tr>
       <th>5</th>
@@ -608,7 +610,7 @@ to download the full example code.</p>
       <td>6</td>
       <td>6</td>
       <td>6</td>
-      <td>0.1249</td>
+      <td>0.1316</td>
     </tr>
     <tr>
       <th>7</th>
@@ -622,7 +624,7 @@ to download the full example code.</p>
       <td>7</td>
       <td>7</td>
       <td>7</td>
-      <td>0.0646</td>
+      <td>0.0257</td>
     </tr>
     <tr>
       <th>12</th>
@@ -636,7 +638,7 @@ to download the full example code.</p>
       <td>8</td>
       <td>8</td>
       <td>8</td>
-      <td>0.0377</td>
+      <td>0.0261</td>
     </tr>
     <tr>
       <th>4</th>
@@ -650,7 +652,7 @@ to download the full example code.</p>
       <td>11</td>
       <td>10</td>
       <td>10</td>
-      <td>0.0710</td>
+      <td>0.0562</td>
     </tr>
     <tr>
       <th>2</th>
@@ -664,7 +666,7 @@ to download the full example code.</p>
       <td>9</td>
       <td>11</td>
       <td>11</td>
-      <td>0.1196</td>
+      <td>0.1010</td>
     </tr>
     <tr>
       <th>9</th>
@@ -678,7 +680,7 @@ to download the full example code.</p>
       <td>10</td>
       <td>9</td>
       <td>9</td>
-      <td>0.0384</td>
+      <td>0.0235</td>
     </tr>
     <tr>
       <th>6</th>
@@ -692,7 +694,7 @@ to download the full example code.</p>
       <td>12</td>
       <td>12</td>
       <td>12</td>
-      <td>0.0415</td>
+      <td>0.0168</td>
     </tr>
     <tr>
       <th>3</th>
@@ -706,7 +708,7 @@ to download the full example code.</p>
       <td>13</td>
       <td>13</td>
       <td>13</td>
-      <td>0.0447</td>
+      <td>0.0280</td>
     </tr>
     <tr>
       <th>1</th>
@@ -720,7 +722,7 @@ to download the full example code.</p>
       <td>14</td>
       <td>14</td>
       <td>14</td>
-      <td>0.0829</td>
+      <td>0.0332</td>
     </tr>
     <tr>
       <th>0</th>
@@ -734,7 +736,7 @@ to download the full example code.</p>
       <td>15</td>
       <td>15</td>
       <td>15</td>
-      <td>0.0559</td>
+      <td>0.0163</td>
     </tr>
   </tbody>
 </table>
@@ -759,10 +761,10 @@ to download the full example code.</p>
             <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
             <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.1.0/dist/echarts-wordcloud.min.js"></script>
 
-            <div id="1741056729.82040480.5448" style="height: 600px; width: 800px; overflow: auto"></div>
+            <div id="1742282464.61665530.8917" style="height: 600px; width: 800px; overflow: auto"></div>
 
             <script type="text/javascript">
-            var dom = document.getElementById('1741056729.82040480.5448');
+            var dom = document.getElementById('1742282464.61665530.8917');
             dom.innerHTML = ""
             dom.setAttribute('_echarts_instance_', '')
             var myChart = echarts.init(dom, null, {
@@ -772,7 +774,7 @@ to download the full example code.</p>
             var app = {};
 
             var option;
-    option = {"chart_id": "1741056729.82040480.5448", "link_id": null, "figname": "", "title": null, "grid": {"show": false, "width": "auto", "height": "auto", "z": 2, "left": "5%", "top": "10%", "right": "10%", "bottom": "5%", "borderColor": "#ccc", "borderWidth": 1, "containLabel": true, "backgroundColor": "transparent", "changed_name_key": {"id_": "id"}}, "legend": null, "brush": null, "yAxis": [], "xAxis": [], "parallelAxis": [{"dim": 0, "name": "Index", "type": "category", "data": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]}, {"dim": 1, "name": "learning_rate", "min": 0.006, "max": 0.054}, {"dim": 2, "name": "n_estimators", "min": 35.0, "max": 215.0}, {"dim": 3, "name": "AUC", "min": 0.788, "max": 0.839}, {"dim": 4, "name": "ACC", "min": 0.714, "max": 0.761}, {"dim": 5, "name": "LogLoss", "min": 0.49, "max": 0.62}, {"dim": 6, "name": "Brier", "min": 0.161, "max": 0.212}], "series": [{"type": "parallel", "colorBy": "series", "z": 2, "legendHoverLink": true, "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "lineStyle": {"width": 2}, "emphasis": {"disabled": false, "lineStyle": {"color": "red"}}, "seriesLayoutBy": "column", "data": [{"name": "Index:0; learning_rate:0.01; n_estimators:50; AUC:0.7925; ACC:0.7177; LogLoss:0.6069; Brier:0.208; ", "value": [0.0, 0.01, 50.0, 0.7924640727504164, 0.7176875, 0.6069053944508033, 0.20795444567808485]}, {"name": "Index:1; learning_rate:0.01; n_estimators:100; AUC:0.8032; ACC:0.7344; LogLoss:0.5715; Brier:0.1921; ", "value": [1.0, 0.01, 100.0, 0.8032388354035425, 0.7344375, 0.5714802957468433, 0.19207610136731396]}, {"name": "Index:2; learning_rate:0.01; n_estimators:200; AUC:0.8169; ACC:0.7408; LogLoss:0.5406; Brier:0.1795; ", "value": [2.0, 0.01, 200.0, 0.816881136085821, 0.7408125, 0.5405681088358434, 0.17949430896628982]}, {"name": "Index:3; learning_rate:0.02; n_estimators:50; AUC:0.8035; ACC:0.7345; LogLoss:0.5713; Brier:0.192; ", "value": [3.0, 0.02, 50.0, 0.8034993667088773, 0.7344999999999999, 0.5713069294400615, 0.1920038694093627]}, {"name": "Index:4; learning_rate:0.02; n_estimators:100; AUC:0.817; ACC:0.7406; LogLoss:0.5404; Brier:0.1794; ", "value": [4.0, 0.02, 100.0, 0.8169765981002017, 0.7405625, 0.5404000606854604, 0.17942838052009438]}, {"name": "Index:5; learning_rate:0.02; n_estimators:200; AUC:0.8276; ACC:0.7492; LogLoss:0.5155; Brier:0.1704; ", "value": [5.0, 0.02, 200.0, 0.8276189407642326, 0.74925, 0.5155487849887239, 0.17039961702503564]}, {"name": "Index:6; learning_rate:0.03; n_estimators:50; AUC:0.8101; ACC:0.7378; LogLoss:0.5525; Brier:0.1843; ", "value": [6.0, 0.03, 50.0, 0.810062920606567, 0.7378125, 0.5525188145980934, 0.18425407155218818]}, {"name": "Index:7; learning_rate:0.03; n_estimators:100; AUC:0.8237; ACC:0.7454; LogLoss:0.5244; Brier:0.1735; ", "value": [7.0, 0.03, 100.0, 0.8237217069377714, 0.7454375000000001, 0.5244284131024797, 0.17346738741623335]}, {"name": "Index:8; learning_rate:0.03; n_estimators:200; AUC:0.8315; ACC:0.754; LogLoss:0.5061; Brier:0.1674; ", "value": [8.0, 0.03, 200.0, 0.83150402268907, 0.7539999999999999, 0.5060893449465923, 0.16736421698992676]}, {"name": "Index:9; learning_rate:0.04; n_estimators:50; AUC:0.8168; ACC:0.7407; LogLoss:0.5401; Brier:0.1793; ", "value": [9.0, 0.04, 50.0, 0.8167661583612913, 0.7407499999999999, 0.5401240618067112, 0.17934178424530406]}, {"name": "Index:10; learning_rate:0.04; n_estimators:100; AUC:0.8277; ACC:0.75; LogLoss:0.5155; Brier:0.1704; ", "value": [10.0, 0.04, 100.0, 0.8276568201540526, 0.7499999999999999, 0.5154545060334367, 0.17036828904602735]}, {"name": "Index:11; learning_rate:0.04; n_estimators:200; AUC:0.8339; ACC:0.7552; LogLoss:0.501; Brier:0.1658; ", "value": [11.0, 0.04, 200.0, 0.8338797145751755, 0.75525, 0.5010315154906984, 0.16578142511996607]}, {"name": "Index:12; learning_rate:0.05; n_estimators:50; AUC:0.821; ACC:0.7418; LogLoss:0.5309; Brier:0.1758; ", "value": [12.0, 0.05, 50.0, 0.8210284232541476, 0.74175, 0.5308870595708196, 0.17583292674280532]}, {"name": "Index:13; learning_rate:0.05; n_estimators:100; AUC:0.8296; ACC:0.7539; LogLoss:0.5099; Brier:0.1686; ", "value": [13.0, 0.05, 100.0, 0.8296491622029633, 0.7538750000000001, 0.5099491344656861, 0.16861315719051967]}, {"name": "Index:14; learning_rate:0.05; n_estimators:200; AUC:0.835; ACC:0.7566; LogLoss:0.4983; Brier:0.165; ", "value": [14.0, 0.05, 200.0, 0.8350390239177982, 0.7566249999999999, 0.498349783864373, 0.16500420252283265]}], "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "linear", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "coordinateSystem": "parallel", "inactiveOpacity": 0.05, "activeOpacity": 1, "realtime": true, "progressive": 500, "progressiveThreshold": 3000, "progressiveChunkMode": "sequential"}], "visualMap": null, "toolbox": {"show": true, "orient": "horizontal", "itemSize": 15, "itemGap": 8, "showTitle": true, "feature": {"dataZoom": {}, "saveAsImage": {}}, "z": 2, "left": "auto", "top": "auto", "right": "1%", "bottom": "auto", "width": "auto", "height": "auto", "popup": true, "changed_name_key": {"id_": "id"}}, "tooltip": {"show": true, "custom_tooltip": false, "trigger": "item", "axisPointer": {"show": true}, "showContent": true, "triggerOn": "mousemove|click", "hideDelay": 100, "enterable": true, "renderMode": "html", "confine": true, "transitionDuration": 0.4, "formatter": "{b}", "borderColor": "#333", "padding": 5, "order": "seriesAsc"}, "dataZoom": null, "event": null, "graphic": null, "radar": null, "figsize": {"width": 800, "height": 600}, "color": ["#1f77b4", "#ff7f0e", "#2ca02c", "#e377c2", "#9467bd", "#d62728", "#8c564b", "#bcbd22", "#17becf", "#7f7f7f"], "save_img": false, "auto_size": true, "style": {"overflow": "auto"}, "port": "5002"};function setInnerHTML(elm, html) {
+    option = {"chart_id": "1742282464.61665530.8917", "link_id": null, "figname": "", "title": null, "grid": {"show": false, "width": "auto", "height": "auto", "z": 2, "left": "5%", "top": "10%", "right": "10%", "bottom": "5%", "borderColor": "#ccc", "borderWidth": 1, "containLabel": true, "backgroundColor": "transparent", "changed_name_key": {"id_": "id"}}, "legend": null, "brush": null, "yAxis": [], "xAxis": [], "parallelAxis": [{"dim": 0, "name": "Index", "type": "category", "data": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]}, {"dim": 1, "name": "learning_rate", "min": 0.006, "max": 0.054}, {"dim": 2, "name": "n_estimators", "min": 35.0, "max": 215.0}, {"dim": 3, "name": "AUC", "min": 0.788, "max": 0.839}, {"dim": 4, "name": "ACC", "min": 0.714, "max": 0.761}, {"dim": 5, "name": "LogLoss", "min": 0.49, "max": 0.62}, {"dim": 6, "name": "Brier", "min": 0.161, "max": 0.212}], "series": [{"type": "parallel", "colorBy": "series", "z": 2, "legendHoverLink": true, "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "lineStyle": {"width": 2}, "emphasis": {"disabled": false, "lineStyle": {"color": "red"}}, "seriesLayoutBy": "column", "data": [{"name": "Index:0; learning_rate:0.01; n_estimators:50; AUC:0.7925; ACC:0.7177; LogLoss:0.6069; Brier:0.208; ", "value": [0.0, 0.01, 50.0, 0.7924640727504164, 0.7176875, 0.6069053944508033, 0.20795444567808485]}, {"name": "Index:1; learning_rate:0.01; n_estimators:100; AUC:0.8032; ACC:0.7344; LogLoss:0.5715; Brier:0.1921; ", "value": [1.0, 0.01, 100.0, 0.8032388354035425, 0.7344375, 0.5714802957468433, 0.19207610136731396]}, {"name": "Index:2; learning_rate:0.01; n_estimators:200; AUC:0.8169; ACC:0.7408; LogLoss:0.5406; Brier:0.1795; ", "value": [2.0, 0.01, 200.0, 0.816881136085821, 0.7408125, 0.5405681088358434, 0.17949430896628982]}, {"name": "Index:3; learning_rate:0.02; n_estimators:50; AUC:0.8035; ACC:0.7345; LogLoss:0.5713; Brier:0.192; ", "value": [3.0, 0.02, 50.0, 0.8034993667088773, 0.7344999999999999, 0.5713069294400615, 0.1920038694093627]}, {"name": "Index:4; learning_rate:0.02; n_estimators:100; AUC:0.817; ACC:0.7406; LogLoss:0.5404; Brier:0.1794; ", "value": [4.0, 0.02, 100.0, 0.8169765981002017, 0.7405625, 0.5404000606854604, 0.17942838052009438]}, {"name": "Index:5; learning_rate:0.02; n_estimators:200; AUC:0.8276; ACC:0.7492; LogLoss:0.5155; Brier:0.1704; ", "value": [5.0, 0.02, 200.0, 0.8276189407642326, 0.74925, 0.5155487849887239, 0.17039961702503564]}, {"name": "Index:6; learning_rate:0.03; n_estimators:50; AUC:0.8101; ACC:0.7378; LogLoss:0.5525; Brier:0.1843; ", "value": [6.0, 0.03, 50.0, 0.810062920606567, 0.7378125, 0.5525188145980934, 0.18425407155218818]}, {"name": "Index:7; learning_rate:0.03; n_estimators:100; AUC:0.8237; ACC:0.7454; LogLoss:0.5244; Brier:0.1735; ", "value": [7.0, 0.03, 100.0, 0.8237217069377714, 0.7454375000000001, 0.5244284131024797, 0.17346738741623335]}, {"name": "Index:8; learning_rate:0.03; n_estimators:200; AUC:0.8315; ACC:0.754; LogLoss:0.5061; Brier:0.1674; ", "value": [8.0, 0.03, 200.0, 0.83150402268907, 0.7539999999999999, 0.5060893449465923, 0.16736421698992676]}, {"name": "Index:9; learning_rate:0.04; n_estimators:50; AUC:0.8168; ACC:0.7407; LogLoss:0.5401; Brier:0.1793; ", "value": [9.0, 0.04, 50.0, 0.8167661583612913, 0.7407499999999999, 0.5401240618067112, 0.17934178424530406]}, {"name": "Index:10; learning_rate:0.04; n_estimators:100; AUC:0.8277; ACC:0.75; LogLoss:0.5155; Brier:0.1704; ", "value": [10.0, 0.04, 100.0, 0.8276568201540526, 0.7499999999999999, 0.5154545060334367, 0.17036828904602735]}, {"name": "Index:11; learning_rate:0.04; n_estimators:200; AUC:0.8339; ACC:0.7552; LogLoss:0.501; Brier:0.1658; ", "value": [11.0, 0.04, 200.0, 0.8338797145751755, 0.75525, 0.5010315154906984, 0.16578142511996607]}, {"name": "Index:12; learning_rate:0.05; n_estimators:50; AUC:0.821; ACC:0.7418; LogLoss:0.5309; Brier:0.1758; ", "value": [12.0, 0.05, 50.0, 0.8210284232541476, 0.74175, 0.5308870595708196, 0.17583292674280532]}, {"name": "Index:13; learning_rate:0.05; n_estimators:100; AUC:0.8296; ACC:0.7539; LogLoss:0.5099; Brier:0.1686; ", "value": [13.0, 0.05, 100.0, 0.8296491622029633, 0.7538750000000001, 0.5099491344656861, 0.16861315719051967]}, {"name": "Index:14; learning_rate:0.05; n_estimators:200; AUC:0.835; ACC:0.7566; LogLoss:0.4983; Brier:0.165; ", "value": [14.0, 0.05, 200.0, 0.8350390239177982, 0.7566249999999999, 0.498349783864373, 0.16500420252283265]}], "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "linear", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "coordinateSystem": "parallel", "inactiveOpacity": 0.05, "activeOpacity": 1, "realtime": true, "progressive": 500, "progressiveThreshold": 3000, "progressiveChunkMode": "sequential"}], "visualMap": null, "toolbox": {"show": true, "orient": "horizontal", "itemSize": 15, "itemGap": 8, "showTitle": true, "feature": {"dataZoom": {}, "saveAsImage": {}}, "z": 2, "left": "auto", "top": "auto", "right": "1%", "bottom": "auto", "width": "auto", "height": "auto", "popup": true, "changed_name_key": {"id_": "id"}}, "tooltip": {"show": true, "custom_tooltip": false, "trigger": "item", "axisPointer": {"show": true}, "showContent": true, "triggerOn": "mousemove|click", "hideDelay": 100, "enterable": true, "renderMode": "html", "confine": true, "transitionDuration": 0.4, "formatter": "{b}", "borderColor": "#333", "padding": 5, "order": "seriesAsc"}, "dataZoom": null, "event": null, "graphic": null, "radar": null, "figsize": {"width": 800, "height": 600}, "color": ["#1f77b4", "#ff7f0e", "#2ca02c", "#e377c2", "#9467bd", "#d62728", "#8c564b", "#bcbd22", "#17becf", "#7f7f7f"], "save_img": false, "auto_size": true, "style": {"overflow": "auto"}, "port": "5001"};function setInnerHTML(elm, html) {
   elm.innerHTML = html;
 
   Array.from(elm.querySelectorAll("script"))
@@ -1526,7 +1528,7 @@ function support_click_event(option) {
   option['toolbox']['feature']['myFeature'] = {
     show: true,
     title: 'Open in new window',
-    icon: 'image://https://raw.githubusercontent.com/CnBDM-Su/XAI_demo/master/popup_icon.png',
+    icon: "image://data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDhweCIgd2lkdGg9IjQ4cHgiIHZpZXdCb3g9IjE2MCAtODAwIDY0MCA2NDAiIGZpbGw9IiM2NjY2NjYiPg0KICA8cGF0aCBkPSJNMjE1LjM4LTE2MHEtMjMuMDUgMC0zOS4yMi0xNi4xNlExNjAtMTkyLjMzIDE2MC0yMTUuMzh2LTUyOS4yNHEwLTIzLjA1IDE2LjE2LTM5LjIyUTE5Mi4zMy04MDAgMjE1LjM4LTgwMGgyMjQuMzl2MzAuNzdIMjE1LjM4cS05LjIzIDAtMTYuOTIgNy42OS03LjY5IDcuNjktNy42OSAxNi45MnY1MjkuMjRxMCA5LjIzIDcuNjkgMTYuOTIgNy42OSA3LjY5IDE2LjkyIDcuNjloNTI5LjI0cTkuMjMgMCAxNi45Mi03LjY5IDcuNjktNy42OSA3LjY5LTE2Ljkydi0yMjQuMzlIODAwdjIyNC4zOXEwIDIzLjA1LTE2LjE2IDM5LjIyUTc2Ny42Ny0xNjAgNzQ0LjYyLTE2MEgyMTUuMzhabTE3MS4yNC0yMDQuMzgtMjItMjIuMjQgMzgyLjYxLTM4Mi42MUg1NDEuMzFWLTgwMEg4MDB2MjU4LjY5aC0zMC43N1YtNzQ3TDM4Ni42Mi0zNjQuMzhaIi8+DQo8L3N2Zz4NCg==",
     onclick: function (){
       var height_ = Math.min(screen.height, Math.round(1.5 * parseInt(height.slice(0,-2))))
       var width_ = Math.min(screen.width, Math.round(1.5 * parseInt(width.slice(0,-2))))
@@ -1554,9 +1556,9 @@ function support_click_event(option) {
             <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.1.0/dist/echarts-wordcloud.min.js"><\/script>
 
 
-        <div id="1741056729.82040480.5448" style="height: 90%; width: 90%"></div>
+        <div id="1742282464.61665530.8917" style="height: 90%; width: 90%"></div>
         <script type="text/javascript">
-            var dom = document.getElementById('1741056729.82040480.5448');
+            var dom = document.getElementById('1742282464.61665530.8917');
             var myChart = echarts.init(dom, null, {
                 renderer: 'canvas',
                 useDirtyRect: false
@@ -1564,7 +1566,7 @@ function support_click_event(option) {
             var app = {};
 
             var option;
-        option = {"chart_id": "1741056729.82040480.5448", "link_id": null, "figname": "", "title": null, "grid": {"show": false, "width": "auto", "height": "auto", "z": 2, "left": "5%", "top": "10%", "right": "10%", "bottom": "5%", "borderColor": "#ccc", "borderWidth": 1, "containLabel": true, "backgroundColor": "transparent", "changed_name_key": {"id_": "id"}}, "legend": null, "brush": null, "yAxis": [], "xAxis": [], "parallelAxis": [{"dim": 0, "name": "Index", "type": "category", "data": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]}, {"dim": 1, "name": "learning_rate", "min": 0.006, "max": 0.054}, {"dim": 2, "name": "n_estimators", "min": 35.0, "max": 215.0}, {"dim": 3, "name": "AUC", "min": 0.788, "max": 0.839}, {"dim": 4, "name": "ACC", "min": 0.714, "max": 0.761}, {"dim": 5, "name": "LogLoss", "min": 0.49, "max": 0.62}, {"dim": 6, "name": "Brier", "min": 0.161, "max": 0.212}], "series": [{"type": "parallel", "colorBy": "series", "z": 2, "legendHoverLink": true, "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "lineStyle": {"width": 2}, "emphasis": {"disabled": false, "lineStyle": {"color": "red"}}, "seriesLayoutBy": "column", "data": [{"name": "Index:0; learning_rate:0.01; n_estimators:50; AUC:0.7925; ACC:0.7177; LogLoss:0.6069; Brier:0.208; ", "value": [0.0, 0.01, 50.0, 0.7924640727504164, 0.7176875, 0.6069053944508033, 0.20795444567808485]}, {"name": "Index:1; learning_rate:0.01; n_estimators:100; AUC:0.8032; ACC:0.7344; LogLoss:0.5715; Brier:0.1921; ", "value": [1.0, 0.01, 100.0, 0.8032388354035425, 0.7344375, 0.5714802957468433, 0.19207610136731396]}, {"name": "Index:2; learning_rate:0.01; n_estimators:200; AUC:0.8169; ACC:0.7408; LogLoss:0.5406; Brier:0.1795; ", "value": [2.0, 0.01, 200.0, 0.816881136085821, 0.7408125, 0.5405681088358434, 0.17949430896628982]}, {"name": "Index:3; learning_rate:0.02; n_estimators:50; AUC:0.8035; ACC:0.7345; LogLoss:0.5713; Brier:0.192; ", "value": [3.0, 0.02, 50.0, 0.8034993667088773, 0.7344999999999999, 0.5713069294400615, 0.1920038694093627]}, {"name": "Index:4; learning_rate:0.02; n_estimators:100; AUC:0.817; ACC:0.7406; LogLoss:0.5404; Brier:0.1794; ", "value": [4.0, 0.02, 100.0, 0.8169765981002017, 0.7405625, 0.5404000606854604, 0.17942838052009438]}, {"name": "Index:5; learning_rate:0.02; n_estimators:200; AUC:0.8276; ACC:0.7492; LogLoss:0.5155; Brier:0.1704; ", "value": [5.0, 0.02, 200.0, 0.8276189407642326, 0.74925, 0.5155487849887239, 0.17039961702503564]}, {"name": "Index:6; learning_rate:0.03; n_estimators:50; AUC:0.8101; ACC:0.7378; LogLoss:0.5525; Brier:0.1843; ", "value": [6.0, 0.03, 50.0, 0.810062920606567, 0.7378125, 0.5525188145980934, 0.18425407155218818]}, {"name": "Index:7; learning_rate:0.03; n_estimators:100; AUC:0.8237; ACC:0.7454; LogLoss:0.5244; Brier:0.1735; ", "value": [7.0, 0.03, 100.0, 0.8237217069377714, 0.7454375000000001, 0.5244284131024797, 0.17346738741623335]}, {"name": "Index:8; learning_rate:0.03; n_estimators:200; AUC:0.8315; ACC:0.754; LogLoss:0.5061; Brier:0.1674; ", "value": [8.0, 0.03, 200.0, 0.83150402268907, 0.7539999999999999, 0.5060893449465923, 0.16736421698992676]}, {"name": "Index:9; learning_rate:0.04; n_estimators:50; AUC:0.8168; ACC:0.7407; LogLoss:0.5401; Brier:0.1793; ", "value": [9.0, 0.04, 50.0, 0.8167661583612913, 0.7407499999999999, 0.5401240618067112, 0.17934178424530406]}, {"name": "Index:10; learning_rate:0.04; n_estimators:100; AUC:0.8277; ACC:0.75; LogLoss:0.5155; Brier:0.1704; ", "value": [10.0, 0.04, 100.0, 0.8276568201540526, 0.7499999999999999, 0.5154545060334367, 0.17036828904602735]}, {"name": "Index:11; learning_rate:0.04; n_estimators:200; AUC:0.8339; ACC:0.7552; LogLoss:0.501; Brier:0.1658; ", "value": [11.0, 0.04, 200.0, 0.8338797145751755, 0.75525, 0.5010315154906984, 0.16578142511996607]}, {"name": "Index:12; learning_rate:0.05; n_estimators:50; AUC:0.821; ACC:0.7418; LogLoss:0.5309; Brier:0.1758; ", "value": [12.0, 0.05, 50.0, 0.8210284232541476, 0.74175, 0.5308870595708196, 0.17583292674280532]}, {"name": "Index:13; learning_rate:0.05; n_estimators:100; AUC:0.8296; ACC:0.7539; LogLoss:0.5099; Brier:0.1686; ", "value": [13.0, 0.05, 100.0, 0.8296491622029633, 0.7538750000000001, 0.5099491344656861, 0.16861315719051967]}, {"name": "Index:14; learning_rate:0.05; n_estimators:200; AUC:0.835; ACC:0.7566; LogLoss:0.4983; Brier:0.165; ", "value": [14.0, 0.05, 200.0, 0.8350390239177982, 0.7566249999999999, 0.498349783864373, 0.16500420252283265]}], "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "linear", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "coordinateSystem": "parallel", "inactiveOpacity": 0.05, "activeOpacity": 1, "realtime": true, "progressive": 500, "progressiveThreshold": 3000, "progressiveChunkMode": "sequential"}], "visualMap": null, "toolbox": {"show": true, "orient": "horizontal", "itemSize": 15, "itemGap": 8, "showTitle": true, "feature": {"dataZoom": {}, "saveAsImage": {}}, "z": 2, "left": "auto", "top": "auto", "right": "1%", "bottom": "auto", "width": "auto", "height": "auto", "popup": true, "changed_name_key": {"id_": "id"}}, "tooltip": {"show": true, "custom_tooltip": false, "trigger": "item", "axisPointer": {"show": true}, "showContent": true, "triggerOn": "mousemove|click", "hideDelay": 100, "enterable": true, "renderMode": "html", "confine": true, "transitionDuration": 0.4, "formatter": "{b}", "borderColor": "#333", "padding": 5, "order": "seriesAsc"}, "dataZoom": null, "event": null, "graphic": null, "radar": null, "figsize": {"width": 800, "height": 600}, "color": ["#1f77b4", "#ff7f0e", "#2ca02c", "#e377c2", "#9467bd", "#d62728", "#8c564b", "#bcbd22", "#17becf", "#7f7f7f"], "save_img": false, "auto_size": true, "style": {"overflow": "auto"}, "port": "5002"};function setInnerHTML(elm, html) {
+        option = {"chart_id": "1742282464.61665530.8917", "link_id": null, "figname": "", "title": null, "grid": {"show": false, "width": "auto", "height": "auto", "z": 2, "left": "5%", "top": "10%", "right": "10%", "bottom": "5%", "borderColor": "#ccc", "borderWidth": 1, "containLabel": true, "backgroundColor": "transparent", "changed_name_key": {"id_": "id"}}, "legend": null, "brush": null, "yAxis": [], "xAxis": [], "parallelAxis": [{"dim": 0, "name": "Index", "type": "category", "data": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]}, {"dim": 1, "name": "learning_rate", "min": 0.006, "max": 0.054}, {"dim": 2, "name": "n_estimators", "min": 35.0, "max": 215.0}, {"dim": 3, "name": "AUC", "min": 0.788, "max": 0.839}, {"dim": 4, "name": "ACC", "min": 0.714, "max": 0.761}, {"dim": 5, "name": "LogLoss", "min": 0.49, "max": 0.62}, {"dim": 6, "name": "Brier", "min": 0.161, "max": 0.212}], "series": [{"type": "parallel", "colorBy": "series", "z": 2, "legendHoverLink": true, "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "lineStyle": {"width": 2}, "emphasis": {"disabled": false, "lineStyle": {"color": "red"}}, "seriesLayoutBy": "column", "data": [{"name": "Index:0; learning_rate:0.01; n_estimators:50; AUC:0.7925; ACC:0.7177; LogLoss:0.6069; Brier:0.208; ", "value": [0.0, 0.01, 50.0, 0.7924640727504164, 0.7176875, 0.6069053944508033, 0.20795444567808485]}, {"name": "Index:1; learning_rate:0.01; n_estimators:100; AUC:0.8032; ACC:0.7344; LogLoss:0.5715; Brier:0.1921; ", "value": [1.0, 0.01, 100.0, 0.8032388354035425, 0.7344375, 0.5714802957468433, 0.19207610136731396]}, {"name": "Index:2; learning_rate:0.01; n_estimators:200; AUC:0.8169; ACC:0.7408; LogLoss:0.5406; Brier:0.1795; ", "value": [2.0, 0.01, 200.0, 0.816881136085821, 0.7408125, 0.5405681088358434, 0.17949430896628982]}, {"name": "Index:3; learning_rate:0.02; n_estimators:50; AUC:0.8035; ACC:0.7345; LogLoss:0.5713; Brier:0.192; ", "value": [3.0, 0.02, 50.0, 0.8034993667088773, 0.7344999999999999, 0.5713069294400615, 0.1920038694093627]}, {"name": "Index:4; learning_rate:0.02; n_estimators:100; AUC:0.817; ACC:0.7406; LogLoss:0.5404; Brier:0.1794; ", "value": [4.0, 0.02, 100.0, 0.8169765981002017, 0.7405625, 0.5404000606854604, 0.17942838052009438]}, {"name": "Index:5; learning_rate:0.02; n_estimators:200; AUC:0.8276; ACC:0.7492; LogLoss:0.5155; Brier:0.1704; ", "value": [5.0, 0.02, 200.0, 0.8276189407642326, 0.74925, 0.5155487849887239, 0.17039961702503564]}, {"name": "Index:6; learning_rate:0.03; n_estimators:50; AUC:0.8101; ACC:0.7378; LogLoss:0.5525; Brier:0.1843; ", "value": [6.0, 0.03, 50.0, 0.810062920606567, 0.7378125, 0.5525188145980934, 0.18425407155218818]}, {"name": "Index:7; learning_rate:0.03; n_estimators:100; AUC:0.8237; ACC:0.7454; LogLoss:0.5244; Brier:0.1735; ", "value": [7.0, 0.03, 100.0, 0.8237217069377714, 0.7454375000000001, 0.5244284131024797, 0.17346738741623335]}, {"name": "Index:8; learning_rate:0.03; n_estimators:200; AUC:0.8315; ACC:0.754; LogLoss:0.5061; Brier:0.1674; ", "value": [8.0, 0.03, 200.0, 0.83150402268907, 0.7539999999999999, 0.5060893449465923, 0.16736421698992676]}, {"name": "Index:9; learning_rate:0.04; n_estimators:50; AUC:0.8168; ACC:0.7407; LogLoss:0.5401; Brier:0.1793; ", "value": [9.0, 0.04, 50.0, 0.8167661583612913, 0.7407499999999999, 0.5401240618067112, 0.17934178424530406]}, {"name": "Index:10; learning_rate:0.04; n_estimators:100; AUC:0.8277; ACC:0.75; LogLoss:0.5155; Brier:0.1704; ", "value": [10.0, 0.04, 100.0, 0.8276568201540526, 0.7499999999999999, 0.5154545060334367, 0.17036828904602735]}, {"name": "Index:11; learning_rate:0.04; n_estimators:200; AUC:0.8339; ACC:0.7552; LogLoss:0.501; Brier:0.1658; ", "value": [11.0, 0.04, 200.0, 0.8338797145751755, 0.75525, 0.5010315154906984, 0.16578142511996607]}, {"name": "Index:12; learning_rate:0.05; n_estimators:50; AUC:0.821; ACC:0.7418; LogLoss:0.5309; Brier:0.1758; ", "value": [12.0, 0.05, 50.0, 0.8210284232541476, 0.74175, 0.5308870595708196, 0.17583292674280532]}, {"name": "Index:13; learning_rate:0.05; n_estimators:100; AUC:0.8296; ACC:0.7539; LogLoss:0.5099; Brier:0.1686; ", "value": [13.0, 0.05, 100.0, 0.8296491622029633, 0.7538750000000001, 0.5099491344656861, 0.16861315719051967]}, {"name": "Index:14; learning_rate:0.05; n_estimators:200; AUC:0.835; ACC:0.7566; LogLoss:0.4983; Brier:0.165; ", "value": [14.0, 0.05, 200.0, 0.8350390239177982, 0.7566249999999999, 0.498349783864373, 0.16500420252283265]}], "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "linear", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "coordinateSystem": "parallel", "inactiveOpacity": 0.05, "activeOpacity": 1, "realtime": true, "progressive": 500, "progressiveThreshold": 3000, "progressiveChunkMode": "sequential"}], "visualMap": null, "toolbox": {"show": true, "orient": "horizontal", "itemSize": 15, "itemGap": 8, "showTitle": true, "feature": {"dataZoom": {}, "saveAsImage": {}}, "z": 2, "left": "auto", "top": "auto", "right": "1%", "bottom": "auto", "width": "auto", "height": "auto", "popup": true, "changed_name_key": {"id_": "id"}}, "tooltip": {"show": true, "custom_tooltip": false, "trigger": "item", "axisPointer": {"show": true}, "showContent": true, "triggerOn": "mousemove|click", "hideDelay": 100, "enterable": true, "renderMode": "html", "confine": true, "transitionDuration": 0.4, "formatter": "{b}", "borderColor": "#333", "padding": 5, "order": "seriesAsc"}, "dataZoom": null, "event": null, "graphic": null, "radar": null, "figsize": {"width": 800, "height": 600}, "color": ["#1f77b4", "#ff7f0e", "#2ca02c", "#e377c2", "#9467bd", "#d62728", "#8c564b", "#bcbd22", "#17becf", "#7f7f7f"], "save_img": false, "auto_size": true, "style": {"overflow": "auto"}, "port": "5001"};function setInnerHTML(elm, html) {
   elm.innerHTML = html;
 
   Array.from(elm.querySelectorAll("script"))
@@ -2422,10 +2424,10 @@ function support_click_event(option) {
             <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
             <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.1.0/dist/echarts-wordcloud.min.js"></script>
 
-            <div id="1741056729.8313120.4236" style="height: 600px; width: 600px; overflow: auto"></div>
+            <div id="1742282464.63229270.9636" style="height: 600px; width: 600px; overflow: auto"></div>
 
             <script type="text/javascript">
-            var dom = document.getElementById('1741056729.8313120.4236');
+            var dom = document.getElementById('1742282464.63229270.9636');
             dom.innerHTML = ""
             dom.setAttribute('_echarts_instance_', '')
             var myChart = echarts.init(dom, null, {
@@ -2435,7 +2437,7 @@ function support_click_event(option) {
             var app = {};
 
             var option;
-    option = {"chart_id": "1741056729.8313120.4236", "link_id": null, "figname": "", "title": {"show": true, "text": "HPO (Grid Search)", "link": "", "target": "blank", "textStyle": {"fontStyle": "normal", "fontWeight": "bolder", "fontFamily": "sans-serif", "fontSize": 15, "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "subtext": "", "sublink": "", "subtarget": "blank", "textAlign": "center", "textVerticalAlign": "auto", "padding": 0, "itemGap": 10, "z": 2, "left": "50.0%", "top": "5%", "right": "auto", "bottom": "auto", "backgroundColor": "transparent", "borderColor": "#ccc", "changed_name_key": {"id_": "id"}}, "grid": {"show": true, "width": "auto", "height": "auto", "z": 2, "left": "5%", "top": "10%", "right": "10%", "bottom": "5%", "borderColor": "#ccc", "borderWidth": 1, "containLabel": true, "backgroundColor": "transparent", "changed_name_key": {"id_": "id"}}, "legend": null, "brush": null, "yAxis": [{"show": true, "type": "value", "position": "bottom", "name": "AUC", "nameLocation": "center", "nameTextStyle": {"color": "black", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": "auto", "min": 0.788, "max": 0.839, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": false, "showMaxLabel": false, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": 40.0}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "xAxis": [{"show": true, "data": [50.0, 100.0, 200.0], "type": "category", "position": "bottom", "name": "n_estimators", "nameLocation": "center", "nameTextStyle": {"color": "black", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": 30, "boundaryGap": true, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": true, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": null}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "parallelAxis": null, "series": [{"type": "boxplot", "colorBy": "series", "z": 2, "legendHoverLink": true, "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "itemStyle": {"color": "#1f77b4b3", "borderColor": "#1f77b4"}, "seriesLayoutBy": "column", "data": [[0.7925, 0.8035, 0.8101, 0.8168, 0.821], [0.8032, 0.817, 0.8237, 0.8277, 0.8296], [0.8182, 0.8276, 0.8315, 0.8339, 0.835]], "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "hoverAnimation": true, "coordinateSystem": "cartesian2d", "x_value": [50.0, 100.0, 200.0], "orient": "vertical", "y_lim": [0.788, 0.839]}, {"type": "pictorialBar", "colorBy": "series", "z": 2, "legendHoverLink": true, "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "itemStyle": {"color": "#1f77b4"}, "seriesLayoutBy": "column", "data": [[0, 0.8210284232541476], [0, 0.7924640727504164], [1, 0.8296491622029633], [2, 0.8350390239177982], [2, 0.816881136085821]], "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "hoverAnimation": true, "coordinateSystem": "cartesian2d", "symbolPosition": "end", "symbolSize": 8, "barGap": "100.0%"}], "visualMap": null, "toolbox": {"show": true, "orient": "horizontal", "itemSize": 15, "itemGap": 8, "showTitle": true, "feature": {"dataZoom": {}, "saveAsImage": {}}, "z": 2, "left": "auto", "top": "auto", "right": "1%", "bottom": "auto", "width": "auto", "height": "auto", "popup": true, "changed_name_key": {"id_": "id"}}, "tooltip": {"show": true, "custom_tooltip": false, "trigger": "item", "axisPointer": {"show": true}, "showContent": true, "triggerOn": "mousemove|click", "hideDelay": 100, "enterable": true, "renderMode": "html", "confine": true, "transitionDuration": 0.4, "precision": 4, "borderColor": "#333", "padding": 5, "order": "seriesAsc"}, "dataZoom": null, "event": null, "graphic": null, "radar": null, "figsize": {"width": 600, "height": 600}, "color": ["#1f77b4", "#ff7f0e", "#2ca02c", "#e377c2", "#9467bd", "#d62728", "#8c564b", "#bcbd22", "#17becf", "#7f7f7f"], "save_img": false, "auto_size": true, "style": {"overflow": "auto"}, "port": "5002"};function setInnerHTML(elm, html) {
+    option = {"chart_id": "1742282464.63229270.9636", "link_id": null, "figname": "", "title": {"show": true, "text": "HPO (Grid Search)", "link": "", "target": "blank", "textStyle": {"fontStyle": "normal", "fontWeight": "bolder", "fontFamily": "sans-serif", "fontSize": 15, "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "subtext": "", "sublink": "", "subtarget": "blank", "textAlign": "center", "textVerticalAlign": "auto", "padding": 0, "itemGap": 10, "z": 2, "left": "50.0%", "top": "5%", "right": "auto", "bottom": "auto", "backgroundColor": "transparent", "borderColor": "#ccc", "changed_name_key": {"id_": "id"}}, "grid": {"show": true, "width": "auto", "height": "auto", "z": 2, "left": "5%", "top": "10%", "right": "10%", "bottom": "5%", "borderColor": "#ccc", "borderWidth": 1, "containLabel": true, "backgroundColor": "transparent", "changed_name_key": {"id_": "id"}}, "legend": null, "brush": null, "yAxis": [{"show": true, "type": "value", "position": "bottom", "name": "AUC", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": "auto", "min": 0.788, "max": 0.839, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": false, "showMaxLabel": false, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": 40.0}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "xAxis": [{"show": true, "data": [50.0, 100.0, 200.0], "type": "category", "position": "bottom", "name": "n_estimators", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": 30, "boundaryGap": true, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": true, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": null}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "parallelAxis": null, "series": [{"type": "boxplot", "colorBy": "series", "z": 2, "legendHoverLink": true, "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "itemStyle": {"color": "#1f77b4b3", "borderColor": "#1f77b4"}, "seriesLayoutBy": "column", "data": [[0.7925, 0.8035, 0.8101, 0.8168, 0.821], [0.8032, 0.817, 0.8237, 0.8277, 0.8296], [0.8182, 0.8276, 0.8315, 0.8339, 0.835]], "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "hoverAnimation": true, "coordinateSystem": "cartesian2d", "x_value": [50.0, 100.0, 200.0], "orient": "vertical", "y_lim": [0.788, 0.839]}, {"type": "pictorialBar", "colorBy": "series", "z": 2, "legendHoverLink": true, "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "itemStyle": {"color": "#1f77b4"}, "seriesLayoutBy": "column", "data": [[0, 0.8210284232541476], [0, 0.7924640727504164], [1, 0.8296491622029633], [2, 0.8350390239177982], [2, 0.816881136085821]], "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "hoverAnimation": true, "coordinateSystem": "cartesian2d", "symbolPosition": "end", "symbolSize": 8, "barGap": "100.0%"}], "visualMap": null, "toolbox": {"show": true, "orient": "horizontal", "itemSize": 15, "itemGap": 8, "showTitle": true, "feature": {"dataZoom": {}, "saveAsImage": {}}, "z": 2, "left": "auto", "top": "auto", "right": "1%", "bottom": "auto", "width": "auto", "height": "auto", "popup": true, "changed_name_key": {"id_": "id"}}, "tooltip": {"show": true, "custom_tooltip": false, "trigger": "item", "axisPointer": {"show": true}, "showContent": true, "triggerOn": "mousemove|click", "hideDelay": 100, "enterable": true, "renderMode": "html", "confine": true, "transitionDuration": 0.4, "precision": 4, "borderColor": "#333", "padding": 5, "order": "seriesAsc"}, "dataZoom": null, "event": null, "graphic": null, "radar": null, "figsize": {"width": 600, "height": 600}, "color": ["#1f77b4", "#ff7f0e", "#2ca02c", "#e377c2", "#9467bd", "#d62728", "#8c564b", "#bcbd22", "#17becf", "#7f7f7f"], "save_img": false, "auto_size": true, "style": {"overflow": "auto"}, "port": "5001"};function setInnerHTML(elm, html) {
   elm.innerHTML = html;
 
   Array.from(elm.querySelectorAll("script"))
@@ -3189,7 +3191,7 @@ function support_click_event(option) {
   option['toolbox']['feature']['myFeature'] = {
     show: true,
     title: 'Open in new window',
-    icon: 'image://https://raw.githubusercontent.com/CnBDM-Su/XAI_demo/master/popup_icon.png',
+    icon: "image://data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDhweCIgd2lkdGg9IjQ4cHgiIHZpZXdCb3g9IjE2MCAtODAwIDY0MCA2NDAiIGZpbGw9IiM2NjY2NjYiPg0KICA8cGF0aCBkPSJNMjE1LjM4LTE2MHEtMjMuMDUgMC0zOS4yMi0xNi4xNlExNjAtMTkyLjMzIDE2MC0yMTUuMzh2LTUyOS4yNHEwLTIzLjA1IDE2LjE2LTM5LjIyUTE5Mi4zMy04MDAgMjE1LjM4LTgwMGgyMjQuMzl2MzAuNzdIMjE1LjM4cS05LjIzIDAtMTYuOTIgNy42OS03LjY5IDcuNjktNy42OSAxNi45MnY1MjkuMjRxMCA5LjIzIDcuNjkgMTYuOTIgNy42OSA3LjY5IDE2LjkyIDcuNjloNTI5LjI0cTkuMjMgMCAxNi45Mi03LjY5IDcuNjktNy42OSA3LjY5LTE2Ljkydi0yMjQuMzlIODAwdjIyNC4zOXEwIDIzLjA1LTE2LjE2IDM5LjIyUTc2Ny42Ny0xNjAgNzQ0LjYyLTE2MEgyMTUuMzhabTE3MS4yNC0yMDQuMzgtMjItMjIuMjQgMzgyLjYxLTM4Mi42MUg1NDEuMzFWLTgwMEg4MDB2MjU4LjY5aC0zMC43N1YtNzQ3TDM4Ni42Mi0zNjQuMzhaIi8+DQo8L3N2Zz4NCg==",
     onclick: function (){
       var height_ = Math.min(screen.height, Math.round(1.5 * parseInt(height.slice(0,-2))))
       var width_ = Math.min(screen.width, Math.round(1.5 * parseInt(width.slice(0,-2))))
@@ -3217,9 +3219,9 @@ function support_click_event(option) {
             <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.1.0/dist/echarts-wordcloud.min.js"><\/script>
 
 
-        <div id="1741056729.8313120.4236" style="height: 90%; width: 90%"></div>
+        <div id="1742282464.63229270.9636" style="height: 90%; width: 90%"></div>
         <script type="text/javascript">
-            var dom = document.getElementById('1741056729.8313120.4236');
+            var dom = document.getElementById('1742282464.63229270.9636');
             var myChart = echarts.init(dom, null, {
                 renderer: 'canvas',
                 useDirtyRect: false
@@ -3227,7 +3229,7 @@ function support_click_event(option) {
             var app = {};
 
             var option;
-        option = {"chart_id": "1741056729.8313120.4236", "link_id": null, "figname": "", "title": {"show": true, "text": "HPO (Grid Search)", "link": "", "target": "blank", "textStyle": {"fontStyle": "normal", "fontWeight": "bolder", "fontFamily": "sans-serif", "fontSize": 15, "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "subtext": "", "sublink": "", "subtarget": "blank", "textAlign": "center", "textVerticalAlign": "auto", "padding": 0, "itemGap": 10, "z": 2, "left": "50.0%", "top": "5%", "right": "auto", "bottom": "auto", "backgroundColor": "transparent", "borderColor": "#ccc", "changed_name_key": {"id_": "id"}}, "grid": {"show": true, "width": "auto", "height": "auto", "z": 2, "left": "5%", "top": "10%", "right": "10%", "bottom": "5%", "borderColor": "#ccc", "borderWidth": 1, "containLabel": true, "backgroundColor": "transparent", "changed_name_key": {"id_": "id"}}, "legend": null, "brush": null, "yAxis": [{"show": true, "type": "value", "position": "bottom", "name": "AUC", "nameLocation": "center", "nameTextStyle": {"color": "black", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": "auto", "min": 0.788, "max": 0.839, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": false, "showMaxLabel": false, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": 40.0}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "xAxis": [{"show": true, "data": [50.0, 100.0, 200.0], "type": "category", "position": "bottom", "name": "n_estimators", "nameLocation": "center", "nameTextStyle": {"color": "black", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": 30, "boundaryGap": true, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": true, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": null}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "parallelAxis": null, "series": [{"type": "boxplot", "colorBy": "series", "z": 2, "legendHoverLink": true, "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "itemStyle": {"color": "#1f77b4b3", "borderColor": "#1f77b4"}, "seriesLayoutBy": "column", "data": [[0.7925, 0.8035, 0.8101, 0.8168, 0.821], [0.8032, 0.817, 0.8237, 0.8277, 0.8296], [0.8182, 0.8276, 0.8315, 0.8339, 0.835]], "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "hoverAnimation": true, "coordinateSystem": "cartesian2d", "x_value": [50.0, 100.0, 200.0], "orient": "vertical", "y_lim": [0.788, 0.839]}, {"type": "pictorialBar", "colorBy": "series", "z": 2, "legendHoverLink": true, "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "itemStyle": {"color": "#1f77b4"}, "seriesLayoutBy": "column", "data": [[0, 0.8210284232541476], [0, 0.7924640727504164], [1, 0.8296491622029633], [2, 0.8350390239177982], [2, 0.816881136085821]], "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "hoverAnimation": true, "coordinateSystem": "cartesian2d", "symbolPosition": "end", "symbolSize": 8, "barGap": "100.0%"}], "visualMap": null, "toolbox": {"show": true, "orient": "horizontal", "itemSize": 15, "itemGap": 8, "showTitle": true, "feature": {"dataZoom": {}, "saveAsImage": {}}, "z": 2, "left": "auto", "top": "auto", "right": "1%", "bottom": "auto", "width": "auto", "height": "auto", "popup": true, "changed_name_key": {"id_": "id"}}, "tooltip": {"show": true, "custom_tooltip": false, "trigger": "item", "axisPointer": {"show": true}, "showContent": true, "triggerOn": "mousemove|click", "hideDelay": 100, "enterable": true, "renderMode": "html", "confine": true, "transitionDuration": 0.4, "precision": 4, "borderColor": "#333", "padding": 5, "order": "seriesAsc"}, "dataZoom": null, "event": null, "graphic": null, "radar": null, "figsize": {"width": 600, "height": 600}, "color": ["#1f77b4", "#ff7f0e", "#2ca02c", "#e377c2", "#9467bd", "#d62728", "#8c564b", "#bcbd22", "#17becf", "#7f7f7f"], "save_img": false, "auto_size": true, "style": {"overflow": "auto"}, "port": "5002"};function setInnerHTML(elm, html) {
+        option = {"chart_id": "1742282464.63229270.9636", "link_id": null, "figname": "", "title": {"show": true, "text": "HPO (Grid Search)", "link": "", "target": "blank", "textStyle": {"fontStyle": "normal", "fontWeight": "bolder", "fontFamily": "sans-serif", "fontSize": 15, "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "subtext": "", "sublink": "", "subtarget": "blank", "textAlign": "center", "textVerticalAlign": "auto", "padding": 0, "itemGap": 10, "z": 2, "left": "50.0%", "top": "5%", "right": "auto", "bottom": "auto", "backgroundColor": "transparent", "borderColor": "#ccc", "changed_name_key": {"id_": "id"}}, "grid": {"show": true, "width": "auto", "height": "auto", "z": 2, "left": "5%", "top": "10%", "right": "10%", "bottom": "5%", "borderColor": "#ccc", "borderWidth": 1, "containLabel": true, "backgroundColor": "transparent", "changed_name_key": {"id_": "id"}}, "legend": null, "brush": null, "yAxis": [{"show": true, "type": "value", "position": "bottom", "name": "AUC", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": "auto", "min": 0.788, "max": 0.839, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": false, "showMaxLabel": false, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": 40.0}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "xAxis": [{"show": true, "data": [50.0, 100.0, 200.0], "type": "category", "position": "bottom", "name": "n_estimators", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": 30, "boundaryGap": true, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": true, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": null}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "parallelAxis": null, "series": [{"type": "boxplot", "colorBy": "series", "z": 2, "legendHoverLink": true, "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "itemStyle": {"color": "#1f77b4b3", "borderColor": "#1f77b4"}, "seriesLayoutBy": "column", "data": [[0.7925, 0.8035, 0.8101, 0.8168, 0.821], [0.8032, 0.817, 0.8237, 0.8277, 0.8296], [0.8182, 0.8276, 0.8315, 0.8339, 0.835]], "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "hoverAnimation": true, "coordinateSystem": "cartesian2d", "x_value": [50.0, 100.0, 200.0], "orient": "vertical", "y_lim": [0.788, 0.839]}, {"type": "pictorialBar", "colorBy": "series", "z": 2, "legendHoverLink": true, "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "itemStyle": {"color": "#1f77b4"}, "seriesLayoutBy": "column", "data": [[0, 0.8210284232541476], [0, 0.7924640727504164], [1, 0.8296491622029633], [2, 0.8350390239177982], [2, 0.816881136085821]], "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "hoverAnimation": true, "coordinateSystem": "cartesian2d", "symbolPosition": "end", "symbolSize": 8, "barGap": "100.0%"}], "visualMap": null, "toolbox": {"show": true, "orient": "horizontal", "itemSize": 15, "itemGap": 8, "showTitle": true, "feature": {"dataZoom": {}, "saveAsImage": {}}, "z": 2, "left": "auto", "top": "auto", "right": "1%", "bottom": "auto", "width": "auto", "height": "auto", "popup": true, "changed_name_key": {"id_": "id"}}, "tooltip": {"show": true, "custom_tooltip": false, "trigger": "item", "axisPointer": {"show": true}, "showContent": true, "triggerOn": "mousemove|click", "hideDelay": 100, "enterable": true, "renderMode": "html", "confine": true, "transitionDuration": 0.4, "precision": 4, "borderColor": "#333", "padding": 5, "order": "seriesAsc"}, "dataZoom": null, "event": null, "graphic": null, "radar": null, "figsize": {"width": 600, "height": 600}, "color": ["#1f77b4", "#ff7f0e", "#2ca02c", "#e377c2", "#9467bd", "#d62728", "#8c564b", "#bcbd22", "#17becf", "#7f7f7f"], "save_img": false, "auto_size": true, "style": {"overflow": "auto"}, "port": "5001"};function setInnerHTML(elm, html) {
   elm.innerHTML = html;
 
   Array.from(elm.querySelectorAll("script"))
@@ -4085,10 +4087,10 @@ function support_click_event(option) {
             <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
             <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.1.0/dist/echarts-wordcloud.min.js"></script>
 
-            <div id="1741056729.840320.6458" style="height: 600px; width: 600px; overflow: auto"></div>
+            <div id="1742282464.64243910.3834" style="height: 600px; width: 600px; overflow: auto"></div>
 
             <script type="text/javascript">
-            var dom = document.getElementById('1741056729.840320.6458');
+            var dom = document.getElementById('1742282464.64243910.3834');
             dom.innerHTML = ""
             dom.setAttribute('_echarts_instance_', '')
             var myChart = echarts.init(dom, null, {
@@ -4098,7 +4100,7 @@ function support_click_event(option) {
             var app = {};
 
             var option;
-    option = {"chart_id": "1741056729.840320.6458", "link_id": null, "figname": "", "title": {"show": true, "text": "HPO (Grid Search)", "link": "", "target": "blank", "textStyle": {"fontStyle": "normal", "fontWeight": "bolder", "fontFamily": "sans-serif", "fontSize": 15, "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "subtext": "", "sublink": "", "subtarget": "blank", "textAlign": "center", "textVerticalAlign": "auto", "padding": 0, "itemGap": 10, "z": 2, "left": "50.0%", "top": "5%", "right": "auto", "bottom": "auto", "backgroundColor": "transparent", "borderColor": "#ccc", "changed_name_key": {"id_": "id"}}, "grid": {"show": true, "width": "auto", "height": "auto", "z": 2, "left": "5%", "top": "10%", "right": "10%", "bottom": "5%", "borderColor": "#ccc", "borderWidth": 1, "containLabel": true, "backgroundColor": "transparent", "changed_name_key": {"id_": "id"}}, "legend": null, "brush": null, "yAxis": [{"show": true, "type": "value", "position": "bottom", "name": "AUC", "nameLocation": "center", "nameTextStyle": {"color": "black", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": "auto", "min": 0.788, "max": 0.839, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": false, "showMaxLabel": false, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": 40.0}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "xAxis": [{"show": true, "data": [0.01, 0.02, 0.03, 0.04, 0.05], "type": "category", "position": "bottom", "name": "learning_rate", "nameLocation": "center", "nameTextStyle": {"color": "black", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": 30, "boundaryGap": true, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": true, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": null}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "parallelAxis": null, "series": [{"type": "boxplot", "colorBy": "series", "z": 2, "legendHoverLink": true, "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "itemStyle": {"color": "#1f77b4b3", "borderColor": "#1f77b4"}, "seriesLayoutBy": "column", "data": [[0.7925, 0.7979, 0.8032, 0.8101, 0.8169], [0.8035, 0.8102, 0.817, 0.8223, 0.8276], [0.8101, 0.8169, 0.8237, 0.8276, 0.8315], [0.8168, 0.8222, 0.8277, 0.8308, 0.8339], [0.821, 0.8253, 0.8296, 0.8323, 0.835]], "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "hoverAnimation": true, "coordinateSystem": "cartesian2d", "x_value": [0.01, 0.02, 0.03, 0.04, 0.05], "orient": "vertical", "y_lim": [0.788, 0.839]}, {"type": "pictorialBar", "colorBy": "series", "z": 2, "legendHoverLink": true, "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "itemStyle": {"color": "#1f77b4"}, "seriesLayoutBy": "column", "data": [[0, 0.7924640727504164], [1, 0.8276189407642326], [1, 0.8034993667088773], [2, 0.83150402268907], [2, 0.810062920606567], [3, 0.8167661583612913], [4, 0.8350390239177982]], "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "hoverAnimation": true, "coordinateSystem": "cartesian2d", "symbolPosition": "end", "symbolSize": 8, "barGap": "100.0%"}], "visualMap": null, "toolbox": {"show": true, "orient": "horizontal", "itemSize": 15, "itemGap": 8, "showTitle": true, "feature": {"dataZoom": {}, "saveAsImage": {}}, "z": 2, "left": "auto", "top": "auto", "right": "1%", "bottom": "auto", "width": "auto", "height": "auto", "popup": true, "changed_name_key": {"id_": "id"}}, "tooltip": {"show": true, "custom_tooltip": false, "trigger": "item", "axisPointer": {"show": true}, "showContent": true, "triggerOn": "mousemove|click", "hideDelay": 100, "enterable": true, "renderMode": "html", "confine": true, "transitionDuration": 0.4, "precision": 4, "borderColor": "#333", "padding": 5, "order": "seriesAsc"}, "dataZoom": null, "event": null, "graphic": null, "radar": null, "figsize": {"width": 600, "height": 600}, "color": ["#1f77b4", "#ff7f0e", "#2ca02c", "#e377c2", "#9467bd", "#d62728", "#8c564b", "#bcbd22", "#17becf", "#7f7f7f"], "save_img": false, "auto_size": true, "style": {"overflow": "auto"}, "port": "5002"};function setInnerHTML(elm, html) {
+    option = {"chart_id": "1742282464.64243910.3834", "link_id": null, "figname": "", "title": {"show": true, "text": "HPO (Grid Search)", "link": "", "target": "blank", "textStyle": {"fontStyle": "normal", "fontWeight": "bolder", "fontFamily": "sans-serif", "fontSize": 15, "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "subtext": "", "sublink": "", "subtarget": "blank", "textAlign": "center", "textVerticalAlign": "auto", "padding": 0, "itemGap": 10, "z": 2, "left": "50.0%", "top": "5%", "right": "auto", "bottom": "auto", "backgroundColor": "transparent", "borderColor": "#ccc", "changed_name_key": {"id_": "id"}}, "grid": {"show": true, "width": "auto", "height": "auto", "z": 2, "left": "5%", "top": "10%", "right": "10%", "bottom": "5%", "borderColor": "#ccc", "borderWidth": 1, "containLabel": true, "backgroundColor": "transparent", "changed_name_key": {"id_": "id"}}, "legend": null, "brush": null, "yAxis": [{"show": true, "type": "value", "position": "bottom", "name": "AUC", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": "auto", "min": 0.788, "max": 0.839, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": false, "showMaxLabel": false, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": 40.0}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "xAxis": [{"show": true, "data": [0.01, 0.02, 0.03, 0.04, 0.05], "type": "category", "position": "bottom", "name": "learning_rate", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": 30, "boundaryGap": true, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": true, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": null}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "parallelAxis": null, "series": [{"type": "boxplot", "colorBy": "series", "z": 2, "legendHoverLink": true, "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "itemStyle": {"color": "#1f77b4b3", "borderColor": "#1f77b4"}, "seriesLayoutBy": "column", "data": [[0.7925, 0.7979, 0.8032, 0.8101, 0.8169], [0.8035, 0.8102, 0.817, 0.8223, 0.8276], [0.8101, 0.8169, 0.8237, 0.8276, 0.8315], [0.8168, 0.8222, 0.8277, 0.8308, 0.8339], [0.821, 0.8253, 0.8296, 0.8323, 0.835]], "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "hoverAnimation": true, "coordinateSystem": "cartesian2d", "x_value": [0.01, 0.02, 0.03, 0.04, 0.05], "orient": "vertical", "y_lim": [0.788, 0.839]}, {"type": "pictorialBar", "colorBy": "series", "z": 2, "legendHoverLink": true, "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "itemStyle": {"color": "#1f77b4"}, "seriesLayoutBy": "column", "data": [[0, 0.7924640727504164], [1, 0.8276189407642326], [1, 0.8034993667088773], [2, 0.83150402268907], [2, 0.810062920606567], [3, 0.8167661583612913], [4, 0.8350390239177982]], "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "hoverAnimation": true, "coordinateSystem": "cartesian2d", "symbolPosition": "end", "symbolSize": 8, "barGap": "100.0%"}], "visualMap": null, "toolbox": {"show": true, "orient": "horizontal", "itemSize": 15, "itemGap": 8, "showTitle": true, "feature": {"dataZoom": {}, "saveAsImage": {}}, "z": 2, "left": "auto", "top": "auto", "right": "1%", "bottom": "auto", "width": "auto", "height": "auto", "popup": true, "changed_name_key": {"id_": "id"}}, "tooltip": {"show": true, "custom_tooltip": false, "trigger": "item", "axisPointer": {"show": true}, "showContent": true, "triggerOn": "mousemove|click", "hideDelay": 100, "enterable": true, "renderMode": "html", "confine": true, "transitionDuration": 0.4, "precision": 4, "borderColor": "#333", "padding": 5, "order": "seriesAsc"}, "dataZoom": null, "event": null, "graphic": null, "radar": null, "figsize": {"width": 600, "height": 600}, "color": ["#1f77b4", "#ff7f0e", "#2ca02c", "#e377c2", "#9467bd", "#d62728", "#8c564b", "#bcbd22", "#17becf", "#7f7f7f"], "save_img": false, "auto_size": true, "style": {"overflow": "auto"}, "port": "5001"};function setInnerHTML(elm, html) {
   elm.innerHTML = html;
 
   Array.from(elm.querySelectorAll("script"))
@@ -4852,7 +4854,7 @@ function support_click_event(option) {
   option['toolbox']['feature']['myFeature'] = {
     show: true,
     title: 'Open in new window',
-    icon: 'image://https://raw.githubusercontent.com/CnBDM-Su/XAI_demo/master/popup_icon.png',
+    icon: "image://data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDhweCIgd2lkdGg9IjQ4cHgiIHZpZXdCb3g9IjE2MCAtODAwIDY0MCA2NDAiIGZpbGw9IiM2NjY2NjYiPg0KICA8cGF0aCBkPSJNMjE1LjM4LTE2MHEtMjMuMDUgMC0zOS4yMi0xNi4xNlExNjAtMTkyLjMzIDE2MC0yMTUuMzh2LTUyOS4yNHEwLTIzLjA1IDE2LjE2LTM5LjIyUTE5Mi4zMy04MDAgMjE1LjM4LTgwMGgyMjQuMzl2MzAuNzdIMjE1LjM4cS05LjIzIDAtMTYuOTIgNy42OS03LjY5IDcuNjktNy42OSAxNi45MnY1MjkuMjRxMCA5LjIzIDcuNjkgMTYuOTIgNy42OSA3LjY5IDE2LjkyIDcuNjloNTI5LjI0cTkuMjMgMCAxNi45Mi03LjY5IDcuNjktNy42OSA3LjY5LTE2Ljkydi0yMjQuMzlIODAwdjIyNC4zOXEwIDIzLjA1LTE2LjE2IDM5LjIyUTc2Ny42Ny0xNjAgNzQ0LjYyLTE2MEgyMTUuMzhabTE3MS4yNC0yMDQuMzgtMjItMjIuMjQgMzgyLjYxLTM4Mi42MUg1NDEuMzFWLTgwMEg4MDB2MjU4LjY5aC0zMC43N1YtNzQ3TDM4Ni42Mi0zNjQuMzhaIi8+DQo8L3N2Zz4NCg==",
     onclick: function (){
       var height_ = Math.min(screen.height, Math.round(1.5 * parseInt(height.slice(0,-2))))
       var width_ = Math.min(screen.width, Math.round(1.5 * parseInt(width.slice(0,-2))))
@@ -4880,9 +4882,9 @@ function support_click_event(option) {
             <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.1.0/dist/echarts-wordcloud.min.js"><\/script>
 
 
-        <div id="1741056729.840320.6458" style="height: 90%; width: 90%"></div>
+        <div id="1742282464.64243910.3834" style="height: 90%; width: 90%"></div>
         <script type="text/javascript">
-            var dom = document.getElementById('1741056729.840320.6458');
+            var dom = document.getElementById('1742282464.64243910.3834');
             var myChart = echarts.init(dom, null, {
                 renderer: 'canvas',
                 useDirtyRect: false
@@ -4890,7 +4892,7 @@ function support_click_event(option) {
             var app = {};
 
             var option;
-        option = {"chart_id": "1741056729.840320.6458", "link_id": null, "figname": "", "title": {"show": true, "text": "HPO (Grid Search)", "link": "", "target": "blank", "textStyle": {"fontStyle": "normal", "fontWeight": "bolder", "fontFamily": "sans-serif", "fontSize": 15, "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "subtext": "", "sublink": "", "subtarget": "blank", "textAlign": "center", "textVerticalAlign": "auto", "padding": 0, "itemGap": 10, "z": 2, "left": "50.0%", "top": "5%", "right": "auto", "bottom": "auto", "backgroundColor": "transparent", "borderColor": "#ccc", "changed_name_key": {"id_": "id"}}, "grid": {"show": true, "width": "auto", "height": "auto", "z": 2, "left": "5%", "top": "10%", "right": "10%", "bottom": "5%", "borderColor": "#ccc", "borderWidth": 1, "containLabel": true, "backgroundColor": "transparent", "changed_name_key": {"id_": "id"}}, "legend": null, "brush": null, "yAxis": [{"show": true, "type": "value", "position": "bottom", "name": "AUC", "nameLocation": "center", "nameTextStyle": {"color": "black", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": "auto", "min": 0.788, "max": 0.839, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": false, "showMaxLabel": false, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": 40.0}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "xAxis": [{"show": true, "data": [0.01, 0.02, 0.03, 0.04, 0.05], "type": "category", "position": "bottom", "name": "learning_rate", "nameLocation": "center", "nameTextStyle": {"color": "black", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": 30, "boundaryGap": true, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": true, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": null}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "parallelAxis": null, "series": [{"type": "boxplot", "colorBy": "series", "z": 2, "legendHoverLink": true, "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "itemStyle": {"color": "#1f77b4b3", "borderColor": "#1f77b4"}, "seriesLayoutBy": "column", "data": [[0.7925, 0.7979, 0.8032, 0.8101, 0.8169], [0.8035, 0.8102, 0.817, 0.8223, 0.8276], [0.8101, 0.8169, 0.8237, 0.8276, 0.8315], [0.8168, 0.8222, 0.8277, 0.8308, 0.8339], [0.821, 0.8253, 0.8296, 0.8323, 0.835]], "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "hoverAnimation": true, "coordinateSystem": "cartesian2d", "x_value": [0.01, 0.02, 0.03, 0.04, 0.05], "orient": "vertical", "y_lim": [0.788, 0.839]}, {"type": "pictorialBar", "colorBy": "series", "z": 2, "legendHoverLink": true, "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "itemStyle": {"color": "#1f77b4"}, "seriesLayoutBy": "column", "data": [[0, 0.7924640727504164], [1, 0.8276189407642326], [1, 0.8034993667088773], [2, 0.83150402268907], [2, 0.810062920606567], [3, 0.8167661583612913], [4, 0.8350390239177982]], "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "hoverAnimation": true, "coordinateSystem": "cartesian2d", "symbolPosition": "end", "symbolSize": 8, "barGap": "100.0%"}], "visualMap": null, "toolbox": {"show": true, "orient": "horizontal", "itemSize": 15, "itemGap": 8, "showTitle": true, "feature": {"dataZoom": {}, "saveAsImage": {}}, "z": 2, "left": "auto", "top": "auto", "right": "1%", "bottom": "auto", "width": "auto", "height": "auto", "popup": true, "changed_name_key": {"id_": "id"}}, "tooltip": {"show": true, "custom_tooltip": false, "trigger": "item", "axisPointer": {"show": true}, "showContent": true, "triggerOn": "mousemove|click", "hideDelay": 100, "enterable": true, "renderMode": "html", "confine": true, "transitionDuration": 0.4, "precision": 4, "borderColor": "#333", "padding": 5, "order": "seriesAsc"}, "dataZoom": null, "event": null, "graphic": null, "radar": null, "figsize": {"width": 600, "height": 600}, "color": ["#1f77b4", "#ff7f0e", "#2ca02c", "#e377c2", "#9467bd", "#d62728", "#8c564b", "#bcbd22", "#17becf", "#7f7f7f"], "save_img": false, "auto_size": true, "style": {"overflow": "auto"}, "port": "5002"};function setInnerHTML(elm, html) {
+        option = {"chart_id": "1742282464.64243910.3834", "link_id": null, "figname": "", "title": {"show": true, "text": "HPO (Grid Search)", "link": "", "target": "blank", "textStyle": {"fontStyle": "normal", "fontWeight": "bolder", "fontFamily": "sans-serif", "fontSize": 15, "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "subtext": "", "sublink": "", "subtarget": "blank", "textAlign": "center", "textVerticalAlign": "auto", "padding": 0, "itemGap": 10, "z": 2, "left": "50.0%", "top": "5%", "right": "auto", "bottom": "auto", "backgroundColor": "transparent", "borderColor": "#ccc", "changed_name_key": {"id_": "id"}}, "grid": {"show": true, "width": "auto", "height": "auto", "z": 2, "left": "5%", "top": "10%", "right": "10%", "bottom": "5%", "borderColor": "#ccc", "borderWidth": 1, "containLabel": true, "backgroundColor": "transparent", "changed_name_key": {"id_": "id"}}, "legend": null, "brush": null, "yAxis": [{"show": true, "type": "value", "position": "bottom", "name": "AUC", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": "auto", "min": 0.788, "max": 0.839, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": false, "showMaxLabel": false, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": 40.0}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "xAxis": [{"show": true, "data": [0.01, 0.02, 0.03, 0.04, 0.05], "type": "category", "position": "bottom", "name": "learning_rate", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": 30, "boundaryGap": true, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": true, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": null}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "parallelAxis": null, "series": [{"type": "boxplot", "colorBy": "series", "z": 2, "legendHoverLink": true, "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "itemStyle": {"color": "#1f77b4b3", "borderColor": "#1f77b4"}, "seriesLayoutBy": "column", "data": [[0.7925, 0.7979, 0.8032, 0.8101, 0.8169], [0.8035, 0.8102, 0.817, 0.8223, 0.8276], [0.8101, 0.8169, 0.8237, 0.8276, 0.8315], [0.8168, 0.8222, 0.8277, 0.8308, 0.8339], [0.821, 0.8253, 0.8296, 0.8323, 0.835]], "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "hoverAnimation": true, "coordinateSystem": "cartesian2d", "x_value": [0.01, 0.02, 0.03, 0.04, 0.05], "orient": "vertical", "y_lim": [0.788, 0.839]}, {"type": "pictorialBar", "colorBy": "series", "z": 2, "legendHoverLink": true, "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "itemStyle": {"color": "#1f77b4"}, "seriesLayoutBy": "column", "data": [[0, 0.7924640727504164], [1, 0.8276189407642326], [1, 0.8034993667088773], [2, 0.83150402268907], [2, 0.810062920606567], [3, 0.8167661583612913], [4, 0.8350390239177982]], "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "hoverAnimation": true, "coordinateSystem": "cartesian2d", "symbolPosition": "end", "symbolSize": 8, "barGap": "100.0%"}], "visualMap": null, "toolbox": {"show": true, "orient": "horizontal", "itemSize": 15, "itemGap": 8, "showTitle": true, "feature": {"dataZoom": {}, "saveAsImage": {}}, "z": 2, "left": "auto", "top": "auto", "right": "1%", "bottom": "auto", "width": "auto", "height": "auto", "popup": true, "changed_name_key": {"id_": "id"}}, "tooltip": {"show": true, "custom_tooltip": false, "trigger": "item", "axisPointer": {"show": true}, "showContent": true, "triggerOn": "mousemove|click", "hideDelay": 100, "enterable": true, "renderMode": "html", "confine": true, "transitionDuration": 0.4, "precision": 4, "borderColor": "#333", "padding": 5, "order": "seriesAsc"}, "dataZoom": null, "event": null, "graphic": null, "radar": null, "figsize": {"width": 600, "height": 600}, "color": ["#1f77b4", "#ff7f0e", "#2ca02c", "#e377c2", "#9467bd", "#d62728", "#8c564b", "#bcbd22", "#17becf", "#7f7f7f"], "save_img": false, "auto_size": true, "style": {"overflow": "auto"}, "port": "5001"};function setInnerHTML(elm, html) {
   elm.innerHTML = html;
 
   Array.from(elm.querySelectorAll("script"))
@@ -5741,7 +5743,7 @@ function support_click_event(option) {
 </pre></div>
 </div>
 <div class="output_subarea output_html rendered_html output_result">
-<style>#sk-container-id-21 {
+<style>#sk-container-id-26 {
   /* Definition of color scheme common for light and dark mode */
   --sklearn-color-text: black;
   --sklearn-color-line: gray;
@@ -5771,15 +5773,15 @@ function support_click_event(option) {
   }
 }
 
-#sk-container-id-21 {
+#sk-container-id-26 {
   color: var(--sklearn-color-text);
 }
 
-#sk-container-id-21 pre {
+#sk-container-id-26 pre {
   padding: 0;
 }
 
-#sk-container-id-21 input.sk-hidden--visually {
+#sk-container-id-26 input.sk-hidden--visually {
   border: 0;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
@@ -5791,7 +5793,7 @@ function support_click_event(option) {
   width: 1px;
 }
 
-#sk-container-id-21 div.sk-dashed-wrapped {
+#sk-container-id-26 div.sk-dashed-wrapped {
   border: 1px dashed var(--sklearn-color-line);
   margin: 0 0.4em 0.5em 0.4em;
   box-sizing: border-box;
@@ -5799,7 +5801,7 @@ function support_click_event(option) {
   background-color: var(--sklearn-color-background);
 }
 
-#sk-container-id-21 div.sk-container {
+#sk-container-id-26 div.sk-container {
   /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
      but bootstrap.min.css set `[hidden] { display: none !important; }`
      so we also need the `!important` here to be able to override the
@@ -5809,7 +5811,7 @@ function support_click_event(option) {
   position: relative;
 }
 
-#sk-container-id-21 div.sk-text-repr-fallback {
+#sk-container-id-26 div.sk-text-repr-fallback {
   display: none;
 }
 
@@ -5825,14 +5827,14 @@ div.sk-item {
 
 /* Parallel-specific style estimator block */
 
-#sk-container-id-21 div.sk-parallel-item::after {
+#sk-container-id-26 div.sk-parallel-item::after {
   content: "";
   width: 100%;
   border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
   flex-grow: 1;
 }
 
-#sk-container-id-21 div.sk-parallel {
+#sk-container-id-26 div.sk-parallel {
   display: flex;
   align-items: stretch;
   justify-content: center;
@@ -5840,28 +5842,28 @@ div.sk-item {
   position: relative;
 }
 
-#sk-container-id-21 div.sk-parallel-item {
+#sk-container-id-26 div.sk-parallel-item {
   display: flex;
   flex-direction: column;
 }
 
-#sk-container-id-21 div.sk-parallel-item:first-child::after {
+#sk-container-id-26 div.sk-parallel-item:first-child::after {
   align-self: flex-end;
   width: 50%;
 }
 
-#sk-container-id-21 div.sk-parallel-item:last-child::after {
+#sk-container-id-26 div.sk-parallel-item:last-child::after {
   align-self: flex-start;
   width: 50%;
 }
 
-#sk-container-id-21 div.sk-parallel-item:only-child::after {
+#sk-container-id-26 div.sk-parallel-item:only-child::after {
   width: 0;
 }
 
 /* Serial-specific style estimator block */
 
-#sk-container-id-21 div.sk-serial {
+#sk-container-id-26 div.sk-serial {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -5879,14 +5881,14 @@ clickable and can be expanded/collapsed.
 
 /* Pipeline and ColumnTransformer style (default) */
 
-#sk-container-id-21 div.sk-toggleable {
+#sk-container-id-26 div.sk-toggleable {
   /* Default theme specific background. It is overwritten whether we have a
   specific estimator or a Pipeline/ColumnTransformer */
   background-color: var(--sklearn-color-background);
 }
 
 /* Toggleable label */
-#sk-container-id-21 label.sk-toggleable__label {
+#sk-container-id-26 label.sk-toggleable__label {
   cursor: pointer;
   display: block;
   width: 100%;
@@ -5896,7 +5898,7 @@ clickable and can be expanded/collapsed.
   text-align: center;
 }
 
-#sk-container-id-21 label.sk-toggleable__label-arrow:before {
+#sk-container-id-26 label.sk-toggleable__label-arrow:before {
   /* Arrow on the left of the label */
   content: "▸";
   float: left;
@@ -5904,13 +5906,13 @@ clickable and can be expanded/collapsed.
   color: var(--sklearn-color-icon);
 }
 
-#sk-container-id-21 label.sk-toggleable__label-arrow:hover:before {
+#sk-container-id-26 label.sk-toggleable__label-arrow:hover:before {
   color: var(--sklearn-color-text);
 }
 
 /* Toggleable content - dropdown */
 
-#sk-container-id-21 div.sk-toggleable__content {
+#sk-container-id-26 div.sk-toggleable__content {
   max-height: 0;
   max-width: 0;
   overflow: hidden;
@@ -5919,12 +5921,12 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-21 div.sk-toggleable__content.fitted {
+#sk-container-id-26 div.sk-toggleable__content.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-21 div.sk-toggleable__content pre {
+#sk-container-id-26 div.sk-toggleable__content pre {
   margin: 0.2em;
   border-radius: 0.25em;
   color: var(--sklearn-color-text);
@@ -5932,79 +5934,79 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-21 div.sk-toggleable__content.fitted pre {
+#sk-container-id-26 div.sk-toggleable__content.fitted pre {
   /* unfitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-21 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+#sk-container-id-26 input.sk-toggleable__control:checked~div.sk-toggleable__content {
   /* Expand drop-down */
   max-height: 200px;
   max-width: 100%;
   overflow: auto;
 }
 
-#sk-container-id-21 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+#sk-container-id-26 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
   content: "▾";
 }
 
 /* Pipeline/ColumnTransformer-specific style */
 
-#sk-container-id-21 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-26 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-21 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-26 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator-specific style */
 
 /* Colorize estimator box */
-#sk-container-id-21 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-26 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-21 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-26 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
-#sk-container-id-21 div.sk-label label.sk-toggleable__label,
-#sk-container-id-21 div.sk-label label {
+#sk-container-id-26 div.sk-label label.sk-toggleable__label,
+#sk-container-id-26 div.sk-label label {
   /* The background is the default theme color */
   color: var(--sklearn-color-text-on-default-background);
 }
 
 /* On hover, darken the color of the background */
-#sk-container-id-21 div.sk-label:hover label.sk-toggleable__label {
+#sk-container-id-26 div.sk-label:hover label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
 /* Label box, darken color on hover, fitted */
-#sk-container-id-21 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+#sk-container-id-26 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator label */
 
-#sk-container-id-21 div.sk-label label {
+#sk-container-id-26 div.sk-label label {
   font-family: monospace;
   font-weight: bold;
   display: inline-block;
   line-height: 1.2em;
 }
 
-#sk-container-id-21 div.sk-label-container {
+#sk-container-id-26 div.sk-label-container {
   text-align: center;
 }
 
 /* Estimator-specific */
-#sk-container-id-21 div.sk-estimator {
+#sk-container-id-26 div.sk-estimator {
   font-family: monospace;
   border: 1px dotted var(--sklearn-color-border-box);
   border-radius: 0.25em;
@@ -6014,18 +6016,18 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-21 div.sk-estimator.fitted {
+#sk-container-id-26 div.sk-estimator.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
 /* on hover */
-#sk-container-id-21 div.sk-estimator:hover {
+#sk-container-id-26 div.sk-estimator:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-21 div.sk-estimator.fitted:hover {
+#sk-container-id-26 div.sk-estimator.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
@@ -6112,7 +6114,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 
 /* "?"-specific style due to the `<a>` HTML tag */
 
-#sk-container-id-21 a.estimator_doc_link {
+#sk-container-id-26 a.estimator_doc_link {
   float: right;
   font-size: 1rem;
   line-height: 1em;
@@ -6127,31 +6129,31 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   border: var(--sklearn-color-unfitted-level-1) 1pt solid;
 }
 
-#sk-container-id-21 a.estimator_doc_link.fitted {
+#sk-container-id-26 a.estimator_doc_link.fitted {
   /* fitted */
   border: var(--sklearn-color-fitted-level-1) 1pt solid;
   color: var(--sklearn-color-fitted-level-1);
 }
 
 /* On hover */
-#sk-container-id-21 a.estimator_doc_link:hover {
+#sk-container-id-26 a.estimator_doc_link:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-3);
   color: var(--sklearn-color-background);
   text-decoration: none;
 }
 
-#sk-container-id-21 a.estimator_doc_link.fitted:hover {
+#sk-container-id-26 a.estimator_doc_link.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-3);
 }
-</style><div id="sk-container-id-21" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>MoLGBMClassifier(boosting_type=&#x27;gbdt&#x27;, class_weight=None, colsample_bytree=1.0,
+</style><div id="sk-container-id-26" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>MoLGBMClassifier(boosting_type=&#x27;gbdt&#x27;, class_weight=None, colsample_bytree=1.0,
                  importance_type=&#x27;split&#x27;, learning_rate=0.01, max_depth=-1,
                  min_child_samples=20, min_child_weight=0.001,
                  min_split_gain=0.0, n_estimators=50, n_jobs=None,
                  num_leaves=31, objective=None, random_state=None,
                  reg_alpha=0.0, reg_lambda=0.0, subsample=1.0,
-                 subsample_for_bin=200000, subsample_freq=0, verbose=-1)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-25" type="checkbox" checked><label for="sk-estimator-id-25" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;MoLGBMClassifier<span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>MoLGBMClassifier(boosting_type=&#x27;gbdt&#x27;, class_weight=None, colsample_bytree=1.0,
+                 subsample_for_bin=200000, subsample_freq=0, verbose=-1)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-30" type="checkbox" checked><label for="sk-estimator-id-30" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;MoLGBMClassifier<span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>MoLGBMClassifier(boosting_type=&#x27;gbdt&#x27;, class_weight=None, colsample_bytree=1.0,
                  importance_type=&#x27;split&#x27;, learning_rate=0.01, max_depth=-1,
                  min_child_samples=20, min_child_weight=0.001,
                  min_split_gain=0.0, n_estimators=50, n_jobs=None,
@@ -6224,7 +6226,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <br />
-<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 7.772 seconds)</p>
+<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 34.427 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-source-auto-galleries-dev-3-hpo-plot-0-grid-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../../../_downloads/a553cc893bdee265187857cbf905db60/plot_0_grid.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_0_grid.ipynb</span></code></a></p>
