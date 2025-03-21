@@ -158,3 +158,20 @@ results = ts.diagnose_residual_cluster(
     rf_max_depth=5,
 )
 results.table
+
+
+# %%
+# Compare residuals cluster of multiple models
+# ----------------------------------------------------------
+benchmark = MoLGBMRegressor(max_depth=5, verbose=-1, random_state=0)
+benchmark.fit(ds.train_x, ds.train_y.ravel())
+
+tsc = TestSuite(ds, models=[model, benchmark])
+results = tsc.compare_residual_cluster(dataset="test")
+results.table
+
+# %%
+results.plot("cluster_performance")
+
+# %%
+results.plot("cluster_residual")

@@ -431,6 +431,7 @@
 <li class="toctree-l2"><a class="reference internal" href="modeva.TestSuite.compare_robustness.html">modeva.TestSuite.compare_robustness</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.TestSuite.compare_reliability.html">modeva.TestSuite.compare_reliability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.TestSuite.compare_resilience.html">modeva.TestSuite.compare_resilience</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.TestSuite.compare_residual_cluster.html">modeva.TestSuite.compare_residual_cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.TestSuite.compare_fairness.html">modeva.TestSuite.compare_fairness</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.TestSuite.get_dataset.html">modeva.TestSuite.get_dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.TestSuite.set_dataset.html">modeva.TestSuite.set_dataset</a></li>
@@ -528,7 +529,7 @@
 <li><p>”sq_residual”: squared residual</p></li>
 <li><p>”abs_residual_perturb”: absolute residual after X perturbation as used in robustness test</p></li>
 <li><p>”sq_residual_perturb”: squared residual after X perturbation</p></li>
-<li><p>”pi_width”: prediction interval width obtained as used in reliability test</p></li>
+<li><p>”pi_width”: prediction interval width obtained as used in reliability test; note that as dataset=”test”, the test data will be split for calibration (conformal prediction), so that the calibration set is excluded in the final reported results.</p></li>
 </ul>
 </p></li>
 <li><p><strong>metric</strong> (<em>str</em><em>, </em><em>metric=None</em>) – <p>Model performance metric to use.</p>
@@ -579,7 +580,11 @@ Only used as response_type=”pi_width”.</p></li>
 <blockquote>
 <div><ul>
 <li><p>”feature_importance”: residual feature importance by random forest</p></li>
+<li><p>”cluster_X”: X being clustered</p></li>
+<li><p>”cluster_y”: y being clustered</p></li>
+<li><p>”cluster_sample_weight”: sample_weight being clustered</p></li>
 <li><p>”cluster_labels”: cluster labels of each sample</p></li>
+<li><p>”cluster_pred_func”: the function that receives X as input and output the cluster ID</p></li>
 <li><p>”clusters”: Nested dict containing the detailed information about each cluster, the i-th cluster can be accessed via its cluster id, i.e., <cite>results.value[“cluster”][i]</cite>, which includes items:</p>
 <blockquote>
 <div><ul class="simple">
@@ -613,6 +618,8 @@ Only used as response_type=”pi_width”.</p></li>
 <dd class="field-odd"><p><a class="reference internal" href="modeva.utils.results.ValidationResult.html#modeva.utils.results.ValidationResult" title="modeva.utils.results.ValidationResult">ValidationResult</a></p>
 </dd>
 </dl>
+<p class="rubric">Notes</p>
+<p>When response_type = “pi_width” and dataset=”test”, the test data will be split for calibration (conformal prediction), so that the calibration set is excluded in the final reported results.</p>
 <p class="rubric">Examples</p>
 <div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Evaluate model residuals."><img alt="" src="../../../_images/sphx_glr_plot_1_residual_cls_thumb.png" />
 <p><a class="reference internal" href="../../auto_galleries/val/0_residual/plot_1_residual_cls.html#sphx-glr-source-auto-galleries-val-0-residual-plot-1-residual-cls-py"><span class="std std-ref">Residual Analysis (Classification)</span></a></p>
