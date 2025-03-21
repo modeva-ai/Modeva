@@ -35,7 +35,7 @@ ds.set_target("FlagDefault")
 
 # %%
 # Fit a LGBM model
-model = MoLGBMClassifier(max_depth=2, verbose=-1, random_state=0)
+model = MoLGBMClassifier(name="LGBM-2", max_depth=2, verbose=-1, random_state=0)
 model.fit(ds.train_x, ds.train_y.ravel())
 
 # %%
@@ -162,7 +162,7 @@ results.table
 # %%
 # Compare residuals cluster of multiple models
 # ----------------------------------------------------------
-benchmark = MoLGBMClassifier(max_depth=5, verbose=-1, random_state=0)
+benchmark = MoLGBMClassifier(name="LGBM-5", max_depth=5, verbose=-1, random_state=0)
 benchmark.fit(ds.train_x, ds.train_y.ravel())
 
 tsc = TestSuite(ds, models=[model, benchmark])
