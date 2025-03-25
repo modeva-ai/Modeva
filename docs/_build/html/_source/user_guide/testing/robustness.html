@@ -58,7 +58,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="1.0.9" />
+  <meta name="docsearch:version" content="1.0.10" />
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="MoDeVa">
   <meta property="og:description" content="An Integrated Tool for Model Development and Validation">
@@ -457,7 +457,7 @@
                   
   <section id="robustness">
 <h1>Robustness<a class="headerlink" href="#robustness" title="Link to this heading">#</a></h1>
-<p>Robustness evaluates a model’s ability to perform reliably when exposed to input noise or changes, ensuring it remains accurate and stable under various conditions. In banking, robustness is essential to avoid issues like benign overfitting, which occurs when models fit noise in the training data but fail to generalize to new data. This section outlines key practices to test and enhance model robustness.</p>
+<p>Robustness evaluates a model’s ability to perform reliably when exposed to input noise or changes, ensuring it remains accurate and stable under various conditions. In banking, robustness is essential to avoid issues like benign overfitting <a class="reference internal" href="#cui2023" id="id1"><span>[Cui2023]</span></a>, which occurs when models fit noise in the training data but fail to generalize to new data. This section outlines key practices to test and enhance model robustness.</p>
 <p>Noise sensitivity testing can be done by introducing small perturbations to input data and evaluate the impact on predictions. For instance, a slight change in a customer’s credit score or income level should not lead to a disproportionate shift in loan approval outcomes.</p>
 <ul class="simple">
 <li><p>Example: Add random noise to numeric features (e.g., credit score ±1%) and measure prediction stability.</p></li>
@@ -819,7 +819,16 @@ This applicable to both gradient boosted decision tree and neural networks.</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="../../auto_galleries/val/5_robustness/plot_0_robustness_cls.html#sphx-glr-source-auto-galleries-val-5-robustness-plot-0-robustness-cls-py"><span class="std std-ref">Robustness Analysis (Classification)</span></a></p></li>
 </ul>
+<p>References</p>
 </aside>
+<blockquote>
+<div><div role="list" class="citation-list">
+<div class="citation" id="cui2023" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">Cui2023</a><span class="fn-bracket">]</span></span>
+<p>Shijie Cui, Agus Sudjianto, Aijun Zhang and Runze Li (2023). <a class="reference external" href="https://arxiv.org/pdf/2304.13761.pdf">Enhancing Robustness of Gradient-Boosted Decision Trees through One-Hot Encoding and Regularization</a>, arXiv preprint arXiv:2304.13761.</p>
+</div>
+</div>
+</div></blockquote>
 </section>
 </section>
 

@@ -58,7 +58,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="1.0.9" />
+  <meta name="docsearch:version" content="1.0.10" />
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="MoDeVa">
   <meta property="og:description" content="An Integrated Tool for Model Development and Validation">
@@ -458,7 +458,7 @@
                   
   <section id="gami-net">
 <h1>GAMI-Net<a class="headerlink" href="#gami-net" title="Link to this heading">#</a></h1>
-<p>GAMI-Net (Generalized Additive Models with Structured Interactions Network) is an explainable neural network architecture designed to balance prediction accuracy with interpretability. It builds on traditional Generalized Additive Models (GAMs) by incorporating structured pairwise interactions while maintaining interpretability through these constraints:</p>
+<p>GAMI-Net (Generalized Additive Models with Structured Interactions Network) is an explainable neural network architecture designed to balance prediction accuracy with interpretability <a class="reference internal" href="#yang2020" id="id1"><span>[Yang2020]</span></a>. It builds on traditional Generalized Additive Models (GAMs) by incorporating structured pairwise interactions while maintaining interpretability through these constraints:</p>
 <ul class="simple">
 <li><p>Sparsity: Selects only significant effects for a parsimonious model.</p></li>
 <li><p>Heredity: Includes interaction terms only if at least one parent main effect exists.</p></li>
@@ -748,7 +748,7 @@
 <ul class="simple">
 <li><p>Provide the lists of input variables that have monotonically increasing and decreasing in the API: <cite>mono_increasing_list=(), mono_decreasing_list=()</cite></p></li>
 <li><p>Start with a small monotonic regularization <cite>reg_mono</cite> and gradually increase it until desired monotonicity is achieved</p></li>
-<li><p>GAMI-Net is using sampling with sample size controlled by <a href="#id1"><span class="problematic" id="id2">`</span></a>mono_sample_size`to check monotonicity</p></li>
+<li><p>GAMI-Net is using sampling with sample size controlled by <a href="#id2"><span class="problematic" id="id3">`</span></a>mono_sample_size`to check monotonicity</p></li>
 <li><p>Evaluate both prediction performance and monotonicity violations</p></li>
 <li><p>Verify monotonicity holds for both main effects and interaction terms</p></li>
 <li><p>Consider using validation data to tune the <cite>reg_mono</cite> parameter</p></li>
@@ -775,6 +775,18 @@
 <li><p><a class="reference internal" href="../../auto_galleries/dev/0_models/plot_3_gaminet_cls.html#sphx-glr-source-auto-galleries-dev-0-models-plot-3-gaminet-cls-py"><span class="std std-ref">GAMINet Classification</span></a></p></li>
 </ul>
 </aside>
+<section id="references">
+<h3>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h3>
+<aside class="topic">
+<p class="topic-title">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="yang2020" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">Yang2020</a><span class="fn-bracket">]</span></span>
+<p>Zebin Yang, Aijun Zhang and Agus Sudjianto (2020). <a class="reference external" href="https://arxiv.org/pdf/2003.07132.pdf">GAMI-Net: An Explainable Neural Network based on Generalized Additive Models with Structured Interactions</a>, arXiv preprint arXiv:2003.07132.</p>
+</div>
+</div>
+</aside>
+</section>
 </section>
 </section>
 
@@ -850,7 +862,10 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-considerations">Implementation Considerations</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

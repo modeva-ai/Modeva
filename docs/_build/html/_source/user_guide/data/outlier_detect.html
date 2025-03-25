@@ -58,7 +58,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="1.0.9" />
+  <meta name="docsearch:version" content="1.0.10" />
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="MoDeVa">
   <meta property="og:description" content="An Integrated Tool for Model Development and Validation">
@@ -465,7 +465,7 @@
 <section id="cblof">
 <h2>CBLOF<a class="headerlink" href="#cblof" title="Link to this heading">#</a></h2>
 <p>CBLOF (Cluster-Based Local Outlier Factor) is an outlier detection method that uses clustering to identify anomalies. It first partitions data into small and large clusters, then calculates outlier scores based on the distances between points and cluster centers, optionally weighted by cluster sizes.</p>
-<p>This method for outlier detection is based on cluster analysis, originally proposed by <a class="reference internal" href="data_quality_outlier.html#he2003" id="id1"><span>[He2003]</span></a>. The process can be divided into the following steps:</p>
+<p>This method for outlier detection is based on cluster analysis, originally proposed by <a class="reference internal" href="#he2003" id="id1"><span>[He2003]</span></a>. The process can be divided into the following steps:</p>
 <ul>
 <li><p>Partition the data into clusters using K-means or Gaussian mixture model. Clusters can be classified into two categories, namely large clusters and small clusters, based on the size of each cluster. The size of a cluster is determined by the number of points it contains, and a given threshold is utilized for this classification.</p></li>
 <li><p>Calculate the CBLOF score for each sample.</p>
@@ -482,14 +482,14 @@
 </section>
 <section id="isolation-forest">
 <h2>Isolation Forest<a class="headerlink" href="#isolation-forest" title="Link to this heading">#</a></h2>
-<p>This method adopts a unique approach to isolate observations by following a random selection process <a class="reference internal" href="data_quality_outlier.html#liu2008" id="id2"><span>[Liu2008]</span></a>. It begins by randomly choosing a feature from the dataset and then selecting a split value for that feature within the range of its maximum and minimum values. This process is repeated recursively to construct isolation trees, until the node has only one instance, or all data at the node have the same values.</p>
+<p>This method adopts a unique approach to isolate observations by following a random selection process <a class="reference internal" href="#liu2008" id="id2"><span>[Liu2008]</span></a>. It begins by randomly choosing a feature from the dataset and then selecting a split value for that feature within the range of its maximum and minimum values. This process is repeated recursively to construct isolation trees, until the node has only one instance, or all data at the node have the same values.</p>
 <p>The algorithm measures the anomaly score based on the average path length required to isolate each observation. Outliers are expected to have shorter average path lengths, indicating they are easier to separate from the rest of the data. In contrast, normal observations will require longer paths for isolation. The randomness in feature and split value selection contributes to the algorithm’s efficiency and ability to handle high-dimensional datasets. It does not rely on the specific distribution of the data, making it suitable for various types of data and outlier detection tasks. Note that the <a class="reference external" href="../../modules/generated/modeva.DataSet.detect_outlier_isolation_forest.html">DataSet.detect_outlier_isolation_forest</a> in Modeva is a wrapper of sklearn’s implementation <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html">sklearn.ensemble.IsolationForest</a>.</p>
 </section>
 <section id="pca-based-method">
 <h2>PCA-based Method<a class="headerlink" href="#pca-based-method" title="Link to this heading">#</a></h2>
 <p>In addition to the clustering-based methods, dimensionality reduction techniques like Principal Component Analysis (PCA) can also be utilized for outlier detection. In Modeva, <a class="reference external" href="../../modules/generated/modeva.DataSet.detect_outlier_pca.html">DataSet.detect_outlier_pca</a> implements a two PCA-based approach for calculating the outlier score: Mahalanobis distance and error reconstruction.</p>
 <ul class="simple">
-<li><p><strong>Mahalanobis distance</strong>: This method computes the distance between each data point and the centroid of the dataset, taking into account the covariance structure of the data. The Mahalanobis distance accounts for correlations between variables and provides a measure of how far each data point deviates from the overall centroid. The Mahalanobis distance can be obtained easily with PCA under the formula, see <a class="reference internal" href="data_quality_outlier.html#shyu2003" id="id3"><span>[Shyu2003]</span></a> for details.</p></li>
+<li><p><strong>Mahalanobis distance</strong>: This method computes the distance between each data point and the centroid of the dataset, taking into account the covariance structure of the data. The Mahalanobis distance accounts for correlations between variables and provides a measure of how far each data point deviates from the overall centroid. The Mahalanobis distance can be obtained easily with PCA under the formula, see <a class="reference internal" href="#shyu2003" id="id3"><span>[Shyu2003]</span></a> for details.</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[MD(x)^2 = \sum z_{i}^{2} / \lambda_{i},\]</div>
