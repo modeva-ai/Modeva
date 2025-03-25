@@ -57,7 +57,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="1.0.9" />
+  <meta name="docsearch:version" content="1.0.10" />
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="MoDeVa">
   <meta property="og:description" content="An Integrated Tool for Model Development and Validation">
@@ -512,7 +512,7 @@
 <h1>modeva.TestSuite.explain_pdp<a class="headerlink" href="#modeva-testsuite-explain-pdp" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="modeva.TestSuite.explain_pdp">
-<span class="sig-prename descclassname"><span class="pre">TestSuite.</span></span><span class="sig-name descname"><span class="pre">explain_pdp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'test'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percentiles</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(0,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_resolution</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.TestSuite.explain_pdp" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">TestSuite.</span></span><span class="sig-name descname"><span class="pre">explain_pdp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'test'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percentiles</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(0,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_resolution</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.TestSuite.explain_pdp" title="Link to this definition">#</a></dt>
 <dd><p>Calculate and visualize Partial Dependence Plot (PDP) for specified model features.</p>
 <p>Partial Dependence Plots (PDP) show the marginal effect of one or two features
 on the predicted outcome of a machine learning model. They illustrate how the
@@ -523,7 +523,15 @@ in a model-agnostic way.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>features</strong> (<em>str</em><em> or </em><em>tuple</em><em> of </em><em>str</em>) – Feature name(s) to analyze. Can be a single feature name or tuple of two feature names.</p></li>
+<li><p><strong>features</strong> (<em>str</em><em> or </em><em>tuple</em><em> of </em><em>str</em>) – <p>Name of single feature or tuple of two feature names to analyze their effects on model output.</p>
+<ul>
+<li><p>If features=(“X1”, ) or “X1”, visualize the main effect for X1.</p></li>
+<li><p>If features=(“X1”, “X2”), visualize the interaction for X1 and X2.</p></li>
+<li><p>If features=((“X1”, ), (“X2”, )), visualize the main effect for X1 and X2 separately.</p></li>
+</ul>
+<p>Note: Batch mode for 2D effect plot is not supported.
+If None, all 1D features will be used.</p>
+</p></li>
 <li><p><strong>dataset</strong> (<em>{&quot;main&quot;</em><em>, </em><em>&quot;train&quot;</em><em>, </em><em>&quot;test&quot;}</em><em>, </em><em>default=&quot;test&quot;</em>) – The dataset used for calculating the PDP results.</p></li>
 <li><p><strong>sample_size</strong> (<em>int</em><em>, </em><em>default=5000</em>) – Number of random samples to use for speeding up calculation.
 If None, all data points will be used.</p></li>
@@ -542,7 +550,8 @@ Must be in [0, 1].</p></li>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><p>PDP result containing:</p>
-<ul>
+<blockquote>
+<div><ul>
 <li><p>key: “explain_pdp”</p></li>
 <li><p>data: Name of the dataset used</p></li>
 <li><p>model: Name of the model used</p></li>
@@ -556,7 +565,17 @@ Must be in [0, 1].</p></li>
 </div></blockquote>
 </li>
 <li><p>table: DataFrame of PDP results</p></li>
-<li><p>options: Dictionary of visualizations configuration for a line / bar plot where x-axis is the selected feature, and y-axis is PDP value. Run <cite>results.plot()</cite> to show this plot.</p></li>
+</ul>
+</div></blockquote>
+<ul>
+<li><p>options: Dictionary of visualizations configuration for a line (1D numerical) / bar (1D categorical) / heatmap (2D) effect plot. Run <cite>results.plot()</cite> to show all plots; To display one preferred plot by <cite>results.plot(name=xxx)</cite>, and the following names are available:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>None: Effect plots of all effects specified in <cite>features</cite>.</p></li>
+<li><p>”&lt;effect_name&gt;”: Effect plot of the selected main effect or pairwise interaction.</p></li>
+</ul>
+</div></blockquote>
+</li>
 </ul>
 </p>
 </dd>

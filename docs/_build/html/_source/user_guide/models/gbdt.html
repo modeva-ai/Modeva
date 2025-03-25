@@ -58,7 +58,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="1.0.9" />
+  <meta name="docsearch:version" content="1.0.10" />
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="MoDeVa">
   <meta property="og:description" content="An Integrated Tool for Model Development and Validation">
@@ -476,8 +476,8 @@ with true target “math:<cite>y_i</cite>, the pseudo-residual is given by:</p>
 <div class="math notranslate nohighlight">
 \[r_{im} = -\left[\frac{\partial L(y_i, F(x_i))}{\partial F(x_i)}\right]{F(x)=F{m-1}(x)}\]</div>
 <p>where:</p>
-<p><span class="math notranslate nohighlight">\(y_i\)</span> is the true value for the <span class="math notranslate nohighlight">\(i`th sample.
-:math:`F_{m-1}(x_i)\)</span> is the prediction for the <span class="math notranslate nohighlight">\(i`th sample after :math:`m-1\)</span> iterations.
+<p><span class="math notranslate nohighlight">\(y_i\)</span> is the true value for the <span class="math notranslate nohighlight">\(i\)</span> th sample.
+<span class="math notranslate nohighlight">\(F_{m-1}(x_i)\)</span> is the prediction for the <span class="math notranslate nohighlight">\(i\)</span> th sample after <span class="math notranslate nohighlight">\(m-1\)</span> iterations.
 <span class="math notranslate nohighlight">\(r_{im}\)</span> is the pseudo-residual for sample <span class="math notranslate nohighlight">\(i\)</span> at iteration <span class="math notranslate nohighlight">\(m\)</span></p>
 <p><strong>Model Update</strong>
 After fitting a new decision tree <span class="math notranslate nohighlight">\(h_m(x)\)</span> to the pseudo-residuals, the model is updated as follows:</p>
@@ -564,7 +564,7 @@ After fitting a new decision tree <span class="math notranslate nohighlight">\(h
 </section>
 <section id="interpretability-through-functional-anova">
 <h2>Interpretability Through Functional ANOVA<a class="headerlink" href="#interpretability-through-functional-anova" title="Link to this heading">#</a></h2>
-<p>While GBDT models are typically considered black boxes, they can be made interpretable through a functional ANOVA decomposition, particularly when tree depth is constrained. The functional ANOVA framework decomposes the model into additive components:</p>
+<p>While GBDT models are typically considered black boxes, they can be made interpretable through a functional ANOVA decomposition, particularly when tree depth is constrained. The functional ANOVA framework decomposes the model into additive components <a class="reference internal" href="#yang2024" id="id1"><span>[Yang2024]</span></a>:</p>
 <div class="math notranslate nohighlight">
 \[f(x) = \mu + \sum _j f_j(x_j) + \sum_{j \lt k} f_{jk}(x_j, x_k) + ...\]</div>
 <p>where:</p>
@@ -896,6 +896,18 @@ After fitting a new decision tree <span class="math notranslate nohighlight">\(h
 <li><p><a class="reference internal" href="../../auto_galleries/dev/0_models/plot_6_const_tree_cls.html#sphx-glr-source-auto-galleries-dev-0-models-plot-6-const-tree-cls-py"><span class="std std-ref">Tree Ensemble Models (Classification)</span></a></p></li>
 </ul>
 </aside>
+<section id="references">
+<h3>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h3>
+<aside class="topic">
+<p class="topic-title">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="yang2024" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">Yang2024</a><span class="fn-bracket">]</span></span>
+<p>Zebin Yang, Agus Sudjianto, Xiaoming Li and Aijun Zhang (2024). <a class="reference external" href="https://arxiv.org/pdf/2410.19098.pdf">Inherently Interpretable Tree Ensemble Learning</a>, arXiv preprint arXiv:2410.19098.</p>
+</div>
+</div>
+</aside>
+</section>
 </section>
 </section>
 
@@ -979,7 +991,10 @@ After fitting a new decision tree <span class="math notranslate nohighlight">\(h
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#empirical-results">Empirical Results</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
