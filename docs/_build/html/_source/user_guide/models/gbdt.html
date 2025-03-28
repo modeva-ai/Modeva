@@ -463,23 +463,31 @@
 <section id="mathematical-formulation">
 <h2>Mathematical Formulation<a class="headerlink" href="#mathematical-formulation" title="Link to this heading">#</a></h2>
 <p><strong>Overall Ensemble Model</strong>
-GBDT model can be written as sum of the initial model and the contributions of all the subsequent trees:</p>
+GBDT model can be written as sum of the initial model and the contributions of all the subsequent trees as follows:</p>
 <div class="math notranslate nohighlight">
-\[F_M(x) = F_0(x) + \sum_{m=1}^M \gamma_m , h_m(x)\]</div>
+\[F_M(x) = F_0(x) + \sum_{m=1}^M \gamma_m \cdot T_m(x)\]</div>
 <p>where:</p>
-<p><span class="math notranslate nohighlight">\(F_0(x)\)</span> is the initial model (often a constant value, such as the mean in regression tasks).
-<span class="math notranslate nohighlight">\(h_m(x)\)</span> is the decision tree (base learner) added at iteration
-<span class="math notranslate nohighlight">\(\gamma_m\)</span> is the learning rate (or step size) controlling the contribution of each tree.
-<span class="math notranslate nohighlight">\(M\)</span> is the total number of trees (iterations).</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(F_0(x)\)</span> is the initial model (often a constant value, such as the mean in regression tasks).</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_m(x)\)</span> is the decision tree (base learner) added at iteration</p></li>
+<li><p><span class="math notranslate nohighlight">\(\gamma_m\)</span> is the learning rate (or step size) controlling the contribution of each tree.</p></li>
+<li><p><span class="math notranslate nohighlight">\(M\)</span> is the total number of trees (iterations).</p></li>
+</ul>
+</div></blockquote>
 <p><strong>Pseudo-Residual Calculation</strong>
 At each iteration <span class="math notranslate nohighlight">\(m\)</span>, the algorithm computes the pseudo-residuals, which are the negative gradients of the loss function <span class="math notranslate nohighlight">\(L\)</span> with respect to the current model’s predictions. For each sample <span class="math notranslate nohighlight">\(x_i\)</span>
-with true target “math:<cite>y_i</cite>, the pseudo-residual is given by:</p>
+with true target <span class="math notranslate nohighlight">\(y_i\)</span>, the pseudo-residual is given by:</p>
 <div class="math notranslate nohighlight">
-\[r_{im} = -\left[\frac{\partial L(y_i, F(x_i))}{\partial F(x_i)}\right]{F(x)=F{m-1}(x)}\]</div>
+\[r_{im} = -\left[\frac{\partial L(y_i, F(x_i))}{\partial F(x_i)}\right]{F(x) = F{m-1}(x)}\]</div>
 <p>where:</p>
-<p><span class="math notranslate nohighlight">\(y_i\)</span> is the true value for the <span class="math notranslate nohighlight">\(i\)</span> th sample.
-<span class="math notranslate nohighlight">\(F_{m-1}(x_i)\)</span> is the prediction for the <span class="math notranslate nohighlight">\(i\)</span> th sample after <span class="math notranslate nohighlight">\(m-1\)</span> iterations.
-<span class="math notranslate nohighlight">\(r_{im}\)</span> is the pseudo-residual for sample <span class="math notranslate nohighlight">\(i\)</span> at iteration <span class="math notranslate nohighlight">\(m\)</span></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(y_i\)</span> is the true value for the <span class="math notranslate nohighlight">\(i\)</span> th sample.</p></li>
+<li><p><span class="math notranslate nohighlight">\(F_{m-1}(x_i)\)</span> is the prediction for the <span class="math notranslate nohighlight">\(i\)</span> th sample after <span class="math notranslate nohighlight">\(m-1\)</span> iterations.</p></li>
+<li><p><span class="math notranslate nohighlight">\(r_{im}\)</span> is the pseudo-residual for sample <span class="math notranslate nohighlight">\(i\)</span> at iteration <span class="math notranslate nohighlight">\(m\)</span></p></li>
+</ul>
+</div></blockquote>
 <p><strong>Model Update</strong>
 After fitting a new decision tree <span class="math notranslate nohighlight">\(h_m(x)\)</span> to the pseudo-residuals, the model is updated as follows:</p>
 <div class="math notranslate nohighlight">

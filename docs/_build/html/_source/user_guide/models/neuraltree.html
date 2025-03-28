@@ -459,57 +459,54 @@
                   
   <section id="neural-tree">
 <h1>Neural Tree<a class="headerlink" href="#neural-tree" title="Link to this heading">#</a></h1>
-<p>Neural Tree is a novel architecture that transforms Gradient Boosted Linear Trees (GBLT) into a differentiable form while preserving their interpretable structure. It represents a unique approach to bridge traditional tree-based methods with neural networks by:</p>
-<ol class="arabic simple">
-<li><p>Starting with trained GBLT depth 1 as initialization</p></li>
-<li><p>Converting hard thresholds to differentiable sigmoid functions</p></li>
-<li><p>Maintaining linear models at terminal nodes</p></li>
-<li><p>Enabling end-to-end training through backpropagation</p></li>
-</ol>
+<p>The Neural Tree model is an extension of Gradient Boosted Linear Trees (GBLT). It converts the discrete (hard) splits of a traditional GBLT into continuous (soft) splits by employing a sigmoid function. This transformation renders the model fully differentiable and enables end-to-end training using backpropagation. In practice, the Neural Tree is initialized with parameters obtained from a pre-trained GBLT, which are then fine-tuned to potentially improve predictive performance and robustness.</p>
 <p>The architecture provides an inherently interpretable model through functional ANOVA decomposition while maintaining the predictive power of tree ensembles.</p>
 <section id="model-architecture">
 <h2>Model architecture<a class="headerlink" href="#model-architecture" title="Link to this heading">#</a></h2>
-<section id="base-model-gblt-depth-1">
-<h3>Base Model: GBLT Depth-1<a class="headerlink" href="#base-model-gblt-depth-1" title="Link to this heading">#</a></h3>
-<p>The base GBLT model consists of:</p>
-<ul class="simple">
-<li><p>Input: <span class="math notranslate nohighlight">\(x ∈ ℝ^d\)</span></p></li>
-<li><p>Split node checking: <span class="math notranslate nohighlight">\(x[j] \gt \theta\)</span></p></li>
-<li><p>Terminal nodes with linear models:</p>
-<ul>
-<li><p>Left: <span class="math notranslate nohighlight">\(w^{L \mathrm{T}} x + b^L\)</span></p></li>
-<li><p>Right: <span class="math notranslate nohighlight">\(w^{R \mathrm{T}} x + b^R\)</span></p></li>
-</ul>
-</li>
-<li><p>Learning rate <span class="math notranslate nohighlight">\(\eta\)</span> for ensemble</p></li>
-<li><p>Link function <span class="math notranslate nohighlight">\(g(·)\)</span></p></li>
-</ul>
-</section>
-<section id="neural-tree-transformation">
-<h3>Neural Tree Transformation<a class="headerlink" href="#neural-tree-transformation" title="Link to this heading">#</a></h3>
-<p>Converts GBLT to differentiable form:</p>
+<p>The overall prediction function of the Neural Tree ensemble is given by:</p>
 <div class="math notranslate nohighlight">
-\[g(F(x)) = g(\eta \sum_i f_i(x))\]</div>
-<p>where each tree function <span class="math notranslate nohighlight">\(f_i(x)\)</span> is:</p>
-<div class="math notranslate nohighlight">
-\[f_i(x) = \sigma(\alpha_i(x[j_i] - \theta_i))((w_i^R)^Tx + b+i^R) + (1 - \sigma(\alpha_i(x[j_i] - \theta_i)))((w_i^L)^Tx + b_i^L)\]</div>
-<p>with:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\sigma(·)\)</span>: Sigmoid function</p></li>
-<li><p><span class="math notranslate nohighlight">\(\alpha_i\)</span>: Steepness parameter</p></li>
-<li><p><span class="math notranslate nohighlight">\(j_i\)</span>: Split feature index</p></li>
-<li><p><span class="math notranslate nohighlight">\(\theta_i\)</span>: Split threshold</p></li>
-<li><p><span class="math notranslate nohighlight">\(w_i^L, w_i^R ∈ ℝ^d\)</span>: Linear model weights</p></li>
-<li><p><span class="math notranslate nohighlight">\(b_i^L, b_i^R\)</span>: Linear model biases</p></li>
+\[f(\mathbf{x}) = f_0 + \sum_{m=1}^M \gamma_m \cdot T_m(\mathbf{x}),\]</div>
+<p>where:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf{x} = (x_1, x_2, \dots, x_d)\)</span> denotes the feature vector.</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_0\)</span> is the baseline prediction (e.g., the global mean).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\gamma_m\)</span> is the weight associated with the <span class="math notranslate nohighlight">\(m\)</span> th tree.</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_m(\mathbf{x})\)</span> is the differentiable tree function of the :math:mth Neural Tree.</p></li>
 </ul>
-<p><strong>Link Functions</strong></p>
-<ol class="arabic simple">
-<li><p>Regression:
-<span class="math notranslate nohighlight">\(g(z) = z\)</span></p></li>
-<li><p>Classification:
-<span class="math notranslate nohighlight">\(g(z) =\sigma(z)\)</span></p></li>
-</ol>
-</section>
+</div></blockquote>
+<p>Each Neural Tree <span class="math notranslate nohighlight">\(T_m(\mathbf{x})\)</span> follows the structure of a depth‑1 linear tree from GBLT, but with soft (differentiable) splits. Specifically, the tree output is computed as a blend of two terminal linear models:</p>
+<p><strong>Soft Split Function</strong>:
+The split is made differentiable by replacing the hard decision with a sigmoid function:</p>
+<div class="math notranslate nohighlight">
+\[S_m(\mathbf{x}) = \sigma\Bigl( a_m, (x_{j_m} - t_m) \Bigr),\]</div>
+<p>where:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\sigma(z) = \frac{1}{1 + e^{-z}}\)</span> is the sigmoid function.</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_{j_m}\)</span> is the feature chosen for splitting in tree <span class="math notranslate nohighlight">\(m\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(t_m\)</span> is the threshold parameter.</p></li>
+<li><p><span class="math notranslate nohighlight">\(a_m\)</span> controls the steepness of the sigmoid (i.e., the softness of the split).</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Terminal Linear Models</strong>:
+Each branch of the tree has a linear model that computes its prediction. The outputs for the left and right branches are:</p>
+<div class="math notranslate nohighlight">
+\[L_m^{(L)}(\mathbf{x}) = \beta_{m0}^{(L)} + \sum_{i=1}^d \beta_{mi}^{(L)}, x_i,\]</div>
+<div class="math notranslate nohighlight">
+\[L_m^{(R)}(\mathbf{x}) = \beta_{m0}^{(R)} + \sum_{i=1}^d \beta_{mi}^{(R)}, x_i,\]</div>
+<p>where <span class="math notranslate nohighlight">\(\beta_{m0}^{(L)}\)</span>, <span class="math notranslate nohighlight">\(\beta_{mi}^{(L)}\)</span> and <span class="math notranslate nohighlight">\(\beta_{m0}^{(R)}\)</span>, <span class="math notranslate nohighlight">\(\beta_{mi}^{(R)}\)</span> are the intercepts and coefficients of the linear models in the left and right branches, respectively.</p>
+<p>The output of the <span class="math notranslate nohighlight">\(m\)</span> th Neural Tree is then given by:</p>
+<div class="math notranslate nohighlight">
+\[T_m(\mathbf{x}) = S_m(\mathbf{x}) \cdot L_m^{(L)}(\mathbf{x}) + \Bigl( 1 - S_m(\mathbf{x}) \Bigr) \cdot L_m^{(R)}(\mathbf{x}).\]</div>
+<p><strong>Training Process</strong>
+The training of the Neural Tree model involves two main stages:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Initialization with GBLT: A standard Gradient Boosted Linear Tree model is first trained using conventional methods. Its parameters – including the split feature <span class="math notranslate nohighlight">\(x_{j_m}\)</span>, threshold <span class="math notranslate nohighlight">\(t_m\)</span>, terminal linear model coefficients, and tree weights <span class="math notranslate nohighlight">\(\gamma_m\)</span> – are then used to initialize the Neural Tree.</p></li>
+<li><p>Refinement via Backpropagation: With the hard splits replaced by differentiable soft splits, the entire model becomes end-to-end differentiable. The model is subsequently refined using gradient-based optimization (backpropagation) to further optimize all parameters (including <span class="math notranslate nohighlight">\(a_m\)</span>, <span class="math notranslate nohighlight">\(t_m\)</span>, the linear coefficients, and <span class="math notranslate nohighlight">\(\gamma_m\)</span> which are the weights of final layers in Neural Networks).</p></li>
+</ul>
+</div></blockquote>
 </section>
 <section id="neural-tree-in-modeva">
 <h2>Neural Tree in MoDeVa<a class="headerlink" href="#neural-tree-in-modeva" title="Link to this heading">#</a></h2>
@@ -563,42 +560,47 @@
 </section>
 <section id="functional-anova-representation">
 <h2>Functional ANOVA Representation<a class="headerlink" href="#functional-anova-representation" title="Link to this heading">#</a></h2>
-<section id="basic-decomposition">
-<h3>Basic Decomposition<a class="headerlink" href="#basic-decomposition" title="Link to this heading">#</a></h3>
-<p>The model decomposes into additive components:</p>
+<p>For interpretability, the overall prediction function <span class="math notranslate nohighlight">\(f(\mathbf{x})\)</span> can be decomposed into additive components using a functional ANOVA framework as follows:</p>
 <div class="math notranslate nohighlight">
-\[f(x) = \mu + \sum _j f_j(x_j) + \sum_{j&lt;k} f_{jk}(x_j, x_k)\]</div>
-<p>where:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\mu\)</span> is the global intercept</p></li>
-<li><p><span class="math notranslate nohighlight">\(f_j(x_j)\)</span> represents main effects</p></li>
-<li><p><span class="math notranslate nohighlight">\(f_{jk}(x_j, x_k)\)</span> represents pairwise interaction effects</p></li>
-</ul>
-</section>
-<section id="effect-computation">
-<h3>Effect Computation<a class="headerlink" href="#effect-computation" title="Link to this heading">#</a></h3>
-<ol class="arabic">
-<li><p>Main Effects:
-<span class="math notranslate nohighlight">\(f_j(x_j) = \sum_{S_m=\{j\}} v_m · I(s^l_{mj} \leq x_j \lt s^u_{mj})\)</span></p>
-<p>where <span class="math notranslate nohighlight">\(S_m=\{j\}\)</span> indicates leaf nodes with single split on feature <span class="math notranslate nohighlight">\(j\)</span></p>
-</li>
-<li><p>Pairwise Interactions (2 split variables):
-<span class="math notranslate nohighlight">\(f_{jk}(x_j,x_k) = \sum_{S_m=\{j,k\}} v_m · I(s^l_{mj} \leq x_j \lt s^u_{mj}) · I(s^l_{mk} \leq x_k \lt s^u_{mk})\)</span></p></li>
-</ol>
-<p>where <span class="math notranslate nohighlight">\(S_m=\{j,k\}\)</span> indicates leaf nodes with splits on features <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(k\)</span></p>
-</section>
-<section id="purification-constraints">
-<h3>Purification Constraints<a class="headerlink" href="#purification-constraints" title="Link to this heading">#</a></h3>
-<ol class="arabic">
-<li><p>Zero Mean:</p>
+\[f(\mathbf{x}) = f_0 + \sum_{i=1}^d f_i(x_i) + \sum_{1 \le i &lt; j \le d} f_{ij}(x_i, x_j) + \cdots\]</div>
+<p>The decomposition is defined as follows:</p>
+<p><strong>Baseline</strong>:</p>
 <div class="math notranslate nohighlight">
-\[\int f_{i_1...i_t} x_{i_1},...,x_{i_t} \, dx_k = 0, k = i_1,...,i_t\]</div>
-</li>
-<li><p>Orthogonality:</p>
+\[f_0 = \mathbb{E}[f(\mathbf{x})].\]</div>
+<p><strong>Main Effects</strong>:
+For each feature <span class="math notranslate nohighlight">\(x_i\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[\int f_{i_1...i_u} (x_{i_1},...,x_{i_u}) \, \cdot \, f_{j_1...j_v} (x_{j_1},...,x_{j_v}) \, d\mathbf{x} = 0, (i_1...i_u) \ne (j_1...j_v)\]</div>
-</li>
-</ol>
+\[f_i(x_i) = \mathbb{E}{\mathbf{x}{\setminus i}} \bigl[ f(\mathbf{x}) \mid x_i \bigr] - f_0,\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{x}_{\setminus i}\)</span> denotes all features except <span class="math notranslate nohighlight">\(x_i\)</span>.</p>
+<p><strong>Interaction Effects</strong>:
+For each feature pair <span class="math notranslate nohighlight">\((x_i, x_j)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[f_{ij}(x_i, x_j) = \mathbb{E}{\mathbf{x}{\setminus {i,j}}} \bigl[ f(\mathbf{x}) \mid x_i, x_j \bigr] - f_i(x_i) - f_j(x_j) - f_0.\]</div>
+<p>This decomposition isolates the contributions of individual features and their interactions, aiding in model interpretability.</p>
+<p>See the aggregation and purification process for Gradient Boosted Decision Trees &lt;<a class="reference external" href="https://modeva.ai/_build/html/_source/user_guide/models/gbdt.html">https://modeva.ai/_build/html/_source/user_guide/models/gbdt.html</a>&gt;.</p>
+<section id="step-by-step-process">
+<h3>Step-by-Step Process<a class="headerlink" href="#step-by-step-process" title="Link to this heading">#</a></h3>
+<p><strong>1. Initialize with GBLT</strong>:
+Train a Gradient Boosted Linear Tree model to obtain initial parameters:
+Splitting feature <span class="math notranslate nohighlight">\(x_{j_m}\)</span>, threshold <span class="math notranslate nohighlight">\(t_m\)</span>, and initial linear model coefficients.
+Tree weights <span class="math notranslate nohighlight">\(\gamma_m\)</span>.</p>
+<p><strong>2. Convert Hard Splits to Soft Splits</strong>:
+Replace the hard threshold with a soft split using:</p>
+<div class="math notranslate nohighlight">
+\[S_m(\mathbf{x}) = \sigma\Bigl( a_m, (x_{j_m} - t_m) \Bigr).\]</div>
+<p><strong>3. Compute Neural Tree Output</strong>:
+Calculate the output of each Neural Tree:</p>
+<div class="math notranslate nohighlight">
+\[T_m(\mathbf{x}) = S_m(\mathbf{x}) \cdot L_m^{(L)}(\mathbf{x}) + \Bigl( 1 - S_m(\mathbf{x}) \Bigr) \cdot L_m^{(R)}(\mathbf{x}).\]</div>
+<p><strong>4. Aggregate the Ensemble</strong>:
+Form the overall prediction:</p>
+<div class="math notranslate nohighlight">
+\[f(\mathbf{x}) = f_0 + \sum_{m=1}^M \gamma_m, T_m(\mathbf{x}).\]</div>
+<p><strong>5. Refine via Backpropagation</strong>:
+Optimize all parameters of the Neural Tree (including <span class="math notranslate nohighlight">\(a_m\)</span>, <span class="math notranslate nohighlight">\(t_m\)</span>, the terminal model coefficients, and <span class="math notranslate nohighlight">\(\gamma_m\)</span>) using gradient descent.</p>
+<p><strong>6. Apply Functional ANOVA</strong>:
+Decompose <span class="math notranslate nohighlight">\(f(\mathbf{x})\)</span> into baseline, main effects, and interaction effects to gain interpretability.</p>
+<p>See the aggregation and purification process for Gradient Boosted Decision Trees &lt;<a class="reference external" href="https://modeva.ai/_build/html/_source/user_guide/models/gbdt.html">https://modeva.ai/_build/html/_source/user_guide/models/gbdt.html</a>&gt;.</p>
 </section>
 <section id="effect-attribution">
 <h3>Effect Attribution<a class="headerlink" href="#effect-attribution" title="Link to this heading">#</a></h3>
@@ -844,16 +846,10 @@
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-architecture">Model architecture</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#base-model-gblt-depth-1">Base Model: GBLT Depth-1</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-tree-transformation">Neural Tree Transformation</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-architecture">Model architecture</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-tree-in-modeva">Neural Tree in MoDeVa</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functional-anova-representation">Functional ANOVA Representation</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-decomposition">Basic Decomposition</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#effect-computation">Effect Computation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#purification-constraints">Purification Constraints</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-process">Step-by-Step Process</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#effect-attribution">Effect Attribution</a></li>
 </ul>
 </li>

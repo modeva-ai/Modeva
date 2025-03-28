@@ -573,16 +573,37 @@
 </ol>
 </div></blockquote>
 <p><strong>Model Formulation</strong></p>
+<p>A boosted ensemble where each tree <span class="math notranslate nohighlight">\(T_m\)</span> is a depth‑1 (decision stump) model that assigns a linear prediction at its terminal nodes. The overall boosted model is given by</p>
 <div class="math notranslate nohighlight">
-\[F_m(x) = F_{m-1}(x) + \nu h_m(x)\]</div>
+\[f(\mathbf{x}) = f_0 + \sum_{m=1}^M \gamma_m \, T_m(\mathbf{x}),\]</div>
 <p>where:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(F_m\)</span> is the model at iteration <span class="math notranslate nohighlight">\(m\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(h_m\)</span> is a Linear Tree</p></li>
-<li><p><span class="math notranslate nohighlight">\(\nu\)</span> is the learning rate</p></li>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf{x} = (x_1, x_2, \dots, x_d)\)</span> is the feature vector.</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_0\)</span> is the baseline (e.g., the global mean).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\gamma_m\)</span> is the weight for the <span class="math notranslate nohighlight">\(m\)</span> th tree.</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_m(\mathbf{x})\)</span> is the prediction function of tree <span class="math notranslate nohighlight">\(m\)</span>.</p></li>
 </ul>
-</div></blockquote>
+<section id="tree-structure-t-m">
+<h3>Tree Structure <span class="math notranslate nohighlight">\(T_m\)</span><a class="headerlink" href="#tree-structure-t-m" title="Link to this heading">#</a></h3>
+<p>Each tree <span class="math notranslate nohighlight">\(T_m\)</span> performs a split on a selected feature <span class="math notranslate nohighlight">\(x_{j_m}\)</span> at threshold <span class="math notranslate nohighlight">\(t_m\)</span> and applies a linear model in each of the two regions. That is,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}T_m(\mathbf{x}) =
+\begin{cases}
+\beta_{m0}^{(L)} + \displaystyle\sum_{i=1}^d \beta_{mi}^{(L)}\, x_i, &amp; \text{if } x_{j_m} \le t_m, \\[1em]
+\beta_{m0}^{(R)} + \displaystyle\sum_{i=1}^d \beta_{mi}^{(R)}\, x_i, &amp; \text{if } x_{j_m} &gt; t_m.
+\end{cases}\end{split}\]</div>
+<p>Here:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\beta_{m0}^{(L)}\)</span> and <span class="math notranslate nohighlight">\(\beta_{m0}^{(R)}\)</span> are the intercepts for the left and right nodes.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_{mi}^{(L)}\)</span> and <span class="math notranslate nohighlight">\(\beta_{mi}^{(R)}\)</span> are the coefficients for feature <span class="math notranslate nohighlight">\(x_i\)</span> in the left and right terminal nodes, respectively.</p></li>
+</ul>
+</section>
+<section id="overall-model-f-mathbf-x">
+<h3>Overall Model <span class="math notranslate nohighlight">\(f(\mathbf{x})\)</span><a class="headerlink" href="#overall-model-f-mathbf-x" title="Link to this heading">#</a></h3>
+<p>The boosted model aggregates the contributions from all trees:</p>
+<div class="math notranslate nohighlight">
+\[f(\mathbf{x}) = f_0 + \sum_{m=1}^M \gamma_m \, T_m(\mathbf{x}).\]</div>
+</section>
 </section>
 <section id="gblt-in-modeva">
 <h2>GBLT in MoDeVa<a class="headerlink" href="#gblt-in-modeva" title="Link to this heading">#</a></h2>
@@ -618,32 +639,78 @@
 <a class="reference internal image-reference" href="../../../_images/gblt_perf.png"><img alt="../../../_images/gblt_perf.png" class="align-center" src="../../../_images/gblt_perf.png" style="width: 300px;" />
 </a>
 <p>For the full list of arguments of the API see <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_accuracy_table.html">TestSuite.diagnose_accuracy_table</a>.</p>
-<section id="interpretable-gblt-with-depth-1-trees">
-<h3>Interpretable GBLT with Depth-1 Trees<a class="headerlink" href="#interpretable-gblt-with-depth-1-trees" title="Link to this heading">#</a></h3>
-<p><strong>Model Structure</strong></p>
-<p>Depth-1 tree creates single split:</p>
+<section id="functional-anova-decomposition">
+<h3>Functional ANOVA Decomposition<a class="headerlink" href="#functional-anova-decomposition" title="Link to this heading">#</a></h3>
+<p>The goal is to decompose <span class="math notranslate nohighlight">\(f(\mathbf{x})\)</span> into additive components that represent the baseline, main effects, and interaction effects:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}h_m(x) = \begin{cases}
-\beta_1^\mathrm{T}x + \alpha_1 &amp; \text{if } x_s \leq \text{threshold} \\
-\beta_2^\mathrm{T}x + \alpha_2 &amp; \text{if } x_s \gt \text{threshold}
-\end{cases}\end{split}\]</div>
-<p><strong>Functional ANOVA Representation</strong></p>
-<p>The model can be decomposed as:</p>
+\[f(\mathbf{x}) = f_0 + \sum_{i=1}^d f_i(x_i) + \sum_{1 \le i &lt; j \le d} f_{ij}(x_i, x_j) + \cdots\]</div>
+<p>The components are defined as follows:</p>
+<ul>
+<li><p><strong>Baseline:</strong></p>
 <div class="math notranslate nohighlight">
-\[f(x) = \mu + \sum_j f_j(x_j) + \sum_{j \lt k} f_{jk}(x_j, x_k)\]</div>
-<p>Components:
-1. Main Effects (<span class="math notranslate nohighlight">\(f_j\)</span>):</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>From linear terms</p></li>
-<li><p>From split discontinuities</p></li>
+\[f_0 = \mathbb{E}[f(\mathbf{x})].\]</div>
+</li>
+<li><p><strong>Main Effects:</strong>
+For each feature <span class="math notranslate nohighlight">\(x_i\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[f_i(x_i) = \mathbb{E}_{\mathbf{x}_{\setminus i}} \bigl[ f(\mathbf{x}) \mid x_i \bigr] - f_0,\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{x}_{\setminus i}\)</span> denotes all features except <span class="math notranslate nohighlight">\(x_i:math:\)</span>.</p>
+</li>
+<li><p><strong>Interaction Effects:</strong>
+For each pair <span class="math notranslate nohighlight">\((x_i, x_j)\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[f_{ij}(x_i, x_j) = \mathbb{E}_{\mathbf{x}_{\setminus \{i,j\}}} \bigl[ f(\mathbf{x}) \mid x_i, x_j \bigr] - f_i(x_i) - f_j(x_j) - f_0.\]</div>
+</li>
 </ul>
-</div></blockquote>
-<ol class="arabic simple" start="2">
-<li><p>Two-way Interactions (<span class="math notranslate nohighlight">\(f_{jk}\)</span>):</p>
+<p>See the aggregation and purification process for Gradient Boosted Decision Trees &lt;<a class="reference external" href="https://modeva.ai/_build/html/_source/user_guide/models/gbdt.html">https://modeva.ai/_build/html/_source/user_guide/models/gbdt.html</a>&gt;.</p>
+</section>
+<section id="step-by-step-transformation">
+<h3>Step-by-Step Transformation<a class="headerlink" href="#step-by-step-transformation" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p><strong>Train the Boosted Ensemble:</strong>
+Build the model using LightGBM with depth‑1 trees. For each tree <span class="math notranslate nohighlight">\(T_m\)</span>, record:</p>
+<ul>
+<li><p>The splitting feature <span class="math notranslate nohighlight">\(x_{j_m}\)</span> and threshold <span class="math notranslate nohighlight">\(t_m\)</span>.</p></li>
+<li><p>The linear models for each terminal node:</p>
+<ul>
+<li><p>For <span class="math notranslate nohighlight">\(x_{j_m} \le t_m\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[T_m^{(L)}(\mathbf{x}) = \beta_{m0}^{(L)} + \sum_{i=1}^d \beta_{mi}^{(L)}\, x_i.\]</div>
+</li>
+<li><p>For <span class="math notranslate nohighlight">\(x_{j_m} &gt; t_m\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[T_m^{(R)}(\mathbf{x}) = \beta_{m0}^{(R)} + \sum_{i=1}^d \beta_{mi}^{(R)}\, x_i.\]</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Aggregate Tree Predictions:</strong>
+Combine the trees to form the overall prediction function:</p>
+<div class="math notranslate nohighlight">
+\[f(\mathbf{x}) = f_0 + \sum_{m=1}^M \gamma_m \, T_m(\mathbf{x}).\]</div>
+</li>
+<li><p><strong>Compute the Baseline</strong> <span class="math notranslate nohighlight">\(f_0\)</span> :
+Determine the overall mean prediction:</p>
+<div class="math notranslate nohighlight">
+\[f_0 = \mathbb{E}[f(\mathbf{x})].\]</div>
+</li>
+<li><p><strong>Derive Main Effects</strong> <span class="math notranslate nohighlight">\(f_i(x_i)\)</span>:
+For each feature <span class="math notranslate nohighlight">\(x_i:math:\)</span>, calculate its main effect by averaging over the remaining features:</p>
+<div class="math notranslate nohighlight">
+\[f_i(x_i) = \mathbb{E}_{\mathbf{x}_{\setminus i}} \bigl[ f(x_i, \mathbf{x}_{\setminus i}) \bigr] - f_0.\]</div>
+</li>
+<li><p><strong>Extract Interaction Effects</strong> <span class="math notranslate nohighlight">\(f_{ij}(x_i, x_j)\)</span>:
+For every pair of features, compute the joint effect and subtract the main effects and baseline:</p>
+<div class="math notranslate nohighlight">
+\[f_{ij}(x_i, x_j) = \mathbb{E}_{\mathbf{x}_{\setminus \{i,j\}}} \bigl[ f(x_i, x_j, \mathbf{x}_{\setminus \{i,j\}}) \bigr] - f_i(x_i) - f_j(x_j) - f_0.\]</div>
+</li>
+<li><p><strong>Interpret and Visualize:</strong>
+Use the resulting decomposition to:</p>
 <ul class="simple">
-<li><p>Between split feature and others</p></li>
-<li><p>From differing linear coefficients</p></li>
+<li><p>Visualize the individual main effects <span class="math notranslate nohighlight">\(f_i(x_i)\)</span> (e.g., line plots).</p></li>
+<li><p>Plot the interaction effects <span class="math notranslate nohighlight">\(f_{ij}(x_i, x_j)\)</span> (e.g., heatmaps or surface plots).</p></li>
+<li><p>Gain insights into which features or interactions drive the predictions and assess the model’s robustness.</p></li>
 </ul>
 </li>
 </ol>
@@ -839,9 +906,14 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages">Advantages</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-boosted-linear-tree-gblt">Gradient Boosted Linear Tree (GBLT)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-boosted-linear-tree-gblt">Gradient Boosted Linear Tree (GBLT)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tree-structure-t-m">Tree Structure <span class="math notranslate nohighlight">\(T_m\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overall-model-f-mathbf-x">Overall Model <span class="math notranslate nohighlight">\(f(\mathbf{x})\)</span></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gblt-in-modeva">GBLT in MoDeVa</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretable-gblt-with-depth-1-trees">Interpretable GBLT with Depth-1 Trees</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functional-anova-decomposition">Functional ANOVA Decomposition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-transformation">Step-by-Step Transformation</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-interpretation">Global Interpretation</a></li>
