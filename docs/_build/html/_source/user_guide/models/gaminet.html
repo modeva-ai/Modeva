@@ -553,15 +553,23 @@
 </section>
 <section id="effect-computation">
 <h3>Effect Computation<a class="headerlink" href="#effect-computation" title="Link to this heading">#</a></h3>
-<ol class="arabic">
-<li><p>Main Effects:
-<span class="math notranslate nohighlight">\(f_j(x_j) = \sum_{S_m=\{j\}} v_m · I(s^l_{mj} \leq x_j \lt s^u_{mj})\)</span></p>
-<p>where <span class="math notranslate nohighlight">\(S_m=\{j\}\)</span> indicates leaf nodes with single split on feature <span class="math notranslate nohighlight">\(j\)</span></p>
-</li>
-<li><p>Pairwise Interactions (2 split variables):
-<span class="math notranslate nohighlight">\(f_{jk}(x_j,x_k) = \sum_{S_m=\{j,k\}} v_m · I(s^l_{mj} \leq x_j \lt s^u_{mj}) · I(s^l_{mk} \leq x_k \lt s^u_{mk})\)</span></p></li>
-</ol>
-<p>where <span class="math notranslate nohighlight">\(S_m=\{j,k\}\)</span> indicates leaf nodes with splits on features <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(k\)</span></p>
+<p>For interpretability, the overall prediction function <span class="math notranslate nohighlight">\(f(\mathbf{x})\)</span> can be decomposed into additive components using a functional ANOVA framework as follows:</p>
+<div class="math notranslate nohighlight">
+\[f(\mathbf{x}) = f_0 + \sum_{i=1}^d f_i(x_i) + \sum_{1 \le i &lt; j \le d} f_{ij}(x_i, x_j) + \cdots\]</div>
+<p>The decomposition is defined as follows:</p>
+<p><strong>Baseline</strong>:</p>
+<div class="math notranslate nohighlight">
+\[f_0 = \mathbb{E}[f(\mathbf{x})].\]</div>
+<p><strong>Main Effects</strong>:
+For each feature <span class="math notranslate nohighlight">\(x_i\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[f_i(x_i) = \mathbb{E}{\mathbf{x}{\setminus i}} \bigl[ f(\mathbf{x}) \mid x_i \bigr] - f_0,\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{x}_{\setminus i}\)</span> denotes all features except <span class="math notranslate nohighlight">\(x_i\)</span>.</p>
+<p><strong>Interaction Effects</strong>:
+For each feature pair <span class="math notranslate nohighlight">\((x_i, x_j)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[f_{ij}(x_i, x_j) = \mathbb{E}{\mathbf{x}{\setminus {i,j}}} \bigl[ f(\mathbf{x}) \mid x_i, x_j \bigr] - f_i(x_i) - f_j(x_j) - f_0.\]</div>
+<p>This decomposition isolates the contributions of individual features and their interactions, aiding in model interpretability.</p>
 </section>
 <section id="purification-constraints">
 <h3>Purification Constraints<a class="headerlink" href="#purification-constraints" title="Link to this heading">#</a></h3>
@@ -575,6 +583,7 @@
 \[\int f_{i_1...i_u} (x_{i_1},...,x_{i_u}) \, \cdot \, f_{j_1...j_v} (x_{j_1},...,x_{j_v}) \, d\mathbf{x} = 0, (i_1...i_u) \ne (j_1...j_v)\]</div>
 </li>
 </ol>
+<p>See the aggregation and purification process for Gradient Boosted Decision Trees &lt;<a class="reference external" href="https://modeva.ai/_build/html/_source/user_guide/models/gbdt.html">https://modeva.ai/_build/html/_source/user_guide/models/gbdt.html</a>&gt;.</p>
 </section>
 <section id="effect-attribution">
 <h3>Effect Attribution<a class="headerlink" href="#effect-attribution" title="Link to this heading">#</a></h3>
