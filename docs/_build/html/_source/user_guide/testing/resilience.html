@@ -384,6 +384,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../data.html">Data Processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modelwrapping.html">Model Wrapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../calibration.html">Model Calibration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../explain.html">Model Explainability</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../models.html">Interpretable Models</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../testing.html">Diagnostic Suite</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
@@ -705,72 +706,6 @@ This section presents both theoretical (continuous) and computational (discrete)
 <p>Check the API reference for detail arguments of <a class="reference external" href="../../modules/generated/modeva.TestSuite.compare_resilience.html">TestSuite.compare_resilience</a>.</p>
 </section>
 </section>
-<section id="resilience-through-supervised-clustering-analysis">
-<h2>Resilience Through Supervised Clustering Analysis<a class="headerlink" href="#resilience-through-supervised-clustering-analysis" title="Link to this heading">#</a></h2>
-<p>To evaluate model resilience under distribution drift, detailed performance analysis can be conducted by examining clusters within the data. One effective approach is supervised clustering using random forests, which leverages residual error magnitudes as the clustering criterion.</p>
-<dl class="simple">
-<dt>Steps for Supervised Clustering to Analyze Model Resilience:</dt><dd><ul class="simple">
-<li><p>Compute Residual Errors: Calculate the residual errors for each sample in the testing dataset. Use absolute or squared residual errors as the target variable for clustering.</p></li>
-<li><p>Train a Random Forest: Build a random forest model using the residual errors as the target and the original features as predictors. Ensure the random forest model is configured with a sufficient number of trees to capture relationships accurately.</p></li>
-<li><p>Generate Proximity Matrix: Extract the proximity matrix from the trained random forest. The proximity matrix reflects the similarity between samples based on the trees’ structure.</p></li>
-<li><p>Perform Clustering: Apply a clustering algorithm (e.g., k-medoids, k-means) to the proximity matrix to group data samples into clusters.</p></li>
-<li><p>Analyze Cluster Performance: Evaluate model performance metrics (e.g., accuracy, mean squared error) for each cluster.</p></li>
-<li><p>Identify clusters where performance is significantly lower, indicating potential model weaknesses.</p></li>
-</ul>
-</dd>
-</dl>
-<p><strong>Analysis Using Random Forest Clustering</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">diagnose_resilience_cluster</span><span class="p">(</span>
-   <span class="n">cluster_method</span><span class="o">=</span><span class="s2">&quot;cluster_qr&quot;</span><span class="p">,</span>
-   <span class="n">n_clusters</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-   <span class="n">rf_n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-   <span class="n">rf_max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-   <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;MAE&quot;</span><span class="p">)</span>
-<span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;performance&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<a class="reference internal image-reference" href="../../../_images/resilience_RF.png"><img alt="../../../_images/resilience_RF.png" class="align-center" src="../../../_images/resilience_RF.png" style="width: 500px;" />
-</a>
-<p>Check the API reference for detail arguments of <a class="reference external" href="../../modules/generated/modeva.TestSuite.diagnose_resilience_cluster.html">TestSuite.diagnose_resilience_cluster</a>.</p>
-<p><strong>Data Drift for a Specific Cluster</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cluster_id</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">data_results</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">data_drift_test</span><span class="p">(</span>
-   <span class="o">**</span><span class="n">results</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="s2">&quot;clusters&quot;</span><span class="p">][</span><span class="n">cluster_id</span><span class="p">][</span><span class="s2">&quot;data_info&quot;</span><span class="p">],</span>
-   <span class="n">distance_metric</span><span class="o">=</span><span class="s2">&quot;PSI&quot;</span><span class="p">,</span>
-   <span class="n">psi_method</span><span class="o">=</span><span class="s2">&quot;uniform&quot;</span><span class="p">,</span>
-   <span class="n">psi_bins</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">data_results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-</pre></div>
-</div>
-<a class="reference internal image-reference" href="../../../_images/resilience_RF_PSI.png"><img alt="../../../_images/resilience_RF_PSI.png" class="align-center" src="../../../_images/resilience_RF_PSI.png" style="width: 500px;" />
-</a>
-<p>In this example, specific analysis is applied to cluster ID 2 and is compared to overall data as a baseline.</p>
-<div class="side-by-side docutils container">
-<a class="reference internal image-reference" href="../../../_images/resilience_Density_RF_weekday.png"><img alt="../../../_images/resilience_Density_RF_weekday.png" src="../../../_images/resilience_Density_RF_weekday.png" style="width: 45%;" />
-</a>
-<a class="reference internal image-reference" href="../../../_images/resilience_Density_RF_hr.png"><img alt="../../../_images/resilience_Density_RF_hr.png" src="../../../_images/resilience_Density_RF_hr.png" style="width: 45%;" />
-</a>
-</div>
-<div class="side-by-side docutils container">
-<a class="reference internal image-reference" href="_source/images/resilience_Density_RF_workingday.png"><img alt="_source/images/resilience_Density_RF_workingday.png" src="_source/images/resilience_Density_RF_workingday.png" style="width: 45%;" />
-</a>
-<a class="reference internal image-reference" href="../../../_images/resilience_Density_RF_hum.png"><img alt="../../../_images/resilience_Density_RF_hum.png" src="../../../_images/resilience_Density_RF_hum.png" style="width: 45%;" />
-</a>
-</div>
-<p>Resilience among models can be compared in more details by using Random Forest clustering approach:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">tsc</span><span class="o">.</span><span class="n">compare_resilience_cluster</span><span class="p">(</span>
-   <span class="n">cluster_method</span><span class="o">=</span><span class="s2">&quot;cluster_qr&quot;</span><span class="p">,</span>
-   <span class="n">n_clusters</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-   <span class="n">rf_n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-   <span class="n">rf_max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-   <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;MSE&quot;</span><span class="p">)</span>
-<span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-</pre></div>
-</div>
-<a class="reference internal image-reference" href="../../../_images/resilience_compare_RF.png"><img alt="../../../_images/resilience_compare_RF.png" class="align-center" src="../../../_images/resilience_compare_RF.png" style="width: 500px;" />
-</a>
-<p>Check the API reference for detail arguments of <a class="reference external" href="../../modules/generated/modeva.TestSuite.compare_resilience_cluster.html">TestSuite.compare_resilience_cluster</a>.</p>
-</section>
 <section id="strategies-for-addressing-model-weaknesses">
 <h2>Strategies for Addressing Model Weaknesses<a class="headerlink" href="#strategies-for-addressing-model-weaknesses" title="Link to this heading">#</a></h2>
 <section id="data-centric-approaches">
@@ -918,7 +853,6 @@ f_{global}(X) &amp; \text{otherwise}
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resilience-comparison">Resilience Comparison</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resilience-through-supervised-clustering-analysis">Resilience Through Supervised Clustering Analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strategies-for-addressing-model-weaknesses">Strategies for Addressing Model Weaknesses</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-centric-approaches">Data-Centric Approaches</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-centric-approaches">Model-Centric Approaches</a></li>
