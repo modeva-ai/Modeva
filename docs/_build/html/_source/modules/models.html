@@ -52,7 +52,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '_source/modules/models';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="modeva.models.MoElasticNet" href="generated/modeva.models.MoElasticNet.html" />
+    <link rel="next" title="modeva.models.ModelBaseRegressor" href="generated/modeva.models.ModelBaseRegressor.html" />
     <link rel="prev" title="modeva.ModelZoo.models" href="generated/modeva.ModelZoo.models.html" />
   
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -383,6 +383,7 @@
 <li class="toctree-l1"><a class="reference internal" href="data.html">DataSet</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modelzoo.html">Model Zoo</a></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Interpretable Models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated/modeva.models.ModelBaseRegressor.html">modeva.models.ModelBaseRegressor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/modeva.models.MoElasticNet.html">modeva.models.MoElasticNet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/modeva.models.MoDecisionTreeRegressor.html">modeva.models.MoDecisionTreeRegressor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/modeva.models.MoGradientBoostingRegressor.html">modeva.models.MoGradientBoostingRegressor</a></li>
@@ -396,6 +397,7 @@
 <li class="toctree-l2"><a class="reference internal" href="generated/modeva.models.MoGLMTreeBoostRegressor.html">modeva.models.MoGLMTreeBoostRegressor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/modeva.models.MoNeuralTreeRegressor.html">modeva.models.MoNeuralTreeRegressor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/modeva.models.MoMoERegressor.html">modeva.models.MoMoERegressor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/modeva.models.ModelBaseClassifier.html">modeva.models.ModelBaseClassifier</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/modeva.models.MoLogisticRegression.html">modeva.models.MoLogisticRegression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/modeva.models.MoDecisionTreeClassifier.html">modeva.models.MoDecisionTreeClassifier</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/modeva.models.MoGradientBoostingClassifier.html">modeva.models.MoGradientBoostingClassifier</a></li>
@@ -478,43 +480,46 @@
 <h2>Regression<a class="headerlink" href="#regression" title="Link to this heading">#</a></h2>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/modeva.models.MoElasticNet.html#modeva.models.MoElasticNet" title="modeva.models.MoElasticNet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoElasticNet</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/modeva.models.ModelBaseRegressor.html#modeva.models.ModelBaseRegressor" title="modeva.models.ModelBaseRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.ModelBaseRegressor</span></code></a></p></td>
+<td><p>Base Class for Modeva Regressors.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/modeva.models.MoElasticNet.html#modeva.models.MoElasticNet" title="modeva.models.MoElasticNet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoElasticNet</span></code></a></p></td>
 <td><p>A lightweight wrapper of <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.linear_model.ElasticNet</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/modeva.models.MoDecisionTreeRegressor.html#modeva.models.MoDecisionTreeRegressor" title="modeva.models.MoDecisionTreeRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoDecisionTreeRegressor</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/modeva.models.MoDecisionTreeRegressor.html#modeva.models.MoDecisionTreeRegressor" title="modeva.models.MoDecisionTreeRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoDecisionTreeRegressor</span></code></a></p></td>
 <td><p>A lightweight wrapper of <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.tree.DecisionTreeRegressor</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/modeva.models.MoGradientBoostingRegressor.html#modeva.models.MoGradientBoostingRegressor" title="modeva.models.MoGradientBoostingRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoGradientBoostingRegressor</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/modeva.models.MoGradientBoostingRegressor.html#modeva.models.MoGradientBoostingRegressor" title="modeva.models.MoGradientBoostingRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoGradientBoostingRegressor</span></code></a></p></td>
 <td><p>A lightweight wrapper of <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.ensemble.GradientBoostingRegressor</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/modeva.models.MoRandomForestRegressor.html#modeva.models.MoRandomForestRegressor" title="modeva.models.MoRandomForestRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoRandomForestRegressor</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/modeva.models.MoRandomForestRegressor.html#modeva.models.MoRandomForestRegressor" title="modeva.models.MoRandomForestRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoRandomForestRegressor</span></code></a></p></td>
 <td><p>A lightweight wrapper of <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.ensemble.RandomForestRegressor</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/modeva.models.MoLGBMRegressor.html#modeva.models.MoLGBMRegressor" title="modeva.models.MoLGBMRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoLGBMRegressor</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/modeva.models.MoLGBMRegressor.html#modeva.models.MoLGBMRegressor" title="modeva.models.MoLGBMRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoLGBMRegressor</span></code></a></p></td>
 <td><p>A lightweight wrapper of <code class="xref py py-class docutils literal notranslate"><span class="pre">lightgbm.LGBMRegressor</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/modeva.models.MoCatBoostRegressor.html#modeva.models.MoCatBoostRegressor" title="modeva.models.MoCatBoostRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoCatBoostRegressor</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/modeva.models.MoCatBoostRegressor.html#modeva.models.MoCatBoostRegressor" title="modeva.models.MoCatBoostRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoCatBoostRegressor</span></code></a></p></td>
 <td><p>A lightweight wrapper of <a class="reference external" href="https://catboost.ai/docs/en/concepts/python-reference_catboostregressor">catboost.CatBoostRegressor</a>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/modeva.models.MoXGBRegressor.html#modeva.models.MoXGBRegressor" title="modeva.models.MoXGBRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoXGBRegressor</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/modeva.models.MoXGBRegressor.html#modeva.models.MoXGBRegressor" title="modeva.models.MoXGBRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoXGBRegressor</span></code></a></p></td>
 <td><p>A lightweight wrapper of <code class="xref py py-class docutils literal notranslate"><span class="pre">xgboost.XGBRegressor</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/modeva.models.MoReLUDNNRegressor.html#modeva.models.MoReLUDNNRegressor" title="modeva.models.MoReLUDNNRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoReLUDNNRegressor</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/modeva.models.MoReLUDNNRegressor.html#modeva.models.MoReLUDNNRegressor" title="modeva.models.MoReLUDNNRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoReLUDNNRegressor</span></code></a></p></td>
 <td><p>A deep neural network regressor using ReLU activation functions.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/modeva.models.MoGAMINetRegressor.html#modeva.models.MoGAMINetRegressor" title="modeva.models.MoGAMINetRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoGAMINetRegressor</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/modeva.models.MoGAMINetRegressor.html#modeva.models.MoGAMINetRegressor" title="modeva.models.MoGAMINetRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoGAMINetRegressor</span></code></a></p></td>
 <td><p>Generalized additive model with pairwise interaction regressor.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/modeva.models.MoGLMTreeRegressor.html#modeva.models.MoGLMTreeRegressor" title="modeva.models.MoGLMTreeRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoGLMTreeRegressor</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/modeva.models.MoGLMTreeRegressor.html#modeva.models.MoGLMTreeRegressor" title="modeva.models.MoGLMTreeRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoGLMTreeRegressor</span></code></a></p></td>
 <td><p>A tree-based model that fits linear regression models in the leaves.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/modeva.models.MoGLMTreeBoostRegressor.html#modeva.models.MoGLMTreeBoostRegressor" title="modeva.models.MoGLMTreeBoostRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoGLMTreeBoostRegressor</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/modeva.models.MoGLMTreeBoostRegressor.html#modeva.models.MoGLMTreeBoostRegressor" title="modeva.models.MoGLMTreeBoostRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoGLMTreeBoostRegressor</span></code></a></p></td>
 <td><p>GLMTree Boosting regressor using residual-based boosting.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/modeva.models.MoNeuralTreeRegressor.html#modeva.models.MoNeuralTreeRegressor" title="modeva.models.MoNeuralTreeRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoNeuralTreeRegressor</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/modeva.models.MoNeuralTreeRegressor.html#modeva.models.MoNeuralTreeRegressor" title="modeva.models.MoNeuralTreeRegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoNeuralTreeRegressor</span></code></a></p></td>
 <td><p>A neural network-based regression model that combines GLM trees with monotonicity constraints.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/modeva.models.MoMoERegressor.html#modeva.models.MoMoERegressor" title="modeva.models.MoMoERegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoMoERegressor</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/modeva.models.MoMoERegressor.html#modeva.models.MoMoERegressor" title="modeva.models.MoMoERegressor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoMoERegressor</span></code></a></p></td>
 <td><p>A Mixture of Experts (MoE) regressor that combines multiple expert models for regression tasks.</p></td>
 </tr>
 </tbody>
@@ -525,43 +530,46 @@
 <h2>Classification<a class="headerlink" href="#classification" title="Link to this heading">#</a></h2>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/modeva.models.MoLogisticRegression.html#modeva.models.MoLogisticRegression" title="modeva.models.MoLogisticRegression"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoLogisticRegression</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/modeva.models.ModelBaseClassifier.html#modeva.models.ModelBaseClassifier" title="modeva.models.ModelBaseClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.ModelBaseClassifier</span></code></a></p></td>
+<td><p>Base Class for Modeva Classifiers.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/modeva.models.MoLogisticRegression.html#modeva.models.MoLogisticRegression" title="modeva.models.MoLogisticRegression"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoLogisticRegression</span></code></a></p></td>
 <td><p>A lightweight wrapper of <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.linear_model.LogisticRegression</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/modeva.models.MoDecisionTreeClassifier.html#modeva.models.MoDecisionTreeClassifier" title="modeva.models.MoDecisionTreeClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoDecisionTreeClassifier</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/modeva.models.MoDecisionTreeClassifier.html#modeva.models.MoDecisionTreeClassifier" title="modeva.models.MoDecisionTreeClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoDecisionTreeClassifier</span></code></a></p></td>
 <td><p>A lightweight wrapper of <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.tree.DecisionTreeClassifier</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/modeva.models.MoGradientBoostingClassifier.html#modeva.models.MoGradientBoostingClassifier" title="modeva.models.MoGradientBoostingClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoGradientBoostingClassifier</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/modeva.models.MoGradientBoostingClassifier.html#modeva.models.MoGradientBoostingClassifier" title="modeva.models.MoGradientBoostingClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoGradientBoostingClassifier</span></code></a></p></td>
 <td><p>A lightweight wrapper of <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.ensemble.GradientBoostingClassifier</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/modeva.models.MoRandomForestClassifier.html#modeva.models.MoRandomForestClassifier" title="modeva.models.MoRandomForestClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoRandomForestClassifier</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/modeva.models.MoRandomForestClassifier.html#modeva.models.MoRandomForestClassifier" title="modeva.models.MoRandomForestClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoRandomForestClassifier</span></code></a></p></td>
 <td><p>A lightweight wrapper of <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.ensemble.RandomForestClassifier</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/modeva.models.MoLGBMClassifier.html#modeva.models.MoLGBMClassifier" title="modeva.models.MoLGBMClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoLGBMClassifier</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/modeva.models.MoLGBMClassifier.html#modeva.models.MoLGBMClassifier" title="modeva.models.MoLGBMClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoLGBMClassifier</span></code></a></p></td>
 <td><p>A lightweight wrapper of <code class="xref py py-class docutils literal notranslate"><span class="pre">lightgbm.LGBMClassifier</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/modeva.models.MoCatBoostClassifier.html#modeva.models.MoCatBoostClassifier" title="modeva.models.MoCatBoostClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoCatBoostClassifier</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/modeva.models.MoCatBoostClassifier.html#modeva.models.MoCatBoostClassifier" title="modeva.models.MoCatBoostClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoCatBoostClassifier</span></code></a></p></td>
 <td><p>A lightweight wrapper of <a class="reference external" href="https://catboost.ai/docs/en/concepts/python-reference_catboostclassifier">catboost.CatBoostClassifier</a>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/modeva.models.MoXGBClassifier.html#modeva.models.MoXGBClassifier" title="modeva.models.MoXGBClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoXGBClassifier</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/modeva.models.MoXGBClassifier.html#modeva.models.MoXGBClassifier" title="modeva.models.MoXGBClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoXGBClassifier</span></code></a></p></td>
 <td><p>A lightweight wrapper of <code class="xref py py-class docutils literal notranslate"><span class="pre">xgboost.XGBClassifier</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/modeva.models.MoReLUDNNClassifier.html#modeva.models.MoReLUDNNClassifier" title="modeva.models.MoReLUDNNClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoReLUDNNClassifier</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/modeva.models.MoReLUDNNClassifier.html#modeva.models.MoReLUDNNClassifier" title="modeva.models.MoReLUDNNClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoReLUDNNClassifier</span></code></a></p></td>
 <td><p>A deep neural network classifier using ReLU activation functions.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/modeva.models.MoGAMINetClassifier.html#modeva.models.MoGAMINetClassifier" title="modeva.models.MoGAMINetClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoGAMINetClassifier</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/modeva.models.MoGAMINetClassifier.html#modeva.models.MoGAMINetClassifier" title="modeva.models.MoGAMINetClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoGAMINetClassifier</span></code></a></p></td>
 <td><p>Generalized additive model with pairwise interaction classifier.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/modeva.models.MoGLMTreeClassifier.html#modeva.models.MoGLMTreeClassifier" title="modeva.models.MoGLMTreeClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoGLMTreeClassifier</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/modeva.models.MoGLMTreeClassifier.html#modeva.models.MoGLMTreeClassifier" title="modeva.models.MoGLMTreeClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoGLMTreeClassifier</span></code></a></p></td>
 <td><p>A tree-based model that fits logistic regression models in the leaves for binary classification.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/modeva.models.MoGLMTreeBoostClassifier.html#modeva.models.MoGLMTreeBoostClassifier" title="modeva.models.MoGLMTreeBoostClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoGLMTreeBoostClassifier</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/modeva.models.MoGLMTreeBoostClassifier.html#modeva.models.MoGLMTreeBoostClassifier" title="modeva.models.MoGLMTreeBoostClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoGLMTreeBoostClassifier</span></code></a></p></td>
 <td><p>GLMTree Boosting classifier using residual-based boosting.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/modeva.models.MoNeuralTreeClassifier.html#modeva.models.MoNeuralTreeClassifier" title="modeva.models.MoNeuralTreeClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoNeuralTreeClassifier</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/modeva.models.MoNeuralTreeClassifier.html#modeva.models.MoNeuralTreeClassifier" title="modeva.models.MoNeuralTreeClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoNeuralTreeClassifier</span></code></a></p></td>
 <td><p>A neural network-based classification model that combines GLM trees with monotonicity constraints.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/modeva.models.MoMoEClassifier.html#modeva.models.MoMoEClassifier" title="modeva.models.MoMoEClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoMoEClassifier</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/modeva.models.MoMoEClassifier.html#modeva.models.MoMoEClassifier" title="modeva.models.MoMoEClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">models.MoMoEClassifier</span></code></a></p></td>
 <td><p>A Mixture of Experts (MoE) classifier that combines multiple expert models for classification tasks.</p></td>
 </tr>
 </tbody>
@@ -590,11 +598,11 @@
       </div>
     </a>
     <a class="right-next"
-       href="generated/modeva.models.MoElasticNet.html"
+       href="generated/modeva.models.ModelBaseRegressor.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">modeva.models.MoElasticNet</p>
+        <p class="prev-next-title">modeva.models.ModelBaseRegressor</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
