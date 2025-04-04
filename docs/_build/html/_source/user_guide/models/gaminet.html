@@ -512,7 +512,7 @@
 
 <span class="c1"># For classification tasks</span>
 <span class="kn">from</span> <span class="nn">modeva.models</span> <span class="kn">import</span> <span class="n">MoReLUDNNClassifier</span>
-<span class="n">model_GAMI</span> <span class="o">=</span> <span class="n">MoReLUDNNClassifier</span><span class="p">(</span><span class="n">max_epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">model_GAMI</span> <span class="o">=</span> <span class="n">MoReLUDNNClassifier</span><span class="p">(</span><span class="n">max_epochs</span><span class="o">=</span><span class="mi">(100, 100, 100)</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>For the full list of hyperparameters, please see the API of <a class="reference external" href="../../modules/generated/modeva.models.MoGAMINetRegressor.html">MoGAMINetRegressor</a> and <a class="reference external" href="../../modules/generated/modeva.models.MoGAMINetClassifier.html">MoGAMINetClassifier</a>.</p>
