@@ -50,8 +50,8 @@ new_ds.load_dataframe(data)
 new_ds.set_train_idx(train_idx=np.array(ds.train_idx))
 new_ds.set_test_idx(test_idx=np.array(ds.test_idx))
 new_ds.set_target(feature="cnt")
-new_ds.set_prediction(feature="prediction")
 new_ds.register(override=True)
+new_ds.set_inactive_features(features=("prediction", ))
 
 # %%
 # Reload the model (optional)
@@ -60,7 +60,7 @@ reload_ds.load_registered_data(name="scored-test-demo")
 
 # %%
 # Run tests without the model object, note that the robustness test is not available for scored model
-model = MoScoredRegressor(dataset=new_ds)
+model = MoScoredRegressor(dataset=new_ds, prediction_name="prediction")
 ts = TestSuite(ds, model)
 
 # %%

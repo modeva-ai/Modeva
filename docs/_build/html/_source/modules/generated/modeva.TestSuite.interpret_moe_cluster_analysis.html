@@ -57,7 +57,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="1.0.10" />
+  <meta name="docsearch:version" content="1.0.11" />
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="MoDeVa">
   <meta property="og:description" content="An Integrated Tool for Model Development and Validation">
@@ -512,11 +512,19 @@
 <h1>modeva.TestSuite.interpret_moe_cluster_analysis<a class="headerlink" href="#modeva-testsuite-interpret-moe-cluster-analysis" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="modeva.TestSuite.interpret_moe_cluster_analysis">
-<span class="sig-prename descclassname"><span class="pre">TestSuite.</span></span><span class="sig-name descname"><span class="pre">interpret_moe_cluster_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'test'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.TestSuite.interpret_moe_cluster_analysis" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">TestSuite.</span></span><span class="sig-name descname"><span class="pre">interpret_moe_cluster_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'test'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.TestSuite.interpret_moe_cluster_analysis" title="Link to this definition">#</a></dt>
 <dd><p>Analyze and summarize characteristics of mixture-of-experts clusters.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>dataset</strong> (<em>{&quot;main&quot;</em><em>, </em><em>&quot;train&quot;</em><em>, </em><em>&quot;test&quot;}</em><em>, </em><em>default=&quot;test&quot;</em>) – The dataset to analyze cluster assignments.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset</strong> (<em>{&quot;main&quot;</em><em>, </em><em>&quot;train&quot;</em><em>, </em><em>&quot;test&quot;}</em><em>, </em><em>default=&quot;test&quot;</em>) – The dataset to analyze cluster assignments.</p></li>
+<li><p><strong>metric</strong> (<em>str</em><em>, </em><em>metric=None</em>) – <p>Model performance metric to use.</p>
+<ul>
+<li><p>For classification (default=”AUC”): “ACC”, “AUC”, “F1”, “LogLoss”, and “Brier”</p></li>
+<li><p>For regression (default=”MSE”): “MSE”, “MAE”, and “R2”</p></li>
+</ul>
+</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><p>Contains cluster analysis results:</p>
@@ -527,11 +535,27 @@
 <li><p>inputs: Input parameters</p></li>
 <li><p>value: Nested dictionary containing the (“&lt;expert_id&gt;”, item) pairs for each group, and the item is also a dictionary with:</p>
 <blockquote>
-<div><ul class="simple">
-<li><p>”center”: Cluster centroid coordinates</p></li>
+<div><ul>
 <li><p>”size”: Number of samples in cluster</p></li>
-<li><p>”percentage”: Proportion of total samples</p></li>
-<li><p>”data_info”: Sample indices for in/out of cluster comparison</p></li>
+<li><p>”score”: The performance metric of this cluster</p></li>
+<li><p>”center”: Cluster centroid coordinates</p></li>
+<li><p>”data_info”: Sample indices for in/out of cluster comparison, which can be further used for data distribution test, e.g.,</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data_results</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">data_drift_test</span><span class="p">(</span><span class="o">**</span><span class="n">results</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s2">&quot;data_info&quot;</span><span class="p">])</span>
+<span class="n">data_results</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;summary&quot;</span><span class="p">)</span>
+<span class="n">data_results</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="s2">&quot;density&quot;</span><span class="p">,</span> <span class="s2">&quot;MedInc&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>table: DataFrame with performance metrics for each cluster</p></li>
+<li><p>options: Dictionary of visualizations configuration. Run <cite>results.plot(name=xxx)</cite> to show all plots; Run <cite>results.plot(name=xxx)</cite> to display one preferred plot; and the following names are available:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>”cluster_performance”: Bar plot visualizing the performance scores of final MOE model against each cluster.</p></li>
 </ul>
 </div></blockquote>
 </li>

@@ -108,6 +108,24 @@ results.plot("2")
 results.plot("all")
 
 # %%
+# Cluster performance analysis
+# ----------------------------------------------------------
+results = ts.interpret_moe_cluster_analysis()
+results.plot()
+
+# %%
+# Distribution difference summary between cluster-0 with the rest
+data_results = ds.data_drift_test(**results.value[0]["data_info"],
+                                  distance_metric="PSI",
+                                  psi_method="uniform",
+                                  psi_bins=10)
+data_results.plot("summary")
+
+# %%
+# Distributional difference for hr between cluster-0 with the rest
+data_results.plot(("density", "hr"))
+
+# %%
 # Local feature importance analysis
 # ----------------------------------------------------------
 results = ts.interpret_local_fi(dataset='train', sample_index=1)

@@ -54,7 +54,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="1.0.10" />
+  <meta name="docsearch:version" content="1.0.11" />
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="MoDeVa">
   <meta property="og:description" content="An Integrated Tool for Model Development and Validation">
@@ -817,6 +817,8 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_source/modules/generated/modeva.DataSet.get_active_sample_idx.html#modeva.DataSet.get_active_sample_idx">get_active_sample_idx() (modeva.DataSet method)</a>
+</li>
       <li><a href="_source/modules/generated/modeva.DataSet.get_data.html#modeva.DataSet.get_data">get_data() (modeva.DataSet method)</a>
 </li>
       <li><a href="_source/modules/generated/modeva.testsuite.utils.slicing_utils.get_data_info.html#modeva.testsuite.utils.slicing_utils.get_data_info">get_data_info() (in module modeva.testsuite.utils.slicing_utils)</a>
@@ -913,10 +915,6 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_source/modules/generated/modeva.DataSet.get_prediction_data.html#modeva.DataSet.get_prediction_data">get_prediction_data() (modeva.DataSet method)</a>
-</li>
-      <li><a href="_source/modules/generated/modeva.DataSet.get_prediction_proba_data.html#modeva.DataSet.get_prediction_proba_data">get_prediction_proba_data() (modeva.DataSet method)</a>
-</li>
       <li><a href="_source/modules/generated/modeva.DataSet.get_preprocessor.html#modeva.DataSet.get_preprocessor">get_preprocessor() (modeva.DataSet method)</a>
 </li>
       <li><a href="_source/modules/generated/modeva.DataSet.get_protected_data.html#modeva.DataSet.get_protected_data">get_protected_data() (modeva.DataSet method)</a>
@@ -1447,9 +1445,13 @@
         <li><a href="_source/modules/generated/modeva.models.MoXGBClassifier.html#modeva.models.MoXGBClassifier.predict_proba">(modeva.models.MoXGBClassifier method)</a>
 </li>
       </ul></li>
-      <li><a href="_source/modules/generated/modeva.DataSet.prediction.html#modeva.DataSet.prediction">prediction (modeva.DataSet property)</a>
+      <li><a href="_source/modules/generated/modeva.DataSet.prediction_name.html#modeva.DataSet.prediction_name">prediction_name (modeva.DataSet property)</a>
+</li>
+      <li><a href="_source/modules/generated/modeva.DataSet.prediction_proba_name.html#modeva.DataSet.prediction_proba_name">prediction_proba_name (modeva.DataSet property)</a>
 </li>
       <li><a href="_source/modules/generated/modeva.DataSet.preprocess.html#modeva.DataSet.preprocess">preprocess() (modeva.DataSet method)</a>
+</li>
+      <li><a href="_source/modules/generated/modeva.DataSet.protected_feature_names.html#modeva.DataSet.protected_feature_names">protected_feature_names (modeva.DataSet property)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1490,6 +1492,8 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_source/modules/generated/modeva.DataSet.sample_weight.html#modeva.DataSet.sample_weight">sample_weight (modeva.DataSet property)</a>
+</li>
+      <li><a href="_source/modules/generated/modeva.DataSet.sample_weight_name.html#modeva.DataSet.sample_weight_name">sample_weight_name (modeva.DataSet property)</a>
 </li>
       <li><a href="_source/modules/generated/modeva.models.MoCatBoostClassifier.html#modeva.models.MoCatBoostClassifier.save">save() (modeva.models.MoCatBoostClassifier method)</a>
 
@@ -1685,9 +1689,9 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_source/modules/generated/modeva.utils.results.ValidationResult.html#modeva.utils.results.ValidationResult.table">table (modeva.utils.results.ValidationResult attribute)</a>
 </li>
-      <li><a href="_source/modules/generated/modeva.DataSet.task_type.html#modeva.DataSet.task_type">task_type (modeva.DataSet property)</a>
+      <li><a href="_source/modules/generated/modeva.DataSet.target_feature_name.html#modeva.DataSet.target_feature_name">target_feature_name (modeva.DataSet property)</a>
 </li>
-      <li><a href="_source/modules/generated/modeva.DataSet.test_prediction.html#modeva.DataSet.test_prediction">test_prediction (modeva.DataSet property)</a>
+      <li><a href="_source/modules/generated/modeva.DataSet.task_type.html#modeva.DataSet.task_type">task_type (modeva.DataSet property)</a>
 </li>
       <li><a href="_source/modules/generated/modeva.DataSet.test_sample_weight.html#modeva.DataSet.test_sample_weight">test_sample_weight (modeva.DataSet property)</a>
 </li>
@@ -1703,10 +1707,10 @@
       </ul></li>
       <li><a href="_source/modules/generated/modeva.DataSet.to_df.html#modeva.DataSet.to_df">to_df() (modeva.DataSet method)</a>
 </li>
-      <li><a href="_source/modules/generated/modeva.ModelZoo.train.html#modeva.ModelZoo.train">train() (modeva.ModelZoo method)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_source/modules/generated/modeva.ModelZoo.train.html#modeva.ModelZoo.train">train() (modeva.ModelZoo method)</a>
+</li>
       <li><a href="_source/modules/generated/modeva.ModelZoo.train_all.html#modeva.ModelZoo.train_all">train_all() (modeva.ModelZoo method)</a>
 </li>
       <li><a href="_source/modules/generated/modeva.models.MoReLUDNNClassifier.html#modeva.models.MoReLUDNNClassifier.train_epoch_loss_">train_epoch_loss_ (modeva.models.MoReLUDNNClassifier attribute)</a>
@@ -1715,8 +1719,6 @@
         <li><a href="_source/modules/generated/modeva.models.MoReLUDNNRegressor.html#modeva.models.MoReLUDNNRegressor.train_epoch_loss_">(modeva.models.MoReLUDNNRegressor attribute)</a>
 </li>
       </ul></li>
-      <li><a href="_source/modules/generated/modeva.DataSet.train_prediction.html#modeva.DataSet.train_prediction">train_prediction (modeva.DataSet property)</a>
-</li>
       <li><a href="_source/modules/generated/modeva.DataSet.train_sample_weight.html#modeva.DataSet.train_sample_weight">train_sample_weight (modeva.DataSet property)</a>
 </li>
       <li><a href="_source/modules/generated/modeva.DataSet.train_x.html#modeva.DataSet.train_x">train_x (modeva.DataSet property)</a>

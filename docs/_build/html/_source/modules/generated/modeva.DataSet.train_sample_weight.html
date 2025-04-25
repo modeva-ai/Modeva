@@ -52,12 +52,12 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '_source/modules/generated/modeva.DataSet.train_sample_weight';</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="modeva.DataSet.train_prediction" href="modeva.DataSet.train_prediction.html" />
+    <link rel="next" title="modeva.DataSet.test_x" href="modeva.DataSet.test_x.html" />
     <link rel="prev" title="modeva.DataSet.train_y" href="modeva.DataSet.train_y.html" />
   
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="1.0.10" />
+  <meta name="docsearch:version" content="1.0.11" />
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="MoDeVa">
   <meta property="og:description" content="An Integrated Tool for Model Development and Validation">
@@ -426,17 +426,21 @@
 <li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.data.html">modeva.DataSet.data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.shape.html">modeva.DataSet.shape</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.all_feature_names.html">modeva.DataSet.all_feature_names</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.all_feature_types.html">modeva.DataSet.all_feature_types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.feature_names.html">modeva.DataSet.feature_names</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.feature_types.html">modeva.DataSet.feature_types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.feature_names_numerical.html">modeva.DataSet.feature_names_numerical</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.feature_names_categorical.html">modeva.DataSet.feature_names_categorical</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.feature_names_mixed.html">modeva.DataSet.feature_names_mixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.target_feature_name.html">modeva.DataSet.target_feature_name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.sample_weight_name.html">modeva.DataSet.sample_weight_name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.prediction_name.html">modeva.DataSet.prediction_name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.prediction_proba_name.html">modeva.DataSet.prediction_proba_name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.protected_feature_names.html">modeva.DataSet.protected_feature_names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.all_feature_types.html">modeva.DataSet.all_feature_types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.feature_types.html">modeva.DataSet.feature_types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.n_features.html">modeva.DataSet.n_features</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.task_type.html">modeva.DataSet.task_type</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.x.html">modeva.DataSet.x</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.y.html">modeva.DataSet.y</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.prediction.html">modeva.DataSet.prediction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.sample_weight.html">modeva.DataSet.sample_weight</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.set_random_split.html">modeva.DataSet.set_random_split</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.set_train_idx.html">modeva.DataSet.set_train_idx</a></li>
@@ -444,11 +448,9 @@
 <li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.train_x.html">modeva.DataSet.train_x</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.train_y.html">modeva.DataSet.train_y</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">modeva.DataSet.train_sample_weight</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.train_prediction.html">modeva.DataSet.train_prediction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.test_x.html">modeva.DataSet.test_x</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.test_y.html">modeva.DataSet.test_y</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.test_sample_weight.html">modeva.DataSet.test_sample_weight</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.test_prediction.html">modeva.DataSet.test_prediction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.is_splitted.html">modeva.DataSet.is_splitted</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.set_protected_data.html">modeva.DataSet.set_protected_data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.set_protected_extra_data.html">modeva.DataSet.set_protected_extra_data</a></li>
@@ -459,9 +461,8 @@
 <li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.get_raw_data.html">modeva.DataSet.get_raw_data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.get_data.html">modeva.DataSet.get_data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.get_X_y_data.html">modeva.DataSet.get_X_y_data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.get_active_sample_idx.html">modeva.DataSet.get_active_sample_idx</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.get_protected_data.html">modeva.DataSet.get_protected_data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.get_prediction_data.html">modeva.DataSet.get_prediction_data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.get_prediction_proba_data.html">modeva.DataSet.get_prediction_proba_data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.subsample_random.html">modeva.DataSet.subsample_random</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.data_drift_test.html">modeva.DataSet.data_drift_test</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modeva.DataSet.save_preprocessing.html">modeva.DataSet.save_preprocessing</a></li>
@@ -564,11 +565,11 @@
       </div>
     </a>
     <a class="right-next"
-       href="modeva.DataSet.train_prediction.html"
+       href="modeva.DataSet.test_x.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">modeva.DataSet.train_prediction</p>
+        <p class="prev-next-title">modeva.DataSet.test_x</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
