@@ -57,7 +57,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="1.0.10" />
+  <meta name="docsearch:version" content="1.0.11" />
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="MoDeVa">
   <meta property="og:description" content="An Integrated Tool for Model Development and Validation">
@@ -380,6 +380,7 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../get_started/index.html">Get Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../data/index.html">Dataset</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Model Development</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../plot_0_modelzoo.html">ModelZoo</a></li>
@@ -506,13 +507,18 @@ to download the full example code.</p>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">train_indices</span><span class="p">,</span> <span class="n">test_indices</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
     <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">))),</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 
-<span class="n">model</span> <span class="o">=</span> <span class="n">MoXGBRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">model1</span> <span class="o">=</span> <span class="n">MoXGBRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">model1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">prediction1</span> <span class="o">=</span> <span class="n">model1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="n">model2</span> <span class="o">=</span> <span class="n">MoXGBRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">model2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">prediction2</span> <span class="o">=</span> <span class="n">model2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-                                    <span class="n">prediction</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span> <span class="mi">1</span><span class="p">),</span>
-                    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;X&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s2">&quot;prediction&quot;</span><span class="p">])</span>
+                                    <span class="n">prediction1</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+                                    <span class="n">prediction2</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span> <span class="mi">1</span><span class="p">),</span>
+                    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;X&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s2">&quot;pred_XGB1&quot;</span><span class="p">,</span> <span class="s2">&quot;pred_XGB2&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </section>
@@ -523,26 +529,21 @@ to download the full example code.</p>
 <span class="n">ds</span><span class="o">.</span><span class="n">set_train_idx</span><span class="p">(</span><span class="n">train_idx</span><span class="o">=</span><span class="n">train_indices</span><span class="p">)</span>
 <span class="n">ds</span><span class="o">.</span><span class="n">set_test_idx</span><span class="p">(</span><span class="n">test_idx</span><span class="o">=</span><span class="n">test_indices</span><span class="p">)</span>
 <span class="n">ds</span><span class="o">.</span><span class="n">set_target</span><span class="p">(</span><span class="n">feature</span><span class="o">=</span><span class="s2">&quot;Y&quot;</span><span class="p">)</span>
-<span class="n">ds</span><span class="o">.</span><span class="n">set_prediction</span><span class="p">(</span><span class="n">feature</span><span class="o">=</span><span class="s2">&quot;prediction&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Save and load the data (optional)</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">override</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">reload_ds</span> <span class="o">=</span> <span class="n">DataSet</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;scored-test-demo&quot;</span><span class="p">)</span>
-<span class="n">reload_ds</span><span class="o">.</span><span class="n">load_registered_data</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;scored-test-demo&quot;</span><span class="p">)</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_inactive_features</span><span class="p">((</span><span class="s2">&quot;pred_XGB1&quot;</span><span class="p">,</span> <span class="s2">&quot;pred_XGB2&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </section>
 <section id="convert-the-model-into-modeva">
 <h2>Convert the model into Modeva<a class="headerlink" href="#convert-the-model-into-modeva" title="Link to this heading">#</a></h2>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">MoScoredRegressor</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="n">ds</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">scored_model1</span> <span class="o">=</span> <span class="n">MoScoredRegressor</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="n">ds</span><span class="p">,</span> <span class="n">prediction_name</span><span class="o">=</span><span class="s2">&quot;pred_XGB1&quot;</span><span class="p">)</span>
+<span class="n">scored_model2</span> <span class="o">=</span> <span class="n">MoScoredRegressor</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="n">ds</span><span class="p">,</span> <span class="n">prediction_name</span><span class="o">=</span><span class="s2">&quot;pred_XGB2&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="create-test-suite-for-diagnostics">
 <h2>Create test suite for diagnostics<a class="headerlink" href="#create-test-suite-for-diagnostics" title="Link to this heading">#</a></h2>
 <p>Note that the robustness test is not available for scored model</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">ts</span> <span class="o">=</span> <span class="n">TestSuite</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">ts</span> <span class="o">=</span> <span class="n">TestSuite</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">scored_model1</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Run accuracy test without the model object</p>
@@ -577,21 +578,21 @@ to download the full example code.</p>
   <tbody>
     <tr>
       <th>train</th>
-      <td>0.4907</td>
-      <td>0.5574</td>
-      <td>0.9791</td>
+      <td>1.9714</td>
+      <td>1.1095</td>
+      <td>0.9161</td>
     </tr>
     <tr>
       <th>test</th>
-      <td>0.5554</td>
-      <td>0.5945</td>
-      <td>0.9769</td>
+      <td>1.9887</td>
+      <td>1.1226</td>
+      <td>0.9174</td>
     </tr>
     <tr>
       <th>GAP</th>
-      <td>0.0647</td>
-      <td>0.0371</td>
-      <td>-0.0022</td>
+      <td>0.0173</td>
+      <td>0.0131</td>
+      <td>0.0013</td>
     </tr>
   </tbody>
 </table>
@@ -630,27 +631,27 @@ to download the full example code.</p>
     <tr>
       <th>0</th>
       <td>0.6991</td>
-      <td>0.1805</td>
+      <td>1.2913</td>
     </tr>
     <tr>
       <th>1</th>
       <td>0.7403</td>
-      <td>0.3822</td>
+      <td>0.9713</td>
     </tr>
     <tr>
       <th>2</th>
       <td>0.3797</td>
-      <td>-0.1595</td>
+      <td>-0.4222</td>
     </tr>
     <tr>
       <th>3</th>
       <td>0.8710</td>
-      <td>0.1551</td>
+      <td>1.7552</td>
     </tr>
     <tr>
       <th>4</th>
       <td>0.8201</td>
-      <td>-0.8167</td>
+      <td>-1.2072</td>
     </tr>
     <tr>
       <th>...</th>
@@ -660,27 +661,27 @@ to download the full example code.</p>
     <tr>
       <th>1995</th>
       <td>0.4417</td>
-      <td>-0.8157</td>
+      <td>-0.6784</td>
     </tr>
     <tr>
       <th>1996</th>
       <td>0.8035</td>
-      <td>0.7374</td>
+      <td>0.7619</td>
     </tr>
     <tr>
       <th>1997</th>
       <td>0.8085</td>
-      <td>-0.1199</td>
+      <td>-1.5558</td>
     </tr>
     <tr>
       <th>1998</th>
       <td>0.9068</td>
-      <td>-1.0985</td>
+      <td>-0.7691</td>
     </tr>
     <tr>
       <th>1999</th>
       <td>0.0849</td>
-      <td>-0.5691</td>
+      <td>-1.3383</td>
     </tr>
   </tbody>
 </table>
@@ -719,8 +720,8 @@ to download the full example code.</p>
   <tbody>
     <tr>
       <th>0</th>
-      <td>2.409</td>
-      <td>0.908</td>
+      <td>3.3759</td>
+      <td>0.912</td>
     </tr>
   </tbody>
 </table>
@@ -757,43 +758,43 @@ to download the full example code.</p>
   <tbody>
     <tr>
       <th>0.1</th>
-      <td>2.5096</td>
+      <td>9.5238</td>
     </tr>
     <tr>
       <th>0.2</th>
-      <td>1.8102</td>
+      <td>6.4691</td>
     </tr>
     <tr>
       <th>0.3</th>
-      <td>1.4419</td>
+      <td>5.1016</td>
     </tr>
     <tr>
       <th>0.4</th>
-      <td>1.2011</td>
+      <td>4.2515</td>
     </tr>
     <tr>
       <th>0.5</th>
-      <td>1.0254</td>
+      <td>3.6352</td>
     </tr>
     <tr>
       <th>0.6</th>
-      <td>0.8902</td>
+      <td>3.1641</td>
     </tr>
     <tr>
       <th>0.7</th>
-      <td>0.7814</td>
+      <td>2.7847</td>
     </tr>
     <tr>
       <th>0.8</th>
-      <td>0.6912</td>
+      <td>2.4703</td>
     </tr>
     <tr>
       <th>0.9</th>
-      <td>0.6168</td>
+      <td>2.2078</td>
     </tr>
     <tr>
       <th>1.0</th>
-      <td>0.5554</td>
+      <td>1.9887</td>
     </tr>
   </tbody>
 </table>
@@ -841,70 +842,7 @@ to download the full example code.</p>
       <td>X1</td>
       <td>[0.90, 1.00]</td>
       <td>996</td>
-      <td>0.7049</td>
-      <td>0</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>X1</td>
-      <td>[0.80, 0.90)</td>
-      <td>926</td>
-      <td>0.6790</td>
-      <td>0</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>X1</td>
-      <td>[0.10, 0.20)</td>
-      <td>1019</td>
-      <td>0.6158</td>
-      <td>0</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>X1</td>
-      <td>[0.60, 0.70)</td>
-      <td>1049</td>
-      <td>0.5929</td>
-      <td>0</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>X1</td>
-      <td>[0.40, 0.50)</td>
-      <td>976</td>
-      <td>0.5430</td>
-      <td>0</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>X1</td>
-      <td>[0.50, 0.60)</td>
-      <td>1011</td>
-      <td>0.5427</td>
-      <td>0</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>X1</td>
-      <td>[0.20, 0.30)</td>
-      <td>1015</td>
-      <td>0.5321</td>
-      <td>0</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>X1</td>
-      <td>[0.30, 0.40)</td>
-      <td>1003</td>
-      <td>0.5234</td>
+      <td>1.8278</td>
       <td>0</td>
       <td>True</td>
     </tr>
@@ -913,7 +851,52 @@ to download the full example code.</p>
       <td>X1</td>
       <td>[0.00, 0.10)</td>
       <td>989</td>
-      <td>0.4713</td>
+      <td>1.5007</td>
+      <td>0</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>X1</td>
+      <td>[0.80, 0.90)</td>
+      <td>926</td>
+      <td>1.2352</td>
+      <td>0</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>X1</td>
+      <td>[0.40, 0.50)</td>
+      <td>976</td>
+      <td>1.0533</td>
+      <td>0</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>X1</td>
+      <td>[0.50, 0.60)</td>
+      <td>1011</td>
+      <td>0.9973</td>
+      <td>0</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>X1</td>
+      <td>[0.10, 0.20)</td>
+      <td>1019</td>
+      <td>0.9530</td>
+      <td>0</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>X1</td>
+      <td>[0.30, 0.40)</td>
+      <td>1003</td>
+      <td>0.9523</td>
       <td>0</td>
       <td>True</td>
     </tr>
@@ -922,7 +905,25 @@ to download the full example code.</p>
       <td>X1</td>
       <td>[0.70, 0.80)</td>
       <td>1016</td>
-      <td>0.4513</td>
+      <td>0.9244</td>
+      <td>0</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>X1</td>
+      <td>[0.60, 0.70)</td>
+      <td>1049</td>
+      <td>0.9131</td>
+      <td>0</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>X1</td>
+      <td>[0.20, 0.30)</td>
+      <td>1015</td>
+      <td>0.8011</td>
       <td>0</td>
       <td>True</td>
     </tr>
@@ -971,39 +972,15 @@ to download the full example code.</p>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
+      <th>2</th>
       <td>X1</td>
-      <td>[0.00, 0.10)</td>
-      <td>780</td>
-      <td>0.4552</td>
-      <td>209</td>
-      <td>0.5314</td>
-      <td>0.0762</td>
-      <td>0.0371</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>X1</td>
-      <td>[0.90, 1.00]</td>
-      <td>800</td>
-      <td>0.6904</td>
-      <td>196</td>
-      <td>0.7641</td>
-      <td>0.0737</td>
-      <td>0.0371</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>X1</td>
-      <td>[0.70, 0.80)</td>
-      <td>789</td>
-      <td>0.4357</td>
-      <td>227</td>
-      <td>0.5054</td>
-      <td>0.0697</td>
-      <td>0.0371</td>
+      <td>[0.20, 0.30)</td>
+      <td>812</td>
+      <td>0.7886</td>
+      <td>203</td>
+      <td>0.8513</td>
+      <td>0.0627</td>
+      <td>0.0131</td>
       <td>True</td>
     </tr>
     <tr>
@@ -1011,83 +988,107 @@ to download the full example code.</p>
       <td>X1</td>
       <td>[0.30, 0.40)</td>
       <td>805</td>
-      <td>0.5123</td>
+      <td>0.9427</td>
       <td>198</td>
-      <td>0.5686</td>
-      <td>0.0563</td>
-      <td>0.0371</td>
+      <td>0.9912</td>
+      <td>0.0485</td>
+      <td>0.0131</td>
       <td>True</td>
     </tr>
     <tr>
-      <th>5</th>
+      <th>7</th>
       <td>X1</td>
-      <td>[0.50, 0.60)</td>
-      <td>802</td>
-      <td>0.5337</td>
-      <td>209</td>
-      <td>0.5776</td>
-      <td>0.0439</td>
-      <td>0.0371</td>
+      <td>[0.70, 0.80)</td>
+      <td>789</td>
+      <td>0.9149</td>
+      <td>227</td>
+      <td>0.9576</td>
+      <td>0.0427</td>
+      <td>0.0131</td>
       <td>True</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>X1</td>
-      <td>[0.40, 0.50)</td>
-      <td>787</td>
-      <td>0.5348</td>
-      <td>189</td>
-      <td>0.5770</td>
-      <td>0.0421</td>
-      <td>0.0371</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>X1</td>
-      <td>[0.20, 0.30)</td>
-      <td>812</td>
-      <td>0.5259</td>
-      <td>203</td>
-      <td>0.5570</td>
-      <td>0.0311</td>
-      <td>0.0371</td>
-      <td>False</td>
     </tr>
     <tr>
       <th>6</th>
       <td>X1</td>
       <td>[0.60, 0.70)</td>
       <td>848</td>
-      <td>0.5917</td>
+      <td>0.9070</td>
       <td>201</td>
-      <td>0.5979</td>
-      <td>0.0062</td>
-      <td>0.0371</td>
-      <td>False</td>
+      <td>0.9389</td>
+      <td>0.0319</td>
+      <td>0.0131</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>X1</td>
+      <td>[0.00, 0.10)</td>
+      <td>780</td>
+      <td>1.4956</td>
+      <td>209</td>
+      <td>1.5199</td>
+      <td>0.0243</td>
+      <td>0.0131</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>1</th>
       <td>X1</td>
       <td>[0.10, 0.20)</td>
       <td>830</td>
-      <td>0.6147</td>
+      <td>0.9494</td>
       <td>189</td>
-      <td>0.6208</td>
-      <td>0.0061</td>
-      <td>0.0371</td>
-      <td>False</td>
+      <td>0.9685</td>
+      <td>0.0191</td>
+      <td>0.0131</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>8</th>
       <td>X1</td>
       <td>[0.80, 0.90)</td>
       <td>747</td>
-      <td>0.6803</td>
+      <td>1.2342</td>
       <td>179</td>
-      <td>0.6736</td>
-      <td>-0.0067</td>
-      <td>0.0371</td>
+      <td>1.2396</td>
+      <td>0.0054</td>
+      <td>0.0131</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>X1</td>
+      <td>[0.50, 0.60)</td>
+      <td>802</td>
+      <td>0.9984</td>
+      <td>209</td>
+      <td>0.9930</td>
+      <td>-0.0054</td>
+      <td>0.0131</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>X1</td>
+      <td>[0.90, 1.00]</td>
+      <td>800</td>
+      <td>1.8350</td>
+      <td>196</td>
+      <td>1.7981</td>
+      <td>-0.0369</td>
+      <td>0.0131</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>X1</td>
+      <td>[0.40, 0.50)</td>
+      <td>787</td>
+      <td>1.0681</td>
+      <td>189</td>
+      <td>0.9920</td>
+      <td>-0.0761</td>
+      <td>0.0131</td>
       <td>False</td>
     </tr>
   </tbody>
@@ -1095,7 +1096,183 @@ to download the full example code.</p>
 </div>
 </div>
 <br />
-<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.326 seconds)</p>
+<br /></section>
+<section id="compare-two-scored-models">
+<h2>Compare two scored models<a class="headerlink" href="#compare-two-scored-models" title="Link to this heading">#</a></h2>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">tsc</span> <span class="o">=</span> <span class="n">TestSuite</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">models</span><span class="o">=</span><span class="p">[</span><span class="n">scored_model1</span><span class="p">,</span> <span class="n">scored_model2</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Run accuracy test without the model object</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">tsc</span><span class="o">.</span><span class="n">compare_accuracy_table</span><span class="p">()</span>
+<span class="n">results</span><span class="o">.</span><span class="n">table</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="3" halign="left">MoScoredRegressor</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>MSE</th>
+      <th>MAE</th>
+      <th>R2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>train</th>
+      <td>0.4907</td>
+      <td>0.5574</td>
+      <td>0.9791</td>
+    </tr>
+    <tr>
+      <th>test</th>
+      <td>0.5554</td>
+      <td>0.5945</td>
+      <td>0.9769</td>
+    </tr>
+    <tr>
+      <th>GAP</th>
+      <td>0.0647</td>
+      <td>0.0371</td>
+      <td>-0.0022</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Run slicing accuracy test without the model object</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">tsc</span><span class="o">.</span><span class="n">compare_slicing_accuracy</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="s2">&quot;X1&quot;</span><span class="p">,</span>
+                                       <span class="n">dataset</span><span class="o">=</span><span class="s2">&quot;main&quot;</span><span class="p">,</span>
+                                       <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;MAE&quot;</span><span class="p">,</span>
+                                       <span class="n">threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">table</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="4" halign="left">MoScoredRegressor</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Feature</th>
+      <th>Segment</th>
+      <th>Size</th>
+      <th>MAE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>X1</td>
+      <td>[0.90, 1.00]</td>
+      <td>996</td>
+      <td>0.7049</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>X1</td>
+      <td>[0.80, 0.90)</td>
+      <td>926</td>
+      <td>0.6790</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>X1</td>
+      <td>[0.10, 0.20)</td>
+      <td>1019</td>
+      <td>0.6158</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>X1</td>
+      <td>[0.60, 0.70)</td>
+      <td>1049</td>
+      <td>0.5929</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>X1</td>
+      <td>[0.40, 0.50)</td>
+      <td>976</td>
+      <td>0.5430</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>X1</td>
+      <td>[0.50, 0.60)</td>
+      <td>1011</td>
+      <td>0.5427</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>X1</td>
+      <td>[0.20, 0.30)</td>
+      <td>1015</td>
+      <td>0.5321</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>X1</td>
+      <td>[0.30, 0.40)</td>
+      <td>1003</td>
+      <td>0.5234</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>X1</td>
+      <td>[0.00, 0.10)</td>
+      <td>989</td>
+      <td>0.4713</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>X1</td>
+      <td>[0.70, 0.80)</td>
+      <td>1016</td>
+      <td>0.4513</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 2.592 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-source-auto-galleries-dev-1-extmodels-plot-2-scored-reg-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../../../_downloads/15f98382f74f2920a5f7f27694c96c4a/plot_2_scored_reg.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_2_scored_reg.ipynb</span></code></a></p>
@@ -1162,6 +1339,7 @@ to download the full example code.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wrap-the-data-into-modeva">Wrap the data into Modeva</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-the-model-into-modeva">Convert the model into Modeva</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-test-suite-for-diagnostics">Create test suite for diagnostics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-two-scored-models">Compare two scored models</a></li>
 </ul>
   </nav></div>
 

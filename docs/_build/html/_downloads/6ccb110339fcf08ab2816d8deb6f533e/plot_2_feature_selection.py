@@ -31,7 +31,7 @@ ds.set_random_split()
 # %%
 # Correlation based feature selection
 # ----------------------------------------------------------
-results = ds.feature_select_corr(threshold=0.2)
+results = ds.feature_select_corr(threshold=0.1, method="xicor")
 results.plot()
 
 # %%

@@ -57,7 +57,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="1.0.10" />
+  <meta name="docsearch:version" content="1.0.11" />
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="MoDeVa">
   <meta property="og:description" content="An Integrated Tool for Model Development and Validation">
@@ -542,6 +542,7 @@ If None, all 1D features will be used.</p>
 <li><p>”auto-xgb1”: Use bins of a XGBoost depth-1 model fitted between X and residuals.</p></li>
 <li><p>”precompute”: Uses pre-specified bin edges</p></li>
 </ul>
+<p>Note that for uniform, quantile, and precompute, all variables including inactive ones can be used for spliting. But for auto-xgb1, only use active features (X) for fitting XGB.</p>
 </p></li>
 <li><p><strong>bins</strong> (<em>int</em><em> or </em><em>dict</em><em>, </em><em>default=10</em>) – <p>Controls binning granularity:</p>
 <ul>

@@ -57,7 +57,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="1.0.10" />
+  <meta name="docsearch:version" content="1.0.11" />
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="MoDeVa">
   <meta property="og:description" content="An Integrated Tool for Model Development and Validation">
@@ -380,6 +380,7 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started/index.html">Get Started</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Dataset</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="plot_0_data_operations.html">Basic Dataset Operations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_1_eda.html">Exploratory Data Analysis</a></li>
@@ -390,6 +391,7 @@
 <li class="toctree-l2"><a class="reference internal" href="plot_6_outlier_detection.html">Outlier Detection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_7_data_with_prediction.html">Data with Model Predictions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_8_extra_data.html">Dealing with Extra Data Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_9_date_variable.html">Dealing with Date Variables</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Model Development</a></li>
@@ -492,7 +494,7 @@ to download the full example code.</p>
 </div>
 <section id="correlation-based-feature-selection">
 <h2>Correlation based feature selection<a class="headerlink" href="#correlation-based-feature-selection" title="Link to this heading">#</a></h2>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">feature_select_corr</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">feature_select_corr</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;xicor&quot;</span><span class="p">)</span>
 <span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -506,15 +508,15 @@ to download the full example code.</p>
             <body style="height: 100%; margin: 0">
 
 
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/echarts-gl/2.0.8/echarts-gl.min.js"></script>
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
-            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.1.0/dist/echarts-wordcloud.min.js"></script>
+                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/echarts-gl/2.0.8/echarts-gl.min.js"></script>
+                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
+                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.1.0/dist/echarts-wordcloud.min.js"></script>
 
-            <div id="1743146929.41519140.5824" style="height: 600px; width: 600px; overflow: auto"></div>
+            <div id="1745548948.69168850.5824" style="height: 600px; width: 600px; overflow: auto"></div>
 
             <script type="text/javascript">
-            var dom = document.getElementById('1743146929.41519140.5824');
+            var dom = document.getElementById('1745548948.69168850.5824');
             dom.innerHTML = ""
             dom.setAttribute('_echarts_instance_', '')
             var myChart = echarts.init(dom, null, {
@@ -524,7 +526,7 @@ to download the full example code.</p>
             var app = {};
 
             var option;
-    option = {"chart_id": "1743146929.41519140.5824", "link_id": null, "figname": "", "title": {"show": true, "text": "Feature Selection (Correlation)", "link": "", "target": "blank", "textStyle": {"fontStyle": "normal", "fontWeight": "bolder", "fontFamily": "sans-serif", "fontSize": 15, "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "subtext": "", "sublink": "", "subtarget": "blank", "textAlign": "center", "textVerticalAlign": "auto", "padding": 0, "itemGap": 10, "z": 2, "left": "50.0%", "top": "5%", "right": "auto", "bottom": "auto", "backgroundColor": "transparent", "borderColor": "#ccc", "changed_name_key": {"id_": "id"}}, "grid": {"show": true, "width": "auto", "height": "auto", "z": 2, "left": "5%", "top": "10%", "right": "10%", "bottom": "5%", "borderColor": "#ccc", "borderWidth": 1, "containLabel": true, "backgroundColor": "transparent", "changed_name_key": {"id_": "id"}}, "legend": null, "brush": null, "yAxis": [{"show": true, "data": ["holiday", "workingday", "weathersit", "yr", "weekday", "season", "windspeed", "mnth", "hum", "hr", "atemp", "temp"], "type": "category", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": "auto", "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": true, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": 40.0}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "xAxis": [{"show": true, "type": "value", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": 30, "min": -0.033, "max": 0.44, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": false, "showMaxLabel": false, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": null}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "parallelAxis": null, "series": [{"type": "bar", "colorBy": "series", "z": 2, "legendHoverLink": true, "stack": "", "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "label": {"show": false, "color": "black", "position": null, "fontSize": 12}, "itemStyle": {}, "seriesLayoutBy": "column", "data": [{"value": [0.00672925861000295, "holiday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.012176233953371654, "workingday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.01995477584865904, "weathersit"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.020013478531120867, "yr"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.022658647835702064, "weekday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.0398922433078563, "season"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.09689280567730318, "windspeed"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.12419182154848768, "mnth"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.3180251449765864, "hum"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.3947930451521049, "hr"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.398992240393934, "atemp"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.4024056155614403, "temp"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}], "markLine": {"symbolSize": 0, "silent": true, "label": {"show": false}, "data": [{"xAxis": 0.2, "lineStyle": {"type": "dashed", "color": "red"}}]}, "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "color": "#1f77b4", "coordinateSystem": "cartesian2d", "showBackground": true, "backgroundStyle": {"color": "rgba(180, 180, 180, 0.2)"}, "barWidth": "90%", "barGap": "0", "barCategoryGap": "20%", "largeThreshold": 400, "progressive": 5000, "progressiveThreshold": 3000, "progressiveChunkMode": "mod", "orient": "horizontal", "x_value": ["holiday", "workingday", "weathersit", "yr", "weekday", "season", "windspeed", "mnth", "hum", "hr", "atemp", "temp"], "tooltip_type": "axis", "hist": false, "data_value": [["holiday", "0.00672925861000295"], ["workingday", "0.012176233953371654"], ["weathersit", "0.01995477584865904"], ["yr", "0.020013478531120867"], ["weekday", "0.022658647835702064"], ["season", "0.0398922433078563"], ["windspeed", "0.09689280567730318"], ["mnth", "0.12419182154848768"], ["hum", "0.3180251449765864"], ["hr", "0.3947930451521049"], ["atemp", "0.398992240393934"], ["temp", "0.4024056155614403"]]}], "visualMap": null, "toolbox": {"show": true, "orient": "horizontal", "itemSize": 15, "itemGap": 8, "showTitle": true, "feature": {"dataZoom": {}, "saveAsImage": {}}, "z": 2, "left": "auto", "top": "auto", "right": "1%", "bottom": "auto", "width": "auto", "height": "auto", "popup": true, "changed_name_key": {"id_": "id"}}, "tooltip": {"show": true, "custom_tooltip": false, "trigger": "item", "axisPointer": {"show": true}, "showContent": true, "triggerOn": "mousemove|click", "hideDelay": 100, "enterable": true, "renderMode": "html", "confine": true, "transitionDuration": 0.4, "precision": 4, "borderColor": "#333", "padding": 5, "order": "seriesAsc"}, "dataZoom": null, "event": null, "graphic": null, "radar": null, "figsize": {"width": 600, "height": 600}, "color": ["#1f77b4", "#ff7f0e", "#2ca02c", "#e377c2", "#9467bd", "#d62728", "#8c564b", "#bcbd22", "#17becf", "#7f7f7f"], "save_img": false, "auto_size": true, "style": {"overflow": "auto"}, "port": "5002"};function setInnerHTML(elm, html) {
+    option = {"chart_id": "1745548948.69168850.5824", "link_id": null, "figname": "", "title": {"show": true, "text": "Feature Selection (Correlation)", "link": "", "target": "blank", "textStyle": {"fontStyle": "normal", "fontWeight": "bolder", "fontFamily": "sans-serif", "fontSize": 15, "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "subtext": "", "sublink": "", "subtarget": "blank", "textAlign": "center", "textVerticalAlign": "auto", "padding": 0, "itemGap": 10, "z": 2, "left": "50.0%", "top": "5%", "right": "auto", "bottom": "auto", "backgroundColor": "transparent", "borderColor": "#ccc", "changed_name_key": {"id_": "id"}}, "grid": {"show": true, "width": "auto", "height": "auto", "z": 2, "left": "5%", "top": "10%", "right": "10%", "bottom": "5%", "borderColor": "#ccc", "borderWidth": 1, "containLabel": true, "backgroundColor": "transparent", "changed_name_key": {"id_": "id"}}, "legend": null, "brush": null, "yAxis": [{"show": true, "data": ["holiday", "workingday", "weathersit", "yr", "season", "windspeed", "hum", "temp", "atemp", "hr", "weekday", "mnth"], "type": "category", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": "auto", "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": true, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": 40.0}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "xAxis": [{"show": true, "type": "value", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": 30, "min": -0.045, "max": 0.58, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": false, "showMaxLabel": false, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": null}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "parallelAxis": null, "series": [{"type": "bar", "colorBy": "series", "z": 2, "legendHoverLink": true, "stack": "", "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "label": {"show": false, "color": "black", "position": null, "fontSize": 12}, "itemStyle": {}, "seriesLayoutBy": "column", "data": [{"value": [0.00672925861000295, "holiday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.012176233953371654, "workingday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.01995477584865904, "weathersit"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.020013478531120867, "yr"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.0398922433078563, "season"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.10215290189779314, "windspeed"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.173352244614575, "hum"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.24161619428896763, "temp"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.242093102008466, "atemp"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.44879205669788413, "hr"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.4614054803780976, "weekday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.5238135198182566, "mnth"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}], "markLine": {"symbolSize": 0, "silent": true, "label": {"show": false}, "data": [{"xAxis": 0.1, "lineStyle": {"type": "dashed", "color": "red"}}]}, "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "color": "#1f77b4", "coordinateSystem": "cartesian2d", "showBackground": true, "backgroundStyle": {"color": "rgba(180, 180, 180, 0.2)"}, "barWidth": "90%", "barGap": "0", "barCategoryGap": "20%", "largeThreshold": 400, "progressive": 5000, "progressiveThreshold": 3000, "progressiveChunkMode": "mod", "orient": "horizontal", "x_value": ["holiday", "workingday", "weathersit", "yr", "season", "windspeed", "hum", "temp", "atemp", "hr", "weekday", "mnth"], "tooltip_type": "axis", "hist": false, "data_value": [["holiday", "0.00672925861000295"], ["workingday", "0.012176233953371654"], ["weathersit", "0.01995477584865904"], ["yr", "0.020013478531120867"], ["season", "0.0398922433078563"], ["windspeed", "0.10215290189779314"], ["hum", "0.173352244614575"], ["temp", "0.24161619428896763"], ["atemp", "0.242093102008466"], ["hr", "0.44879205669788413"], ["weekday", "0.4614054803780976"], ["mnth", "0.5238135198182566"]]}], "visualMap": null, "toolbox": {"show": true, "orient": "horizontal", "itemSize": 15, "itemGap": 8, "showTitle": true, "feature": {"dataZoom": {}, "saveAsImage": {}}, "z": 2, "left": "auto", "top": "auto", "right": "1%", "bottom": "auto", "width": "auto", "height": "auto", "popup": true, "changed_name_key": {"id_": "id"}}, "tooltip": {"show": true, "custom_tooltip": false, "trigger": "item", "axisPointer": {"show": true}, "showContent": true, "triggerOn": "mousemove|click", "hideDelay": 100, "enterable": true, "renderMode": "html", "confine": true, "transitionDuration": 0.4, "precision": 4, "borderColor": "#333", "padding": 5, "order": "seriesAsc"}, "dataZoom": null, "event": null, "graphic": null, "radar": null, "figsize": {"width": 600, "height": 600}, "color": ["#1f77b4", "#ff7f0e", "#2ca02c", "#e377c2", "#9467bd", "#d62728", "#8c564b", "#bcbd22", "#17becf", "#7f7f7f"], "save_img": false, "auto_size": true, "style": {"overflow": "auto"}, "port": "5003"};function setInnerHTML(elm, html) {
   elm.innerHTML = html;
 
   Array.from(elm.querySelectorAll("script"))
@@ -1022,8 +1024,14 @@ function custom_tooltip(option, dimension=2) {
       if (option['series'][ind_]['tooltip']) {
         if (option['series'][ind_]['tooltip']['precision']) {
           var precision = option['series'][ind_]['tooltip']['precision']
-          const fix = precision_ => value => Math.round(Number(value) * (10**precision_)) / (10**precision_),
-          fix_p = fix(precision);
+          const fix = precision_ => value => {
+            const numValue = Number(value);
+            if (isNaN(numValue)) {
+              return value;
+            }
+            return Math.round(numValue * (10**precision_)) / (10**precision_);
+          }
+          const fix_p = fix(precision);
           option['series'][ind_]['tooltip']['valueFormatter'] = function (value) {
             return fix_p(value)
           }
@@ -1048,9 +1056,23 @@ function custom_tooltip(option, dimension=2) {
                 + params.value[dimension]
             }
             else {
+              var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
               formatter = series_name
-              + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-              +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
+              + xaxis_name + ': '+ numValue_x
+              +'<br>' + yaxis_name + ': ' + numValue_y
             }
 
           }
@@ -1065,10 +1087,31 @@ function custom_tooltip(option, dimension=2) {
                 + params.value[dimension]
             }
             else {
+              var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              var numValue_z = Number(params.value[2]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
+              if (isNaN(numValue_z)) {
+                numValue_z = params.value[2]
+              }
+              else {
+                numValue_z = Math.round(params.value[2] * 100) / 100
+              }
               formatter = series_name
-                + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-                +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
-                +'<br>' + zaxis_name + ': ' + Math.round(params.value[2] * 100) / 100
+                + xaxis_name + ': '+ numValue_x
+                +'<br>' + yaxis_name + ': ' + numValue_y
+                +'<br>' + zaxis_name + ': ' + numValue_z
             }
           }
 
@@ -1110,9 +1153,23 @@ function custom_tooltip(option, dimension=2) {
                   + params.value[dimension]
               }
               else {
+                var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
                 formatter = series_name
-                  + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-                  +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
+                  + xaxis_name + ': '+ numValue_x
+                  +'<br>' + yaxis_name + ': ' + numValue_y
               }
             }
 
@@ -1132,10 +1189,31 @@ function custom_tooltip(option, dimension=2) {
                   + params.value[dimension]
               }
               else {
+                var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              var numValue_z = Number(params.value[2]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
+              if (isNaN(numValue_z)) {
+                numValue_z = params.value[2]
+              }
+              else {
+                numValue_z = Math.round(params.value[2] * 100) / 100
+              }
                 formatter = series_name
-                  + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-                  +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
-                  +'<br>' + zaxis_name + ': ' + Math.round(params.value[2] * 100) / 100
+                  + xaxis_name + ': '+ numValue_x
+                  +'<br>' + yaxis_name + ': ' + numValue_y
+                  +'<br>' + zaxis_name + ': ' + numValue_z
               }
             }
 
@@ -1306,9 +1384,9 @@ function support_click_event(option) {
             <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.1.0/dist/echarts-wordcloud.min.js"><\/script>
 
 
-        <div id="1743146929.41519140.5824" style="height: 90%; width: 90%"></div>
+        <div id="1745548948.69168850.5824" style="height: 90%; width: 90%"></div>
         <script type="text/javascript">
-            var dom = document.getElementById('1743146929.41519140.5824');
+            var dom = document.getElementById('1745548948.69168850.5824');
             var myChart = echarts.init(dom, null, {
                 renderer: 'canvas',
                 useDirtyRect: false
@@ -1316,7 +1394,7 @@ function support_click_event(option) {
             var app = {};
 
             var option;
-        option = {"chart_id": "1743146929.41519140.5824", "link_id": null, "figname": "", "title": {"show": true, "text": "Feature Selection (Correlation)", "link": "", "target": "blank", "textStyle": {"fontStyle": "normal", "fontWeight": "bolder", "fontFamily": "sans-serif", "fontSize": 15, "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "subtext": "", "sublink": "", "subtarget": "blank", "textAlign": "center", "textVerticalAlign": "auto", "padding": 0, "itemGap": 10, "z": 2, "left": "50.0%", "top": "5%", "right": "auto", "bottom": "auto", "backgroundColor": "transparent", "borderColor": "#ccc", "changed_name_key": {"id_": "id"}}, "grid": {"show": true, "width": "auto", "height": "auto", "z": 2, "left": "5%", "top": "10%", "right": "10%", "bottom": "5%", "borderColor": "#ccc", "borderWidth": 1, "containLabel": true, "backgroundColor": "transparent", "changed_name_key": {"id_": "id"}}, "legend": null, "brush": null, "yAxis": [{"show": true, "data": ["holiday", "workingday", "weathersit", "yr", "weekday", "season", "windspeed", "mnth", "hum", "hr", "atemp", "temp"], "type": "category", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": "auto", "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": true, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": 40.0}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "xAxis": [{"show": true, "type": "value", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": 30, "min": -0.033, "max": 0.44, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": false, "showMaxLabel": false, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": null}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "parallelAxis": null, "series": [{"type": "bar", "colorBy": "series", "z": 2, "legendHoverLink": true, "stack": "", "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "label": {"show": false, "color": "black", "position": null, "fontSize": 12}, "itemStyle": {}, "seriesLayoutBy": "column", "data": [{"value": [0.00672925861000295, "holiday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.012176233953371654, "workingday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.01995477584865904, "weathersit"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.020013478531120867, "yr"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.022658647835702064, "weekday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.0398922433078563, "season"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.09689280567730318, "windspeed"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.12419182154848768, "mnth"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.3180251449765864, "hum"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.3947930451521049, "hr"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.398992240393934, "atemp"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.4024056155614403, "temp"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}], "markLine": {"symbolSize": 0, "silent": true, "label": {"show": false}, "data": [{"xAxis": 0.2, "lineStyle": {"type": "dashed", "color": "red"}}]}, "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "color": "#1f77b4", "coordinateSystem": "cartesian2d", "showBackground": true, "backgroundStyle": {"color": "rgba(180, 180, 180, 0.2)"}, "barWidth": "90%", "barGap": "0", "barCategoryGap": "20%", "largeThreshold": 400, "progressive": 5000, "progressiveThreshold": 3000, "progressiveChunkMode": "mod", "orient": "horizontal", "x_value": ["holiday", "workingday", "weathersit", "yr", "weekday", "season", "windspeed", "mnth", "hum", "hr", "atemp", "temp"], "tooltip_type": "axis", "hist": false, "data_value": [["holiday", "0.00672925861000295"], ["workingday", "0.012176233953371654"], ["weathersit", "0.01995477584865904"], ["yr", "0.020013478531120867"], ["weekday", "0.022658647835702064"], ["season", "0.0398922433078563"], ["windspeed", "0.09689280567730318"], ["mnth", "0.12419182154848768"], ["hum", "0.3180251449765864"], ["hr", "0.3947930451521049"], ["atemp", "0.398992240393934"], ["temp", "0.4024056155614403"]]}], "visualMap": null, "toolbox": {"show": true, "orient": "horizontal", "itemSize": 15, "itemGap": 8, "showTitle": true, "feature": {"dataZoom": {}, "saveAsImage": {}}, "z": 2, "left": "auto", "top": "auto", "right": "1%", "bottom": "auto", "width": "auto", "height": "auto", "popup": true, "changed_name_key": {"id_": "id"}}, "tooltip": {"show": true, "custom_tooltip": false, "trigger": "item", "axisPointer": {"show": true}, "showContent": true, "triggerOn": "mousemove|click", "hideDelay": 100, "enterable": true, "renderMode": "html", "confine": true, "transitionDuration": 0.4, "precision": 4, "borderColor": "#333", "padding": 5, "order": "seriesAsc"}, "dataZoom": null, "event": null, "graphic": null, "radar": null, "figsize": {"width": 600, "height": 600}, "color": ["#1f77b4", "#ff7f0e", "#2ca02c", "#e377c2", "#9467bd", "#d62728", "#8c564b", "#bcbd22", "#17becf", "#7f7f7f"], "save_img": false, "auto_size": true, "style": {"overflow": "auto"}, "port": "5002"};function setInnerHTML(elm, html) {
+        option = {"chart_id": "1745548948.69168850.5824", "link_id": null, "figname": "", "title": {"show": true, "text": "Feature Selection (Correlation)", "link": "", "target": "blank", "textStyle": {"fontStyle": "normal", "fontWeight": "bolder", "fontFamily": "sans-serif", "fontSize": 15, "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "subtext": "", "sublink": "", "subtarget": "blank", "textAlign": "center", "textVerticalAlign": "auto", "padding": 0, "itemGap": 10, "z": 2, "left": "50.0%", "top": "5%", "right": "auto", "bottom": "auto", "backgroundColor": "transparent", "borderColor": "#ccc", "changed_name_key": {"id_": "id"}}, "grid": {"show": true, "width": "auto", "height": "auto", "z": 2, "left": "5%", "top": "10%", "right": "10%", "bottom": "5%", "borderColor": "#ccc", "borderWidth": 1, "containLabel": true, "backgroundColor": "transparent", "changed_name_key": {"id_": "id"}}, "legend": null, "brush": null, "yAxis": [{"show": true, "data": ["holiday", "workingday", "weathersit", "yr", "season", "windspeed", "hum", "temp", "atemp", "hr", "weekday", "mnth"], "type": "category", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": "auto", "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": true, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": 40.0}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "xAxis": [{"show": true, "type": "value", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": 30, "min": -0.045, "max": 0.58, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": false, "showMaxLabel": false, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": null}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "parallelAxis": null, "series": [{"type": "bar", "colorBy": "series", "z": 2, "legendHoverLink": true, "stack": "", "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "label": {"show": false, "color": "black", "position": null, "fontSize": 12}, "itemStyle": {}, "seriesLayoutBy": "column", "data": [{"value": [0.00672925861000295, "holiday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.012176233953371654, "workingday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.01995477584865904, "weathersit"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.020013478531120867, "yr"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.0398922433078563, "season"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.10215290189779314, "windspeed"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.173352244614575, "hum"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.24161619428896763, "temp"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.242093102008466, "atemp"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.44879205669788413, "hr"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.4614054803780976, "weekday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.5238135198182566, "mnth"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}], "markLine": {"symbolSize": 0, "silent": true, "label": {"show": false}, "data": [{"xAxis": 0.1, "lineStyle": {"type": "dashed", "color": "red"}}]}, "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "color": "#1f77b4", "coordinateSystem": "cartesian2d", "showBackground": true, "backgroundStyle": {"color": "rgba(180, 180, 180, 0.2)"}, "barWidth": "90%", "barGap": "0", "barCategoryGap": "20%", "largeThreshold": 400, "progressive": 5000, "progressiveThreshold": 3000, "progressiveChunkMode": "mod", "orient": "horizontal", "x_value": ["holiday", "workingday", "weathersit", "yr", "season", "windspeed", "hum", "temp", "atemp", "hr", "weekday", "mnth"], "tooltip_type": "axis", "hist": false, "data_value": [["holiday", "0.00672925861000295"], ["workingday", "0.012176233953371654"], ["weathersit", "0.01995477584865904"], ["yr", "0.020013478531120867"], ["season", "0.0398922433078563"], ["windspeed", "0.10215290189779314"], ["hum", "0.173352244614575"], ["temp", "0.24161619428896763"], ["atemp", "0.242093102008466"], ["hr", "0.44879205669788413"], ["weekday", "0.4614054803780976"], ["mnth", "0.5238135198182566"]]}], "visualMap": null, "toolbox": {"show": true, "orient": "horizontal", "itemSize": 15, "itemGap": 8, "showTitle": true, "feature": {"dataZoom": {}, "saveAsImage": {}}, "z": 2, "left": "auto", "top": "auto", "right": "1%", "bottom": "auto", "width": "auto", "height": "auto", "popup": true, "changed_name_key": {"id_": "id"}}, "tooltip": {"show": true, "custom_tooltip": false, "trigger": "item", "axisPointer": {"show": true}, "showContent": true, "triggerOn": "mousemove|click", "hideDelay": 100, "enterable": true, "renderMode": "html", "confine": true, "transitionDuration": 0.4, "precision": 4, "borderColor": "#333", "padding": 5, "order": "seriesAsc"}, "dataZoom": null, "event": null, "graphic": null, "radar": null, "figsize": {"width": 600, "height": 600}, "color": ["#1f77b4", "#ff7f0e", "#2ca02c", "#e377c2", "#9467bd", "#d62728", "#8c564b", "#bcbd22", "#17becf", "#7f7f7f"], "save_img": false, "auto_size": true, "style": {"overflow": "auto"}, "port": "5003"};function setInnerHTML(elm, html) {
   elm.innerHTML = html;
 
   Array.from(elm.querySelectorAll("script"))
@@ -1814,8 +1892,14 @@ function custom_tooltip(option, dimension=2) {
       if (option['series'][ind_]['tooltip']) {
         if (option['series'][ind_]['tooltip']['precision']) {
           var precision = option['series'][ind_]['tooltip']['precision']
-          const fix = precision_ => value => Math.round(Number(value) * (10**precision_)) / (10**precision_),
-          fix_p = fix(precision);
+          const fix = precision_ => value => {
+            const numValue = Number(value);
+            if (isNaN(numValue)) {
+              return value;
+            }
+            return Math.round(numValue * (10**precision_)) / (10**precision_);
+          }
+          const fix_p = fix(precision);
           option['series'][ind_]['tooltip']['valueFormatter'] = function (value) {
             return fix_p(value)
           }
@@ -1840,9 +1924,23 @@ function custom_tooltip(option, dimension=2) {
                 + params.value[dimension]
             }
             else {
+              var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
               formatter = series_name
-              + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-              +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
+              + xaxis_name + ': '+ numValue_x
+              +'<br>' + yaxis_name + ': ' + numValue_y
             }
 
           }
@@ -1857,10 +1955,31 @@ function custom_tooltip(option, dimension=2) {
                 + params.value[dimension]
             }
             else {
+              var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              var numValue_z = Number(params.value[2]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
+              if (isNaN(numValue_z)) {
+                numValue_z = params.value[2]
+              }
+              else {
+                numValue_z = Math.round(params.value[2] * 100) / 100
+              }
               formatter = series_name
-                + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-                +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
-                +'<br>' + zaxis_name + ': ' + Math.round(params.value[2] * 100) / 100
+                + xaxis_name + ': '+ numValue_x
+                +'<br>' + yaxis_name + ': ' + numValue_y
+                +'<br>' + zaxis_name + ': ' + numValue_z
             }
           }
 
@@ -1902,9 +2021,23 @@ function custom_tooltip(option, dimension=2) {
                   + params.value[dimension]
               }
               else {
+                var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
                 formatter = series_name
-                  + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-                  +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
+                  + xaxis_name + ': '+ numValue_x
+                  +'<br>' + yaxis_name + ': ' + numValue_y
               }
             }
 
@@ -1924,10 +2057,31 @@ function custom_tooltip(option, dimension=2) {
                   + params.value[dimension]
               }
               else {
+                var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              var numValue_z = Number(params.value[2]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
+              if (isNaN(numValue_z)) {
+                numValue_z = params.value[2]
+              }
+              else {
+                numValue_z = Math.round(params.value[2] * 100) / 100
+              }
                 formatter = series_name
-                  + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-                  +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
-                  +'<br>' + zaxis_name + ': ' + Math.round(params.value[2] * 100) / 100
+                  + xaxis_name + ': '+ numValue_x
+                  +'<br>' + yaxis_name + ': ' + numValue_y
+                  +'<br>' + zaxis_name + ': ' + numValue_z
               }
             }
 
@@ -2173,15 +2327,15 @@ function support_click_event(option) {
             <body style="height: 100%; margin: 0">
 
 
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/echarts-gl/2.0.8/echarts-gl.min.js"></script>
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
-            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.1.0/dist/echarts-wordcloud.min.js"></script>
+                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/echarts-gl/2.0.8/echarts-gl.min.js"></script>
+                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
+                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.1.0/dist/echarts-wordcloud.min.js"></script>
 
-            <div id="1743146930.96529170.6168" style="height: 600px; width: 600px; overflow: auto"></div>
+            <div id="1745548950.60133860.6168" style="height: 600px; width: 600px; overflow: auto"></div>
 
             <script type="text/javascript">
-            var dom = document.getElementById('1743146930.96529170.6168');
+            var dom = document.getElementById('1745548950.60133860.6168');
             dom.innerHTML = ""
             dom.setAttribute('_echarts_instance_', '')
             var myChart = echarts.init(dom, null, {
@@ -2191,7 +2345,7 @@ function support_click_event(option) {
             var app = {};
 
             var option;
-    option = {"chart_id": "1743146930.96529170.6168", "link_id": null, "figname": "", "title": {"show": true, "text": "Feature Selection (XGB-PFI)", "link": "", "target": "blank", "textStyle": {"fontStyle": "normal", "fontWeight": "bolder", "fontFamily": "sans-serif", "fontSize": 15, "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "subtext": "", "sublink": "", "subtarget": "blank", "textAlign": "center", "textVerticalAlign": "auto", "padding": 0, "itemGap": 10, "z": 2, "left": "50.0%", "top": "5%", "right": "auto", "bottom": "auto", "backgroundColor": "transparent", "borderColor": "#ccc", "changed_name_key": {"id_": "id"}}, "grid": {"show": true, "width": "auto", "height": "auto", "z": 2, "left": "5%", "top": "10%", "right": "10%", "bottom": "5%", "borderColor": "#ccc", "borderWidth": 1, "containLabel": true, "backgroundColor": "transparent", "changed_name_key": {"id_": "id"}}, "legend": null, "brush": null, "yAxis": [{"show": true, "data": ["holiday", "windspeed", "weekday", "weathersit", "mnth", "atemp", "hum", "season", "temp", "workingday", "yr", "hr"], "type": "category", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": "auto", "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": true, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": 40.0}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "xAxis": [{"show": true, "type": "value", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": 30, "min": -0.067, "max": 0.75, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": false, "showMaxLabel": false, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": null}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "parallelAxis": null, "series": [{"type": "bar", "colorBy": "series", "z": 2, "legendHoverLink": true, "stack": "", "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "label": {"show": false, "color": "black", "position": null, "fontSize": 12}, "itemStyle": {}, "seriesLayoutBy": "column", "data": [{"value": [0.0012331815707367956, "holiday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.002898095886548029, "windspeed"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.006537449943885524, "weekday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.010650143815365661, "weathersit"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.015917746620117315, "mnth"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.017147242156726743, "atemp"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.01743869302938133, "hum"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.018654142252823892, "season"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.0565387714085829, "temp"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.07802917121981917, "workingday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.08851359607764246, "yr"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.6864417660183703, "hr"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}], "markLine": {"symbolSize": 0, "silent": true, "label": {"show": false}, "data": [{"xAxis": 0.01, "lineStyle": {"type": "dashed", "color": "red"}}]}, "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "color": "#1f77b4", "coordinateSystem": "cartesian2d", "showBackground": true, "backgroundStyle": {"color": "rgba(180, 180, 180, 0.2)"}, "barWidth": "90%", "barGap": "0", "barCategoryGap": "20%", "largeThreshold": 400, "progressive": 5000, "progressiveThreshold": 3000, "progressiveChunkMode": "mod", "orient": "horizontal", "x_value": ["holiday", "windspeed", "weekday", "weathersit", "mnth", "atemp", "hum", "season", "temp", "workingday", "yr", "hr"], "tooltip_type": "axis", "hist": false, "data_value": [["holiday", "0.0012331815707367956"], ["windspeed", "0.002898095886548029"], ["weekday", "0.006537449943885524"], ["weathersit", "0.010650143815365661"], ["mnth", "0.015917746620117315"], ["atemp", "0.017147242156726743"], ["hum", "0.01743869302938133"], ["season", "0.018654142252823892"], ["temp", "0.0565387714085829"], ["workingday", "0.07802917121981917"], ["yr", "0.08851359607764246"], ["hr", "0.6864417660183703"]]}], "visualMap": null, "toolbox": {"show": true, "orient": "horizontal", "itemSize": 15, "itemGap": 8, "showTitle": true, "feature": {"dataZoom": {}, "saveAsImage": {}}, "z": 2, "left": "auto", "top": "auto", "right": "1%", "bottom": "auto", "width": "auto", "height": "auto", "popup": true, "changed_name_key": {"id_": "id"}}, "tooltip": {"show": true, "custom_tooltip": false, "trigger": "item", "axisPointer": {"show": true}, "showContent": true, "triggerOn": "mousemove|click", "hideDelay": 100, "enterable": true, "renderMode": "html", "confine": true, "transitionDuration": 0.4, "precision": 4, "borderColor": "#333", "padding": 5, "order": "seriesAsc"}, "dataZoom": null, "event": null, "graphic": null, "radar": null, "figsize": {"width": 600, "height": 600}, "color": ["#1f77b4", "#ff7f0e", "#2ca02c", "#e377c2", "#9467bd", "#d62728", "#8c564b", "#bcbd22", "#17becf", "#7f7f7f"], "save_img": false, "auto_size": true, "style": {"overflow": "auto"}, "port": "5002"};function setInnerHTML(elm, html) {
+    option = {"chart_id": "1745548950.60133860.6168", "link_id": null, "figname": "", "title": {"show": true, "text": "Feature Selection (XGB-PFI)", "link": "", "target": "blank", "textStyle": {"fontStyle": "normal", "fontWeight": "bolder", "fontFamily": "sans-serif", "fontSize": 15, "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "subtext": "", "sublink": "", "subtarget": "blank", "textAlign": "center", "textVerticalAlign": "auto", "padding": 0, "itemGap": 10, "z": 2, "left": "50.0%", "top": "5%", "right": "auto", "bottom": "auto", "backgroundColor": "transparent", "borderColor": "#ccc", "changed_name_key": {"id_": "id"}}, "grid": {"show": true, "width": "auto", "height": "auto", "z": 2, "left": "5%", "top": "10%", "right": "10%", "bottom": "5%", "borderColor": "#ccc", "borderWidth": 1, "containLabel": true, "backgroundColor": "transparent", "changed_name_key": {"id_": "id"}}, "legend": null, "brush": null, "yAxis": [{"show": true, "data": ["holiday", "windspeed", "weekday", "weathersit", "mnth", "atemp", "hum", "season", "temp", "workingday", "yr", "hr"], "type": "category", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": "auto", "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": true, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": 40.0}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "xAxis": [{"show": true, "type": "value", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": 30, "min": -0.067, "max": 0.75, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": false, "showMaxLabel": false, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": null}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "parallelAxis": null, "series": [{"type": "bar", "colorBy": "series", "z": 2, "legendHoverLink": true, "stack": "", "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "label": {"show": false, "color": "black", "position": null, "fontSize": 12}, "itemStyle": {}, "seriesLayoutBy": "column", "data": [{"value": [0.0012331815707367956, "holiday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.002898095886548029, "windspeed"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.006537449943885524, "weekday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.010650143815365661, "weathersit"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.015917746620117315, "mnth"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.017147242156726743, "atemp"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.01743869302938133, "hum"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.018654142252823892, "season"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.0565387714085829, "temp"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.07802917121981917, "workingday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.08851359607764246, "yr"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.6864417660183703, "hr"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}], "markLine": {"symbolSize": 0, "silent": true, "label": {"show": false}, "data": [{"xAxis": 0.01, "lineStyle": {"type": "dashed", "color": "red"}}]}, "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "color": "#1f77b4", "coordinateSystem": "cartesian2d", "showBackground": true, "backgroundStyle": {"color": "rgba(180, 180, 180, 0.2)"}, "barWidth": "90%", "barGap": "0", "barCategoryGap": "20%", "largeThreshold": 400, "progressive": 5000, "progressiveThreshold": 3000, "progressiveChunkMode": "mod", "orient": "horizontal", "x_value": ["holiday", "windspeed", "weekday", "weathersit", "mnth", "atemp", "hum", "season", "temp", "workingday", "yr", "hr"], "tooltip_type": "axis", "hist": false, "data_value": [["holiday", "0.0012331815707367956"], ["windspeed", "0.002898095886548029"], ["weekday", "0.006537449943885524"], ["weathersit", "0.010650143815365661"], ["mnth", "0.015917746620117315"], ["atemp", "0.017147242156726743"], ["hum", "0.01743869302938133"], ["season", "0.018654142252823892"], ["temp", "0.0565387714085829"], ["workingday", "0.07802917121981917"], ["yr", "0.08851359607764246"], ["hr", "0.6864417660183703"]]}], "visualMap": null, "toolbox": {"show": true, "orient": "horizontal", "itemSize": 15, "itemGap": 8, "showTitle": true, "feature": {"dataZoom": {}, "saveAsImage": {}}, "z": 2, "left": "auto", "top": "auto", "right": "1%", "bottom": "auto", "width": "auto", "height": "auto", "popup": true, "changed_name_key": {"id_": "id"}}, "tooltip": {"show": true, "custom_tooltip": false, "trigger": "item", "axisPointer": {"show": true}, "showContent": true, "triggerOn": "mousemove|click", "hideDelay": 100, "enterable": true, "renderMode": "html", "confine": true, "transitionDuration": 0.4, "precision": 4, "borderColor": "#333", "padding": 5, "order": "seriesAsc"}, "dataZoom": null, "event": null, "graphic": null, "radar": null, "figsize": {"width": 600, "height": 600}, "color": ["#1f77b4", "#ff7f0e", "#2ca02c", "#e377c2", "#9467bd", "#d62728", "#8c564b", "#bcbd22", "#17becf", "#7f7f7f"], "save_img": false, "auto_size": true, "style": {"overflow": "auto"}, "port": "5003"};function setInnerHTML(elm, html) {
   elm.innerHTML = html;
 
   Array.from(elm.querySelectorAll("script"))
@@ -2689,8 +2843,14 @@ function custom_tooltip(option, dimension=2) {
       if (option['series'][ind_]['tooltip']) {
         if (option['series'][ind_]['tooltip']['precision']) {
           var precision = option['series'][ind_]['tooltip']['precision']
-          const fix = precision_ => value => Math.round(Number(value) * (10**precision_)) / (10**precision_),
-          fix_p = fix(precision);
+          const fix = precision_ => value => {
+            const numValue = Number(value);
+            if (isNaN(numValue)) {
+              return value;
+            }
+            return Math.round(numValue * (10**precision_)) / (10**precision_);
+          }
+          const fix_p = fix(precision);
           option['series'][ind_]['tooltip']['valueFormatter'] = function (value) {
             return fix_p(value)
           }
@@ -2715,9 +2875,23 @@ function custom_tooltip(option, dimension=2) {
                 + params.value[dimension]
             }
             else {
+              var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
               formatter = series_name
-              + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-              +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
+              + xaxis_name + ': '+ numValue_x
+              +'<br>' + yaxis_name + ': ' + numValue_y
             }
 
           }
@@ -2732,10 +2906,31 @@ function custom_tooltip(option, dimension=2) {
                 + params.value[dimension]
             }
             else {
+              var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              var numValue_z = Number(params.value[2]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
+              if (isNaN(numValue_z)) {
+                numValue_z = params.value[2]
+              }
+              else {
+                numValue_z = Math.round(params.value[2] * 100) / 100
+              }
               formatter = series_name
-                + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-                +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
-                +'<br>' + zaxis_name + ': ' + Math.round(params.value[2] * 100) / 100
+                + xaxis_name + ': '+ numValue_x
+                +'<br>' + yaxis_name + ': ' + numValue_y
+                +'<br>' + zaxis_name + ': ' + numValue_z
             }
           }
 
@@ -2777,9 +2972,23 @@ function custom_tooltip(option, dimension=2) {
                   + params.value[dimension]
               }
               else {
+                var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
                 formatter = series_name
-                  + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-                  +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
+                  + xaxis_name + ': '+ numValue_x
+                  +'<br>' + yaxis_name + ': ' + numValue_y
               }
             }
 
@@ -2799,10 +3008,31 @@ function custom_tooltip(option, dimension=2) {
                   + params.value[dimension]
               }
               else {
+                var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              var numValue_z = Number(params.value[2]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
+              if (isNaN(numValue_z)) {
+                numValue_z = params.value[2]
+              }
+              else {
+                numValue_z = Math.round(params.value[2] * 100) / 100
+              }
                 formatter = series_name
-                  + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-                  +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
-                  +'<br>' + zaxis_name + ': ' + Math.round(params.value[2] * 100) / 100
+                  + xaxis_name + ': '+ numValue_x
+                  +'<br>' + yaxis_name + ': ' + numValue_y
+                  +'<br>' + zaxis_name + ': ' + numValue_z
               }
             }
 
@@ -2973,9 +3203,9 @@ function support_click_event(option) {
             <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.1.0/dist/echarts-wordcloud.min.js"><\/script>
 
 
-        <div id="1743146930.96529170.6168" style="height: 90%; width: 90%"></div>
+        <div id="1745548950.60133860.6168" style="height: 90%; width: 90%"></div>
         <script type="text/javascript">
-            var dom = document.getElementById('1743146930.96529170.6168');
+            var dom = document.getElementById('1745548950.60133860.6168');
             var myChart = echarts.init(dom, null, {
                 renderer: 'canvas',
                 useDirtyRect: false
@@ -2983,7 +3213,7 @@ function support_click_event(option) {
             var app = {};
 
             var option;
-        option = {"chart_id": "1743146930.96529170.6168", "link_id": null, "figname": "", "title": {"show": true, "text": "Feature Selection (XGB-PFI)", "link": "", "target": "blank", "textStyle": {"fontStyle": "normal", "fontWeight": "bolder", "fontFamily": "sans-serif", "fontSize": 15, "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "subtext": "", "sublink": "", "subtarget": "blank", "textAlign": "center", "textVerticalAlign": "auto", "padding": 0, "itemGap": 10, "z": 2, "left": "50.0%", "top": "5%", "right": "auto", "bottom": "auto", "backgroundColor": "transparent", "borderColor": "#ccc", "changed_name_key": {"id_": "id"}}, "grid": {"show": true, "width": "auto", "height": "auto", "z": 2, "left": "5%", "top": "10%", "right": "10%", "bottom": "5%", "borderColor": "#ccc", "borderWidth": 1, "containLabel": true, "backgroundColor": "transparent", "changed_name_key": {"id_": "id"}}, "legend": null, "brush": null, "yAxis": [{"show": true, "data": ["holiday", "windspeed", "weekday", "weathersit", "mnth", "atemp", "hum", "season", "temp", "workingday", "yr", "hr"], "type": "category", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": "auto", "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": true, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": 40.0}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "xAxis": [{"show": true, "type": "value", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": 30, "min": -0.067, "max": 0.75, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": false, "showMaxLabel": false, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": null}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "parallelAxis": null, "series": [{"type": "bar", "colorBy": "series", "z": 2, "legendHoverLink": true, "stack": "", "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "label": {"show": false, "color": "black", "position": null, "fontSize": 12}, "itemStyle": {}, "seriesLayoutBy": "column", "data": [{"value": [0.0012331815707367956, "holiday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.002898095886548029, "windspeed"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.006537449943885524, "weekday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.010650143815365661, "weathersit"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.015917746620117315, "mnth"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.017147242156726743, "atemp"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.01743869302938133, "hum"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.018654142252823892, "season"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.0565387714085829, "temp"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.07802917121981917, "workingday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.08851359607764246, "yr"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.6864417660183703, "hr"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}], "markLine": {"symbolSize": 0, "silent": true, "label": {"show": false}, "data": [{"xAxis": 0.01, "lineStyle": {"type": "dashed", "color": "red"}}]}, "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "color": "#1f77b4", "coordinateSystem": "cartesian2d", "showBackground": true, "backgroundStyle": {"color": "rgba(180, 180, 180, 0.2)"}, "barWidth": "90%", "barGap": "0", "barCategoryGap": "20%", "largeThreshold": 400, "progressive": 5000, "progressiveThreshold": 3000, "progressiveChunkMode": "mod", "orient": "horizontal", "x_value": ["holiday", "windspeed", "weekday", "weathersit", "mnth", "atemp", "hum", "season", "temp", "workingday", "yr", "hr"], "tooltip_type": "axis", "hist": false, "data_value": [["holiday", "0.0012331815707367956"], ["windspeed", "0.002898095886548029"], ["weekday", "0.006537449943885524"], ["weathersit", "0.010650143815365661"], ["mnth", "0.015917746620117315"], ["atemp", "0.017147242156726743"], ["hum", "0.01743869302938133"], ["season", "0.018654142252823892"], ["temp", "0.0565387714085829"], ["workingday", "0.07802917121981917"], ["yr", "0.08851359607764246"], ["hr", "0.6864417660183703"]]}], "visualMap": null, "toolbox": {"show": true, "orient": "horizontal", "itemSize": 15, "itemGap": 8, "showTitle": true, "feature": {"dataZoom": {}, "saveAsImage": {}}, "z": 2, "left": "auto", "top": "auto", "right": "1%", "bottom": "auto", "width": "auto", "height": "auto", "popup": true, "changed_name_key": {"id_": "id"}}, "tooltip": {"show": true, "custom_tooltip": false, "trigger": "item", "axisPointer": {"show": true}, "showContent": true, "triggerOn": "mousemove|click", "hideDelay": 100, "enterable": true, "renderMode": "html", "confine": true, "transitionDuration": 0.4, "precision": 4, "borderColor": "#333", "padding": 5, "order": "seriesAsc"}, "dataZoom": null, "event": null, "graphic": null, "radar": null, "figsize": {"width": 600, "height": 600}, "color": ["#1f77b4", "#ff7f0e", "#2ca02c", "#e377c2", "#9467bd", "#d62728", "#8c564b", "#bcbd22", "#17becf", "#7f7f7f"], "save_img": false, "auto_size": true, "style": {"overflow": "auto"}, "port": "5002"};function setInnerHTML(elm, html) {
+        option = {"chart_id": "1745548950.60133860.6168", "link_id": null, "figname": "", "title": {"show": true, "text": "Feature Selection (XGB-PFI)", "link": "", "target": "blank", "textStyle": {"fontStyle": "normal", "fontWeight": "bolder", "fontFamily": "sans-serif", "fontSize": 15, "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "subtext": "", "sublink": "", "subtarget": "blank", "textAlign": "center", "textVerticalAlign": "auto", "padding": 0, "itemGap": 10, "z": 2, "left": "50.0%", "top": "5%", "right": "auto", "bottom": "auto", "backgroundColor": "transparent", "borderColor": "#ccc", "changed_name_key": {"id_": "id"}}, "grid": {"show": true, "width": "auto", "height": "auto", "z": 2, "left": "5%", "top": "10%", "right": "10%", "bottom": "5%", "borderColor": "#ccc", "borderWidth": 1, "containLabel": true, "backgroundColor": "transparent", "changed_name_key": {"id_": "id"}}, "legend": null, "brush": null, "yAxis": [{"show": true, "data": ["holiday", "windspeed", "weekday", "weathersit", "mnth", "atemp", "hum", "season", "temp", "workingday", "yr", "hr"], "type": "category", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": "auto", "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": true, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": 40.0}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "xAxis": [{"show": true, "type": "value", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": 30, "min": -0.067, "max": 0.75, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": false, "showMaxLabel": false, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": null}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "parallelAxis": null, "series": [{"type": "bar", "colorBy": "series", "z": 2, "legendHoverLink": true, "stack": "", "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "label": {"show": false, "color": "black", "position": null, "fontSize": 12}, "itemStyle": {}, "seriesLayoutBy": "column", "data": [{"value": [0.0012331815707367956, "holiday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.002898095886548029, "windspeed"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.006537449943885524, "weekday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.010650143815365661, "weathersit"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.015917746620117315, "mnth"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.017147242156726743, "atemp"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.01743869302938133, "hum"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.018654142252823892, "season"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.0565387714085829, "temp"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.07802917121981917, "workingday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.08851359607764246, "yr"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.6864417660183703, "hr"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}], "markLine": {"symbolSize": 0, "silent": true, "label": {"show": false}, "data": [{"xAxis": 0.01, "lineStyle": {"type": "dashed", "color": "red"}}]}, "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "color": "#1f77b4", "coordinateSystem": "cartesian2d", "showBackground": true, "backgroundStyle": {"color": "rgba(180, 180, 180, 0.2)"}, "barWidth": "90%", "barGap": "0", "barCategoryGap": "20%", "largeThreshold": 400, "progressive": 5000, "progressiveThreshold": 3000, "progressiveChunkMode": "mod", "orient": "horizontal", "x_value": ["holiday", "windspeed", "weekday", "weathersit", "mnth", "atemp", "hum", "season", "temp", "workingday", "yr", "hr"], "tooltip_type": "axis", "hist": false, "data_value": [["holiday", "0.0012331815707367956"], ["windspeed", "0.002898095886548029"], ["weekday", "0.006537449943885524"], ["weathersit", "0.010650143815365661"], ["mnth", "0.015917746620117315"], ["atemp", "0.017147242156726743"], ["hum", "0.01743869302938133"], ["season", "0.018654142252823892"], ["temp", "0.0565387714085829"], ["workingday", "0.07802917121981917"], ["yr", "0.08851359607764246"], ["hr", "0.6864417660183703"]]}], "visualMap": null, "toolbox": {"show": true, "orient": "horizontal", "itemSize": 15, "itemGap": 8, "showTitle": true, "feature": {"dataZoom": {}, "saveAsImage": {}}, "z": 2, "left": "auto", "top": "auto", "right": "1%", "bottom": "auto", "width": "auto", "height": "auto", "popup": true, "changed_name_key": {"id_": "id"}}, "tooltip": {"show": true, "custom_tooltip": false, "trigger": "item", "axisPointer": {"show": true}, "showContent": true, "triggerOn": "mousemove|click", "hideDelay": 100, "enterable": true, "renderMode": "html", "confine": true, "transitionDuration": 0.4, "precision": 4, "borderColor": "#333", "padding": 5, "order": "seriesAsc"}, "dataZoom": null, "event": null, "graphic": null, "radar": null, "figsize": {"width": 600, "height": 600}, "color": ["#1f77b4", "#ff7f0e", "#2ca02c", "#e377c2", "#9467bd", "#d62728", "#8c564b", "#bcbd22", "#17becf", "#7f7f7f"], "save_img": false, "auto_size": true, "style": {"overflow": "auto"}, "port": "5003"};function setInnerHTML(elm, html) {
   elm.innerHTML = html;
 
   Array.from(elm.querySelectorAll("script"))
@@ -3481,8 +3711,14 @@ function custom_tooltip(option, dimension=2) {
       if (option['series'][ind_]['tooltip']) {
         if (option['series'][ind_]['tooltip']['precision']) {
           var precision = option['series'][ind_]['tooltip']['precision']
-          const fix = precision_ => value => Math.round(Number(value) * (10**precision_)) / (10**precision_),
-          fix_p = fix(precision);
+          const fix = precision_ => value => {
+            const numValue = Number(value);
+            if (isNaN(numValue)) {
+              return value;
+            }
+            return Math.round(numValue * (10**precision_)) / (10**precision_);
+          }
+          const fix_p = fix(precision);
           option['series'][ind_]['tooltip']['valueFormatter'] = function (value) {
             return fix_p(value)
           }
@@ -3507,9 +3743,23 @@ function custom_tooltip(option, dimension=2) {
                 + params.value[dimension]
             }
             else {
+              var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
               formatter = series_name
-              + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-              +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
+              + xaxis_name + ': '+ numValue_x
+              +'<br>' + yaxis_name + ': ' + numValue_y
             }
 
           }
@@ -3524,10 +3774,31 @@ function custom_tooltip(option, dimension=2) {
                 + params.value[dimension]
             }
             else {
+              var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              var numValue_z = Number(params.value[2]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
+              if (isNaN(numValue_z)) {
+                numValue_z = params.value[2]
+              }
+              else {
+                numValue_z = Math.round(params.value[2] * 100) / 100
+              }
               formatter = series_name
-                + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-                +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
-                +'<br>' + zaxis_name + ': ' + Math.round(params.value[2] * 100) / 100
+                + xaxis_name + ': '+ numValue_x
+                +'<br>' + yaxis_name + ': ' + numValue_y
+                +'<br>' + zaxis_name + ': ' + numValue_z
             }
           }
 
@@ -3569,9 +3840,23 @@ function custom_tooltip(option, dimension=2) {
                   + params.value[dimension]
               }
               else {
+                var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
                 formatter = series_name
-                  + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-                  +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
+                  + xaxis_name + ': '+ numValue_x
+                  +'<br>' + yaxis_name + ': ' + numValue_y
               }
             }
 
@@ -3591,10 +3876,31 @@ function custom_tooltip(option, dimension=2) {
                   + params.value[dimension]
               }
               else {
+                var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              var numValue_z = Number(params.value[2]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
+              if (isNaN(numValue_z)) {
+                numValue_z = params.value[2]
+              }
+              else {
+                numValue_z = Math.round(params.value[2] * 100) / 100
+              }
                 formatter = series_name
-                  + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-                  +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
-                  +'<br>' + zaxis_name + ': ' + Math.round(params.value[2] * 100) / 100
+                  + xaxis_name + ': '+ numValue_x
+                  +'<br>' + yaxis_name + ': ' + numValue_y
+                  +'<br>' + zaxis_name + ': ' + numValue_z
               }
             }
 
@@ -3840,15 +4146,15 @@ function support_click_event(option) {
             <body style="height: 100%; margin: 0">
 
 
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/echarts-gl/2.0.8/echarts-gl.min.js"></script>
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
-            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.1.0/dist/echarts-wordcloud.min.js"></script>
+                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/echarts-gl/2.0.8/echarts-gl.min.js"></script>
+                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
+                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.1.0/dist/echarts-wordcloud.min.js"></script>
 
-            <div id="1743146934.70402720.9110" style="height: 600px; width: 600px; overflow: auto"></div>
+            <div id="1745548955.54239150.9110" style="height: 600px; width: 600px; overflow: auto"></div>
 
             <script type="text/javascript">
-            var dom = document.getElementById('1743146934.70402720.9110');
+            var dom = document.getElementById('1745548955.54239150.9110');
             dom.innerHTML = ""
             dom.setAttribute('_echarts_instance_', '')
             var myChart = echarts.init(dom, null, {
@@ -3858,7 +4164,7 @@ function support_click_event(option) {
             var app = {};
 
             var option;
-    option = {"chart_id": "1743146934.70402720.9110", "link_id": null, "figname": "", "title": {"show": true, "text": "Feature Selection (RCIT)", "link": "", "target": "blank", "textStyle": {"fontStyle": "normal", "fontWeight": "bolder", "fontFamily": "sans-serif", "fontSize": 15, "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "subtext": "", "sublink": "", "subtarget": "blank", "textAlign": "center", "textVerticalAlign": "auto", "padding": 0, "itemGap": 10, "z": 2, "left": "50.0%", "top": "5%", "right": "auto", "bottom": "auto", "backgroundColor": "transparent", "borderColor": "#ccc", "changed_name_key": {"id_": "id"}}, "grid": {"show": true, "width": "auto", "height": "auto", "z": 2, "left": "5%", "top": "10%", "right": "10%", "bottom": "5%", "borderColor": "#ccc", "borderWidth": 1, "containLabel": true, "backgroundColor": "transparent", "changed_name_key": {"id_": "id"}}, "legend": null, "brush": null, "yAxis": [{"show": true, "data": ["season", "yr", "mnth", "hr", "holiday", "weekday", "workingday", "weathersit", "temp", "atemp", "hum", "windspeed"], "type": "category", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": "auto", "inverse": true, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": true, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": 40.0}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "xAxis": [{"show": "Steps", "type": "category", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": 30, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": true, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": null}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "parallelAxis": null, "series": [{"type": "heatmap", "name": "heatmap", "colorBy": "series", "z": 2, "legendHoverLink": true, "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "label": {"show": false, "fontSize": 12}, "seriesLayoutBy": "column", "data": [[0, 0, 0], [0, 1, 0], [0, 2, 0], [0, 3, -1], [0, 4, 1], [0, 5, 1], [0, 6, 0], [0, 7, 0], [0, 8, 0], [0, 9, 0], [0, 10, 0], [0, 11, 0], [1, 0, 0], [1, 1, -1], [1, 2, 0], [1, 3, -1], [1, 4, 1], [1, 5, 1], [1, 6, 0], [1, 7, 0], [1, 8, 0], [1, 9, 0], [1, 10, 0], [1, 11, 0], [2, 0, 0], [2, 1, -1], [2, 2, 0], [2, 3, -1], [2, 4, 1], [2, 5, 1], [2, 6, 0], [2, 7, 0], [2, 8, 0], [2, 9, -1], [2, 10, 0], [2, 11, 0], [3, 0, 0], [3, 1, -1], [3, 2, 0], [3, 3, -1], [3, 4, 1], [3, 5, 1], [3, 6, -1], [3, 7, 0], [3, 8, 0], [3, 9, -1], [3, 10, 0], [3, 11, 1], [4, 0, 0], [4, 1, -1], [4, 2, 0], [4, 3, -1], [4, 4, 1], [4, 5, 1], [4, 6, -1], [4, 7, -1], [4, 8, 0], [4, 9, -1], [4, 10, 0], [4, 11, 1], [5, 0, 0], [5, 1, -1], [5, 2, 0], [5, 3, -1], [5, 4, 1], [5, 5, 1], [5, 6, -1], [5, 7, -1], [5, 8, 0], [5, 9, -1], [5, 10, -1], [5, 11, 1], [6, 0, 0], [6, 1, -1], [6, 2, 0], [6, 3, -1], [6, 4, 1], [6, 5, 1], [6, 6, -1], [6, 7, -1], [6, 8, -1], [6, 9, -1], [6, 10, -1], [6, 11, 1], [7, 0, -1], [7, 1, -1], [7, 2, 0], [7, 3, -1], [7, 4, 1], [7, 5, 1], [7, 6, -1], [7, 7, -1], [7, 8, -1], [7, 9, -1], [7, 10, -1], [7, 11, 1], [8, 0, -1], [8, 1, -1], [8, 2, -1], [8, 3, -1], [8, 4, 1], [8, 5, 1], [8, 6, -1], [8, 7, -1], [8, 8, -1], [8, 9, -1], [8, 10, -1], [8, 11, 1], [9, 0, -1], [9, 1, -1], [9, 2, -1], [9, 3, -1], [9, 4, 1], [9, 5, 0], [9, 6, -1], [9, 7, -1], [9, 8, -1], [9, 9, -1], [9, 10, -1], [9, 11, -1], [10, 0, -1], [10, 1, -1], [10, 2, -1], [10, 3, -1], [10, 4, 1], [10, 5, -1], [10, 6, -1], [10, 7, -1], [10, 8, -1], [10, 9, -1], [10, 10, -1], [10, 11, -1]], "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "coordinateSystem": "cartesian2d", "pointSize": 20, "blurSize": 10, "maxOpacity": 1, "progressive": 400, "progressiveThreshold": 3000, "colsize": 1, "visualmap_type": "continuous", "map_range": [-1, 1]}], "visualMap": {"show": true, "type": "continuous", "color": ["#440154", "#481467", "#482576", "#453781", "#404688", "#39558c", "#33638d", "#2d718e", "#287d8e", "#238a8d", "#1f968b", "#20a386", "#29af7f", "#3dbc74", "#56c667", "#75d054", "#95d840", "#bade28", "#dde318", "#fde725"], "left": "auto", "top": "10%", "right": "1%", "bottom": "auto", "min": -1, "max": 1, "calculable": true, "realtime": true, "precision": 1, "itemWidth": 20, "itemHeight": 140, "align": "auto", "textGap": 10, "hoverLink": true, "z": 4, "padding": 0, "backgroundColor": "rgba(0,0,0,0)", "borderColor": "#ccc", "textStyle": {"fontSize": 12, "width": 35, "overflow": "none", "ellipsis": ".."}, "indicatorSize": "50%", "orient": "vertical", "changed_name_key": {"id_": "id", "type_": "type", "min_": "min", "max_": "max", "range_": "range"}}, "toolbox": {"show": true, "orient": "horizontal", "itemSize": 15, "itemGap": 8, "showTitle": true, "feature": {"dataZoom": {}, "saveAsImage": {}}, "z": 2, "left": "auto", "top": "auto", "right": "1%", "bottom": "auto", "width": "auto", "height": "auto", "popup": true, "changed_name_key": {"id_": "id"}}, "tooltip": {"show": true, "custom_tooltip": false, "trigger": "item", "axisPointer": {"show": true}, "showContent": true, "triggerOn": "mousemove|click", "hideDelay": 100, "enterable": true, "renderMode": "html", "confine": true, "transitionDuration": 0.4, "precision": 4, "borderColor": "#333", "padding": 5, "order": "seriesAsc"}, "dataZoom": null, "event": null, "graphic": null, "radar": null, "figsize": {"width": 600, "height": 600}, "color": ["#1f77b4", "#ff7f0e", "#2ca02c", "#e377c2", "#9467bd", "#d62728", "#8c564b", "#bcbd22", "#17becf", "#7f7f7f"], "save_img": false, "auto_size": true, "style": {"overflow": "auto"}, "port": "5002"};function setInnerHTML(elm, html) {
+    option = {"chart_id": "1745548955.54239150.9110", "link_id": null, "figname": "", "title": {"show": true, "text": "Feature Selection (RCIT)", "link": "", "target": "blank", "textStyle": {"fontStyle": "normal", "fontWeight": "bolder", "fontFamily": "sans-serif", "fontSize": 15, "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "subtext": "", "sublink": "", "subtarget": "blank", "textAlign": "center", "textVerticalAlign": "auto", "padding": 0, "itemGap": 10, "z": 2, "left": "50.0%", "top": "5%", "right": "auto", "bottom": "auto", "backgroundColor": "transparent", "borderColor": "#ccc", "changed_name_key": {"id_": "id"}}, "grid": {"show": true, "width": "auto", "height": "auto", "z": 2, "left": "5%", "top": "10%", "right": "10%", "bottom": "5%", "borderColor": "#ccc", "borderWidth": 1, "containLabel": true, "backgroundColor": "transparent", "changed_name_key": {"id_": "id"}}, "legend": null, "brush": null, "yAxis": [{"show": true, "data": ["season", "yr", "mnth", "hr", "holiday", "weekday", "workingday", "weathersit", "temp", "atemp", "hum", "windspeed"], "type": "category", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": "auto", "inverse": true, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": true, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": 40.0}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "xAxis": [{"show": "Steps", "type": "category", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": 30, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": true, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": null}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "parallelAxis": null, "series": [{"type": "heatmap", "name": "heatmap", "colorBy": "series", "z": 2, "legendHoverLink": true, "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "label": {"show": false, "fontSize": 12}, "seriesLayoutBy": "column", "data": [[0, 0, 0], [0, 1, 0], [0, 2, 0], [0, 3, -1], [0, 4, 1], [0, 5, 1], [0, 6, 0], [0, 7, 0], [0, 8, 0], [0, 9, 0], [0, 10, 0], [0, 11, 0], [1, 0, 0], [1, 1, -1], [1, 2, 0], [1, 3, -1], [1, 4, 1], [1, 5, 1], [1, 6, 0], [1, 7, 0], [1, 8, 0], [1, 9, 0], [1, 10, 0], [1, 11, 0], [2, 0, 0], [2, 1, -1], [2, 2, 0], [2, 3, -1], [2, 4, 1], [2, 5, 1], [2, 6, 0], [2, 7, 0], [2, 8, 0], [2, 9, -1], [2, 10, 0], [2, 11, 0], [3, 0, 0], [3, 1, -1], [3, 2, 0], [3, 3, -1], [3, 4, 1], [3, 5, 1], [3, 6, -1], [3, 7, 0], [3, 8, 0], [3, 9, -1], [3, 10, 0], [3, 11, 1], [4, 0, 0], [4, 1, -1], [4, 2, 0], [4, 3, -1], [4, 4, 1], [4, 5, 1], [4, 6, -1], [4, 7, -1], [4, 8, 0], [4, 9, -1], [4, 10, 0], [4, 11, 1], [5, 0, 0], [5, 1, -1], [5, 2, 0], [5, 3, -1], [5, 4, 1], [5, 5, 1], [5, 6, -1], [5, 7, -1], [5, 8, 0], [5, 9, -1], [5, 10, -1], [5, 11, 1], [6, 0, 0], [6, 1, -1], [6, 2, 0], [6, 3, -1], [6, 4, 1], [6, 5, 1], [6, 6, -1], [6, 7, -1], [6, 8, -1], [6, 9, -1], [6, 10, -1], [6, 11, 1], [7, 0, -1], [7, 1, -1], [7, 2, 0], [7, 3, -1], [7, 4, 1], [7, 5, 1], [7, 6, -1], [7, 7, -1], [7, 8, -1], [7, 9, -1], [7, 10, -1], [7, 11, 1], [8, 0, -1], [8, 1, -1], [8, 2, -1], [8, 3, -1], [8, 4, 1], [8, 5, 1], [8, 6, -1], [8, 7, -1], [8, 8, -1], [8, 9, -1], [8, 10, -1], [8, 11, 1], [9, 0, -1], [9, 1, -1], [9, 2, -1], [9, 3, -1], [9, 4, 1], [9, 5, 0], [9, 6, -1], [9, 7, -1], [9, 8, -1], [9, 9, -1], [9, 10, -1], [9, 11, -1], [10, 0, -1], [10, 1, -1], [10, 2, -1], [10, 3, -1], [10, 4, 1], [10, 5, -1], [10, 6, -1], [10, 7, -1], [10, 8, -1], [10, 9, -1], [10, 10, -1], [10, 11, -1]], "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "coordinateSystem": "cartesian2d", "pointSize": 20, "blurSize": 10, "maxOpacity": 1, "progressive": 400, "progressiveThreshold": 3000, "colsize": 1, "visualmap_type": "continuous", "map_range": [-1, 1]}], "visualMap": {"show": true, "type": "continuous", "color": ["#440154", "#481467", "#482576", "#453781", "#404688", "#39558c", "#33638d", "#2d718e", "#287d8e", "#238a8d", "#1f968b", "#20a386", "#29af7f", "#3dbc74", "#56c667", "#75d054", "#95d840", "#bade28", "#dde318", "#fde725"], "left": "auto", "top": "10%", "right": "1%", "bottom": "auto", "min": -1, "max": 1, "calculable": true, "realtime": true, "precision": 1, "itemWidth": 20, "itemHeight": 140, "align": "auto", "textGap": 10, "hoverLink": true, "z": 4, "padding": 0, "backgroundColor": "rgba(0,0,0,0)", "borderColor": "#ccc", "textStyle": {"fontSize": 12, "width": 35, "overflow": "none", "ellipsis": ".."}, "indicatorSize": "50%", "orient": "vertical", "changed_name_key": {"id_": "id", "type_": "type", "min_": "min", "max_": "max", "range_": "range"}}, "toolbox": {"show": true, "orient": "horizontal", "itemSize": 15, "itemGap": 8, "showTitle": true, "feature": {"dataZoom": {}, "saveAsImage": {}}, "z": 2, "left": "auto", "top": "auto", "right": "1%", "bottom": "auto", "width": "auto", "height": "auto", "popup": true, "changed_name_key": {"id_": "id"}}, "tooltip": {"show": true, "custom_tooltip": false, "trigger": "item", "axisPointer": {"show": true}, "showContent": true, "triggerOn": "mousemove|click", "hideDelay": 100, "enterable": true, "renderMode": "html", "confine": true, "transitionDuration": 0.4, "precision": 4, "borderColor": "#333", "padding": 5, "order": "seriesAsc"}, "dataZoom": null, "event": null, "graphic": null, "radar": null, "figsize": {"width": 600, "height": 600}, "color": ["#1f77b4", "#ff7f0e", "#2ca02c", "#e377c2", "#9467bd", "#d62728", "#8c564b", "#bcbd22", "#17becf", "#7f7f7f"], "save_img": false, "auto_size": true, "style": {"overflow": "auto"}, "port": "5003"};function setInnerHTML(elm, html) {
   elm.innerHTML = html;
 
   Array.from(elm.querySelectorAll("script"))
@@ -4356,8 +4662,14 @@ function custom_tooltip(option, dimension=2) {
       if (option['series'][ind_]['tooltip']) {
         if (option['series'][ind_]['tooltip']['precision']) {
           var precision = option['series'][ind_]['tooltip']['precision']
-          const fix = precision_ => value => Math.round(Number(value) * (10**precision_)) / (10**precision_),
-          fix_p = fix(precision);
+          const fix = precision_ => value => {
+            const numValue = Number(value);
+            if (isNaN(numValue)) {
+              return value;
+            }
+            return Math.round(numValue * (10**precision_)) / (10**precision_);
+          }
+          const fix_p = fix(precision);
           option['series'][ind_]['tooltip']['valueFormatter'] = function (value) {
             return fix_p(value)
           }
@@ -4382,9 +4694,23 @@ function custom_tooltip(option, dimension=2) {
                 + params.value[dimension]
             }
             else {
+              var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
               formatter = series_name
-              + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-              +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
+              + xaxis_name + ': '+ numValue_x
+              +'<br>' + yaxis_name + ': ' + numValue_y
             }
 
           }
@@ -4399,10 +4725,31 @@ function custom_tooltip(option, dimension=2) {
                 + params.value[dimension]
             }
             else {
+              var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              var numValue_z = Number(params.value[2]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
+              if (isNaN(numValue_z)) {
+                numValue_z = params.value[2]
+              }
+              else {
+                numValue_z = Math.round(params.value[2] * 100) / 100
+              }
               formatter = series_name
-                + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-                +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
-                +'<br>' + zaxis_name + ': ' + Math.round(params.value[2] * 100) / 100
+                + xaxis_name + ': '+ numValue_x
+                +'<br>' + yaxis_name + ': ' + numValue_y
+                +'<br>' + zaxis_name + ': ' + numValue_z
             }
           }
 
@@ -4444,9 +4791,23 @@ function custom_tooltip(option, dimension=2) {
                   + params.value[dimension]
               }
               else {
+                var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
                 formatter = series_name
-                  + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-                  +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
+                  + xaxis_name + ': '+ numValue_x
+                  +'<br>' + yaxis_name + ': ' + numValue_y
               }
             }
 
@@ -4466,10 +4827,31 @@ function custom_tooltip(option, dimension=2) {
                   + params.value[dimension]
               }
               else {
+                var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              var numValue_z = Number(params.value[2]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
+              if (isNaN(numValue_z)) {
+                numValue_z = params.value[2]
+              }
+              else {
+                numValue_z = Math.round(params.value[2] * 100) / 100
+              }
                 formatter = series_name
-                  + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-                  +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
-                  +'<br>' + zaxis_name + ': ' + Math.round(params.value[2] * 100) / 100
+                  + xaxis_name + ': '+ numValue_x
+                  +'<br>' + yaxis_name + ': ' + numValue_y
+                  +'<br>' + zaxis_name + ': ' + numValue_z
               }
             }
 
@@ -4640,9 +5022,9 @@ function support_click_event(option) {
             <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.1.0/dist/echarts-wordcloud.min.js"><\/script>
 
 
-        <div id="1743146934.70402720.9110" style="height: 90%; width: 90%"></div>
+        <div id="1745548955.54239150.9110" style="height: 90%; width: 90%"></div>
         <script type="text/javascript">
-            var dom = document.getElementById('1743146934.70402720.9110');
+            var dom = document.getElementById('1745548955.54239150.9110');
             var myChart = echarts.init(dom, null, {
                 renderer: 'canvas',
                 useDirtyRect: false
@@ -4650,7 +5032,7 @@ function support_click_event(option) {
             var app = {};
 
             var option;
-        option = {"chart_id": "1743146934.70402720.9110", "link_id": null, "figname": "", "title": {"show": true, "text": "Feature Selection (RCIT)", "link": "", "target": "blank", "textStyle": {"fontStyle": "normal", "fontWeight": "bolder", "fontFamily": "sans-serif", "fontSize": 15, "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "subtext": "", "sublink": "", "subtarget": "blank", "textAlign": "center", "textVerticalAlign": "auto", "padding": 0, "itemGap": 10, "z": 2, "left": "50.0%", "top": "5%", "right": "auto", "bottom": "auto", "backgroundColor": "transparent", "borderColor": "#ccc", "changed_name_key": {"id_": "id"}}, "grid": {"show": true, "width": "auto", "height": "auto", "z": 2, "left": "5%", "top": "10%", "right": "10%", "bottom": "5%", "borderColor": "#ccc", "borderWidth": 1, "containLabel": true, "backgroundColor": "transparent", "changed_name_key": {"id_": "id"}}, "legend": null, "brush": null, "yAxis": [{"show": true, "data": ["season", "yr", "mnth", "hr", "holiday", "weekday", "workingday", "weathersit", "temp", "atemp", "hum", "windspeed"], "type": "category", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": "auto", "inverse": true, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": true, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": 40.0}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "xAxis": [{"show": "Steps", "type": "category", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": 30, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": true, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": null}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "parallelAxis": null, "series": [{"type": "heatmap", "name": "heatmap", "colorBy": "series", "z": 2, "legendHoverLink": true, "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "label": {"show": false, "fontSize": 12}, "seriesLayoutBy": "column", "data": [[0, 0, 0], [0, 1, 0], [0, 2, 0], [0, 3, -1], [0, 4, 1], [0, 5, 1], [0, 6, 0], [0, 7, 0], [0, 8, 0], [0, 9, 0], [0, 10, 0], [0, 11, 0], [1, 0, 0], [1, 1, -1], [1, 2, 0], [1, 3, -1], [1, 4, 1], [1, 5, 1], [1, 6, 0], [1, 7, 0], [1, 8, 0], [1, 9, 0], [1, 10, 0], [1, 11, 0], [2, 0, 0], [2, 1, -1], [2, 2, 0], [2, 3, -1], [2, 4, 1], [2, 5, 1], [2, 6, 0], [2, 7, 0], [2, 8, 0], [2, 9, -1], [2, 10, 0], [2, 11, 0], [3, 0, 0], [3, 1, -1], [3, 2, 0], [3, 3, -1], [3, 4, 1], [3, 5, 1], [3, 6, -1], [3, 7, 0], [3, 8, 0], [3, 9, -1], [3, 10, 0], [3, 11, 1], [4, 0, 0], [4, 1, -1], [4, 2, 0], [4, 3, -1], [4, 4, 1], [4, 5, 1], [4, 6, -1], [4, 7, -1], [4, 8, 0], [4, 9, -1], [4, 10, 0], [4, 11, 1], [5, 0, 0], [5, 1, -1], [5, 2, 0], [5, 3, -1], [5, 4, 1], [5, 5, 1], [5, 6, -1], [5, 7, -1], [5, 8, 0], [5, 9, -1], [5, 10, -1], [5, 11, 1], [6, 0, 0], [6, 1, -1], [6, 2, 0], [6, 3, -1], [6, 4, 1], [6, 5, 1], [6, 6, -1], [6, 7, -1], [6, 8, -1], [6, 9, -1], [6, 10, -1], [6, 11, 1], [7, 0, -1], [7, 1, -1], [7, 2, 0], [7, 3, -1], [7, 4, 1], [7, 5, 1], [7, 6, -1], [7, 7, -1], [7, 8, -1], [7, 9, -1], [7, 10, -1], [7, 11, 1], [8, 0, -1], [8, 1, -1], [8, 2, -1], [8, 3, -1], [8, 4, 1], [8, 5, 1], [8, 6, -1], [8, 7, -1], [8, 8, -1], [8, 9, -1], [8, 10, -1], [8, 11, 1], [9, 0, -1], [9, 1, -1], [9, 2, -1], [9, 3, -1], [9, 4, 1], [9, 5, 0], [9, 6, -1], [9, 7, -1], [9, 8, -1], [9, 9, -1], [9, 10, -1], [9, 11, -1], [10, 0, -1], [10, 1, -1], [10, 2, -1], [10, 3, -1], [10, 4, 1], [10, 5, -1], [10, 6, -1], [10, 7, -1], [10, 8, -1], [10, 9, -1], [10, 10, -1], [10, 11, -1]], "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "coordinateSystem": "cartesian2d", "pointSize": 20, "blurSize": 10, "maxOpacity": 1, "progressive": 400, "progressiveThreshold": 3000, "colsize": 1, "visualmap_type": "continuous", "map_range": [-1, 1]}], "visualMap": {"show": true, "type": "continuous", "color": ["#440154", "#481467", "#482576", "#453781", "#404688", "#39558c", "#33638d", "#2d718e", "#287d8e", "#238a8d", "#1f968b", "#20a386", "#29af7f", "#3dbc74", "#56c667", "#75d054", "#95d840", "#bade28", "#dde318", "#fde725"], "left": "auto", "top": "10%", "right": "1%", "bottom": "auto", "min": -1, "max": 1, "calculable": true, "realtime": true, "precision": 1, "itemWidth": 20, "itemHeight": 140, "align": "auto", "textGap": 10, "hoverLink": true, "z": 4, "padding": 0, "backgroundColor": "rgba(0,0,0,0)", "borderColor": "#ccc", "textStyle": {"fontSize": 12, "width": 35, "overflow": "none", "ellipsis": ".."}, "indicatorSize": "50%", "orient": "vertical", "changed_name_key": {"id_": "id", "type_": "type", "min_": "min", "max_": "max", "range_": "range"}}, "toolbox": {"show": true, "orient": "horizontal", "itemSize": 15, "itemGap": 8, "showTitle": true, "feature": {"dataZoom": {}, "saveAsImage": {}}, "z": 2, "left": "auto", "top": "auto", "right": "1%", "bottom": "auto", "width": "auto", "height": "auto", "popup": true, "changed_name_key": {"id_": "id"}}, "tooltip": {"show": true, "custom_tooltip": false, "trigger": "item", "axisPointer": {"show": true}, "showContent": true, "triggerOn": "mousemove|click", "hideDelay": 100, "enterable": true, "renderMode": "html", "confine": true, "transitionDuration": 0.4, "precision": 4, "borderColor": "#333", "padding": 5, "order": "seriesAsc"}, "dataZoom": null, "event": null, "graphic": null, "radar": null, "figsize": {"width": 600, "height": 600}, "color": ["#1f77b4", "#ff7f0e", "#2ca02c", "#e377c2", "#9467bd", "#d62728", "#8c564b", "#bcbd22", "#17becf", "#7f7f7f"], "save_img": false, "auto_size": true, "style": {"overflow": "auto"}, "port": "5002"};function setInnerHTML(elm, html) {
+        option = {"chart_id": "1745548955.54239150.9110", "link_id": null, "figname": "", "title": {"show": true, "text": "Feature Selection (RCIT)", "link": "", "target": "blank", "textStyle": {"fontStyle": "normal", "fontWeight": "bolder", "fontFamily": "sans-serif", "fontSize": 15, "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "subtext": "", "sublink": "", "subtarget": "blank", "textAlign": "center", "textVerticalAlign": "auto", "padding": 0, "itemGap": 10, "z": 2, "left": "50.0%", "top": "5%", "right": "auto", "bottom": "auto", "backgroundColor": "transparent", "borderColor": "#ccc", "changed_name_key": {"id_": "id"}}, "grid": {"show": true, "width": "auto", "height": "auto", "z": 2, "left": "5%", "top": "10%", "right": "10%", "bottom": "5%", "borderColor": "#ccc", "borderWidth": 1, "containLabel": true, "backgroundColor": "transparent", "changed_name_key": {"id_": "id"}}, "legend": null, "brush": null, "yAxis": [{"show": true, "data": ["season", "yr", "mnth", "hr", "holiday", "weekday", "workingday", "weathersit", "temp", "atemp", "hum", "windspeed"], "type": "category", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": "auto", "inverse": true, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": true, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": 40.0}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "xAxis": [{"show": "Steps", "type": "category", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": 30, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": true, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": null}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "parallelAxis": null, "series": [{"type": "heatmap", "name": "heatmap", "colorBy": "series", "z": 2, "legendHoverLink": true, "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "label": {"show": false, "fontSize": 12}, "seriesLayoutBy": "column", "data": [[0, 0, 0], [0, 1, 0], [0, 2, 0], [0, 3, -1], [0, 4, 1], [0, 5, 1], [0, 6, 0], [0, 7, 0], [0, 8, 0], [0, 9, 0], [0, 10, 0], [0, 11, 0], [1, 0, 0], [1, 1, -1], [1, 2, 0], [1, 3, -1], [1, 4, 1], [1, 5, 1], [1, 6, 0], [1, 7, 0], [1, 8, 0], [1, 9, 0], [1, 10, 0], [1, 11, 0], [2, 0, 0], [2, 1, -1], [2, 2, 0], [2, 3, -1], [2, 4, 1], [2, 5, 1], [2, 6, 0], [2, 7, 0], [2, 8, 0], [2, 9, -1], [2, 10, 0], [2, 11, 0], [3, 0, 0], [3, 1, -1], [3, 2, 0], [3, 3, -1], [3, 4, 1], [3, 5, 1], [3, 6, -1], [3, 7, 0], [3, 8, 0], [3, 9, -1], [3, 10, 0], [3, 11, 1], [4, 0, 0], [4, 1, -1], [4, 2, 0], [4, 3, -1], [4, 4, 1], [4, 5, 1], [4, 6, -1], [4, 7, -1], [4, 8, 0], [4, 9, -1], [4, 10, 0], [4, 11, 1], [5, 0, 0], [5, 1, -1], [5, 2, 0], [5, 3, -1], [5, 4, 1], [5, 5, 1], [5, 6, -1], [5, 7, -1], [5, 8, 0], [5, 9, -1], [5, 10, -1], [5, 11, 1], [6, 0, 0], [6, 1, -1], [6, 2, 0], [6, 3, -1], [6, 4, 1], [6, 5, 1], [6, 6, -1], [6, 7, -1], [6, 8, -1], [6, 9, -1], [6, 10, -1], [6, 11, 1], [7, 0, -1], [7, 1, -1], [7, 2, 0], [7, 3, -1], [7, 4, 1], [7, 5, 1], [7, 6, -1], [7, 7, -1], [7, 8, -1], [7, 9, -1], [7, 10, -1], [7, 11, 1], [8, 0, -1], [8, 1, -1], [8, 2, -1], [8, 3, -1], [8, 4, 1], [8, 5, 1], [8, 6, -1], [8, 7, -1], [8, 8, -1], [8, 9, -1], [8, 10, -1], [8, 11, 1], [9, 0, -1], [9, 1, -1], [9, 2, -1], [9, 3, -1], [9, 4, 1], [9, 5, 0], [9, 6, -1], [9, 7, -1], [9, 8, -1], [9, 9, -1], [9, 10, -1], [9, 11, -1], [10, 0, -1], [10, 1, -1], [10, 2, -1], [10, 3, -1], [10, 4, 1], [10, 5, -1], [10, 6, -1], [10, 7, -1], [10, 8, -1], [10, 9, -1], [10, 10, -1], [10, 11, -1]], "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "coordinateSystem": "cartesian2d", "pointSize": 20, "blurSize": 10, "maxOpacity": 1, "progressive": 400, "progressiveThreshold": 3000, "colsize": 1, "visualmap_type": "continuous", "map_range": [-1, 1]}], "visualMap": {"show": true, "type": "continuous", "color": ["#440154", "#481467", "#482576", "#453781", "#404688", "#39558c", "#33638d", "#2d718e", "#287d8e", "#238a8d", "#1f968b", "#20a386", "#29af7f", "#3dbc74", "#56c667", "#75d054", "#95d840", "#bade28", "#dde318", "#fde725"], "left": "auto", "top": "10%", "right": "1%", "bottom": "auto", "min": -1, "max": 1, "calculable": true, "realtime": true, "precision": 1, "itemWidth": 20, "itemHeight": 140, "align": "auto", "textGap": 10, "hoverLink": true, "z": 4, "padding": 0, "backgroundColor": "rgba(0,0,0,0)", "borderColor": "#ccc", "textStyle": {"fontSize": 12, "width": 35, "overflow": "none", "ellipsis": ".."}, "indicatorSize": "50%", "orient": "vertical", "changed_name_key": {"id_": "id", "type_": "type", "min_": "min", "max_": "max", "range_": "range"}}, "toolbox": {"show": true, "orient": "horizontal", "itemSize": 15, "itemGap": 8, "showTitle": true, "feature": {"dataZoom": {}, "saveAsImage": {}}, "z": 2, "left": "auto", "top": "auto", "right": "1%", "bottom": "auto", "width": "auto", "height": "auto", "popup": true, "changed_name_key": {"id_": "id"}}, "tooltip": {"show": true, "custom_tooltip": false, "trigger": "item", "axisPointer": {"show": true}, "showContent": true, "triggerOn": "mousemove|click", "hideDelay": 100, "enterable": true, "renderMode": "html", "confine": true, "transitionDuration": 0.4, "precision": 4, "borderColor": "#333", "padding": 5, "order": "seriesAsc"}, "dataZoom": null, "event": null, "graphic": null, "radar": null, "figsize": {"width": 600, "height": 600}, "color": ["#1f77b4", "#ff7f0e", "#2ca02c", "#e377c2", "#9467bd", "#d62728", "#8c564b", "#bcbd22", "#17becf", "#7f7f7f"], "save_img": false, "auto_size": true, "style": {"overflow": "auto"}, "port": "5003"};function setInnerHTML(elm, html) {
   elm.innerHTML = html;
 
   Array.from(elm.querySelectorAll("script"))
@@ -5148,8 +5530,14 @@ function custom_tooltip(option, dimension=2) {
       if (option['series'][ind_]['tooltip']) {
         if (option['series'][ind_]['tooltip']['precision']) {
           var precision = option['series'][ind_]['tooltip']['precision']
-          const fix = precision_ => value => Math.round(Number(value) * (10**precision_)) / (10**precision_),
-          fix_p = fix(precision);
+          const fix = precision_ => value => {
+            const numValue = Number(value);
+            if (isNaN(numValue)) {
+              return value;
+            }
+            return Math.round(numValue * (10**precision_)) / (10**precision_);
+          }
+          const fix_p = fix(precision);
           option['series'][ind_]['tooltip']['valueFormatter'] = function (value) {
             return fix_p(value)
           }
@@ -5174,9 +5562,23 @@ function custom_tooltip(option, dimension=2) {
                 + params.value[dimension]
             }
             else {
+              var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
               formatter = series_name
-              + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-              +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
+              + xaxis_name + ': '+ numValue_x
+              +'<br>' + yaxis_name + ': ' + numValue_y
             }
 
           }
@@ -5191,10 +5593,31 @@ function custom_tooltip(option, dimension=2) {
                 + params.value[dimension]
             }
             else {
+              var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              var numValue_z = Number(params.value[2]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
+              if (isNaN(numValue_z)) {
+                numValue_z = params.value[2]
+              }
+              else {
+                numValue_z = Math.round(params.value[2] * 100) / 100
+              }
               formatter = series_name
-                + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-                +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
-                +'<br>' + zaxis_name + ': ' + Math.round(params.value[2] * 100) / 100
+                + xaxis_name + ': '+ numValue_x
+                +'<br>' + yaxis_name + ': ' + numValue_y
+                +'<br>' + zaxis_name + ': ' + numValue_z
             }
           }
 
@@ -5236,9 +5659,23 @@ function custom_tooltip(option, dimension=2) {
                   + params.value[dimension]
               }
               else {
+                var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
                 formatter = series_name
-                  + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-                  +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
+                  + xaxis_name + ': '+ numValue_x
+                  +'<br>' + yaxis_name + ': ' + numValue_y
               }
             }
 
@@ -5258,10 +5695,31 @@ function custom_tooltip(option, dimension=2) {
                   + params.value[dimension]
               }
               else {
+                var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              var numValue_z = Number(params.value[2]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
+              if (isNaN(numValue_z)) {
+                numValue_z = params.value[2]
+              }
+              else {
+                numValue_z = Math.round(params.value[2] * 100) / 100
+              }
                 formatter = series_name
-                  + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-                  +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
-                  +'<br>' + zaxis_name + ': ' + Math.round(params.value[2] * 100) / 100
+                  + xaxis_name + ': '+ numValue_x
+                  +'<br>' + yaxis_name + ': ' + numValue_y
+                  +'<br>' + zaxis_name + ': ' + numValue_z
               }
             }
 
@@ -5516,15 +5974,15 @@ function support_click_event(option) {
             <body style="height: 100%; margin: 0">
 
 
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/echarts-gl/2.0.8/echarts-gl.min.js"></script>
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
-            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.1.0/dist/echarts-wordcloud.min.js"></script>
+                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/echarts-gl/2.0.8/echarts-gl.min.js"></script>
+                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
+                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.1.0/dist/echarts-wordcloud.min.js"></script>
 
-            <div id="1743146936.0640670.7283" style="height: 600px; width: 600px; overflow: auto"></div>
+            <div id="1745548957.29813720.7283" style="height: 600px; width: 600px; overflow: auto"></div>
 
             <script type="text/javascript">
-            var dom = document.getElementById('1743146936.0640670.7283');
+            var dom = document.getElementById('1745548957.29813720.7283');
             dom.innerHTML = ""
             dom.setAttribute('_echarts_instance_', '')
             var myChart = echarts.init(dom, null, {
@@ -5534,7 +5992,7 @@ function support_click_event(option) {
             var app = {};
 
             var option;
-    option = {"chart_id": "1743146936.0640670.7283", "link_id": null, "figname": "", "title": {"show": true, "text": "Feature Selection (XGB-PFI)", "link": "", "target": "blank", "textStyle": {"fontStyle": "normal", "fontWeight": "bolder", "fontFamily": "sans-serif", "fontSize": 15, "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "subtext": "", "sublink": "", "subtarget": "blank", "textAlign": "center", "textVerticalAlign": "auto", "padding": 0, "itemGap": 10, "z": 2, "left": "50.0%", "top": "5%", "right": "auto", "bottom": "auto", "backgroundColor": "transparent", "borderColor": "#ccc", "changed_name_key": {"id_": "id"}}, "grid": {"show": true, "width": "auto", "height": "auto", "z": 2, "left": "5%", "top": "10%", "right": "10%", "bottom": "5%", "borderColor": "#ccc", "borderWidth": 1, "containLabel": true, "backgroundColor": "transparent", "changed_name_key": {"id_": "id"}}, "legend": null, "brush": null, "yAxis": [{"show": true, "data": ["windspeed", "weathersit", "hum", "atemp", "mnth", "weekday", "season", "temp", "workingday", "yr", "hr"], "type": "category", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": "auto", "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": true, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": 40.0}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "xAxis": [{"show": true, "type": "value", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": 30, "min": -0.066, "max": 0.76, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": false, "showMaxLabel": false, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": null}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "parallelAxis": null, "series": [{"type": "bar", "colorBy": "series", "z": 2, "legendHoverLink": true, "stack": "", "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "label": {"show": false, "color": "black", "position": null, "fontSize": 12}, "itemStyle": {}, "seriesLayoutBy": "column", "data": [{"value": [0.0028555255033384528, "windspeed"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.010889628791379965, "weathersit"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.015005326061590952, "hum"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.015293510051779773, "atemp"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.016627789270604397, "mnth"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.018317738558972056, "weekday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.019714204528058856, "season"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.05269119258263357, "temp"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.06695586746193749, "workingday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.088816264173646, "yr"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.6928329530160584, "hr"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}], "markLine": {"symbolSize": 0, "silent": true, "label": {"show": false}, "data": [{"xAxis": 0.1, "lineStyle": {"type": "dashed", "color": "red"}}]}, "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "color": "#1f77b4", "coordinateSystem": "cartesian2d", "showBackground": true, "backgroundStyle": {"color": "rgba(180, 180, 180, 0.2)"}, "barWidth": "90%", "barGap": "0", "barCategoryGap": "20%", "largeThreshold": 400, "progressive": 5000, "progressiveThreshold": 3000, "progressiveChunkMode": "mod", "orient": "horizontal", "x_value": ["windspeed", "weathersit", "hum", "atemp", "mnth", "weekday", "season", "temp", "workingday", "yr", "hr"], "tooltip_type": "axis", "hist": false, "data_value": [["windspeed", "0.0028555255033384528"], ["weathersit", "0.010889628791379965"], ["hum", "0.015005326061590952"], ["atemp", "0.015293510051779773"], ["mnth", "0.016627789270604397"], ["weekday", "0.018317738558972056"], ["season", "0.019714204528058856"], ["temp", "0.05269119258263357"], ["workingday", "0.06695586746193749"], ["yr", "0.088816264173646"], ["hr", "0.6928329530160584"]]}], "visualMap": null, "toolbox": {"show": true, "orient": "horizontal", "itemSize": 15, "itemGap": 8, "showTitle": true, "feature": {"dataZoom": {}, "saveAsImage": {}}, "z": 2, "left": "auto", "top": "auto", "right": "1%", "bottom": "auto", "width": "auto", "height": "auto", "popup": true, "changed_name_key": {"id_": "id"}}, "tooltip": {"show": true, "custom_tooltip": false, "trigger": "item", "axisPointer": {"show": true}, "showContent": true, "triggerOn": "mousemove|click", "hideDelay": 100, "enterable": true, "renderMode": "html", "confine": true, "transitionDuration": 0.4, "precision": 4, "borderColor": "#333", "padding": 5, "order": "seriesAsc"}, "dataZoom": null, "event": null, "graphic": null, "radar": null, "figsize": {"width": 600, "height": 600}, "color": ["#1f77b4", "#ff7f0e", "#2ca02c", "#e377c2", "#9467bd", "#d62728", "#8c564b", "#bcbd22", "#17becf", "#7f7f7f"], "save_img": false, "auto_size": true, "style": {"overflow": "auto"}, "port": "5002"};function setInnerHTML(elm, html) {
+    option = {"chart_id": "1745548957.29813720.7283", "link_id": null, "figname": "", "title": {"show": true, "text": "Feature Selection (XGB-PFI)", "link": "", "target": "blank", "textStyle": {"fontStyle": "normal", "fontWeight": "bolder", "fontFamily": "sans-serif", "fontSize": 15, "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "subtext": "", "sublink": "", "subtarget": "blank", "textAlign": "center", "textVerticalAlign": "auto", "padding": 0, "itemGap": 10, "z": 2, "left": "50.0%", "top": "5%", "right": "auto", "bottom": "auto", "backgroundColor": "transparent", "borderColor": "#ccc", "changed_name_key": {"id_": "id"}}, "grid": {"show": true, "width": "auto", "height": "auto", "z": 2, "left": "5%", "top": "10%", "right": "10%", "bottom": "5%", "borderColor": "#ccc", "borderWidth": 1, "containLabel": true, "backgroundColor": "transparent", "changed_name_key": {"id_": "id"}}, "legend": null, "brush": null, "yAxis": [{"show": true, "data": ["windspeed", "weathersit", "hum", "atemp", "mnth", "weekday", "season", "temp", "workingday", "yr", "hr"], "type": "category", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": "auto", "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": true, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": 40.0}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "xAxis": [{"show": true, "type": "value", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": 30, "min": -0.066, "max": 0.76, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": false, "showMaxLabel": false, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": null}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "parallelAxis": null, "series": [{"type": "bar", "colorBy": "series", "z": 2, "legendHoverLink": true, "stack": "", "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "label": {"show": false, "color": "black", "position": null, "fontSize": 12}, "itemStyle": {}, "seriesLayoutBy": "column", "data": [{"value": [0.0028555255033384528, "windspeed"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.010889628791379965, "weathersit"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.015005326061590952, "hum"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.015293510051779773, "atemp"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.016627789270604397, "mnth"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.018317738558972056, "weekday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.019714204528058856, "season"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.05269119258263357, "temp"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.06695586746193749, "workingday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.088816264173646, "yr"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.6928329530160584, "hr"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}], "markLine": {"symbolSize": 0, "silent": true, "label": {"show": false}, "data": [{"xAxis": 0.1, "lineStyle": {"type": "dashed", "color": "red"}}]}, "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "color": "#1f77b4", "coordinateSystem": "cartesian2d", "showBackground": true, "backgroundStyle": {"color": "rgba(180, 180, 180, 0.2)"}, "barWidth": "90%", "barGap": "0", "barCategoryGap": "20%", "largeThreshold": 400, "progressive": 5000, "progressiveThreshold": 3000, "progressiveChunkMode": "mod", "orient": "horizontal", "x_value": ["windspeed", "weathersit", "hum", "atemp", "mnth", "weekday", "season", "temp", "workingday", "yr", "hr"], "tooltip_type": "axis", "hist": false, "data_value": [["windspeed", "0.0028555255033384528"], ["weathersit", "0.010889628791379965"], ["hum", "0.015005326061590952"], ["atemp", "0.015293510051779773"], ["mnth", "0.016627789270604397"], ["weekday", "0.018317738558972056"], ["season", "0.019714204528058856"], ["temp", "0.05269119258263357"], ["workingday", "0.06695586746193749"], ["yr", "0.088816264173646"], ["hr", "0.6928329530160584"]]}], "visualMap": null, "toolbox": {"show": true, "orient": "horizontal", "itemSize": 15, "itemGap": 8, "showTitle": true, "feature": {"dataZoom": {}, "saveAsImage": {}}, "z": 2, "left": "auto", "top": "auto", "right": "1%", "bottom": "auto", "width": "auto", "height": "auto", "popup": true, "changed_name_key": {"id_": "id"}}, "tooltip": {"show": true, "custom_tooltip": false, "trigger": "item", "axisPointer": {"show": true}, "showContent": true, "triggerOn": "mousemove|click", "hideDelay": 100, "enterable": true, "renderMode": "html", "confine": true, "transitionDuration": 0.4, "precision": 4, "borderColor": "#333", "padding": 5, "order": "seriesAsc"}, "dataZoom": null, "event": null, "graphic": null, "radar": null, "figsize": {"width": 600, "height": 600}, "color": ["#1f77b4", "#ff7f0e", "#2ca02c", "#e377c2", "#9467bd", "#d62728", "#8c564b", "#bcbd22", "#17becf", "#7f7f7f"], "save_img": false, "auto_size": true, "style": {"overflow": "auto"}, "port": "5003"};function setInnerHTML(elm, html) {
   elm.innerHTML = html;
 
   Array.from(elm.querySelectorAll("script"))
@@ -6032,8 +6490,14 @@ function custom_tooltip(option, dimension=2) {
       if (option['series'][ind_]['tooltip']) {
         if (option['series'][ind_]['tooltip']['precision']) {
           var precision = option['series'][ind_]['tooltip']['precision']
-          const fix = precision_ => value => Math.round(Number(value) * (10**precision_)) / (10**precision_),
-          fix_p = fix(precision);
+          const fix = precision_ => value => {
+            const numValue = Number(value);
+            if (isNaN(numValue)) {
+              return value;
+            }
+            return Math.round(numValue * (10**precision_)) / (10**precision_);
+          }
+          const fix_p = fix(precision);
           option['series'][ind_]['tooltip']['valueFormatter'] = function (value) {
             return fix_p(value)
           }
@@ -6058,9 +6522,23 @@ function custom_tooltip(option, dimension=2) {
                 + params.value[dimension]
             }
             else {
+              var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
               formatter = series_name
-              + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-              +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
+              + xaxis_name + ': '+ numValue_x
+              +'<br>' + yaxis_name + ': ' + numValue_y
             }
 
           }
@@ -6075,10 +6553,31 @@ function custom_tooltip(option, dimension=2) {
                 + params.value[dimension]
             }
             else {
+              var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              var numValue_z = Number(params.value[2]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
+              if (isNaN(numValue_z)) {
+                numValue_z = params.value[2]
+              }
+              else {
+                numValue_z = Math.round(params.value[2] * 100) / 100
+              }
               formatter = series_name
-                + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-                +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
-                +'<br>' + zaxis_name + ': ' + Math.round(params.value[2] * 100) / 100
+                + xaxis_name + ': '+ numValue_x
+                +'<br>' + yaxis_name + ': ' + numValue_y
+                +'<br>' + zaxis_name + ': ' + numValue_z
             }
           }
 
@@ -6120,9 +6619,23 @@ function custom_tooltip(option, dimension=2) {
                   + params.value[dimension]
               }
               else {
+                var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
                 formatter = series_name
-                  + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-                  +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
+                  + xaxis_name + ': '+ numValue_x
+                  +'<br>' + yaxis_name + ': ' + numValue_y
               }
             }
 
@@ -6142,10 +6655,31 @@ function custom_tooltip(option, dimension=2) {
                   + params.value[dimension]
               }
               else {
+                var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              var numValue_z = Number(params.value[2]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
+              if (isNaN(numValue_z)) {
+                numValue_z = params.value[2]
+              }
+              else {
+                numValue_z = Math.round(params.value[2] * 100) / 100
+              }
                 formatter = series_name
-                  + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-                  +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
-                  +'<br>' + zaxis_name + ': ' + Math.round(params.value[2] * 100) / 100
+                  + xaxis_name + ': '+ numValue_x
+                  +'<br>' + yaxis_name + ': ' + numValue_y
+                  +'<br>' + zaxis_name + ': ' + numValue_z
               }
             }
 
@@ -6316,9 +6850,9 @@ function support_click_event(option) {
             <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.1.0/dist/echarts-wordcloud.min.js"><\/script>
 
 
-        <div id="1743146936.0640670.7283" style="height: 90%; width: 90%"></div>
+        <div id="1745548957.29813720.7283" style="height: 90%; width: 90%"></div>
         <script type="text/javascript">
-            var dom = document.getElementById('1743146936.0640670.7283');
+            var dom = document.getElementById('1745548957.29813720.7283');
             var myChart = echarts.init(dom, null, {
                 renderer: 'canvas',
                 useDirtyRect: false
@@ -6326,7 +6860,7 @@ function support_click_event(option) {
             var app = {};
 
             var option;
-        option = {"chart_id": "1743146936.0640670.7283", "link_id": null, "figname": "", "title": {"show": true, "text": "Feature Selection (XGB-PFI)", "link": "", "target": "blank", "textStyle": {"fontStyle": "normal", "fontWeight": "bolder", "fontFamily": "sans-serif", "fontSize": 15, "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "subtext": "", "sublink": "", "subtarget": "blank", "textAlign": "center", "textVerticalAlign": "auto", "padding": 0, "itemGap": 10, "z": 2, "left": "50.0%", "top": "5%", "right": "auto", "bottom": "auto", "backgroundColor": "transparent", "borderColor": "#ccc", "changed_name_key": {"id_": "id"}}, "grid": {"show": true, "width": "auto", "height": "auto", "z": 2, "left": "5%", "top": "10%", "right": "10%", "bottom": "5%", "borderColor": "#ccc", "borderWidth": 1, "containLabel": true, "backgroundColor": "transparent", "changed_name_key": {"id_": "id"}}, "legend": null, "brush": null, "yAxis": [{"show": true, "data": ["windspeed", "weathersit", "hum", "atemp", "mnth", "weekday", "season", "temp", "workingday", "yr", "hr"], "type": "category", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": "auto", "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": true, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": 40.0}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "xAxis": [{"show": true, "type": "value", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": 30, "min": -0.066, "max": 0.76, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": false, "showMaxLabel": false, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": null}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "parallelAxis": null, "series": [{"type": "bar", "colorBy": "series", "z": 2, "legendHoverLink": true, "stack": "", "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "label": {"show": false, "color": "black", "position": null, "fontSize": 12}, "itemStyle": {}, "seriesLayoutBy": "column", "data": [{"value": [0.0028555255033384528, "windspeed"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.010889628791379965, "weathersit"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.015005326061590952, "hum"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.015293510051779773, "atemp"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.016627789270604397, "mnth"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.018317738558972056, "weekday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.019714204528058856, "season"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.05269119258263357, "temp"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.06695586746193749, "workingday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.088816264173646, "yr"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.6928329530160584, "hr"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}], "markLine": {"symbolSize": 0, "silent": true, "label": {"show": false}, "data": [{"xAxis": 0.1, "lineStyle": {"type": "dashed", "color": "red"}}]}, "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "color": "#1f77b4", "coordinateSystem": "cartesian2d", "showBackground": true, "backgroundStyle": {"color": "rgba(180, 180, 180, 0.2)"}, "barWidth": "90%", "barGap": "0", "barCategoryGap": "20%", "largeThreshold": 400, "progressive": 5000, "progressiveThreshold": 3000, "progressiveChunkMode": "mod", "orient": "horizontal", "x_value": ["windspeed", "weathersit", "hum", "atemp", "mnth", "weekday", "season", "temp", "workingday", "yr", "hr"], "tooltip_type": "axis", "hist": false, "data_value": [["windspeed", "0.0028555255033384528"], ["weathersit", "0.010889628791379965"], ["hum", "0.015005326061590952"], ["atemp", "0.015293510051779773"], ["mnth", "0.016627789270604397"], ["weekday", "0.018317738558972056"], ["season", "0.019714204528058856"], ["temp", "0.05269119258263357"], ["workingday", "0.06695586746193749"], ["yr", "0.088816264173646"], ["hr", "0.6928329530160584"]]}], "visualMap": null, "toolbox": {"show": true, "orient": "horizontal", "itemSize": 15, "itemGap": 8, "showTitle": true, "feature": {"dataZoom": {}, "saveAsImage": {}}, "z": 2, "left": "auto", "top": "auto", "right": "1%", "bottom": "auto", "width": "auto", "height": "auto", "popup": true, "changed_name_key": {"id_": "id"}}, "tooltip": {"show": true, "custom_tooltip": false, "trigger": "item", "axisPointer": {"show": true}, "showContent": true, "triggerOn": "mousemove|click", "hideDelay": 100, "enterable": true, "renderMode": "html", "confine": true, "transitionDuration": 0.4, "precision": 4, "borderColor": "#333", "padding": 5, "order": "seriesAsc"}, "dataZoom": null, "event": null, "graphic": null, "radar": null, "figsize": {"width": 600, "height": 600}, "color": ["#1f77b4", "#ff7f0e", "#2ca02c", "#e377c2", "#9467bd", "#d62728", "#8c564b", "#bcbd22", "#17becf", "#7f7f7f"], "save_img": false, "auto_size": true, "style": {"overflow": "auto"}, "port": "5002"};function setInnerHTML(elm, html) {
+        option = {"chart_id": "1745548957.29813720.7283", "link_id": null, "figname": "", "title": {"show": true, "text": "Feature Selection (XGB-PFI)", "link": "", "target": "blank", "textStyle": {"fontStyle": "normal", "fontWeight": "bolder", "fontFamily": "sans-serif", "fontSize": 15, "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "subtext": "", "sublink": "", "subtarget": "blank", "textAlign": "center", "textVerticalAlign": "auto", "padding": 0, "itemGap": 10, "z": 2, "left": "50.0%", "top": "5%", "right": "auto", "bottom": "auto", "backgroundColor": "transparent", "borderColor": "#ccc", "changed_name_key": {"id_": "id"}}, "grid": {"show": true, "width": "auto", "height": "auto", "z": 2, "left": "5%", "top": "10%", "right": "10%", "bottom": "5%", "borderColor": "#ccc", "borderWidth": 1, "containLabel": true, "backgroundColor": "transparent", "changed_name_key": {"id_": "id"}}, "legend": null, "brush": null, "yAxis": [{"show": true, "data": ["windspeed", "weathersit", "hum", "atemp", "mnth", "weekday", "season", "temp", "workingday", "yr", "hr"], "type": "category", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": "auto", "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": true, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": 40.0}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "xAxis": [{"show": true, "type": "value", "position": "bottom", "name": "", "nameLocation": "center", "nameTextStyle": {"color": "#747475", "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "..."}, "nameGap": 30, "min": -0.066, "max": 0.76, "splitNumber": 5, "logBase": 10, "axisLine": {}, "axisTick": {"show": true, "alignWithLabel": "none", "interval": "auto", "length": 5}, "axisLabel": {"show": true, "margin": 8, "showMinLabel": false, "showMaxLabel": false, "fontStyle": "normal", "fontWeight": "normal", "fontFamily": "sans-serif", "fontSize": 12, "backgroundColor": "transparent", "borderType": "solid", "shadowColor": "transparent", "textBorderType": "solid", "textShadowColor": "transparent", "overflow": "none", "ellipsis": "...", "width": null}, "splitLine": {"show": true, "interval": "auto"}, "splitArea": {"show": false, "interval": "auto"}, "axisPointer": {"show": false}, "dimension": "2d", "ignored": false, "changed_name_key": {"min_": "min", "max_": "max", "type_": "type", "name_": "name"}}], "parallelAxis": null, "series": [{"type": "bar", "colorBy": "series", "z": 2, "legendHoverLink": true, "stack": "", "stackStrategy": "samesign", "cursor": "pointer", "clip": true, "label": {"show": false, "color": "black", "position": null, "fontSize": 12}, "itemStyle": {}, "seriesLayoutBy": "column", "data": [{"value": [0.0028555255033384528, "windspeed"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.010889628791379965, "weathersit"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.015005326061590952, "hum"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.015293510051779773, "atemp"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.016627789270604397, "mnth"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.018317738558972056, "weekday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.019714204528058856, "season"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.05269119258263357, "temp"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.06695586746193749, "workingday"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.088816264173646, "yr"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}, {"value": [0.6928329530160584, "hr"], "itemStyle": {"color": "#1f77b4"}, "visualMap": false}], "markLine": {"symbolSize": 0, "silent": true, "label": {"show": false}, "data": [{"xAxis": 0.1, "lineStyle": {"type": "dashed", "color": "red"}}]}, "animation": true, "animationThreshold": 2000, "animationDuration": 1000, "animationEasing": "cubicOut", "animationDurationUpdate": 300, "animationEasingUpdate": "cubicOut", "color": "#1f77b4", "coordinateSystem": "cartesian2d", "showBackground": true, "backgroundStyle": {"color": "rgba(180, 180, 180, 0.2)"}, "barWidth": "90%", "barGap": "0", "barCategoryGap": "20%", "largeThreshold": 400, "progressive": 5000, "progressiveThreshold": 3000, "progressiveChunkMode": "mod", "orient": "horizontal", "x_value": ["windspeed", "weathersit", "hum", "atemp", "mnth", "weekday", "season", "temp", "workingday", "yr", "hr"], "tooltip_type": "axis", "hist": false, "data_value": [["windspeed", "0.0028555255033384528"], ["weathersit", "0.010889628791379965"], ["hum", "0.015005326061590952"], ["atemp", "0.015293510051779773"], ["mnth", "0.016627789270604397"], ["weekday", "0.018317738558972056"], ["season", "0.019714204528058856"], ["temp", "0.05269119258263357"], ["workingday", "0.06695586746193749"], ["yr", "0.088816264173646"], ["hr", "0.6928329530160584"]]}], "visualMap": null, "toolbox": {"show": true, "orient": "horizontal", "itemSize": 15, "itemGap": 8, "showTitle": true, "feature": {"dataZoom": {}, "saveAsImage": {}}, "z": 2, "left": "auto", "top": "auto", "right": "1%", "bottom": "auto", "width": "auto", "height": "auto", "popup": true, "changed_name_key": {"id_": "id"}}, "tooltip": {"show": true, "custom_tooltip": false, "trigger": "item", "axisPointer": {"show": true}, "showContent": true, "triggerOn": "mousemove|click", "hideDelay": 100, "enterable": true, "renderMode": "html", "confine": true, "transitionDuration": 0.4, "precision": 4, "borderColor": "#333", "padding": 5, "order": "seriesAsc"}, "dataZoom": null, "event": null, "graphic": null, "radar": null, "figsize": {"width": 600, "height": 600}, "color": ["#1f77b4", "#ff7f0e", "#2ca02c", "#e377c2", "#9467bd", "#d62728", "#8c564b", "#bcbd22", "#17becf", "#7f7f7f"], "save_img": false, "auto_size": true, "style": {"overflow": "auto"}, "port": "5003"};function setInnerHTML(elm, html) {
   elm.innerHTML = html;
 
   Array.from(elm.querySelectorAll("script"))
@@ -6824,8 +7358,14 @@ function custom_tooltip(option, dimension=2) {
       if (option['series'][ind_]['tooltip']) {
         if (option['series'][ind_]['tooltip']['precision']) {
           var precision = option['series'][ind_]['tooltip']['precision']
-          const fix = precision_ => value => Math.round(Number(value) * (10**precision_)) / (10**precision_),
-          fix_p = fix(precision);
+          const fix = precision_ => value => {
+            const numValue = Number(value);
+            if (isNaN(numValue)) {
+              return value;
+            }
+            return Math.round(numValue * (10**precision_)) / (10**precision_);
+          }
+          const fix_p = fix(precision);
           option['series'][ind_]['tooltip']['valueFormatter'] = function (value) {
             return fix_p(value)
           }
@@ -6850,9 +7390,23 @@ function custom_tooltip(option, dimension=2) {
                 + params.value[dimension]
             }
             else {
+              var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
               formatter = series_name
-              + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-              +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
+              + xaxis_name + ': '+ numValue_x
+              +'<br>' + yaxis_name + ': ' + numValue_y
             }
 
           }
@@ -6867,10 +7421,31 @@ function custom_tooltip(option, dimension=2) {
                 + params.value[dimension]
             }
             else {
+              var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              var numValue_z = Number(params.value[2]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
+              if (isNaN(numValue_z)) {
+                numValue_z = params.value[2]
+              }
+              else {
+                numValue_z = Math.round(params.value[2] * 100) / 100
+              }
               formatter = series_name
-                + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-                +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
-                +'<br>' + zaxis_name + ': ' + Math.round(params.value[2] * 100) / 100
+                + xaxis_name + ': '+ numValue_x
+                +'<br>' + yaxis_name + ': ' + numValue_y
+                +'<br>' + zaxis_name + ': ' + numValue_z
             }
           }
 
@@ -6912,9 +7487,23 @@ function custom_tooltip(option, dimension=2) {
                   + params.value[dimension]
               }
               else {
+                var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
                 formatter = series_name
-                  + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-                  +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
+                  + xaxis_name + ': '+ numValue_x
+                  +'<br>' + yaxis_name + ': ' + numValue_y
               }
             }
 
@@ -6934,10 +7523,31 @@ function custom_tooltip(option, dimension=2) {
                   + params.value[dimension]
               }
               else {
+                var numValue_x = Number(params.value[0]);
+              var numValue_y = Number(params.value[1]);
+              var numValue_z = Number(params.value[2]);
+              if (isNaN(numValue_x)) {
+                numValue_x = params.value[0]
+              }
+              else {
+                numValue_x = Math.round(params.value[0] * 100) / 100
+              }
+              if (isNaN(numValue_y)) {
+                numValue_y = params.value[1]
+              }
+              else {
+                numValue_y = Math.round(params.value[1] * 100) / 100
+              }
+              if (isNaN(numValue_z)) {
+                numValue_z = params.value[2]
+              }
+              else {
+                numValue_z = Math.round(params.value[2] * 100) / 100
+              }
                 formatter = series_name
-                  + xaxis_name + ': '+ Math.round(params.value[0] * 100) / 100
-                  +'<br>' + yaxis_name + ': ' + Math.round(params.value[1] * 100) / 100
-                  +'<br>' + zaxis_name + ': ' + Math.round(params.value[2] * 100) / 100
+                  + xaxis_name + ': '+ numValue_x
+                  +'<br>' + yaxis_name + ': ' + numValue_y
+                  +'<br>' + zaxis_name + ': ' + numValue_z
               }
             }
 
@@ -7182,7 +7792,7 @@ function support_click_event(option) {
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;season&#39;, &#39;yr&#39;, &#39;mnth&#39;, &#39;hr&#39;, &#39;holiday&#39;, &#39;weekday&#39;, &#39;workingday&#39;, &#39;weathersit&#39;, &#39;temp&#39;, &#39;atemp&#39;, &#39;hum&#39;, &#39;windspeed&#39;]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 6.821 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 8.827 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-source-auto-galleries-data-plot-2-feature-selection-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/9657d3b03b7edbbc02602709980809bd/plot_2_feature_selection.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_2_feature_selection.ipynb</span></code></a></p>

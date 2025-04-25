@@ -101,18 +101,6 @@ result = ds.eda_correlation(features=('PAY_1',
 result.plot()
 
 # %%
-# XI Correlation
-# ----------------------------------------------------------
-result = ds.eda_correlation(features=('PAY_1',
-                                      'PAY_2',
-                                      'PAY_3',
-                                      'PAY_4',
-                                      'PAY_5',
-                                      'PAY_6'),
-                            dataset="main", method="xicor", sample_size=10000) # "pearson", "spearman", "kendall", "xicor"
-result.plot()
-
-# %%
 # PCA
 # ----------------------------------------------------------
 result = ds.eda_pca(features=("EDUCATION",

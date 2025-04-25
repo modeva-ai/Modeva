@@ -57,7 +57,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="1.0.10" />
+  <meta name="docsearch:version" content="1.0.11" />
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="MoDeVa">
   <meta property="og:description" content="An Integrated Tool for Model Development and Validation">
@@ -459,13 +459,15 @@
 <h1>modeva.models.MoScoredClassifier<a class="headerlink" href="#modeva-models-moscoredclassifier" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="modeva.models.MoScoredClassifier">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modeva.models.</span></span><span class="sig-name descname"><span class="pre">MoScoredClassifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.models.MoScoredClassifier" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modeva.models.</span></span><span class="sig-name descname"><span class="pre">MoScoredClassifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prediction_proba_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modeva.models.MoScoredClassifier" title="Link to this definition">#</a></dt>
 <dd><p>A wrapper for a scored classification model that provides predictions
 and probability estimates without holding the model object itself.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>dataset</strong> (<em>object</em>) – The dataset to be used for predictions.</p></li>
+<li><p><strong>prediction_proba_name</strong> (<em>str</em><em>, </em><em>default=None</em>) – The prediction_proba column name in dataset.
+If None, will use the prediction_proba_name attribute in dataset.</p></li>
 <li><p><strong>name</strong> (<em>str</em><em>, </em><em>default=None</em>) – The name of the model.</p></li>
 </ul>
 </dd>
@@ -533,7 +535,7 @@ Otherwise, will use raw probability.</p></li>
 <dd class="field-even"><p><strong>logit_prediction</strong> – Array of (calibrated) logit predictions.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>array, shape (n_samples,)</p>
+<dd class="field-odd"><p>array, shape (n_samples,) or (n_samples, n_classes)</p>
 </dd>
 </dl>
 </dd></dl>
