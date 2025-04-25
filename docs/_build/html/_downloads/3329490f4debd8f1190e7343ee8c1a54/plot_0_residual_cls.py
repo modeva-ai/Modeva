@@ -171,6 +171,3 @@ results.table
 
 # %%
 results.plot("cluster_performance")
-
-# %%
-results.plot("cluster_residual")
