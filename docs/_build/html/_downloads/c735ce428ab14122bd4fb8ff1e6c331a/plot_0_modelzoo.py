@@ -18,7 +18,7 @@ train them, and perform various analyses using TestSuite.
 
 # To get authentication, use the following command: (To get full access please replace the token to your own token)
 # from modeva.utils.authenticate import authenticate
-# authenticate(token='eaaa4301-b140-484c-8e93-f9f633c8bacb')
+# authenticate(auth_code='eaaa4301-b140-484c-8e93-f9f633c8bacb')
 
 # %%
 # Import required modules

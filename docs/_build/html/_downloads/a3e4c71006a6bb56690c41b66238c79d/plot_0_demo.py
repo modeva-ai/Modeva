@@ -4,6 +4,18 @@ First Example with Modeva
 ========================================
 
 """
+# %%
+# Installation
+
+# To install the required package, use the following command:
+# !pip install modeva
+
+# %%
+# Authentication
+
+# To get authentication, use the following command: (To get full access please replace the token to your own token)
+# from modeva.utils.authenticate import authenticate
+# authenticate(auth_code='eaaa4301-b140-484c-8e93-f9f633c8bacb')
 
 # %%
 # Import modeva modules.
