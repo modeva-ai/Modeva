@@ -58,7 +58,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="1.0.13" />
+  <meta name="docsearch:version" content="1.0.14" />
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="MoDeVa">
   <meta property="og:description" content="An Integrated Tool for Model Development and Validation">
@@ -466,7 +466,7 @@ By adaptively learning both local and global patterns, a model can tailor its pr
 Many real-world applications benefit from identifying and modeling distinct segments within the data, as each segment may be driven by unique factors. Segmenting the data enables the development of specialized models that highlight the critical drivers for each subgroup, thereby supporting targeted decision-making and interpretable results.</p>
 <p><strong>Enhanced Resilience Against Distribution Drift:</strong>
 A mixture of experts (MoE) framework naturally supports more homogeneous performance across varying data segments. By training specialized experts on segments that share similar characteristics, the model is less vulnerable to distribution drift. This segmentation ensures that even if one part of the data distribution shifts, the corresponding expert remains well-calibrated, thereby enhancing the overall model’s robustness and stability.</p>
-<p>To address these challenges, MoDeVa provides a mixture of experts model that integrates soft clustering with expert predictors. Initially, the data is partitioned into clusters, with each sample receiving a probabilistic membership assignment across clusters. Specialized XGBoost models are then trained for each cluster using weighted samples, and their predictions are aggregated based on these membership probabilities. Furthermore, the cluster centroids are optimized via Particle Swarm Optimization (PSO), dynamically refining the segmentation to ensure that both local expertise and global patterns are effectively captured.</p>
+<p>To address these challenges, MoDeVa provides a mixture of experts model that integrates soft clustering with expert predictors. Initially, the data is partitioned into clusters, with each sample receiving a probabilistic membership assignment across clusters. Specialized XGBoost models are then trained for each cluster using weighted samples, and their predictions are aggregated based on these membership probabilities.</p>
 <p>This approach not only enhances predictive performance by accommodating data heterogeneity and uncovering distinct drivers but also delivers more resilient and uniformly performing models in the face of distribution drift.</p>
 <p>The Mixture of Experts (MoE) model in MoDeVa combines multiple interpretable XGBoost models, each specializing in different regions of the feature space. By using shallow trees (depth 1 or 2) for both gating and expert models, it maintains interpretability through functional ANOVA decomposition while enabling local expertise development.</p>
 <p><strong>Key Benefits:</strong></p>
@@ -506,57 +506,29 @@ A mixture of experts (MoE) framework naturally supports more homogeneous perform
 <section id="mathematical-formulation">
 <h3>Mathematical Formulation<a class="headerlink" href="#mathematical-formulation" title="Link to this heading">#</a></h3>
 <p>Given a dataset <span class="math notranslate nohighlight">\(\mathcal{D} = {(x_i, y_i)}_{i=1}^n\)</span> where <span class="math notranslate nohighlight">\(x_i \in \mathbb{R}^d\)</span> represents the feature vector and <span class="math notranslate nohighlight">\(y_i\)</span> is the target, the model employs <span class="math notranslate nohighlight">\(K\)</span> experts. Each expert <span class="math notranslate nohighlight">\(f_k(x)\)</span> is an XGBoost model, and the overall prediction is a weighted combination of the experts’ outputs.</p>
-<p><strong>Soft Membership Calculation</strong>
-For each data point <span class="math notranslate nohighlight">\(x_i\)</span> and cluster <span class="math notranslate nohighlight">\(k\)</span> with centroid <span class="math notranslate nohighlight">\(c_k\)</span>, the probability membership is computed using a softmax over the negative squared Euclidean distance scaled by a temperature parameter <span class="math notranslate nohighlight">\(\tau\)</span>:</p>
-<div class="math notranslate nohighlight" id="equation-eq-soft-membership">
-<span class="eqno">(1)<a class="headerlink" href="#equation-eq-soft-membership" title="Link to this equation">#</a></span>\[p_{ik} = \frac{\exp\left(-\frac{|x_i - c_k|^2}{\tau}\right)} {\sum_{j=1}^K \exp\left(-\frac{|x_i - c_j|^2}{\tau}\right)}\]</div>
-<p><strong>Expert Prediction Aggregation</strong>
-Each expert <span class="math notranslate nohighlight">\(f_k(x)\)</span> is trained on the full dataset with samples weighted by their respective membership <span class="math notranslate nohighlight">\(p_{ik}\)</span>. The aggregated prediction for an input <span class="math notranslate nohighlight">\(x\)</span> is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eq-aggregation">
-<span class="eqno">(2)<a class="headerlink" href="#equation-eq-aggregation" title="Link to this equation">#</a></span>\[\hat{y}(x) = \sum_{k=1}^K p_k(x) . f_k(x)\]</div>
-<p><strong>Overall Loss Function</strong>
-The model’s parameters, which include the experts’ parameters <span class="math notranslate nohighlight">\(\theta\)</span> and the cluster centroids <span class="math notranslate nohighlight">\({c_k}_{k=1}^K\)</span>, are optimized by minimizing the loss function:</p>
-<div class="math notranslate nohighlight" id="equation-eq-loss">
-<span class="eqno">(3)<a class="headerlink" href="#equation-eq-loss" title="Link to this equation">#</a></span>\[L(\theta, {c_k}) = \sum_{i=1}^n \ell\Bigl(y_i, \hat{y}(x_i)\Bigr)\]</div>
-<p>Here, <span class="math notranslate nohighlight">\(\ell\)</span> denotes an appropriate loss function (e.g., squared error for regression or log-loss for classification).</p>
-<p><strong>Centroid Optimization via Particle Swarm Optimization (PSO)</strong>
-Due to the non-differentiability of XGBoost, the cluster centroids are optimized using Particle Swarm Optimization (PSO). In PSO, each particle represents a candidate set of centroids, and the particle updates are defined as follows:</p>
-<p><strong>PSO Velocity Update Equation</strong></p>
-<div class="math notranslate nohighlight" id="equation-eq-pso-velocity">
-<span class="eqno">(4)<a class="headerlink" href="#equation-eq-pso-velocity" title="Link to this equation">#</a></span>\[v_{i}^{(t+1)} = \omega\, v_{i}^{(t)} + c_1\, r_1\, \Bigl(p_{i,\text{best}} - x_{i}^{(t)}\Bigr) + c_2\, r_2\, \Bigl(g_{\text{best}} - x_{i}^{(t)}\Bigr)\]</div>
-<p><strong>PSO Position Update Equation</strong></p>
-<div class="math notranslate nohighlight" id="equation-eq-pso-position">
-<span class="eqno">(5)<a class="headerlink" href="#equation-eq-pso-position" title="Link to this equation">#</a></span>\[x_{i}^{(t+1)} = x_{i}^{(t)} + v_{i}^{(t+1)}\]</div>
+<span class="eqno">(1)<a class="headerlink" href="#equation-eq-aggregation" title="Link to this equation">#</a></span>\[\hat{y}(x) = \sum_{k=1}^K \hat{p}_k(x) \cdot \hat{f}_k(x),\]</div>
+<p>where each expert <span class="math notranslate nohighlight">\(\hat{f}_k(x)\)</span> is trained on the full dataset with samples weighted by their respective gating model <span class="math notranslate nohighlight">\(\hat{p}_{k}(x)\)</span>.</p>
 </section>
 <section id="step-by-step-process">
 <h3>Step-by-Step Process<a class="headerlink" href="#step-by-step-process" title="Link to this heading">#</a></h3>
-<p><strong>Initialization:</strong></p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Define <span class="math notranslate nohighlight">\(K\)</span>: Select the number of clusters/experts.</p></li>
-<li><p>Centroid Initialization: Initialize the cluster centroids <span class="math notranslate nohighlight">\({c_k}_{k=1}^K\)</span> using a clustering method such as k-means.</p></li>
-<li><p>PSO Setup: Initialize a swarm of particles, where each particle represents a candidate set of centroids. Set initial velocities and PSO parameters ( <span class="math notranslate nohighlight">\(\omega\)</span>, <span class="math notranslate nohighlight">\(c_1\)</span>, and <span class="math notranslate nohighlight">\(c_2\)</span>).</p></li>
+<ul class="simple">
+<li><p><strong>Initial Clustering:</strong> Define the number of clusters/experts (<span class="math notranslate nohighlight">\(K\)</span>), and compute the cluster centroids <span class="math notranslate nohighlight">\(\{c_k\}_{k=1}^K\)</span> using a clustering method such as k-means.</p></li>
+<li><p><strong>Gating Model Training:</strong> Train a gating XGBoost model (binary classification) <span class="math notranslate nohighlight">\(\hat{p}_k(x)\)</span> for each cluster <span class="math notranslate nohighlight">\(k\)</span>. The gating model <span class="math notranslate nohighlight">\(\hat{p}_{k}\)</span> is trained on <span class="math notranslate nohighlight">\(\{x_i, I_k(x_i)\}_{i=1}^n\)</span>, where <span class="math notranslate nohighlight">\(I_k(x_i)\)</span> equals to 1 when the sample belongs to the <span class="math notranslate nohighlight">\(k\)</span>-th cluster, otherwise 0.</p></li>
+<li><p><strong>Expert Training:</strong> Train an expert XGBoost model <span class="math notranslate nohighlight">\(\hat{f}_k(x)\)</span> for each cluster <span class="math notranslate nohighlight">\(k\)</span> using the full training sample. Each training sample is weighted by its corresponding membership <span class="math notranslate nohighlight">\(\hat{p}_{k}(x)\)</span> to focus the expert on its relevant data region.</p></li>
 </ul>
-</div></blockquote>
-<p><strong>Soft Assignment:</strong></p>
-<p>For each data point <span class="math notranslate nohighlight">\(x_i\)</span>, compute the soft membership probabilities <span class="math notranslate nohighlight">\(p_{ik}\)</span> using Equation <a class="reference internal" href="#equation-eq-soft-membership">(1)</a>.</p>
-<p><strong>Expert Training:</strong></p>
-<p>Train an XGBoost model <span class="math notranslate nohighlight">\(f_k(x)\)</span> for each cluster <span class="math notranslate nohighlight">\(k\)</span>. Each training sample is weighted by its corresponding membership <span class="math notranslate nohighlight">\(p_{ik}\)</span> to focus the expert on its relevant data region.</p>
-<p><strong>Prediction Aggregation:</strong></p>
-<p>For a given input <span class="math notranslate nohighlight">\(x\)</span>, compute the membership probabilities <span class="math notranslate nohighlight">\(p_k(x)\)</span> and obtain the overall prediction using Equation <a class="reference internal" href="#equation-eq-aggregation">(2)</a>.</p>
-<p><strong>Loss Computation:</strong></p>
-<p>Evaluate the overall loss <span class="math notranslate nohighlight">\(L(\theta, {c_k})\)</span> across the dataset as per Equation <a class="reference internal" href="#equation-eq-loss">(3)</a>.</p>
-<p><strong>Centroid Optimization via PSO:</strong></p>
+</section>
+<section id="centroid-optimization-via-pso-optional">
+<h3>Centroid Optimization via PSO (optional)<a class="headerlink" href="#centroid-optimization-via-pso-optional" title="Link to this heading">#</a></h3>
+<p>Instead of using K-Means as the initial cluster, it’s also possible to treat centroids as hyperparameter, which can be directly optimized using PSO.</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><strong>Particle Evaluation:</strong> For each particle (candidate centroids), update the soft assignments, retrain the experts as necessary, and compute the overall loss.</p></li>
-<li><p><strong>Particle Update:</strong> Update the velocities and positions of the particles using Equations <a class="reference internal" href="#equation-eq-pso-velocity">(4)</a> and <a class="reference internal" href="#equation-eq-pso-position">(5)</a>.</p></li>
-<li><p><strong>Selection:</strong> Choose the particle with the lowest loss as the best candidate.</p></li>
+<li><p><strong>Particle Evaluation:</strong> For each particle (candidate centroids), retrain the gating and expert models on training data, and compute the overall validation loss.</p></li>
+<li><p><strong>Particle Update:</strong> Update the velocities and positions of the particles using PSO’s updating Equations.</p></li>
+<li><p><strong>Selection:</strong> Choose the particle with the lowest validation loss as the best candidate.</p></li>
 <li><p><strong>Iteration:</strong> Repeat the PSO process until the loss converges or a maximum number of iterations is reached.</p></li>
 </ul>
 </div></blockquote>
-<p><strong>Iteration and Convergence:</strong></p>
-<p>Iterate the entire process by recomputing soft assignments, retraining experts, and re-optimizing centroids until the model performance stabilizes.</p>
 </section>
 </section>
 <section id="moe-in-modeva">
@@ -585,7 +557,7 @@ Due to the non-differentiability of XGBoost, the cluster centroids are optimized
 
 <span class="c1"># For classification tasks</span>
 <span class="kn">from</span> <span class="nn">modeva.models</span> <span class="kn">import</span> <span class="n">MoMoEClassifier</span>
-<span class="n">model_moe</span> <span class="o">=</span> <span class="n">MoMoEClassifier</span><span class="p">(</span><span class="s2">&quot;MOE_Classification&quot;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">model_moe</span> <span class="o">=</span> <span class="n">MoMoEClassifier</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;MOE_Classification&quot;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>For the full list of hyperparameters, please see the API of <a class="reference external" href="../../modules/generated/modeva.models.MoMoERegressor.html">MoMoERegressor</a> and <a class="reference external" href="../../modules/generated/modeva.models.MoMoEClassifier.html">MoMoEClassifier</a>.</p>
@@ -609,6 +581,37 @@ Due to the non-differentiability of XGBoost, the cluster centroids are optimized
 </div>
 <a class="reference internal image-reference" href="../../../_images/moe_perf.png"><img alt="../../../_images/moe_perf.png" class="align-center" src="../../../_images/moe_perf.png" style="width: 300px;" />
 </a>
+<p><strong>HPO on Centroids (Optional)</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">modeva.models</span> <span class="kn">import</span> <span class="n">ModelTunePSO</span>
+<span class="kn">from</span> <span class="nn">modeva.models</span> <span class="kn">import</span> <span class="n">MoMoERegressor</span>
+
+<span class="c1"># define search space for centroids</span>
+<span class="n">n_clusters</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">param_bounds</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;centroids&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">train_x</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span>
+                              <span class="n">repeats</span><span class="o">=</span><span class="n">n_clusters</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span>
+                              <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">train_x</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span>
+                              <span class="n">repeats</span><span class="o">=</span><span class="n">n_clusters</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()]</span>
+               <span class="p">}</span>
+<span class="c1"># run HPO using PSO</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">MoMoERegressor</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">n_clusters</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">hpo</span> <span class="o">=</span> <span class="n">ModelTunePSO</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="n">ds</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
+<span class="n">hpo_result</span> <span class="o">=</span> <span class="n">hpo</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">param_bounds</span><span class="o">=</span><span class="n">param_bounds</span><span class="p">,</span>
+                     <span class="n">n_iter</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                     <span class="n">n_particles</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                     <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                     <span class="n">metric</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;MSE&quot;</span><span class="p">,)</span>
+                     <span class="p">)</span>
+<span class="c1"># refit using best centroids and all training data</span>
+<span class="n">model_tuned</span> <span class="o">=</span> <span class="n">MoMoERegressor</span><span class="p">(</span><span class="o">**</span><span class="n">hpo_result</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="s2">&quot;params&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+                             <span class="n">name</span><span class="o">=</span><span class="s2">&quot;MOE-Tuned&quot;</span><span class="p">,</span>
+                             <span class="n">n_clusters</span><span class="o">=</span><span class="n">n_clusters</span><span class="p">,</span>
+                             <span class="n">max_depth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                             <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                             <span class="n">verbose</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">model_tuned</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">train_x</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">train_y</span><span class="p">)</span>
+<span class="n">model_tuned</span>
+</pre></div>
+</div>
 </section>
 <section id="interpretation-functional-anova-representation">
 <h2>Interpretation: Functional ANOVA Representation<a class="headerlink" href="#interpretation-functional-anova-representation" title="Link to this heading">#</a></h2>
@@ -883,6 +886,7 @@ Due to the non-differentiability of XGBoost, the cluster centroids are optimized
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-architecture">Model Architecture</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-formulation">Mathematical Formulation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-process">Step-by-Step Process</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#centroid-optimization-via-pso-optional">Centroid Optimization via PSO (optional)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moe-in-modeva">MoE in MoDeVa</a></li>
