@@ -138,11 +138,9 @@
       
     
     
-    <img src="../../../_static/logo.jpg" class="logo__image only-light" alt=""/>
-    <img src="../../../_static/logo.jpg" class="logo__image only-dark pst-js-only" alt=""/>
+    <img src="../../../_static/logo-text.png" class="logo__image only-light" alt=" - Home"/>
+    <img src="../../../_static/logo-text.png" class="logo__image only-dark pst-js-only" alt=" - Home"/>
   
-  
-    <p class="title logo__title">Modeva-AI</p>
   
 </a></div>
     
@@ -185,8 +183,8 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../changes.html">
-    Changelog
+  <a class="nav-link nav-internal" href="../../license.html">
+    License
   </a>
 </li>
 
@@ -320,8 +318,8 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../changes.html">
-    Changelog
+  <a class="nav-link nav-internal" href="../../license.html">
+    License
   </a>
 </li>
 
@@ -599,7 +597,7 @@ A mixture of experts (MoE) framework naturally supports more homogeneous perform
                      <span class="n">n_iter</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
                      <span class="n">n_particles</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
                      <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-                     <span class="n">metric</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;MSE&quot;</span><span class="p">,)</span>
+                     <span class="n">metric</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;MAE&quot;</span><span class="p">,</span> <span class="s2">&quot;R2&quot;</span><span class="p">)</span>
                      <span class="p">)</span>
 <span class="c1"># refit using best centroids and all training data</span>
 <span class="n">model_tuned</span> <span class="o">=</span> <span class="n">MoMoERegressor</span><span class="p">(</span><span class="o">**</span><span class="n">hpo_result</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="s2">&quot;params&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
