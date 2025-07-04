@@ -51,7 +51,7 @@ results.plot()
 # %%
 # Diagnostics (accuracy)
 results = ts.diagnose_accuracy_table()
-results.plot()
+results.table
 
 # %%
 # Diagnostics (slicing accuracy)
